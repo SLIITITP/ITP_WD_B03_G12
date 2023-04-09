@@ -1,9 +1,9 @@
 # ITP_WD_B03_G12
 Please go under edit and edit this file as needed for your project
 
-# Project Name -
-# Batch - 
-### Group Leader 
+# Project Name - Animal Clinic Management System
+# Batch - ITP_WD_B03_G12
+### Group Leader - Sauni Weerasinghe (IT21373848)
 ### Member 2 - 
 ### Member 3 - 
 ### Member 4 - 
