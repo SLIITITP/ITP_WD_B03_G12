@@ -6,7 +6,7 @@ Please go under edit and edit this file as needed for your project
 ### Group Leader - Sauni Weerasinghe (IT21373848)
 ### Member 2 - Adithya Virajith (IT21361272)
 ### Member 3 - Pasindu Ranasinghe(IT21384738)
-### Member 4 - Anupa Herath (IT21295560)
+### Member 4 - 
 ### Member 5 - 
 ### Member 6 - 
 ### Member 7 - 
