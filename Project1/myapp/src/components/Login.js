@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { login } from './UserFunction'
+
+
 class Login extends Component {
 
     constructor(){
@@ -18,7 +20,8 @@ class Login extends Component {
     }
 
     onSubmit(e){
-        e.preventDefault ()
+        e.preventDefault ();
+        alert(`this entered email is : ${this.state.email}`)
         const user ={
             email: this.state.email,
             password: this.state.password
@@ -26,7 +29,7 @@ class Login extends Component {
 
         login(user).then(res => {
             if(res){
-                this.props.history.push('/profile')
+                this.props.navigate('/profile');
             }
         })
     }
@@ -78,4 +81,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default withRouter(Login);

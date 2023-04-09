@@ -35,18 +35,18 @@ class Profile extends Component {
                     <h2>
                         <tbody>
                             <tr>
-                                <td>First Name</td>
-                                <td>(this.state.first_name) </td>
+                            <td>First Name</td>
+                                <td>{this.state.first_name} </td>
                             </tr>
 
                             <tr>
                                 <td>Last Name</td>
-                                <td>(this.state.last_name) </td>
+                                <td>{this.state.last_name} </td>
                             </tr>
 
                             <tr>
                                 <td>Email</td>
-                                <td>(this.state.email) </td>
+                                <td>{this.state.email} </td>
                             </tr>
 
 
