@@ -57,7 +57,7 @@ users.post('/login', (req, res) => {
         email: req.body.email
     })
     .then (user => {
-        if(uder){
+        if(user){
             if(bcrypt.compareSync(req.body.password, user.password)){
                 const payload = {
                     _id : user._id,
