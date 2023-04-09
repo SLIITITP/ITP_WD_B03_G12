@@ -1,14 +1,14 @@
-import React, { Component } from 'react'
-import { login } from './UserFunction'
+import React, { Component } from 'react';
+import { login } from './UserFunction';
 import { withRouter } from './withRouter';
 
-class Login extends Component {
 
+class Login extends Component {
     constructor(){
         super();
         this.state = {
             email: '',
-            password: '',
+            password: ''
         }
 
         this.onChange = this.onChange.bind(this);
@@ -19,12 +19,13 @@ class Login extends Component {
         this.setState({[e.target.name]: e.target.value})
     }
 
-    onSubmit(e){
+    onSubmit(e){ 
         e.preventDefault ();
         alert(`this entered email is : ${this.state.email}`)
         const user ={
             email: this.state.email,
             password: this.state.password
+            
         }
 
         login(user).then(res => {
@@ -32,6 +33,15 @@ class Login extends Component {
                 this.props.navigate('/profile');
             }
         })
+
+
+        
+        login(!user).then(res => {
+            if(res){
+                this.props.navigate('/login');
+            }
+        })
+
     }
 
 
@@ -68,7 +78,7 @@ class Login extends Component {
                                     ></input>
                             </div>
 
-                            <button className='btn btn-lg btn-primary btn-block'>Sign In</button>
+                            <button type='submit' className='btn btn-lg btn-primary btn-block'>Sign In</button>
 
                         </h1>
                     </form>
