@@ -9,8 +9,8 @@ export const register = newUser => {
         password: newUser.password
     })
     .then (res => {
-        console.log("Registered");
-        window.alert("Registered");
+        console.log("Registered Successfully");
+        window.alert("Registered Successfully");
     })
 }
 
