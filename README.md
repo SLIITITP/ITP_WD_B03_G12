@@ -13,9 +13,8 @@ Please go under edit and edit this file as needed for your project
 ### Member 8 - 
 
 #### Brief Description of Project - 
-#### Technologies used - 
+#### Technologies used  - mern
 
-555555555
-this is testing2
+
 Note - The student's github account should be given in brackets e.g. (asiriRepos), this ideally should be your student id 
 
