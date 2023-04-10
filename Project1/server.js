@@ -12,7 +12,7 @@ const app = express();
 
 const mongoose = require('mongoose');
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 5001;
 
 app.use(bodyParser.json());
 app.use(cors());
