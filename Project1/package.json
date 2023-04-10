@@ -23,6 +23,5 @@
     "prop-types": "^15.8.1",
     "react-router-dom": "^6.10.0"
   },
-  "devDependencies": {},
   "description": ""
 }
