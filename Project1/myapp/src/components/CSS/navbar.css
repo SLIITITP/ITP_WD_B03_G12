@@ -1,12 +1,77 @@
-.nav {
-    background-color: black;
-    
-}
+.app-logo {
+    height: 4.5em;
+    width: 4.5em;
+} 
+
+
+
 h6 {
     font-weight: 600;
-    color: white;
+    color:white;
 }
 
-button {
-    background-color: yellowgreen;
+p {
+    font-weight: 500;
+    color: black;
+}
+
+.navigation1 {
+    height: 4em;  
+}
+
+.nav-tabs1 {
+    display: flex;   
+    flex: 1;   
+}
+
+.nav-item1 {
+    list-style: none; 
+    padding-right: 20px;       
+}
+
+
+
+
+.navigation2 {
+   
+    height: 3em;     
+}
+
+.nav-tabs2 {  
+    background-color:black;   
+    border-radius: 2em;
+    display: flex;
+    padding-left: 4em;
+    padding-right: 4em;
+    margin-bottom: 0em;
+}
+
+.nav-item2 {
+    list-style: none; 
+    width: 15em;
+    text-align: center;
+    
+}
+
+
+.nav-tabs { 
+    padding-left: 0em;
+    
+}
+
+.nav-tabs3 {       
+    background-color:rgb(193, 71, 91); 
+    border-radius: 0.5em;
+    display: flex;   
+    padding-left: 20px;
+    padding-right: 20px;  
+}
+
+.nav-tabs4 {    
+    margin-top: 0.2em;
+    padding-left: 20px;
+    padding-right: 20px;  
+    border-radius: 0.5em;
+    background-color:rgb(193, 71, 91); 
+    display: flex;   
 }
