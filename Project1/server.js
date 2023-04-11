@@ -28,8 +28,6 @@ app.use(fileUpload());
 
 
 
-
-
 var corsOptions = {
     origin: '*',
     optionSuccessStatus:200,
