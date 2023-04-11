@@ -11,7 +11,11 @@ var serviceRoutes = require('./routes/Service');
 const app = express();
 
 const mongoose = require('mongoose');
+<<<<<<< HEAD
+
+=======
 //initialize port number
+>>>>>>> e4274ce6fe35e193f7fa4082fb001d85bc456aa6
 const port = process.env.PORT || 5000;
 
 app.use(bodyParser.json());
