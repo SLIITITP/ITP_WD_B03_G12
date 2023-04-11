@@ -55,8 +55,6 @@ mongoose.connect (mongoURI, connectionParams)
 .catch((err) => console.log('DB Connection Error', err));
 
 
-
-
 var Users = require('./routes/Users');
 
 app.use('/users', Users);
