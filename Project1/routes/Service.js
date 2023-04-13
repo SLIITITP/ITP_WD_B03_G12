@@ -42,5 +42,25 @@ serviceRoutes.route('/delete/:id').get(async (req, res) => {
     }
   });
   
-
+// Update a service by ID
+serviceRoutes.route('/update/:id').put(async (req, res) => {
+    try {
+      const service = await Service.findById(req.params.id);
+  
+      if (!service) {
+        return res.status(404).json({ error: 'Service not found' });
+      }
+  
+      service.title = req.body.title;
+      service.description = req.body.description;
+      service.price = req.body.price;
+  
+      await service.save();
+      res.json('Successfully updated');
+      
+      res.json(service);
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
+  });
 module.exports = serviceRoutes;
