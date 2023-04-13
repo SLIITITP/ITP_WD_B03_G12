@@ -16,22 +16,31 @@ serviceRoutes.route('/add').post(function(req,res) {
 })
 
 //read
-serviceRoutes.route('/').get(function (req, res) {
-    Service.find(function (err, service) {
-        if(err){
-            console.log(err);
-        }else{
-            res.json(service);
-        }
-    });
-});
+serviceRoutes.route('/').get(async function (req, res) {
+    try{
+        const service = await Service.find();
+        res.json(service);
+    }
+    catch{
+        console.log(err);
+    }
+})
+
+
 
 //delete
-serviceRoutes.route('/delete/:id').get(function(req,res) {
-    Service.findByIdAndRemove({_id: req.params.id}, function (err,service) {
-        if(err) res.json(err);
-        else res.json('Successfullly removed');
-    })
-});
+serviceRoutes.route('/delete/:id').get(async (req, res) => {
+    try {
+      const service = await Service.findByIdAndRemove({ _id: req.params.id });
+      if (service) {
+        res.json('Successfully removed');
+      } else {
+        res.json('Service not found');
+      }
+    } catch (err) {
+      res.json(err);
+    }
+  });
+  
 
 module.exports = serviceRoutes;
