@@ -2,16 +2,17 @@ var express = require ('express');
 var fileUpload = require('express-fileupload'); 
 var path = require('path');
 var cors = require('cors');
+const app = express();
 
 var bodyParser = require ('body-parser');
 
 
-var serviceRoutes = require('./routes/Service');
+//file upload intializer
+app.use(fileUpload());
 
-const app = express();
-
+//db connection
 const mongoose = require('mongoose');
-//initialize port number
+
 const port = process.env.PORT || 5000;
 
 app.use(bodyParser.json());
@@ -23,28 +24,13 @@ app.use(
     })
 )
 
-app.use('/service', serviceRoutes);
 
-//file upload intializer
-app.use(fileUpload());
-
-
-
-
-
-var corsOptions = {
-    origin: '*',
-    optionSuccessStatus:200,
-}
-
-
-app.use(cors(corsOptions));
-
+app.use(cors());
 
 const mongoURI = 'mongodb+srv://sauni:sauni123@clinicdb.jsgqyav.mongodb.net/?retryWrites=true&w=majority';
 
-
 const connectionParams ={
+    useNewUrlParser: true,
     useUnifiedTopology: true
 }
 
@@ -54,14 +40,17 @@ mongoose.connect (mongoURI, connectionParams)
 
 .catch((err) => console.log('DB Connection Error', err));
 
-
-
-
-var Users = require('./routes/Users');
-
-app.use('/users', Users);
-
 app.listen(port, () => {
     console.log("Server is listening on port " + port);
 })
+
+
+
+//route paths
+var serviceRoutes = require('./routes/Service');
+app.use('/service', serviceRoutes);
+
+
+var Users = require('./routes/Users');
+app.use('/users', Users);
 
