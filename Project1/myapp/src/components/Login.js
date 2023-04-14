@@ -21,6 +21,7 @@ class Login extends Component {
 
     onSubmit(e){ 
         e.preventDefault ();
+
         alert(`this entered email is : ${this.state.email}`)
         const user ={
             email: this.state.email,
@@ -28,19 +29,19 @@ class Login extends Component {
             
         }
 
+
+        
         login(user).then(res => {
             if(res){
-                this.props.navigate('/profile');
+                this.props.navigate(`/profile`);
+            }
+            else {
+                alert(`Login failed`);
             }
         })
 
 
         
-        login(!user).then(res => {
-            if(res){
-                this.props.navigate('/login');
-            }
-        })
 
     }
 
@@ -48,11 +49,11 @@ class Login extends Component {
   render() {
     return (
       <div className='container'>
-        <h2>
+        <div>
             <div className='row'>
                 <div className='col-md-6 mt-5 mx-auto'>
                     <form noValidate onSubmit={this.onSubmit}>
-                        <h1 className='h3 mb-3 font-weight-normal'>
+                        <div className='h3 mb-3 font-weight-normal'>
                             <p align="center">Login</p>
                             <div className='form-group'>
                                 <label htmlFor='email'>Email</label>
@@ -80,11 +81,11 @@ class Login extends Component {
 
                             <button type='submit' className='btn btn-lg btn-primary btn-block'>Sign In</button>
 
-                        </h1>
+                        </div>
                     </form>
                 </div>
             </div>
-        </h2>
+        </div>
         
       </div>
     )

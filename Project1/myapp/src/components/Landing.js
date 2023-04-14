@@ -9,7 +9,7 @@ class Landing extends Component {
                 <h1>Animal Clinc Management System</h1>
                 <br/>
                 <div align="center" className='col-sm-8 mx-auto'>
-                <h1>Welcome to -page name-</h1>
+                <h1>Welcome</h1>
                 </div>
             </div>
         </div>

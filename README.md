@@ -9,8 +9,8 @@ Please go under edit and edit this file as needed for your project
 ### Member 4 - Kavindu Naveen (IT21226878)
 ### Member 5 - Anupa Herath (IT21295560)
 ### Member 6 - Linal Silva (IT21374838)
-### Member 7 - 
-### Member 8 - 
+### Member 7 - Diwyanjalee Dissanayake (IT21165948)
+### Member 8 - Chameen Shamika (IT21203794)
 
 #### Brief Description of Project - 
 #### Technologies used  - mern

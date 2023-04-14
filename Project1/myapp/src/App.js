@@ -6,6 +6,8 @@ import Landing from './components/Landing'
 import Login from './components/Login'
 import Register from './components/Register';
 import Profile from './components/Profile'
+import Navbar2 from './components/NavigationClient';
+import Navbar3 from './components/NavigationAdmin'
 //import ServiceList from './Components/ServicesList'
 //import ServiceAdd from './Components/ServicesAdd'
 
@@ -15,6 +17,8 @@ class App extends Component {
     return(  
         <div className='App'>
           <Navbar/>
+          <Navbar2/>
+          <Navbar3/>
           <div className='container'>
          
           <Routes >
