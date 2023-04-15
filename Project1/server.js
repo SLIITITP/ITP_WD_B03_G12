@@ -53,9 +53,6 @@ app.use('/users', Users);
 var serviceRoutes = require('./routes/Service');
 app.use('/service', serviceRoutes);
 
-
-
-
 var admissionRoutes = require('./routes/Admission');
 app.use('/admission',admissionRoutes);
 
