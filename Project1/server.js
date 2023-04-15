@@ -47,10 +47,12 @@ app.listen(port, () => {
 
 
 //route paths
+var Users = require('./routes/Users');
+app.use('/users', Users);
+
 var serviceRoutes = require('./routes/Service');
 app.use('/service', serviceRoutes);
 
 
-var Users = require('./routes/Users');
-app.use('/users', Users);
+
 
