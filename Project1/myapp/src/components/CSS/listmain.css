@@ -1,0 +1,23 @@
+.tablestyle {
+    display: inline-flex
+    
+}
+
+.buttonstyle{
+    height: fit-content;
+    background-color: rgb(201, 183, 186);
+    float: inline-start;
+    margin-right: 20px;
+}
+
+.buttonstyle td {
+    display: grid;
+    text-align: center;
+    width: 200px;
+    height: 50px;
+    background-color: pink;
+    margin-bottom: 1em;
+    margin-top: 1em;
+    margin-left: 1em;
+    margin-right: 1em   
+}
