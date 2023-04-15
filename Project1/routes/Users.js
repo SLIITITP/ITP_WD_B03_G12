@@ -17,29 +17,30 @@ process.env.SECRET_KEY = 'secret';
 
 //insert
 users.post('/register', async (req, res) => {
-    try {
-      const today = new Date();
-      const userData = {
-        first_name: req.body.first_name,
-        last_name: req.body.last_name,
-        email: req.body.email,
-        password: req.body.password,
-        created: today
-      };
-  
-      const user = await User.findOne({ email: req.body.email });
-      if (!user) {
-        const hash = await bcrypt.hash(req.body.password, 10);
-        userData.password = hash;
-        const newUser = await User.create(userData);
-        res.json({ status: newUser.email + " registered" });
-      } else {
-        res.json({ error: "User Already Registered" });
-      }
-    } catch (err) {
-      res.send("error" + err);
+  try {
+    const today = new Date();
+    const userData = {
+      first_name: req.body.first_name,
+      last_name: req.body.last_name,
+      email: req.body.email,
+      password: req.body.password,
+      created: today
+    };
+
+    const user = await User.findOne({ email: req.body.email });
+    if (!user) {
+      const hash = await bcrypt.hash(req.body.password, 10);
+      userData.password = hash;
+      const newUser = await User.create(userData);
+      res.json({ status: newUser.email + " registered" });
+    } else {
+      res.json({ error: "User already registered", registered: true });
     }
-  });
+  } catch (err) {
+    res.send("error" + err);
+  }
+});
+
   
 
   users.post('/login', async (req, res) => {
@@ -53,13 +54,13 @@ users.post('/register', async (req, res) => {
             last_name: user.last_name,
             email: user.email
           };
-          const token = jwt.sign(payload, process.env.SECRET_KEY, { expiresIn: 1140 });
-          res.send(token);
+          const token = jwt.sign(payload, process.env.SECRET_KEY, { expiresIn: 1000 });
+          res.send({success: true, token});
         } else {
-          res.json({ error: "Incorrect password" });
+          res.json({ success: false, error: "Incorrect password" });
         }
       } else {
-        res.json({ error: "User does not exist in the system" });
+        res.json({ success: false, error: "User does not exist in the system" });
       }
     } catch (err) {
       res.send("error" + err);
