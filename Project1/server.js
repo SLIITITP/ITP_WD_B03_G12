@@ -27,7 +27,7 @@ app.use(
 
 app.use(cors());
 
-const mongoURI = 'mongodb+srv://sauni:sauni123@clinicdb.jsgqyav.mongodb.net/?retryWrites=true&w=majority';
+const mongoURI = 'mongodb+srv://admin:clinic123@clinicdb.m0vlu3p.mongodb.net/?retryWrites=true&w=majority';
 
 const connectionParams ={
     useNewUrlParser: true,
