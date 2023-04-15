@@ -26,6 +26,20 @@ serviceRoutes.route('/').get(async function (req, res) {
     }
 })
 
+//readOne
+serviceRoutes.route('/:id').get(async function (req, res) {
+    try{
+        const service = await Service.find({_id: req.params.id});
+        res.json(service);
+    }
+    catch{
+        console.log(err);
+    }
+  });
+  
+
+
+
 
 
 //delete
@@ -42,7 +56,7 @@ serviceRoutes.route('/delete/:id').get(async (req, res) => {
     }
   });
   
-// Update a service by ID
+// Update 
 serviceRoutes.route('/update/:id').put(async (req, res) => {
     try {
       const service = await Service.findById(req.params.id);
@@ -51,13 +65,14 @@ serviceRoutes.route('/update/:id').put(async (req, res) => {
         return res.status(404).json({ error: 'Service not found' });
       }
   
-      service.title = req.body.title;
-      service.description = req.body.description;
-      service.price = req.body.price;
+      if (!req.body.service_name || !req.body.service_price) {
+        return res.status(400).json({ error: 'Missing required fields' });
+      }
+  
+      service.service_name = req.body.service_name;
+      service.service_price = req.body.service_price;
   
       await service.save();
-      res.json('Successfully updated');
-      
       res.json(service);
     } catch (err) {
       res.status(500).json({ error: err.message });
