@@ -10,6 +10,11 @@ let Service = new Schema( {
 
     service_price: {
         type: String
+    },
+
+    date: {
+        type: Date,
+        default: Date.now
     }
 }, {
     collection: 'service'
