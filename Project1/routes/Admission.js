@@ -22,7 +22,6 @@ admissionRoutes.route('/add').post(function(req,res){
 
     //Reading part
 
-    
     admissionRoutes.route('/').get(async function (req, res) {
         try{
             const admission = await Admission.find();
@@ -32,18 +31,40 @@ admissionRoutes.route('/add').post(function(req,res){
             console.log(err);
         }
     })
+
+     //Update Operation
+     admissionRoutes.route('/update/:id').put(async (req,res) =>{
+        try {
+            const admission = await Admission.findById(req.params.id);
+
+            if(!admission){
+                return res.status(400).json({error:'Admission not Found'});
+            }
+            
+            if(!req.body.owner_name ||!req.body.contact_no ||!req.body.weight ||!req.body.diagnosis ||!req.body.shelter_type ||!req.body.special_notes ||!req.body.shelter_no){
+                return res.status(400).json({error: 'Missing Required Fields!!'});
+
+            }
+            admission.owner_name = req.body.owner_name;
+            admission.contact_no  = req.body.contact_no ;
+            admission.weight= req.body.weight;
+            admission.diagnosis = req.body.diagnosis;
+            admission.shelter_type  = req.body.shelter_type ;
+            admission.special_notes= req.body.special_notes;
+            admission.shelter_no= req.body.shelter_no;
+
+            
+            await admission.save();
+            res.json(admission);
+
+        } catch (err) {
+            res.status(500).json({error: err.message});
+            
+        }
+        
+    });
+
     
-
-
-
-
-
-
-
-    //Update to be imp
-
-    
-
     //Delete Operation
 
     admissionRoutes.route('/delete/:id').get(async(req,res)=>{
