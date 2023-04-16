@@ -46,14 +46,21 @@ admissionRoutes.route('/add').post(function(req,res){
 
     //Delete Operation
 
-    admissionRoutes.route('/delete/:id').get(function(req,res){
-        Admission.findByIdAndRemove({_id: req.params.id}, function (err,admission) {
-            if(err) res.json(err);
-            else res.json('Successfully Removed');
+    admissionRoutes.route('/delete/:id').get(async(req,res)=>{
 
-        })
-
-    });
+        try {
+         const admission = await Admission.findByIdAndRemove({ _id: req.params.id});
+         if(admission){
+             res.json('Removed Successfully!');
+         }else{
+             res.json('Not Found!');
+         }
+         
+        } catch (err) {
+         res.json(err);
+         
+        }
+     });
     module.exports = admissionRoutes;
 
 
