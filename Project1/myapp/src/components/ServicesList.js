@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import TableRowServices from './TableRowServices'
+import ServicesTableRow from './ServicesTableRow'
 import { Link } from 'react-router-dom';
 import { withRouter } from './withRouter';
 
@@ -26,7 +26,7 @@ componentDidMount() {
 
     tabRow(){
         return this.state.service.map(function(object,i) {
-            return <TableRowServices obj = {object} key={i} />
+            return <ServicesTableRow obj = {object} key={i} />
         })
     }
             
