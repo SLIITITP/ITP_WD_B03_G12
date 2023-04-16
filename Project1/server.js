@@ -56,3 +56,6 @@ app.use('/service', serviceRoutes);
 var admissionRoutes = require('./routes/Admission');
 app.use('/admission',admissionRoutes);
 
+var supplierRoutes = require('./routes/Supplier');
+app.use('/supplier',supplierRoutes);
+
