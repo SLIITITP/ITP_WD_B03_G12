@@ -26,7 +26,6 @@ let Animal = new Schema ({
         
     },
 
-
     date: {
         type: Date,
         default: Date.now
@@ -39,4 +38,4 @@ let Animal = new Schema ({
 
 );
 
-module.exports = mongoose.mode ('Animal', Animal)
+module.exports = mongoose.model ('Animal', Animal)
