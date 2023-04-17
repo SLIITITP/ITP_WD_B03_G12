@@ -62,3 +62,6 @@ app.use('/supplier',supplierRoutes);
 
 var animalRoutes = require('./routes/Animal');
 app.use('/animal', animalRoutes);
+
+var employeeRoutes = require('./routes/Employee');
+app.use('/employee',employeeRoutes);
