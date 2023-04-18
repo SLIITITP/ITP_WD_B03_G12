@@ -42,7 +42,7 @@ const ServicesTableRow = (props) => {
 
   const onUpdate = (_id) => {
     axios
-      .put(`http://localhost:8000/service/update/${_id}`, updated)
+      .put(`http://localhost:5000/service/update/${_id}`, updated)
       .then((res) => {
         alert(`Updated Successfully : ${_id}`);
         handleClose();
@@ -52,7 +52,7 @@ const ServicesTableRow = (props) => {
   };
 
   return (
-    <tbody>
+    
       <tr>
         {
           //-------------------------Update form using bootstrap Modal-------------------
@@ -129,7 +129,7 @@ const ServicesTableRow = (props) => {
           </button>
         </td>
       </tr>
-    </tbody>
+    
   );
 };
 
