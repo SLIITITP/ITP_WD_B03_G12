@@ -37,7 +37,7 @@ function ServicesList(props) {
   //get data from database
   useEffect(() => {
     axios
-      .get("http://localhost:8000/service/")
+      .get("http://localhost:5000/service/")
       .then((response) => {
         setService(response.data);
       })
@@ -56,7 +56,7 @@ function ServicesList(props) {
   const handleClick = (e) => {
     e.preventDefault();
     axios
-      .post(`http://localhost:8000/service/add`, data)
+      .post(`http://localhost:5000/service/add`, data)
       .then((res) => {
         alert(`Added Successfully`);
         handleClose();
