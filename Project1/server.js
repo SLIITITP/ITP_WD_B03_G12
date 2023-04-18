@@ -68,3 +68,6 @@ app.use('/employee',employeeRoutes);
 
 var itemRoutes = require('./routes/Item');
 app.use('/item',itemRoutes);
+
+var categoryRoutes = require('./routes/Category');
+app.use('/category',categoryRoutes);
