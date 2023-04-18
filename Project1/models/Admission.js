@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 let Admission = new Schema({
+
     owner_name: {
         type: String,
     } ,
@@ -19,11 +20,19 @@ let Admission = new Schema({
         type: String,
     } ,
 
+    shelter_type :{
+        type: String,
+    },
+
     special_notes: {
         type: String,
     } ,
-    
-    admitted_date: {
+
+    shelter_no:{
+        type:String,
+
+    },
+     admitted_date: {
         type: Date,
         default: Date.now
     } 

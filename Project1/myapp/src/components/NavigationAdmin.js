@@ -27,7 +27,7 @@ class Navbar3 extends Component {
                     </li>
 
                     <li className="nav-item2" >
-                        <Link to="/employers" className="nav-link" > 
+                        <Link to="/employees" className="nav-link" > 
                             <h6>Our Employees</h6>
                         </Link>
                     </li>
@@ -75,7 +75,7 @@ class Navbar3 extends Component {
                     </li>
 
                     <li className="nav-item2" >
-                        <Link to="/invoice" className="nav-link" > 
+                        <Link to="/services" className="nav-link" > 
                             <h6>Invoice</h6>
                         </Link>
                     </li>

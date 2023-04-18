@@ -8,7 +8,7 @@ import Register from './components/Register';
 import Profile from './components/Profile'
 import Navbar2 from './components/NavigationClient';
 import Navbar3 from './components/NavigationAdmin'
-//import ServiceList from './Components/ServicesList'
+import ServiceList from './components/ServicesList'
 //import ServiceAdd from './Components/ServicesAdd'
 
 
@@ -26,6 +26,11 @@ class App extends Component {
             <Route path = "/register" element={<Register/>}/>
             <Route path = "/login" element={<Login/>}/>
             <Route path = "/profile" element={<Profile/>}/>
+            <Route path = "/services" element={<ServiceList/>}/>
+
+
+
+
           </Routes>
          
           </div> 

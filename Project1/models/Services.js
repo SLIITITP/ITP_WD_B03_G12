@@ -1,5 +1,3 @@
-const { Double } = require("mongodb");
-
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
@@ -10,6 +8,11 @@ let Service = new Schema( {
 
     service_price: {
         type: String
+    },
+
+    date: {
+        type: Date,
+        default: Date.now
     }
 }, {
     collection: 'service'

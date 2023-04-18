@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { register } from './UserFunction'
+import { withRouter } from './withRouter';
 class Register extends Component {
 
     constructor(){
@@ -19,22 +20,26 @@ class Register extends Component {
         this.setState({[e.target.name]: e.target.value})
     }
 
-    onSubmit(e){
-        e.preventDefault ()
-
-        const user ={
-            first_name: this.state.first_name,
-            last_name: this.state.last_name,
-            email: this.state.email,
-            password: this.state.password
-        }
-
+    onSubmit(e) {
+        e.preventDefault();
+      
+        const user = {
+          first_name: this.state.first_name,
+          last_name: this.state.last_name,
+          email: this.state.email,
+          password: this.state.password
+        };
+      
         register(user).then(res => {
-            if(res){
-                this.props.history.push('/login')
-            }
-        })
-    }
+          if (res.registered) {
+            this.props.navigate('/login');
+            window.alert("Registered now");
+          } else {
+            window.alert("Register failed");
+          }
+        });
+      }
+      
 
 
   render() {
@@ -56,6 +61,7 @@ class Register extends Component {
                                     placeholder='Enter First Name'
                                     value={this.state.first_name}
                                     onChange={this.onChange}
+                                    required
                                     ></input>
                             </div>
 
@@ -66,6 +72,7 @@ class Register extends Component {
                                     className='form-control'
                                     name='last_name'
                                     placeholder='Enter Last Name'
+                                    required
                                     value={this.state.last_name}
                                     onChange={this.onChange}
                                     ></input>
@@ -78,6 +85,7 @@ class Register extends Component {
                                     className='form-control'
                                     name='email'
                                     placeholder='Enter email'
+                                    required
                                     value={this.state.email}
                                     onChange={this.onChange}
                                     ></input>
@@ -90,6 +98,7 @@ class Register extends Component {
                                     className='form-control'
                                     name='password'
                                     placeholder='Enter password'
+                                    required
                                     value={this.state.password}
                                     onChange={this.onChange}
                                     ></input>
@@ -99,6 +108,7 @@ class Register extends Component {
 
                         </h1>
                     </form>
+                    
                 </div>
             </div>
         </h2>
@@ -108,4 +118,4 @@ class Register extends Component {
   }
 }
 
-export default Register;
+export default withRouter(Register);

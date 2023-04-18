@@ -7,8 +7,8 @@ class Login extends Component {
     constructor(){
         super();
         this.state = {
-            email: '',
-            password: ''
+            email: ``,
+            password: ``
         }
 
         this.onChange = this.onChange.bind(this);
@@ -25,24 +25,24 @@ class Login extends Component {
         alert(`this entered email is : ${this.state.email}`)
         const user ={
             email: this.state.email,
-            password: this.state.password
-            
+            password: this.state.password            
         }
 
-
         
-        login(user).then(res => {
-            if(res){
-                this.props.navigate(`/profile`);
-            }
-            else {
-                alert(`Login failed`);
-            }
-        })
-
-
-        
-
+        login(user)
+        .then(res => {
+          if (res.success) {
+            localStorage.setItem('usertoken', res.token);
+            console.log('Token stored in local storage:', localStorage.usertoken);
+            this.props.navigate('/profile');
+          } else {
+            alert(res.error);            
+          }
+        }) 
+        .catch(err => {
+          console.log(err);
+        });
+      
     }
 
 
