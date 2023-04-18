@@ -52,6 +52,23 @@ function ServicesList(props) {
     });
   };
 
+    //taking count
+    const [count, setCount] = useState(0);
+
+    useEffect(() => {
+      axios
+        .get("http://localhost:8000/service/get/count")
+        .then((response) => {
+          console.log(response)
+          setCount(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }, []);
+
+
+
   //send new data to database
   const handleClick = (e) => {
     e.preventDefault();
@@ -118,6 +135,7 @@ function ServicesList(props) {
         //-------------------------Side Menue Buttons-------------------
       }
       <h1 align="center">Service List</h1>
+      <h4 className="text-right"><b>Count:{count}</b></h4>
       <div className="tablestyle">
         <div className="buttonframe">
           <table className="buttonstyle">
