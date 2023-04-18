@@ -21,7 +21,7 @@ itemRoutes.route('/').get(async function (req, res) {
         const item = await Item.find();
         res.json(item);
     }
-    catch{
+    catch (error){ 
         console.log(error);
     }
 })
