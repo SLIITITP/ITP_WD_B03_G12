@@ -52,79 +52,84 @@ const ServicesTableRow = (props) => {
   };
 
   return (
-    <tr>
-      {
-        //-------------------------Update form using bootstrap Modal-------------------
-      }
+    <tbody>
+      <tr>
+        {
+          //-------------------------Update form using bootstrap Modal-------------------
+        }
 
-      <Modal {...props} size="lg" show={show} onHide={handleClose} centered>
-        <Modal.Header closeButton>
-          <Modal.Title id="contained-modal-title-vcenter">
-            Update Services
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <h4>Centered Modal</h4>
-          <Form>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Service Name:</Form.Label>
-              <Form.Control
-                type="text"
-                name="service_name"
-                value={updated.service_name}
-                onChange={handleChange}
-                autoFocus
-              />
-            </Form.Group>
-            <Form.Group
-              className="mb-3"
-              controlId="exampleForm.ControlTextarea1"
-            >
-              <Form.Label>Service Price</Form.Label>
-              <Form.Control
-                type="text"
-                name="service_price"
-                value={updated.service_price}
-                onChange={handleChange}
-                autoFocus
-              />
-            </Form.Group>
-          </Form>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button onClick={() => onUpdate(serviceState._id)}>Update</Button>
-          <Button onClick={handleClose}>Close</Button>
-        </Modal.Footer>
-      </Modal>
+        <Modal {...props} size="lg" show={show} onHide={handleClose} centered>
+          <Modal.Header closeButton>
+            <Modal.Title id="contained-modal-title-vcenter">
+              Update Services
+            </Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <h4>Centered Modal</h4>
+            <Form>
+              <Form.Group
+                className="mb-3"
+                controlId="exampleForm.ControlInput1"
+              >
+                <Form.Label>Service Name:</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="service_name"
+                  value={updated.service_name}
+                  onChange={handleChange}
+                  autoFocus
+                />
+              </Form.Group>
+              <Form.Group
+                className="mb-3"
+                controlId="exampleForm.ControlTextarea1"
+              >
+                <Form.Label>Service Price</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="service_price"
+                  value={updated.service_price}
+                  onChange={handleChange}
+                  autoFocus
+                />
+              </Form.Group>
+            </Form>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button onClick={() => onUpdate(serviceState._id)}>Update</Button>
+            <Button onClick={handleClose}>Close</Button>
+          </Modal.Footer>
+        </Modal>
 
-      {
-        //-------------------------Display All data -------------------
-      }
+        {
+          //-------------------------Display All data -------------------
+        }
 
-      <td key={serviceState._id} style={{ display: "none" }}>
-        {" "}
-      </td>
-      <td>{serviceState.service_name}</td>
-      <td>{serviceState.service_price}</td>
-      <td>
-        <button
-          type="submit"
-          className="submit"
-          onClick={() => updateService(serviceState)}
-        >
-          <Link className="nav-link">Update</Link>
-        </button>
-      </td>
-      <td>
-        <button
-          type="submit"
-          className="delete"
-          onClick={() => onDelete(serviceState._id)}
-        >
-          <Link className="nav-link">Delete</Link>
-        </button>
-      </td>
-    </tr>
+        <td key={serviceState._id} style={{ display: "none" }}>
+          {" "}
+        </td>
+        <td>{serviceState.service_name}</td>
+        <td>{serviceState.service_price}</td>
+        <td>
+          <button
+            type="submit"
+            className="submit"
+            onClick={() => updateService(serviceState)}
+          >
+            <Link className="nav-link">Update</Link>
+          </button>
+        </td>
+        <td>
+          <button
+            type="submit"
+            className="delete"
+            onClick={() => onDelete(serviceState._id)}
+          >
+            <Link className="nav-link">Delete</Link>
+          </button>
+        </td>
+      </tr>
+    </tbody>
   );
 };
 
