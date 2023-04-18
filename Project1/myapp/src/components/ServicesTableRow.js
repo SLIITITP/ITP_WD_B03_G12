@@ -52,7 +52,7 @@ const ServicesTableRow = (props) => {
   };
 
   return (
-    <tbody>
+    
       <tr>
         {
           //-------------------------Update form using bootstrap Modal-------------------
@@ -129,7 +129,7 @@ const ServicesTableRow = (props) => {
           </button>
         </td>
       </tr>
-    </tbody>
+    
   );
 };
 
