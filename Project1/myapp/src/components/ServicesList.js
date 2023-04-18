@@ -57,7 +57,7 @@ function ServicesList(props) {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8000/service/get/count")
+      .get("http://localhost:5000/service/get/count")
       .then((response) => {
         console.log(response);
         setCount(response.data);
