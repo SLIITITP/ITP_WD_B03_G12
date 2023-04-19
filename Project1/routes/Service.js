@@ -21,7 +21,7 @@ serviceRoutes.route('/').get(async function (req, res) {
         const service = await Service.find();
         res.json(service);
     }
-    catch{
+    catch (err){
         console.log(err);
     }
 })
@@ -32,7 +32,7 @@ serviceRoutes.route('/:id').get(async function (req, res) {
         const service = await Service.find({_id: req.params.id});
         res.json(service);
     }
-    catch{
+    catch (err) {
         console.log(err);
     }
   });
@@ -56,6 +56,7 @@ serviceRoutes.route('/delete/:id').get(async (req, res) => {
     }
   });
   
+
 // Update 
 serviceRoutes.route('/update/:id').put(async (req, res) => {
     try {
@@ -78,4 +79,17 @@ serviceRoutes.route('/update/:id').put(async (req, res) => {
       res.status(500).json({ error: err.message });
     }
   });
+
+  //count
+serviceRoutes.route('/get/count').get(async function (req, res) {
+  try {
+    const count = await Service.countDocuments();
+    res.json(count);
+  } catch (err) {
+    console.log(err);
+    res.status(500).send("Server error");
+  }
+});
+
+
 module.exports = serviceRoutes;
