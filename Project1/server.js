@@ -76,3 +76,15 @@ app.use('/animaltype', animaltypeRoutes);
 
 var animalbreedRoutes = require('./routes/AnimalBreed');
 app.use('/animalbreed', animalbreedRoutes);
+
+var OrderRoutes = require('./routes/OrderRoutes');
+app.use('/order', OrderRoutes);
+
+var DeliveryRoutes = require('./routes/DeliveryRoutes');
+app.use('/delivery', DeliveryRoutes);
+
+var ItemOrderRoutes = require('./routes/ItemOrderRoutes');
+app.use('/itemOrder', ItemOrderRoutes);
+
+var OnlinePaymentRoutes = require('./routes/OnlinePaymentRoutes');
+app.use('/onlinePayment', OnlinePaymentRoutes);
