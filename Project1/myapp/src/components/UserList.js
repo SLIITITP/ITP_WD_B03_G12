@@ -9,7 +9,7 @@ import { withRouter } from "./withRouter";
 
 import "../components/CSS/listmain.css";
 
-function UsersList(props) {
+function UserList(props) {
     //read hook
     const [user, setUser] = useState([]);
 
@@ -222,4 +222,4 @@ function UsersList(props) {
   );
 }
 
-export default withRouter(UsersList);
+export default withRouter(UserList);
