@@ -59,6 +59,11 @@ app.use('/admission',admissionRoutes);
 var supplierRoutes = require('./routes/Supplier');
 app.use('/supplier',supplierRoutes);
 
-
 var animalRoutes = require('./routes/Animal');
 app.use('/animal', animalRoutes);
+
+var animaltypeRoutes = require('./routes/AnimalType');
+app.use('/animaltype', animaltypeRoutes);
+
+var animalbreedRoutes = require('./routes/AnimalBreed');
+app.use('/animalbreed', animalbreedRoutes);
