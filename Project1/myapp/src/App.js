@@ -11,6 +11,8 @@ import Navbar3 from './components/NavigationAdmin'
 import ServiceList from './components/ServicesList'
 import UserList from './components/UserList';
 import EmployeeList from './components/EmployeeList'
+import AnimalList from './components/AnimalList';
+import AnimalTypeList from './components/AnimalTypeList';
 //import ServiceAdd from './Components/ServicesAdd'
 
 
@@ -32,6 +34,9 @@ class App extends Component {
             <Route path = "/regUser" element={<UserList/>}/>
 
             <Route path = "/employees" element={<EmployeeList/>}/>
+            <Route path = "/animals" element={<AnimalList/>}/>
+            <Route path = "/animaltype" element={<AnimalTypeList/>}/>
+
 
 
 
