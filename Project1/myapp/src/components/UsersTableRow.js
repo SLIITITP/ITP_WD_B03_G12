@@ -6,11 +6,13 @@ import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import { withRouter } from "./withRouter";
 
-const ServicesTableRow = (props) => {
-  const [serviceState] = useState({
+const UsersTableRow = (props) => {
+  const [userState] = useState({
     _id: props.obj._id,
-    service_name: props.obj.service_name,
-    service_price: props.obj.service_price,
+    first_name: props.obj.first_name,
+    last_name: props.obj.last_name,
+    email: props.obj.email,
+    date: props.obj.date,
   });
 
   const [show, setShow] = useState(false);
@@ -21,15 +23,15 @@ const ServicesTableRow = (props) => {
   const [updated, setUpdated] = useState({});
 
   const onDelete = (id) => {
-    axios.get(`http://localhost:5000/service/delete/${id}`).then((res) => {
+    axios.get(`http://localhost:5000/users/delete/${id}`).then((res) => {
       alert(`Deleted Successfully : ${id}`);
       window.location.reload();
     });
   };
 
-  const updateService = (serviceState) => {
-    console.log(serviceState);
-    setUpdated(serviceState);
+  const updateUser = (userState) => {
+    console.log(userState);
+    setUpdated(userState);
 
     handleShow();
   };
@@ -42,7 +44,7 @@ const ServicesTableRow = (props) => {
 
   const onUpdate = (_id) => {
     axios
-      .put(`http://localhost:5000/service/update/${_id}`, updated)
+      .put(`http://localhost:5000/users/update/${_id}`, updated)
       .then((res) => {
         alert(`Updated Successfully : ${_id}`);
         handleClose();
@@ -61,7 +63,7 @@ const ServicesTableRow = (props) => {
         <Modal {...props} size="lg" show={show} onHide={handleClose} centered>
           <Modal.Header closeButton>
             <Modal.Title id="contained-modal-title-vcenter">
-              Update Services
+              Update User
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
@@ -71,11 +73,11 @@ const ServicesTableRow = (props) => {
                 className="mb-3"
                 controlId="exampleForm.ControlInput1"
               >
-                <Form.Label>Service Name:</Form.Label>
+                <Form.Label>First Name:</Form.Label>
                 <Form.Control
                   type="text"
-                  name="service_name"
-                  value={updated.service_name}
+                  name="first_name"
+                  value={updated.first_name}
                   onChange={handleChange}
                   autoFocus
                 />
@@ -84,11 +86,37 @@ const ServicesTableRow = (props) => {
                 className="mb-3"
                 controlId="exampleForm.ControlTextarea1"
               >
-                <Form.Label>Service Price</Form.Label>
+                <Form.Label>Last Name</Form.Label>
                 <Form.Control
                   type="text"
-                  name="service_price"
-                  value={updated.service_price}
+                  name="last_name"
+                  value={updated.last_name}
+                  onChange={handleChange}
+                  autoFocus
+                />
+              </Form.Group>
+              <Form.Group
+                className="mb-3"
+                controlId="exampleForm.ControlTextarea1"
+              >
+                <Form.Label>Email</Form.Label>
+                <Form.Control
+                  type="email"
+                  name="email"
+                  value={updated.email}
+                  onChange={handleChange}
+                  autoFocus
+                />
+              </Form.Group>
+              <Form.Group
+                className="mb-3"
+                controlId="exampleForm.ControlTextarea1"
+              >
+                <Form.Label>Password</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="password"
+                  value={updated.password}
                   onChange={handleChange}
                   autoFocus
                 />
@@ -96,7 +124,7 @@ const ServicesTableRow = (props) => {
             </Form>
           </Modal.Body>
           <Modal.Footer>
-            <Button onClick={() => onUpdate(serviceState._id)}>Update</Button>
+            <Button onClick={() => onUpdate(userState._id)}>Update</Button>
             <Button onClick={handleClose}>Close</Button>
           </Modal.Footer>
         </Modal>
@@ -105,16 +133,18 @@ const ServicesTableRow = (props) => {
           //-------------------------Display All data -------------------
         }
 
-        <td key={serviceState._id} style={{ display: "none" }}>
-          {" "}
+        <td key={userState._id} style={{ display: "none" }}>
+          {"  "} 
         </td>
-        <td>{serviceState.service_name}</td>
-        <td>{serviceState.service_price}</td>
+        <td>{userState.first_name}</td>
+        <td>{userState.last_name}</td>
+        <td>{userState.email}</td>
+        <td>{userState.date}</td>
         <td>
           <button
             type="submit"
             className="submit"
-            onClick={() => updateService(serviceState)}
+            onClick={() => updateUser(userState)}
           >
             <Link className="nav-link">Update</Link>
           </button>
@@ -123,7 +153,7 @@ const ServicesTableRow = (props) => {
           <button
             type="submit"
             className="delete"
-            onClick={() => onDelete(serviceState._id)}
+            onClick={() => onDelete(userState._id)}
           >
             <Link className="nav-link">Delete</Link>
           </button>
@@ -133,4 +163,4 @@ const ServicesTableRow = (props) => {
   );
 };
 
-export default withRouter(ServicesTableRow);
+export default withRouter(UsersTableRow);

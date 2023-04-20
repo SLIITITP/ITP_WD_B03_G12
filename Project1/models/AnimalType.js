@@ -16,4 +16,4 @@ let AnimalType = new Schema ({
 
 );
 
-module.exports = mongoose.mode ('AnimalType', AnimalType)
+module.exports = mongoose.model ('AnimalType', AnimalType)

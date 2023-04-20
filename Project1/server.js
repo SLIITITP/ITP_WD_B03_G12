@@ -59,7 +59,6 @@ app.use('/admission',admissionRoutes);
 var supplierRoutes = require('./routes/Supplier');
 app.use('/supplier',supplierRoutes);
 
-
 var animalRoutes = require('./routes/Animal');
 app.use('/animal', animalRoutes);
 
@@ -68,3 +67,24 @@ app.use('/employee',employeeRoutes);
 
 var itemRoutes = require('./routes/Item');
 app.use('/item',itemRoutes);
+
+var categoryRoutes = require('./routes/Category');
+app.use('/category',categoryRoutes);
+
+var animaltypeRoutes = require('./routes/AnimalType');
+app.use('/animaltype', animaltypeRoutes);
+
+var animalbreedRoutes = require('./routes/AnimalBreed');
+app.use('/animalbreed', animalbreedRoutes);
+
+var OrderRoutes = require('./routes/OrderRoutes');
+app.use('/order', OrderRoutes);
+
+var DeliveryRoutes = require('./routes/DeliveryRoutes');
+app.use('/delivery', DeliveryRoutes);
+
+var ItemOrderRoutes = require('./routes/ItemOrderRoutes');
+app.use('/itemOrder', ItemOrderRoutes);
+
+var OnlinePaymentRoutes = require('./routes/OnlinePaymentRoutes');
+app.use('/onlinePayment', OnlinePaymentRoutes);
