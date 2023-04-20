@@ -175,7 +175,7 @@ function UserList(props) {
             </tr>
             <tr>
               <td>
-                <Link to="/invoiceViewAll" className="nav-link">
+                <Link to="/regUser" className="nav-link">
                   <p>View all Users</p>
                 </Link>
               </td>
@@ -189,8 +189,22 @@ function UserList(props) {
             </tr>
             <tr>
               <td>
-                <Link to="/services" className="nav-link">
+                <Link to="/animals" className="nav-link">
                   <p>View all Animal</p>
+                </Link>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <Link to="/animaltypes" className="nav-link">
+                  <p>Add Animal Type</p>
+                </Link>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <Link to="/animaltypes" className="nav-link">
+                  <p>View all Animal Types</p>
                 </Link>
               </td>
             </tr>

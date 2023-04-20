@@ -74,7 +74,7 @@ animalRoutes.route('/update/:id').put(async (req, res) => {
   });  
 
   //count
-animal.route('/get/count').get(async function (req, res) {
+  animalRoutes.route('/get/count').get(async function (req, res) {
   try {
     const count = await Animal.countDocuments();
     res.json(count);
