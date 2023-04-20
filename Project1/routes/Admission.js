@@ -82,6 +82,20 @@ admissionRoutes.route('/add').post(function(req,res){
          
         }
      });
+
+
+     //count
+    admissionRoutes.route('/get/count').get(async function (req, res) {
+    try {
+      const count = await Admission.countDocuments();
+      res.json(count);
+    } catch (err) {
+      console.log(err);
+      res.status(500).send("Server error");
+    }
+  });
+
+   
     module.exports = admissionRoutes;
 
 
