@@ -66,6 +66,18 @@ itemRoutes.route('/update/:id').put(async (req, res) => {
       res.status(500).json({ error: err.message });
     }
   });
+
+  //count
+ itemRoutes.route('/get/count').get(async function (req, res) {
+  try {
+    const count = await Item.countDocuments();
+    res.json(count);
+  } catch (err) {
+    console.log(err);
+    res.status(500).send("Server error");
+  }
+});
+
 module.exports = itemRoutes;
 
 
