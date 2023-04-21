@@ -47,7 +47,7 @@ function SupplierList(props) {
   //get data from database
   useEffect(() => {
     axios
-      .get("http://localhost:8000/supplier/")
+      .get("http://localhost:5000/supplier/")
       .then((response) => {
         setItem(response.data);
       })
@@ -67,7 +67,7 @@ function SupplierList(props) {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8000/supplier/get/count")
+      .get("http://localhost:5000/supplier/get/count")
       .then((response) => {
         console.log(response);
         setCount(response.data);
@@ -82,7 +82,7 @@ function SupplierList(props) {
     e.preventDefault();
     console.log(data)
     axios
-      .post(`http://localhost:8000/supplier/add`, data)
+      .post(`http://localhost:5000/supplier/add`, data)
       .then((res) => {
         alert(`Added Successfully`);
         handleClose();
