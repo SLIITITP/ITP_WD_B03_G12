@@ -28,7 +28,7 @@ const ItemTableRow = (props) => {
   const [updated, setUpdated] = useState({});
 
   const onDelete = (id) => {
-    axios.get(`http://localhost:8000/item/delete/${id}`).then((res) => {
+    axios.get(`http://localhost:5000/item/delete/${id}`).then((res) => {
       alert(`Deleted Successfully : ${id}`);
       window.location.reload();
     });
@@ -50,7 +50,7 @@ const ItemTableRow = (props) => {
 
   const onUpdate = (_id) => {
     axios
-      .put(`http://localhost:5000/employee/update/${_id}`, updated)
+      .put(`http://localhost:5000/item/update/${_id}`, updated)
       .then((res) => {
         alert(`Updated Successfully : ${_id}`);
         handleClose();
@@ -83,7 +83,7 @@ const ItemTableRow = (props) => {
               <Form.Control
                 type="text"
                 name="item_name"
-                value={updated. item_name}
+                value={updated.item_name}
                 onChange={handleChange}
                 autoFocus
               />
@@ -97,7 +97,7 @@ const ItemTableRow = (props) => {
               <Form.Control
                 type="text"
                 name="item_category"
-                value={updated. item_category} 
+                value={updated.item_category} 
                 onChange={handleChange}
                 autoFocus
               />
@@ -139,7 +139,7 @@ const ItemTableRow = (props) => {
               <Form.Control
                 type="text"
                 name="item_description"
-                value={updated. item_description}
+                value={updated.item_description}
                 onChange={handleChange}
                 autoFocus
               />
@@ -165,7 +165,7 @@ const ItemTableRow = (props) => {
             >
               <Form.Label>Enter manufacture_data</Form.Label>
               <Form.Control
-                type="text"
+                type="date"
                 name="item_manufacture_date"
                 value={updated.item_manufacture_date}
                 onChange={handleChange}
@@ -179,9 +179,9 @@ const ItemTableRow = (props) => {
             >
               <Form.Label>Enter expire_data</Form.Label>
               <Form.Control
-                type="text"
-                name="item_expire_data"
-                value={updated.item_expire_data}
+                type="date"
+                name="item_expire_date"
+                value={updated.item_expire_date}
                 onChange={handleChange}
                 autoFocus
               />
