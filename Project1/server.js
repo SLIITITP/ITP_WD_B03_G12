@@ -71,3 +71,6 @@ app.use('/item',itemRoutes);
 
 var categoryRoutes = require('./routes/Category');
 app.use('/category',categoryRoutes);
+
+var employeeloginRoutes = require('./routes/EmployeeLogin');
+app.use('/accounts',employeeloginRoutes);
