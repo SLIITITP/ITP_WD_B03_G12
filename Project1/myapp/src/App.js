@@ -11,6 +11,7 @@ import Navbar3 from './components/NavigationAdmin'
 import ServiceList from './components/ServicesList'
 import UserList from './components/UserList';
 import EmployeeList from './components/EmployeeList'
+import EmployeeLoginList from './components/EmployeeLoginList'
 //import ServiceAdd from './Components/ServicesAdd'
 
 
@@ -32,10 +33,8 @@ class App extends Component {
             <Route path = "/regUser" element={<UserList/>}/>
 
             <Route path = "/employees" element={<EmployeeList/>}/>
-
-
-
-
+            <Route path = "/accounts" element={<EmployeeLoginList/>}/>
+            
           </Routes>
          
           </div> 
@@ -46,10 +45,6 @@ class App extends Component {
   }
 }
 
-
-
-
-
-
-
 export default App;
+
+
