@@ -39,7 +39,7 @@ function CategoryList(props) {
   //get data from database
   useEffect(() => {
     axios
-      .get("http://localhost:8000/category/")
+      .get("http://localhost:5000/category/")
       .then((response) => {
         setItem(response.data);
       })
@@ -59,7 +59,7 @@ function CategoryList(props) {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8000/category/get/count")
+      .get("http://localhost:5000/category/get/count")
       .then((response) => {
         console.log(response);
         setCount(response.data);
@@ -74,7 +74,7 @@ function CategoryList(props) {
     e.preventDefault();
     console.log(data)
     axios
-      .post(`http://localhost:8000/category/add`, data)
+      .post(`http://localhost:5000/category/add`, data)
       .then((res) => {
         alert(`Added Successfully`);
         handleClose();
