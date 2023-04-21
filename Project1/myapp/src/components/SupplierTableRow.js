@@ -31,7 +31,7 @@ const SupplierTableRow = (props) => {
   const [updated, setUpdated] = useState({});
 
   const onDelete = (id) => {
-    axios.get(`http://localhost:8000/supplier/delete/${id}`).then((res) => {
+    axios.get(`http://localhost:5000/supplier/delete/${id}`).then((res) => {
       alert(`Deleted Successfully : ${id}`);
       window.location.reload();
     });
@@ -53,7 +53,7 @@ const SupplierTableRow = (props) => {
 
   const onUpdate = (_id) => {
     axios
-      .put(`http://localhost:8000/supplier/update/${_id}`, updated)
+      .put(`http://localhost:5000/supplier/update/${_id}`, updated)
       .then((res) => {
         alert(`Updated Successfully : ${_id}`);
         handleClose();
