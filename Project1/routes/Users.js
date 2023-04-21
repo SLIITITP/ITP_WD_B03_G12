@@ -90,6 +90,69 @@ users.post('/register', async (req, res) => {
       res.send("Error" + err);
     }
   });
+
+//read
+users.route('/').get(async function (req, res) {
+  try{
+      const users = await User.find();
+      res.json(users);
+  }
+  catch (err){
+      console.log(err);
+  }
+})
+
+
+//delete
+users.route('/delete/:id').get(async (req, res) => {
+  try {
+    const users = await User.findByIdAndRemove({ _id: req.params.id });
+    if (users) {
+      res.json('Successfully removed');
+    } else {
+      res.json('Users not found');
+    }
+  } catch (err) {
+    res.json(err);
+  }
+});
+
+
+// Update 
+users.route('/update/:id').put(async (req, res) => {
+  try {
+    const users = await User.findById(req.params.id);
+
+    if (!users) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+   
+
+    users.first_name = req.body.first_name;
+    users.last_name = req.body.last_name;
+    users.email = req.body.email;
+    users.passsword = req.body.password;
+
+    await users.save();
+    res.json(users);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+//count
+users.route('/get/count').get(async function (req, res) {
+try {
+  const count = await User.countDocuments();
+  res.json(count);
+} catch (err) {
+  console.log(err);
+  res.status(500).send("Server error");
+}
+});
+
+
   
 
 module.exports = users;
