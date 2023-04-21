@@ -45,7 +45,7 @@ function ItemList(props) {
   //get data from database
   useEffect(() => {
     axios
-      .get("http://localhost:8000/item/")
+      .get("http://localhost:5000/item/")
       .then((response) => {
         setItem(response.data);
       })
@@ -65,7 +65,7 @@ function ItemList(props) {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8000/item/get/count")
+      .get("http://localhost:5000/item/get/count")
       .then((response) => {
         console.log(response);
         setCount(response.data);
@@ -80,7 +80,7 @@ function ItemList(props) {
     e.preventDefault();
     console.log(data)
     axios
-      .post(`http://localhost:8000/item/add`, data)
+      .post(`http://localhost:5000/item/add`, data)
       .then((res) => {
         alert(`Added Successfully`);
         handleClose();
