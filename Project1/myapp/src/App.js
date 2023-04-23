@@ -20,7 +20,7 @@ import ProccessOrder from './components/ProccessOrder';
 import PaymentMethod from './components/PaymentMethod';
 import PlacedOrder from './components/PlacedOrder';
 import OrderList from './components/OrderList';
-
+import ItemList from './components/ItemList';
 
 //import ServiceAdd from './Components/ServicesAdd'
 
@@ -52,6 +52,7 @@ class App extends Component {
             
             <Route path = "/employees" element={<EmployeeList/>}/>
             <Route path = "/accounts" element={<EmployeeLoginList/>}/>
+            <Route path = "/items" element={<ItemList/>}/>
             
           </Routes>
          
