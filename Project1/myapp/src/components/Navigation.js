@@ -82,7 +82,7 @@ class Navbar extends Component {
                 <ul className="nav-tabs1">
                     
                         <Link to ="/" className="nav-link">
-                            <img src="../img/appLogo.jpg" className="app-logo" alt="home"/>
+                            <img src="../img/appLogo.png" className="app-logo" alt="home"/>
                         </Link>
                     
                 </ul>

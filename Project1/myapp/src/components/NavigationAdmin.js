@@ -58,13 +58,13 @@ class Navbar3 extends Component {
                             
                     <li className="nav-item2" >
                         <Link to="/items" className="nav-link" > 
-                            <h6>Online Store</h6>
+                            <h6>Store</h6>
                         </Link>
                     </li>
 
                     <li className="nav-item2" >
                         <Link to="/store" className="nav-link">
-                            <h6>Online Orders</h6>
+                            <h6>Online Store</h6>
                         </Link>
                     </li>
 

@@ -1,7 +1,6 @@
 const express = require('express');
 const shelterRoutes = express.Router();
-let Shelters = require("../models/Shelters");
-const {awit} = require('react-router-dom');
+let Shelter = require("../models/Shelters");
 
 
 //inset Operation
@@ -100,3 +99,4 @@ shelterRoutes.route('/delete/:id').get(async(req,res)=>{
     }
   });
 
+  module.exports = shelterRoutes;

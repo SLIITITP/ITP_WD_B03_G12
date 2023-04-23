@@ -248,7 +248,7 @@ function AdmissionForm(props) {
             </tr>
             <tr>
               <td>
-                <Link to="" className="nav-link">
+                <Link to="/shelters" className="nav-link">
                   <p>View Shelters</p>
                 </Link>
               </td>
