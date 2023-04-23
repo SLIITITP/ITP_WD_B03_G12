@@ -68,6 +68,18 @@ supplierRoutes.route('/update/:id').put(async (req, res) => {
       res.status(500).json({ error: err.message });
     }
   });
+  //count
+supplierRoutes.route('/get/count').get(async function (req, res) {
+  try {
+    const count = await Supplier.countDocuments();
+    res.json(count);
+  } catch (err) {
+    console.log(err);
+    res.status(500).send("Server error");
+  }
+});
+
+
 module.exports = supplierRoutes;
 
 
