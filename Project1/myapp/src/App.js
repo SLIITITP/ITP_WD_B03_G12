@@ -21,8 +21,8 @@ import PaymentMethod from './components/PaymentMethod';
 import PlacedOrder from './components/PlacedOrder';
 import OrderList from './components/OrderList';
 import ItemList from './components/ItemList';
-
-//import ServiceAdd from './Components/ServicesAdd'
+import CategoryList from './components/CategoryList'
+import Suppliers from './components/SupplierList';
 
 
 class App extends Component {
@@ -53,7 +53,9 @@ class App extends Component {
             <Route path = "/employees" element={<EmployeeList/>}/>
             <Route path = "/accounts" element={<EmployeeLoginList/>}/>
             <Route path = "/items" element={<ItemList/>}/>
-            
+            <Route path = "/medicalrecords" element={<PrescriptionList/>}/>
+            <Route path = "/category" element={<CategoryList/>}/>
+            <Route path = "/supplier" element={<Suppliers/>}/>
           </Routes>
          
           </div> 
