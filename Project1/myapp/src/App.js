@@ -12,6 +12,9 @@ import ServiceList from './components/ServicesList'
 import UserList from './components/UserList';
 import EmployeeList from './components/EmployeeList'
 import EmployeeLoginList from './components/EmployeeLoginList'
+import PrescriptionList from './components/PrescriptionList';
+import VaccineList from './components/VaccineList';
+import MedicalRecordsList from './components/MedicalRecordsList';
 import StoreCard from './components/StoreCard';
 import ProccessOrder from './components/ProccessOrder';
 import PaymentMethod from './components/PaymentMethod';
@@ -46,14 +49,9 @@ class App extends Component {
             <Route path = "/profile" element={<Profile/>}/>
             <Route path = "/services" element={<ServiceList/>}/>
             <Route path = "/regUser" element={<UserList/>}/>
-
+            
             <Route path = "/employees" element={<EmployeeList/>}/>
             <Route path = "/accounts" element={<EmployeeLoginList/>}/>
-            <Route path = "/store" element={<StoreCard/>}/>
-            <Route path = "/proccess" element={<ProccessOrder/>}/>
-            <Route path = "/payee" element={<PaymentMethod/>}/>
-            <Route path = "/placedOrder" element={<PlacedOrder/>}/>
-            <Route path = "/orderList" element={<OrderList/>}/>
             
           </Routes>
          
