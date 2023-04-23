@@ -68,7 +68,9 @@ orderRoutes.route('/update/:id').put(async (req, res) => {
   
       
   
-      order.itemStates = req.body.itemStates;
+      order.orderStates = req.body.orderStates;
+      order.selectedItem = req.body.selectedItem;
+      order.selectedItemQty = req.body.selectedItemQty;
       
   
       await order.save();

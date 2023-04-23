@@ -57,19 +57,19 @@ class Navbar3 extends Component {
                 <ul className="nav-tabs4">
                             
                     <li className="nav-item2" >
-                        <Link to="/store" className="nav-link" > 
+                        <Link to="/items" className="nav-link" > 
                             <h6>Online Store</h6>
                         </Link>
                     </li>
 
                     <li className="nav-item2" >
-                        <Link to="/orders" className="nav-link">
+                        <Link to="/store" className="nav-link">
                             <h6>Online Orders</h6>
                         </Link>
                     </li>
 
                     <li className="nav-item2" >
-                        <Link to="/onlinepayments" className="nav-link" > 
+                        <Link to="/payee" className="nav-link" > 
                             <h6>Online Payments</h6>
                         </Link>
                     </li>
