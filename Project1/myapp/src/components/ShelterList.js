@@ -66,7 +66,7 @@ useEffect(() => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/admission/get/count")
+      .get("http://localhost:5000/shelters/get/count")
       .then((response) => {
         console.log(response);
         setCount(response.data);
