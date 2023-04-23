@@ -20,7 +20,7 @@ import ProccessOrder from './components/ProccessOrder';
 import PaymentMethod from './components/PaymentMethod';
 import PlacedOrder from './components/PlacedOrder';
 import OrderList from './components/OrderList';
-import ItemList from './components/ItemList;'
+import ItemList from './components/ItemList';
 
 //import ServiceAdd from './Components/ServicesAdd'
 
