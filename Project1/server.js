@@ -91,3 +91,6 @@ app.use('/onlinePayment', OnlinePaymentRoutes);
 
 var employeeloginRoutes = require('./routes/EmployeeLogin');
 app.use('/accounts',employeeloginRoutes);
+
+var paymentRoutes = require('./routes/Payments');
+app.use('/payments', paymentRoutes);
