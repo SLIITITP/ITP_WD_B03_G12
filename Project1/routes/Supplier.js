@@ -112,7 +112,7 @@ supplierRoutes.route('/update/:id').put(async (req, res) => {
    //count
 supplierRoutes.route('/get/count').get(async function (req, res) {
   try {
-    const count = await suppl.countDocuments();
+    const count = await Supplier.countDocuments();
     res.json(count);
   } catch (err) {
     console.log(err);

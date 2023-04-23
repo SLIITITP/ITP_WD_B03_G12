@@ -158,7 +158,7 @@ const SupplierTableRow = (props) => {
               <Form.Label>E mail </Form.Label>
               <Form.Control
                 type="text"
-                name="email"
+                name="email1"
                 value={updated.email}
                 onChange={handleChange}
                 autoFocus
@@ -218,7 +218,7 @@ const SupplierTableRow = (props) => {
             >
               <Form.Label>registerd date</Form.Label>
               <Form.Control
-                type="text"
+                type="date"
                 name="registerd_date"
                 value={updated.registerd_date}
                 onChange={handleChange}
