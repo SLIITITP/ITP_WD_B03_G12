@@ -68,7 +68,7 @@ itemRoutes.route('/update/:id').put(async (req, res) => {
   });
 
   //count
- itemRoutes.route('/get/count').get(async function (req, res) {
+  itemRoutes.route('/get/count').get(async function (req, res) {
   try {
     const count = await Item.countDocuments();
     res.json(count);
