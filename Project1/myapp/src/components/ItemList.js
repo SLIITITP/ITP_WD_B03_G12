@@ -257,7 +257,7 @@ function ItemList(props) {
                 </tr>
                 <tr>
                     <td>       
-                        <Link to="/store" className="nav-link"> 
+                        <Link to="/items" className="nav-link"> 
                             <p>View Item</p>
                         </Link>                 
                     </td>
