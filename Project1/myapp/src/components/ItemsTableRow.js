@@ -235,4 +235,4 @@ const ItemTableRow = (props) => {
   );
 };
 
-export default withRouter(ItemTableRow); 
+export default withRouter(ItemTableRow);
