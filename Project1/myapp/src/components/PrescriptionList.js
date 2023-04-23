@@ -1,28 +1,25 @@
-import React, { useState, useEffect, useRef  } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import ServicesTableRow from "./ServicesTableRow";
+import PrescriptionTableRow from "./PrescriptionTableRow";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
-import { withRouter } from "./withRouter"; 
-import ReactToPrint from 'react-to-print'; 
+import { withRouter } from "./withRouter";
+
 import "../components/CSS/listmain.css";
 
-import { ServicePrint } from "./ServicePrint";
-
-function ServicesList(props) {
- 
-  
-
-  
+function PrescriptionList(props) {
   //read hook
-  const [service, setService] = useState([]);
+  const [prescription, setPrescription] = useState([]);
 
   //insert hook
   const [data, setData] = useState({
-    service_name: "",
-    service_price: "",
+    DoctorID: "",
+    PetID: "",
+    PetName: "",
+    Illness: "",
+    Medicine: "",
   });
 
   const handleChange = (e) => {
@@ -43,9 +40,9 @@ function ServicesList(props) {
   //get data from database
   useEffect(() => {
     axios
-      .get("http://localhost:5000/service/")
+      .get("http://localhost:5000/prescription/")
       .then((response) => {
-        setService(response.data);
+        setPrescription(response.data);
       })
       .catch((error) => {
         console.log(error);
@@ -53,17 +50,17 @@ function ServicesList(props) {
   }, []);
 
   const tabRow = () => {
-    return service.map((object, i) => {
-      return <ServicesTableRow obj={object} key={i} />;
+    return prescription.map((object, i) => {
+      return <PrescriptionTableRow obj={object} key={i} />;
     });
   };
 
-  //taking count
+  //taking count 
   const [count, setCount] = useState(0);
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/service/get/count")
+      .get("http://localhost:5000/prescription/get/count")
       .then((response) => {
         console.log(response);
         setCount(response.data);
@@ -77,45 +74,39 @@ function ServicesList(props) {
   const handleClick = (e) => {
     e.preventDefault();
     axios
-      .post(`http://localhost:5000/service/add`, data)
+      .post(`http://localhost:5000/prescription/add`, data)
       .then((res) => {
         alert(`Added Successfully`);
         handleClose();
         window.location.reload();
       })
-      .catch((err) => { 
+      .catch((err) => {
         console.log(err);
       });
   };
-  const componentRef = useRef(); 
- 
+
   return (
     <div>
-      
-      <ReactToPrint
-      documentTitle='Our Services' 
-      trigger={() => <Button style={{float:'right'}}>Print</Button>}
-      content={() => componentRef.current} ></ReactToPrint>
-     
-    
       {
         //-------------------------Insert form using bootstrap Modal-------------------
       }
+      
+
       <Modal {...props} size="lg" show={show} onHide={handleClose} centered>
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
-            Add New Service
+            Add New Prescription
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Service Name:</Form.Label>
+              <Form.Label> DoctorID:</Form.Label>
               <Form.Control
                 type="text"
-                name="service_name"
-                value={data.service_name}
-                placeholder="Enter New service"
+                name="DoctorID"
+                value={data.DoctorID}
+                placeholder="Enter New  DoctorID"
                 onChange={handleChange}
                 autoFocus
               />
@@ -124,16 +115,59 @@ function ServicesList(props) {
               className="mb-3"
               controlId="exampleForm.ControlTextarea1"
             >
-              <Form.Label>Service Price</Form.Label>
+              <Form.Label> PetID</Form.Label>
               <Form.Control
                 type="text"
-                name="service_price"
-                value={data.service_price}
-                placeholder="Enter service Price"
+                name="PetID"
+                value={data.PetID}
+                placeholder="Enter  PetID"
                 onChange={handleChange}
                 autoFocus
               />
             </Form.Group>
+
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Label> PetName:</Form.Label>
+              <Form.Control
+                type="text"
+                name="PetName"
+                value={data.PetName}
+                placeholder="Enter New  PetName"
+                onChange={handleChange}
+                autoFocus
+              />
+            </Form.Group>
+              
+            <Form.Group
+              className="mb-3"
+              controlId="exampleForm.ControlTextarea1"
+            >
+              <Form.Label>Illness</Form.Label>
+              <Form.Control
+                type="text"
+                name="Illness"
+                value={data.Illness}
+                placeholder="Enter Illness"
+                onChange={handleChange}
+                autoFocus
+              />
+            </Form.Group>
+
+            <Form.Group
+              className="mb-3"
+              controlId="exampleForm.ControlTextarea1"
+            >
+              <Form.Label>Medicine</Form.Label>
+              <Form.Control
+                type="text"
+                name="Medicine"
+                value={data.Medicine}
+                placeholder="Enter Medicine"
+                onChange={handleChange}
+                autoFocus
+              />
+            </Form.Group>
+
           </Form>
         </Modal.Body>
         <Modal.Footer>
@@ -142,7 +176,7 @@ function ServicesList(props) {
         </Modal.Footer>
       </Modal>
 
-      <h1 align="center">Service List</h1>
+      <h1 align="center">Prescription List </h1>
       <h4 className="text-right">
         <b>Total: {count}</b>
       </h4>
@@ -156,29 +190,29 @@ function ServicesList(props) {
           <table className="buttonstyle">
             <tr>
               <td>
-                <Link to="/invoiceAdd" className="nav-link">
-                  <p>Issue Invoice</p>
+                <Link onClick={handleShow} className="nav-link">
+                  <p>Add prescription</p>
                 </Link>
               </td>
             </tr>
             <tr>
               <td>
-                <Link to="/invoiceViewAll" className="nav-link">
-                  <p>View all Invoices</p>
+                <Link to="/prescription" className="nav-link">
+                  <p>View all Prescriptions</p>
                 </Link>
               </td>
             </tr>
             <tr>
               <td>
                 <Link onClick={handleShow} className="nav-link">
-                  <p>Add a Service</p>
+                  <p>Add Medical Records</p>
                 </Link>
               </td>
             </tr>
             <tr>
               <td>
-                <Link to="/services" className="nav-link">
-                  <p>View Services</p>
+                <Link to="/medicalrecords" className="nav-link">
+                  <p>View all Medical Records</p>
                 </Link>
               </td>
             </tr>
@@ -188,24 +222,29 @@ function ServicesList(props) {
         {
           //-------------------------Display data from database-------------------
         }
-        <ServicePrint ref={componentRef}>
         <table className="table table-striped" style={{ width: "54em" }}>
           <tr>
             <td>
-              <b>Service Name</b>
+              <b>DoctorID</b>
             </td>
             <td>
-              <b>Service Price</b>
+              <b>PetID</b>
+            </td>
+            <td>
+              <b>PetName</b>
+            </td>
+            <td>
+              <b>Illness</b>
+            </td>
+            <td>
+              <b>Medicine</b>
             </td>
           </tr>
           <tbody>{tabRow()}</tbody>
         </table>
-        </ServicePrint>
       </div>
-      
-
     </div>
   );
-};
+}
 
-export default withRouter(ServicesList);
+export default withRouter(PrescriptionList);

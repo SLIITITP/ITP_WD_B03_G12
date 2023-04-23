@@ -1,7 +1,11 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-let Order = new Schema( {
+let AdminOrder = new Schema( {
+    orderId: {
+        type: String
+    },
+
     orderStates: {
         type: String
     },
@@ -15,11 +19,17 @@ let Order = new Schema( {
     },
     selectedItemQty: {
         type: String
-    }
+    },
+    totalPrice: {
+        type: String
+    },
+    paymentMethod: {
+        type: String
+    },
 
    
 }, {
-    collection: 'Order'
+    collection: 'AdminOrder'
 });
 
-module.exports = mongoose.model('Order', Order);
+module.exports = mongoose.model('AdminOrder', AdminOrder);
