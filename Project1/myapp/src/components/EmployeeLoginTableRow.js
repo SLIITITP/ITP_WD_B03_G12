@@ -6,12 +6,14 @@ import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import { withRouter } from "./withRouter";
 
-const CategoryTableRow = (props) => {
-  const [categoryState] = useState({
+
+const EmployeeLoginTableRow = (props) => {
+  const [employeeloginState] = useState({
     _id: props.obj._id,
-    name: props.obj.name,
-    description: props.obj.description,
-   
+    employeelogin_email: props.obj.email,
+    employeelogin_password: props.obj.password,
+    employeelogin_acctype: props.obj.acctype,
+    employeelogin_date: props.obj.reggdate,
 
   });
 
@@ -23,15 +25,15 @@ const CategoryTableRow = (props) => {
   const [updated, setUpdated] = useState({});
 
   const onDelete = (id) => {
-    axios.get(`http://localhost:5000/description/delete/${id}`).then((res) => {
+    axios.get(`http://localhost:5000/accounts/delete/${id}`).then((res) => {
       alert(`Deleted Successfully : ${id}`);
       window.location.reload();
     });
   };
 
-  const updateCategory = (categoryState) => {
-    console.log(categoryState);
-    setUpdated(categoryState);
+  const updateEmployeelogin = (employeeloginState) => {
+    console.log(employeeloginState);
+    setUpdated(employeeloginState);
 
     handleShow();
   };
@@ -45,7 +47,7 @@ const CategoryTableRow = (props) => {
 
   const onUpdate = (_id) => {
     axios
-      .put(`http://localhost:5000/category/update/${_id}`, updated)
+      .put(`http://localhost:5000/accounts/update/${_id}`, updated)
       .then((res) => {
         alert(`Updated Successfully : ${_id}`);
         handleClose();
@@ -61,52 +63,68 @@ const CategoryTableRow = (props) => {
         {
           //-------------------------Update form using bootstrap Modal-------------------
         }
-        
 
         <Modal {...props} size="lg" show={show} onHide={handleClose} centered>
           <Modal.Header closeButton>
             <Modal.Title id="contained-modal-title-vcenter">
-              Update Category
+              Update login
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
-     
+            
             <Form>
 
               <Form.Group className="mb-3" 
               controlId="exampleForm.ControlInput1">
-              <Form.Label>name:</Form.Label>
+              <Form.Label>Enter email:</Form.Label>
               <Form.Control
                 type="text"
-                name="name"
-                value={updated.name}
+                name="employeelogin_email"
+                value={updated.employeelogin_email}
                 onChange={handleChange}
                 autoFocus
               />
             </Form.Group>
-
-            
-
-            
 
             <Form.Group
               className="mb-3" 
               controlId="exampleForm.ControlTextarea1"
             >
-              <Form.Label>description</Form.Label>
+              <Form.Label>Enter password</Form.Label>
               <Form.Control
                 type="text"
-                name="description"
-                value={updated.description} 
+                name="employeelogin_password"
+                value={updated.employeelogin_password} 
                 onChange={handleChange}
                 autoFocus
               />
             </Form.Group>
-          
+
+            <Form.Group
+              className="mb-3" controlId="exampleForm.ControlTextarea1"
+            >
+              <Form.Label>Enter account type:</Form.Label>
+              <Form.Control as = "select"
+                  name="employeelogin_acctype"
+                  value={updated.employeelogin_acctype}
+                  onChange={handleChange}>
+              <option value="select">Select</option>
+              <option value="doctor">Doctor</option>
+               <option value="admin">Admin</option>
+               <option value="cashier">Cashier</option>
+              </Form.Control>
+  
+
+            </Form.Group>
+
+
+
+
+ 
             </Form>
           </Modal.Body>
           <Modal.Footer>
-            <Button onClick={() => onUpdate(categoryState._id)}>Update</Button>
+            <Button onClick={() => onUpdate(employeeloginState._id)}>Update</Button>
             <Button onClick={handleClose}>Close</Button>
           </Modal.Footer>
         </Modal>
@@ -115,35 +133,39 @@ const CategoryTableRow = (props) => {
           //-------------------------Display All data -------------------
         }
 
-        <td key={categoryState._id} style={{ display: "none" }}>
+        <td key={employeeloginState._id} style={{ display: "none" }}>
           {" "}
         </td>
-        <td>{categoryState.name}</td>
-        <td>{categoryState.description}</td>
-        
+        <td>{employeeloginState.employeelogin_email}</td>
+        <td>{employeeloginState.employeelogin_password}</td>
+        <td>{employeeloginState.employeelogin_acctype}</td>
+        <td>{employeeloginState.employeelogin_date}</td>
 
 
         <td>
-          <button
+          <Button
             type="submit"
             className="submit"
-            onClick={() => updateCategory(categoryState)}
+            variant="success"
+            onClick={() => updateEmployeelogin(employeeloginState)}
           >
-            <Link className="nav-link">Update</Link>
-          </button>
+            Update
+          </Button>
         </td>
         <td>
-          <button
+          <Button
             type="submit"
+            
+            variant="danger"
             className="delete"
-            onClick={() => onDelete(categoryState._id)}
+            onClick={() => onDelete(employeeloginState._id)}
           >
-            <Link className="nav-link">Delete</Link>
-          </button>
+            Delete
+          </Button>
         </td>
       </tr>
     
   );
 };
 
-export default withRouter(CategoryTableRow);
+export default withRouter(EmployeeLoginTableRow);
