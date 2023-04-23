@@ -14,12 +14,15 @@ let OnlinePayment = new Schema( {
     totalPrice: {
         type: String
     },
+    paymentMethod: {
+        type: String
+    },
 
     cardNumber: {
         type: String
     },
     validThru: {
-        type: Date
+        type: String
     },
     cvc: {
         type: String
