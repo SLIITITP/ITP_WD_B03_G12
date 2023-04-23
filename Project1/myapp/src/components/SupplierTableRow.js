@@ -216,7 +216,7 @@ const SupplierTableRow = (props) => {
               className="mb-3" 
               controlId="exampleForm.ControlTextarea1"
             >
-              <Form.Label>registerd data</Form.Label>
+              <Form.Label>registerd date</Form.Label>
               <Form.Control
                 type="text"
                 name="registerd_date"
