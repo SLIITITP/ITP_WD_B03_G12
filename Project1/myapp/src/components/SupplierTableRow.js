@@ -144,8 +144,8 @@ const SupplierTableRow = (props) => {
               <Form.Label>person2 last name</Form.Label>
               <Form.Control
                 type="text"
-                name="person2_first_name"
-                value={updated.person2_first_name}
+                name="person2_last_name"
+                value={updated.person2_last_name}
                 onChange={handleChange}
                 autoFocus
               />
