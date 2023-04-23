@@ -105,3 +105,6 @@ app.use('/vaccine', vaccineRoutes);
 
 var medicalrecordsRoutes = require('./routes/MedicalRecords');
 app.use('/medicalrecords', medicalrecordsRoutes);
+
+var shelterRoutes = require('./routes/Shelters');
+app.use('/shelters', shelterRoutes);
