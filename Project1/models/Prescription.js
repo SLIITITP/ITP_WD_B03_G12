@@ -2,23 +2,27 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 let Prescription = new Schema( {
-    prescription_DoctorID: {
+    DoctorID: {
         type: String
     },
 
-    prescription_PetID: {
+    PetID: {
         type: String
     },
 
-    prescription_Illness: {
+    PetName: {
+        type: String
+    },
+
+    Illness: {
         type: String,
     },
 
-    prescription_Medicine: {
+    Medicine: {
         type: String,
     },
 
-    prescription_Date: {
+    Date: {
         type: Date,
         default: Date.now
     },

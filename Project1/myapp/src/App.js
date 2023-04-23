@@ -12,6 +12,9 @@ import ServiceList from './components/ServicesList'
 import UserList from './components/UserList';
 import EmployeeList from './components/EmployeeList'
 import EmployeeLoginList from './components/EmployeeLoginList'
+import PrescriptionList from './components/PrescriptionList';
+import VaccineList from './components/VaccineList';
+import MedicalRecordsList from './components/MedicalRecordsList';
 //import ServiceAdd from './Components/ServicesAdd'
 
 
@@ -31,10 +34,13 @@ class App extends Component {
             <Route path = "/profile" element={<Profile/>}/>
             <Route path = "/services" element={<ServiceList/>}/>
             <Route path = "/regUser" element={<UserList/>}/>
-
+            
             <Route path = "/employees" element={<EmployeeList/>}/>
             <Route path = "/accounts" element={<EmployeeLoginList/>}/>
-            
+            <Route path = "/prescription" element={<PrescriptionList/>}/>
+            <Route path = "/vaccinerecords" element={<VaccineList/>}/>
+            <Route path = "/medicalrecords" element={<MedicalRecordsList/>}/>
+
           </Routes>
          
           </div> 

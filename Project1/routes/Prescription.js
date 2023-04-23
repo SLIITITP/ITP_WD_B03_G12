@@ -1,6 +1,8 @@
 const express = require('express');
 const prescriptionRoutes = express.Router(); 
 
+
+
 let Prescription = require ( "../models/Prescription");
 
 //insert
@@ -67,10 +69,11 @@ prescriptionRoutes.route('/update/:id').put(async (req, res) => {
       }
   
   
-      prescription.prescription_DoctorID = req.body.prescription_DoctorID;
-      prescription.prescription_PetID = req.body.prescription_PetID;
-      prescription.prescription_Illness = req.body.prescription_Illness;
-      prescription.prescription_Medicine = req.body.prescription_Medicine;
+      prescription.DoctorID = req.body.DoctorID;
+      prescription.PetID = req.body.PetID;
+      prescription.PetName = req.body.PetName;
+      prescription.Illness = req.body.Illness;
+      prescription.Medicine = req.body.Medicine;
      
       await prescription.save();
       res.json(prescription);

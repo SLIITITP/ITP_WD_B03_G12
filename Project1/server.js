@@ -94,3 +94,9 @@ app.use('/accounts',employeeloginRoutes);
 
 var prescriptionRoutes = require('./routes/Prescription');
 app.use('/prescription', prescriptionRoutes);
+
+var vaccineRoutes = require('./routes/Vaccine');
+app.use('/vaccine', vaccineRoutes);
+
+var medicalrecordsRoutes = require('./routes/MedicalRecords');
+app.use('/medicalrecords', medicalrecordsRoutes);
