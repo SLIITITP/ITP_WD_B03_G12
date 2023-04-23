@@ -61,7 +61,6 @@ const CategoryTableRow = (props) => {
         {
           //-------------------------Update form using bootstrap Modal-------------------
         }
-        
 
         <Modal {...props} size="lg" show={show} onHide={handleClose} centered>
           <Modal.Header closeButton>
