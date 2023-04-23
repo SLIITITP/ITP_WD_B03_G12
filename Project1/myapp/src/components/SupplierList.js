@@ -89,6 +89,7 @@ function SupplierList(props) {
         window.location.reload();
       })
       .catch((err) => {
+        alert(`Already have`);
         console.log(err);
       });
   };
@@ -154,7 +155,7 @@ function SupplierList(props) {
               <Form.Label>person2_first_name:</Form.Label>
               <Form.Control
                 type="text"
-                name="person12_first_name"
+                name="person2_first_name"
                 value={data.person2_first_name}
                 placeholder="Enter person2_first_name"
                 onChange={handleChange}
