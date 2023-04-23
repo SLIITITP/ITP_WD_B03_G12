@@ -6,13 +6,11 @@ import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import { withRouter } from "./withRouter";
 
-const CategoryTableRow = (props) => {
-  const [categoryState] = useState({
+const MedicalRecordsTableRow = (props) => {
+  const [MedicalRecordsState] = useState({
     _id: props.obj._id,
-    name: props.obj.name,
+    issued_doctorID: props.obj.issued_doctorID,
     description: props.obj.description,
-   
-
   });
 
   const [show, setShow] = useState(false);
@@ -23,15 +21,15 @@ const CategoryTableRow = (props) => {
   const [updated, setUpdated] = useState({});
 
   const onDelete = (id) => {
-    axios.get(`http://localhost:8000/description/delete/${id}`).then((res) => {
+    axios.get(`http://localhost:5000/medicalrecords/delete/${id}`).then((res) => {
       alert(`Deleted Successfully : ${id}`);
       window.location.reload();
     });
   };
 
-  const updateCategory = (categoryState) => {
-    console.log(categoryState);
-    setUpdated(categoryState);
+  const updateMedicalRecords = (MedicalRecordsState) => {
+    console.log(MedicalRecordsState);
+    setUpdated(MedicalRecordsState);
 
     handleShow();
   };
@@ -41,11 +39,10 @@ const CategoryTableRow = (props) => {
     const { name, value } = e.target;
     setUpdated((prevState) => ({ ...prevState, [name]: value }));
   };
-  
 
   const onUpdate = (_id) => {
     axios
-      .put(`http://localhost:8000/category/update/${_id}`, updated)
+      .put(`http://localhost:5000/medicalrecords/update/${_id}`, updated)
       .then((res) => {
         alert(`Updated Successfully : ${_id}`);
         handleClose();
@@ -54,59 +51,52 @@ const CategoryTableRow = (props) => {
       .catch((err) => console.log(err));
   };
 
-
   return (
     
       <tr>
         {
           //-------------------------Update form using bootstrap Modal-------------------
         }
-        
 
         <Modal {...props} size="lg" show={show} onHide={handleClose} centered>
           <Modal.Header closeButton>
             <Modal.Title id="contained-modal-title-vcenter">
-              Update Category
+              Update MedicalRecords
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
-     
+            <h4>Centered Modal</h4>
             <Form>
-
-              <Form.Group className="mb-3" 
-              controlId="exampleForm.ControlInput1">
-              <Form.Label>name:</Form.Label>
-              <Form.Control
-                type="text"
-                name="name"
-                value={updated.name}
-                onChange={handleChange}
-                autoFocus
-              />
-            </Form.Group>
-
-            
-
-            
-
-            <Form.Group
-              className="mb-3" 
-              controlId="exampleForm.ControlTextarea1"
-            >
-              <Form.Label>description</Form.Label>
-              <Form.Control
-                type="text"
-                name="description"
-                value={updated.description} 
-                onChange={handleChange}
-                autoFocus
-              />
-            </Form.Group>
-          
+              <Form.Group
+                className="mb-3"
+                controlId="exampleForm.ControlInput1"
+              >
+                <Form.Label>Issued DoctorID:</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="issued_doctorID"
+                  value={updated.issued_doctorID}
+                  onChange={handleChange}
+                  autoFocus
+                />
+              </Form.Group>
+              <Form.Group
+                className="mb-3"
+                controlId="exampleForm.ControlTextarea1"
+              >
+                <Form.Label>Description</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="description"
+                  value={updated.description}
+                  onChange={handleChange}
+                  autoFocus
+                />
+              </Form.Group>
             </Form>
           </Modal.Body>
           <Modal.Footer>
-            <Button onClick={() => onUpdate(categoryState._id)}>Update</Button>
+            <Button onClick={() => onUpdate(MedicalRecordsState._id)}>Update</Button>
             <Button onClick={handleClose}>Close</Button>
           </Modal.Footer>
         </Modal>
@@ -115,19 +105,16 @@ const CategoryTableRow = (props) => {
           //-------------------------Display All data -------------------
         }
 
-        <td key={categoryState._id} style={{ display: "none" }}>
+        <td key={MedicalRecordsState._id} style={{ display: "none" }}>
           {" "}
         </td>
-        <td>{categoryState.name}</td>
-        <td>{categoryState.description}</td>
-        
-
-
+        <td>{MedicalRecordsState.issued_doctorID}</td>
+        <td>{MedicalRecordsState.description}</td>
         <td>
           <button
             type="submit"
             className="submit"
-            onClick={() => updateCategory(categoryState)}
+            onClick={() => updateMedicalRecords(MedicalRecordsState)}
           >
             <Link className="nav-link">Update</Link>
           </button>
@@ -136,7 +123,7 @@ const CategoryTableRow = (props) => {
           <button
             type="submit"
             className="delete"
-            onClick={() => onDelete(categoryState._id)}
+            onClick={() => onDelete(MedicalRecordsState._id)}
           >
             <Link className="nav-link">Delete</Link>
           </button>
@@ -146,4 +133,4 @@ const CategoryTableRow = (props) => {
   );
 };
 
-export default withRouter(CategoryTableRow);
+export default withRouter(MedicalRecordsTableRow);
