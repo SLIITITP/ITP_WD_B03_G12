@@ -89,5 +89,8 @@ app.use('/itemOrder', ItemOrderRoutes);
 var OnlinePaymentRoutes = require('./routes/OnlinePaymentRoutes');
 app.use('/onlinePayment', OnlinePaymentRoutes);
 
+var AdminOrderRoutes = require('./routes/AdminOrderRoutes');
+app.use('/adminOrder', AdminOrderRoutes);
+
 var employeeloginRoutes = require('./routes/EmployeeLogin');
 app.use('/accounts',employeeloginRoutes);

@@ -70,6 +70,7 @@ onlinePaymentRoutes.route('/update/:id').put(async (req, res) => {
       onlinePayment.orderId = req.body.orderId;
       onlinePayment.customerId = req.body.customerId;
       onlinePayment.totalPrice = req.body.totalPrice;
+      onlinePayment.paymentMethod = req.body.paymentMethod;
       onlinePayment.cardNumber = req.body.cardNumber;
       onlinePayment.validThru = req.body.validThru;
       onlinePayment.cvc = req.body.cvc;
