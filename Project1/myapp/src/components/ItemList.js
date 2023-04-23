@@ -10,6 +10,8 @@ import { withRouter } from './withRouter';
 
 import '../components/CSS/listmain.css';
 
+
+
 function ItemList(props) {
     //read hook
     const [item, setItem] = useState([]);
@@ -90,6 +92,8 @@ function ItemList(props) {
         console.log(err);
       });
   };
+
+  
 
     return (
         <div>
@@ -193,7 +197,7 @@ function ItemList(props) {
             <Form.Group
               className="mb-3" controlId="exampleForm.ControlTextarea1"
             >
-              <Form.Label>manufacture_data:</Form.Label>
+              <Form.Label>manufacture_date:</Form.Label>
               <Form.Control
                 type="date"
                 name="manufacture_date"
@@ -208,7 +212,7 @@ function ItemList(props) {
             <Form.Group
               className="mb-3" controlId="exampleForm.ControlTextarea1"
             >
-              <Form.Label>expire_data:</Form.Label>
+              <Form.Label>expire_date:</Form.Label>
               <Form.Control
                 type="date"
                 name="expire_date"
@@ -253,7 +257,7 @@ function ItemList(props) {
                 </tr>
                 <tr>
                     <td>       
-                        <Link to="/items" className="nav-link"> 
+                        <Link to="/store" className="nav-link"> 
                             <p>View Item</p>
                         </Link>                 
                     </td>
@@ -326,4 +330,4 @@ function ItemList(props) {
     </div>
   );
 }
-export default withRouter(ItemList); 
+export default withRouter(ItemList);
