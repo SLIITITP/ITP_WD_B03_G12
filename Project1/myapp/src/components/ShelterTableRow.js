@@ -127,7 +127,7 @@ const ShelterTableRow = (props) => {
         <Modal.Footer>
 
         <Button onClick={() => onUpdate(shelterState._id)}>Update</Button>
-        <button onClick={handleClose}>Close</button>
+        <Button onClick={handleClose}>Close</Button>
         </Modal.Footer>
 
         </Modal>

@@ -180,8 +180,29 @@ useEffect(() => {
 
       <tr>
               <td>
+                <Link to ="" className="nav-link">
+                  <p>Add Admission</p>
+                </Link>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <Link to="/admissions" className="nav-link">
+                  <p>View all Admissions</p>
+                </Link>
+              </td>
+            </tr>
+            <tr>
+              <td>
                 <Link onClick={handleShow} className="nav-link">
                   <p>Add Shelter</p>
+                </Link>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <Link to="/shelters" className="nav-link">
+                  <p>View Shelters</p>
                 </Link>
               </td>
             </tr>
