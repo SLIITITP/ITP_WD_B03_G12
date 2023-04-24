@@ -9,7 +9,7 @@ import { withRouter } from "./withRouter";
 const MedicalRecordsTableRow = (props) => {
   const [MedicalRecordsState] = useState({
     _id: props.obj._id,
-    issued_doctorID: props.obj.issued_doctorID,
+    issued_doctor_ID: props.obj.issued_doctor_ID,
     description: props.obj.description,
   });
 
@@ -74,8 +74,8 @@ const MedicalRecordsTableRow = (props) => {
                 <Form.Label>Issued DoctorID:</Form.Label>
                 <Form.Control
                   type="text"
-                  name="issued_doctorID"
-                  value={updated.issued_doctorID}
+                  name="issued_doctor_ID"
+                  value={updated.issued_doctor_ID}
                   onChange={handleChange}
                   autoFocus
                 />
@@ -108,7 +108,7 @@ const MedicalRecordsTableRow = (props) => {
         <td key={MedicalRecordsState._id} style={{ display: "none" }}>
           {" "}
         </td>
-        <td>{MedicalRecordsState.issued_doctorID}</td>
+        <td>{MedicalRecordsState.issued_doctor_ID}</td>
         <td>{MedicalRecordsState.description}</td>
         <td>
           <button
