@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, Component, useRef } from 'react'
 import axios from 'axios'
 import EmployeeTableRow from './EmployeeTableRow'
 import { Link } from 'react-router-dom';
@@ -7,11 +7,15 @@ import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import { withRouter } from './withRouter';
 import Table from 'react-bootstrap/Table';
+import { EmployeePrint } from './EmployeePrint';
+import ReactToPrint from 'react-to-print';
 
 
 import '../components/CSS/listmain.css';
 
 function EmployeeList(props) {
+   const componentRef = useRef();
+
     //read hook
     const [employee, setEmployee] = useState([]);
   
@@ -96,6 +100,15 @@ function EmployeeList(props) {
       {
         //-------------------------Insert form using bootstrap Modal-------------------
       }
+
+      <ReactToPrint
+
+ documentTitle='Our Employees'
+
+trigger={() => <Button style={{float:'right'}}>Print</Button>}
+
+content={() => componentRef.current} ></ReactToPrint>
+
 
       <Modal {...props} size="lg" show={show} onHide={handleClose} centered>
         <Modal.Header closeButton>
@@ -229,8 +242,8 @@ function EmployeeList(props) {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button onClick={handleClick}>Add</Button>
-          <Button onClick={handleClose}>Close</Button>
+          <Button variant='info' onClick={handleClick}>Add</Button>
+          <Button  variant='danger' onClick={handleClose}>Close</Button>
         </Modal.Footer>
       </Modal>
 
@@ -256,7 +269,7 @@ function EmployeeList(props) {
                 </tr>
                 <tr>
                     <td>       
-                        <Link to="/employeeViewAll" className="nav-link">
+                        <Link to="/employees" className="nav-link">
                             <p>View all Employee</p>
                         </Link>                 
                     </td>
@@ -281,6 +294,8 @@ function EmployeeList(props) {
             {
           //-------------------------Display data from database-------------------
         }
+
+<EmployeePrint ref={componentRef}>
         <Table responsive className="table table-striped" style={{ width: "54em" }}>
           <tr>
             <td>
@@ -311,6 +326,7 @@ function EmployeeList(props) {
           </tr>
           <tbody>{tabRow()}</tbody>
         </Table>
+        </EmployeePrint>
 
       </div>
     </div>

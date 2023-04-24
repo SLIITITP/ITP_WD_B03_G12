@@ -205,8 +205,8 @@ const EmployeeTableRow = (props) => {
             </Form>
           </Modal.Body>
           <Modal.Footer>
-            <Button onClick={() => onUpdate(employeeState._id)}>Update</Button>
-            <Button onClick={handleClose}>Close</Button>
+            <Button variant='info' onClick={() => onUpdate(employeeState._id)}>Update</Button>
+            <Button  variant='danger'onClick={handleClose}>Close</Button>
           </Modal.Footer>
         </Modal>
 
@@ -226,22 +226,24 @@ const EmployeeTableRow = (props) => {
         <td>{employeeState.employee_birthday}</td>
         <td>{employeeState.employee_jobrole}</td>
         <td>
-          <button
+          <Button
             type="submit"
             className="submit"
+            variant="success"
             onClick={() => updateEmployee(employeeState)}
           >
-            <Link className="nav-link">Update</Link>
-          </button>
+            Update
+          </Button>
         </td>
         <td>
-          <button
+          <Button
             type="submit"
             className="delete"
+            variant="danger"
             onClick={() => onDelete(employeeState._id)}
           >
-            <Link className="nav-link">Delete</Link>
-          </button>
+          Delete
+          </Button>
         </td>
       </tr>
     

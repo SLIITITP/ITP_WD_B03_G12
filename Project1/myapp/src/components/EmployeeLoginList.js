@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef} from 'react'
 import axios from 'axios'
 import EmployeeLoginTableRow from './EmployeeLoginTableRow'
 import { Link } from 'react-router-dom';
@@ -7,6 +7,8 @@ import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import { withRouter } from './withRouter';
 import Table from 'react-bootstrap/Table';
+import { EmployeePrint } from './EmployeePrint';
+import ReactToPrint from 'react-to-print';
 
 
 import '../components/CSS/listmain.css';
@@ -154,7 +156,7 @@ function EmployeeLoginList(props) {
         </Modal.Footer>
       </Modal>
 
-      <h1 align="center">Create Accounts</h1>
+      <h1 align="center">View all Accounts</h1>
       <h4 className="text-right">
         <b>Total: {count}</b>
       </h4>
