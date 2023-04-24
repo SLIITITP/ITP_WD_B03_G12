@@ -21,7 +21,7 @@ itemRoutes.route('/').get(async function (req, res) {
         const item = await Item.find();
         res.json(item);
     }
-    catch (error){ 
+    catch{
         console.log(error);
     }
 })
@@ -50,14 +50,14 @@ itemRoutes.route('/update/:id').put(async (req, res) => {
         return res.status(404).json({ error: 'Item not found' });
       }
   
-      item. name = req.body.name;
-      item. category = req.body.category;
-      item. price  = req.body.price;
-      item. Supplier = req.body.Supplier;
-      item.description = req.body.description;
-      item. qty = req.body. qty;
-      item.manufacture_date = req.body.manufacture_date;
-      item. expire_date = req.body.expire_date;
+      item. name = req.body.item_name;
+      item. category = req.body.item_category;
+      item. price  = req.body.item_price;
+      item. Supplier = req.body.item_Supplier;
+      item.description = req.body.item_description;
+      item. qty = req.body.item_qty;
+      item.manufacture_date = req.body.item_manufacture_date;
+      item. expire_date = req.body.item_expire_date;
      
 
       await item.save();
@@ -66,6 +66,24 @@ itemRoutes.route('/update/:id').put(async (req, res) => {
       res.status(500).json({ error: err.message });
     }
   });
+
+
+
+
+ //count
+ itemRoutes.route('/get/count').get(async function (req, res) {
+  try {
+    const count = await Item.countDocuments();
+    res.json(count);
+  } catch (err) {
+    console.log(err);
+    res.status(500).send("Server error");
+  }
+});
+
+
+
+
 module.exports = itemRoutes;
 
 

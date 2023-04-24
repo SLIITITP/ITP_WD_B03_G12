@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-let Shelters = new schema({
-
+let Shelters = new Schema({
+ 
     shelter_id : {
         type:String,
     },

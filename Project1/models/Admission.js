@@ -4,7 +4,11 @@ const Schema = mongoose.Schema;
 
 let Admission = new Schema({
 
-    owner_name: {
+    first_name: {
+        type: String,
+    } ,
+
+    last_name: {
         type: String,
     } ,
 

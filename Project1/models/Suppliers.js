@@ -16,7 +16,7 @@ let SupplierSchema = new Schema ({
 
     Person2_first_name: {
         type: String
-    } ,
+    },
     
     Person2_last_name: {
         type: String

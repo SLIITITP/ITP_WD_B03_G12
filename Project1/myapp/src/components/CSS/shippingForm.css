@@ -1,0 +1,214 @@
+h1 {
+    font-size: 36px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+Form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f2f2f2;
+  }
+  
+  Form Label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #333;
+  }
+  
+  Form Input[type="text"],
+  Form Input[type="email"] {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  Form Button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #428bca;
+    color: #fff;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  Form Button:Hover {
+    background-color: #3071a9;
+  }
+  
+  Form Input[type="text"]:hover,
+  Form Input[type="email"]:hover,
+  Form Input[type="text"]:focus,
+  Form Input[type="email"]:focus {
+    outline: none;
+    border-color: #3071a9;
+  }
+  
+  Form .error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+  }
+
+  .modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    width: 900px;
+    height: 700px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  }
+  
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9998;
+  }
+  
+  .modal-header {
+    padding: 20px;
+    background-color: #428bca;
+    color: #fff;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+  }
+  
+  .modal-header h2 {
+    margin: 0;
+    font-size: 24px;
+  }
+  
+  .modal-content {
+    padding: 20px;
+    font-size: 16px;
+  }
+  
+  .modal-buttons {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px 20px;
+    background-color: #f2f2f2;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
+  
+  .modal-buttons button {
+    margin-left: 10px;
+    padding: 10px 20px;
+    background-color: #428bca;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .modal-buttons button:hover {
+    background-color: #3071a9;
+  }
+
+  .alert {
+    background-color: #f8d7da;
+    color: #721c24;
+    border-color: #f5c6cb;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    border-color: #c3e6cb;
+  }
+  
+  .alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+    border-color: #f5c6cb;
+  }
+  
+  .alert-warning {
+    background-color: #fff3cd;
+    color: #856404;
+    border-color: #ffeeba;
+  }
+  
+  .alert-info {
+    background-color: #d1ecf1;
+    color: #0c5460;
+    border-color: #bee5eb;
+  }
+  
+  .alert-heading {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 0;
+  }
+  
+  .alert-message {
+    font-size: 16px;
+    margin-bottom: 0;
+  }
+  * {
+    margin: 0;
+    padding: 0;
+  }
+ 
+  .nav_box {
+    width: 100%;
+    height: 60px;
+    background-color: skyblue;
+  
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .my_shop {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    margin-left: 20px;
+    font-family: cursive;
+    cursor: pointer;
+  }
+  .cart {
+    cursor: pointer;
+    margin-right: 20px;
+  }
+  
+  .cart span:nth-child(1) {
+    font-size: 2rem;
+    color: white;
+  }
+  
+  .cart span:nth-child(2) {
+    padding: 0 3px;
+    background-color: red;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    position: relative;
+    top: -15px;
+  }
+  
