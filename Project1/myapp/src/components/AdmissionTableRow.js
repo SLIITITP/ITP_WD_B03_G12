@@ -154,7 +154,7 @@ const AdmissionTableRow = (props) => {
               <Form.Control
                 as="select"
                 name="shelter_type"
-                value={AdmissionTableRow.jobrole}
+                value={AdmissionTableRow.shelter_type}
                 onChange={handleChange}
               >
                 <option value="">Select</option>
@@ -196,7 +196,7 @@ const AdmissionTableRow = (props) => {
        </Modal.Body>
        <Modal.Footer>
        <Button onClick={() => onUpdate(admissionState._id)}>Update</Button>
-        <button onClick={handleClose}>Close</button>
+        <Button onClick={handleClose}>Close</Button>
        </Modal.Footer>
 
         </Modal>
