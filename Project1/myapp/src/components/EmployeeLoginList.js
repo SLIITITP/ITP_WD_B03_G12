@@ -220,9 +220,7 @@ content={() => componentRef.current} ></ReactToPrint>
             <td>
               <b>Email</b>
             </td>
-            <td>
-              <b>Password</b>
-            </td>
+            
             <td>
               <b>Account type</b>
             </td>
