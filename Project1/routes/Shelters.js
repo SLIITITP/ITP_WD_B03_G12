@@ -1,7 +1,6 @@
 const express = require('express');
 const shelterRoutes = express.Router();
-let Shelters = require("../models/Shelters");
-const {awit} = require('react-router-dom');
+let Shelter = require("../models/Shelters");
 
 
 //inset Operation
@@ -51,9 +50,9 @@ shelterRoutes.route('/update/:id').put(async (req,res) =>{
             return res.status(400).json({error: 'Missing Required Fields!!'});
 
         }
-        admission.shelter_id = req.body.shelter_id;
-        admission.shelter_type = req.body.shelter_type;
-        admission.special_details  = req.body.special_details;
+        shelter.shelter_id = req.body.shelter_id;
+        shelter.shelter_type = req.body.shelter_type;
+        shelter.special_details  = req.body.special_details;
       
 
         
@@ -100,3 +99,4 @@ shelterRoutes.route('/delete/:id').get(async(req,res)=>{
     }
   });
 
+module.exports = shelterRoutes;

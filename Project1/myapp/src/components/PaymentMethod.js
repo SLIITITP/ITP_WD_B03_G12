@@ -64,7 +64,7 @@ export default function(props){
    
     <div>
       
-        <h1>Payment Details</h1>
+        <h1 style={{backgroundColor:"gray"}}>Payment Details</h1>
         <Form {...props}>
         <Form.Label></Form.Label>
         
@@ -104,7 +104,7 @@ export default function(props){
      
       <Form.Group className="mb-3" controlId="formBasicPassword">
         <Form.Label>validThru</Form.Label>
-        <Form.Control type="text" placeholder="validThru" value={data.validThru}
+        <Form.Control type="text" placeholder="MONTH / YEAR" value={data.validThru}
              name="validThru"
              onChange={handleChange}/>
       </Form.Group>
@@ -121,7 +121,7 @@ export default function(props){
       </Form.Group>
       
      <Link to={"/placedOrder"} state={{data:total2,data2:data2 , data3:data3, data4:data}}>
-      <Button variant="primary" type="submit" >
+      <Button variant="primary" type="submit" style={{backgroundColor:"darkBlue"}}>
           Next
       </Button>
       </Link>

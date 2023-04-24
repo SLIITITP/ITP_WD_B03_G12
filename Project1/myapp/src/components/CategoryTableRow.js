@@ -23,7 +23,7 @@ const CategoryTableRow = (props) => {
   const [updated, setUpdated] = useState({});
 
   const onDelete = (id) => {
-    axios.get(`http://localhost:8000/description/delete/${id}`).then((res) => {
+    axios.get(`http://localhost:5000/category/delete/${id}`).then((res) => {
       alert(`Deleted Successfully : ${id}`);
       window.location.reload();
     });
@@ -45,7 +45,7 @@ const CategoryTableRow = (props) => {
 
   const onUpdate = (_id) => {
     axios
-      .put(`http://localhost:8000/category/update/${_id}`, updated)
+      .put(`http://localhost:5000/category/update/${_id}`, updated)
       .then((res) => {
         alert(`Updated Successfully : ${_id}`);
         handleClose();
@@ -61,7 +61,6 @@ const CategoryTableRow = (props) => {
         {
           //-------------------------Update form using bootstrap Modal-------------------
         }
-        
 
         <Modal {...props} size="lg" show={show} onHide={handleClose} centered>
           <Modal.Header closeButton>

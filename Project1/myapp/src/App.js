@@ -20,10 +20,11 @@ import ProccessOrder from './components/ProccessOrder';
 import PaymentMethod from './components/PaymentMethod';
 import PlacedOrder from './components/PlacedOrder';
 import OrderList from './components/OrderList';
-
-
-//import ServiceAdd from './Components/ServicesAdd'
-
+import ItemList from './components/ItemList';
+import CategoryList from './components/CategoryList'
+import Suppliers from './components/SupplierList';
+import Admission from './components/AdmissionList';
+import ShelterList from './components/ShelterList'
 
 class App extends Component {
 
@@ -52,7 +53,22 @@ class App extends Component {
             
             <Route path = "/employees" element={<EmployeeList/>}/>
             <Route path = "/accounts" element={<EmployeeLoginList/>}/>
-            
+            <Route path = "/items" element={<ItemList/>}/>
+            <Route path = "/prescriptions" element={<PrescriptionList/>}/>
+            <Route path = "/category" element={<CategoryList/>}/>
+            <Route path = "/supplier" element={<Suppliers/>}/>
+            <Route path = "/admissions" element={<Admission/>}/>
+            <Route path = "/shelters" element={<ShelterList/>}/>
+            <Route path = "/orderList" element={<OrderList/>}/>
+            <Route path = "/placedOrder" element={<PlacedOrder/>}/>
+            <Route path = "/payee" element={<PaymentMethod/>}/>
+            <Route path = "/proccess" element={<ProccessOrder/>}/>
+            <Route path = "/store" element={<StoreCard/>}/>
+            <Route path = "/medicalrecords" element={<MedicalRecordsList/>}/>
+          
+
+
+
           </Routes>
          
           </div> 

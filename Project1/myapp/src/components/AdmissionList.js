@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import AdmissionTableRow from "./AdmissionTableRow";
 import { Link } from "react-router-dom";
@@ -8,9 +8,17 @@ import Modal from "react-bootstrap/Modal";
 import { withRouter } from "./withRouter";
 import e from "cors";
 import "../components/CSS/listmain.css";
+import ReactToPrint from 'react-to-print';
+import { AdmissionPrint} from "./AdmissionPrint";
+
 
 
 function AdmissionForm(props) {
+
+  const componentRef = useRef(); 
+
+
+
   //read hook
   const [admission, setAdmission] = useState([]);
   //insert hook
@@ -96,6 +104,12 @@ function AdmissionForm(props) {
       {
         //-------------------------Insert form using bootstrap Modal-------------------
       }
+
+      <ReactToPrint
+      documentTitle='Our Services' 
+      trigger={() => <Button style={{float:'right'}}>Print</Button>}
+      content={() => componentRef.current} ></ReactToPrint>
+     
 
       <Modal {...props} size="lg" show={show} onHide={handleClose} centered>
         <Modal.Header closeButton>
@@ -248,7 +262,7 @@ function AdmissionForm(props) {
             </tr>
             <tr>
               <td>
-                <Link to="" className="nav-link">
+                <Link to="/shelters" className="nav-link">
                   <p>View Shelters</p>
                 </Link>
               </td>
@@ -259,6 +273,8 @@ function AdmissionForm(props) {
         {
           //-------------------------Display data from database-------------------
         }
+
+        <AdmissionPrint ref={componentRef}>
         <table className="table table-striped" style={{ width: "54em" }}>
           <tr>
             <td>
@@ -296,6 +312,7 @@ function AdmissionForm(props) {
           </tr>
           <tbody>{tabRow()}</tbody>
         </table>
+        </AdmissionPrint>
       </div>
 
 

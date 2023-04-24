@@ -158,7 +158,7 @@ function StoreCard() {
         cols.push(
           <Col xs={12} sm={6} md={4} lg={3} xl={2} key={item[j]._id}>
             <Card style={{ height: "20em" }}>
-              <Card.Img variant="top" src="./img/appLogo.jpg" />
+              <Card.Img variant="top" src="./img/animal.jpg" />
               <Card.Body>
                 <Card.Title>
                   <b>{item[j].name.substring(0, 20)}</b>
@@ -194,7 +194,8 @@ function StoreCard() {
   };
 
   return (
-    
+
+   
     <tr>
       <Modal size="lg" show={show} onHide={handleClose} centered>
         <Modal.Header closeButton>
@@ -220,6 +221,9 @@ function StoreCard() {
     
         </Modal.Footer>
       </Modal>
+
+      <h1 align="center" style={{backgroundColor:"gray"}}>SHOP</h1>
+
       <div className="cart">
     <span>
             <img

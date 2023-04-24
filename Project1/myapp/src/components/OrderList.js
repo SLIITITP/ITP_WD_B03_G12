@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect , useRef} from "react";
 import axios from "axios";
 
 import { Link } from "react-router-dom";
@@ -6,7 +6,8 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import { withRouter } from "./withRouter";
-
+import ReactToPrint from "react-to-print";
+import { OrderPrint } from "./OrderPrint";
 import "../components/CSS/listmain.css";
 import OrderListTableRow from "./OrderListTableRow";
 
@@ -86,9 +87,14 @@ function OrderList(props) {
         console.log(err);
       });
   };
-
+  const componentRef = useRef(); 
   return (
     <div>
+
+      <ReactToPrint
+      documentTitle='Our Orders' 
+      trigger={() => <Button style={{float:'right', backgroundColor:"black"}}>Print</Button>}
+      content={() => componentRef.current} ></ReactToPrint>
       {
         //-------------------------Insert form using bootstrap Modal-------------------
       }
@@ -181,6 +187,8 @@ function OrderList(props) {
         {
           //-------------------------Display data from database-------------------
         }
+
+          <OrderPrint ref={componentRef}>
         <table className="table table-striped" style={{ width: "54em" }}>
           <tr class="table-info">
             <td>
@@ -210,6 +218,7 @@ function OrderList(props) {
           </tr>
           <tbody>{tabRow()}</tbody>
         </table>
+        </OrderPrint>
       </div>
     </div>
   );

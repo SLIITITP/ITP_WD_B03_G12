@@ -133,7 +133,7 @@ export default function(props){
    
     <div>
       
-    
+      <h1 style={{backgroundColor:"gray"}}>Placed Order</h1>
         <Form {...props}>
         <Form.Label></Form.Label>
         
@@ -251,9 +251,11 @@ export default function(props){
             </Form.Group>
            
 
-            <Button variant="warning" type="submit"  onClick={handleClick}>
-        Pleced Order
-      </Button>
+            <Button  type="submit" style={{backgroundColor:"darkBlue", textDecorationColor:"white"}} onClick={handleClick}>
+              
+             Pleced Order
+    
+            </Button>
  
       
      <Link to="/orderList">

@@ -1,34 +1,31 @@
-import React, { useState, useEffect, Component, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import EmployeeTableRow from './EmployeeTableRow'
+import SupplierTableRow from './SupplierTableRow'
 import { Link } from 'react-router-dom';
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import { withRouter } from './withRouter';
-import Table from 'react-bootstrap/Table';
-import { EmployeePrint } from './EmployeePrint';
-import ReactToPrint from 'react-to-print';
 
 
 import '../components/CSS/listmain.css';
 
-function EmployeeList(props) {
-   const componentRef = useRef();
-
+function SupplierList(props) {
     //read hook
-    const [employee, setEmployee] = useState([]);
+    const [item, setItem] = useState([]);
   
     //insert hook
     const [data, setData] = useState({
-        name: '',
-        lname: '',
-        NIC: '',
-        phoneno:'',
-        address:'',
-        gender:'',
-        birthday:'',
-        jobrole:'',
+        company_name: '',
+        person1_first_name: '',
+        person1_last_name: '',
+        person2_first_name:'',
+        person2_last_name:'',
+        email1:'',
+        email2:'',
+        contact_no1:'',
+        contact_no2:'',
+        registerd_date:'',
 
     });
   
@@ -50,9 +47,9 @@ function EmployeeList(props) {
   //get data from database
   useEffect(() => {
     axios
-      .get("http://localhost:5000/employee/")
+      .get("http://localhost:5000/supplier/")
       .then((response) => {
-        setEmployee(response.data);
+        setItem(response.data);
       })
       .catch((error) => {
         console.log(error);
@@ -60,8 +57,8 @@ function EmployeeList(props) {
   }, []);
 
   const tabRow = () => {
-    return employee.map((object, i) => {
-      return <EmployeeTableRow obj={object} key={i} />;
+    return item.map((object, i) => {
+      return <SupplierTableRow obj={object} key={i} />;
     });
   };
 
@@ -70,7 +67,7 @@ function EmployeeList(props) {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/employee/get/count")
+      .get("http://localhost:5000/supplier/get/count")
       .then((response) => {
         console.log(response);
         setCount(response.data);
@@ -83,14 +80,16 @@ function EmployeeList(props) {
   //send new data to database
   const handleClick = (e) => {
     e.preventDefault();
+    console.log(data)
     axios
-      .post(`http://localhost:5000/employee/add`, data)
+      .post(`http://localhost:5000/supplier/add`, data)
       .then((res) => {
         alert(`Added Successfully`);
         handleClose();
         window.location.reload();
       })
       .catch((err) => {
+        alert(`Already have`);
         console.log(err);
       });
   };
@@ -101,31 +100,22 @@ function EmployeeList(props) {
         //-------------------------Insert form using bootstrap Modal-------------------
       }
 
-      <ReactToPrint
-
- documentTitle='Our Employees'
-
-trigger={() => <Button style={{float:'right'}}>Print</Button>}
-
-content={() => componentRef.current} ></ReactToPrint>
-
-
       <Modal {...props} size="lg" show={show} onHide={handleClose} centered>
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
-            Add New Employee
+            Add New Supplier
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
 
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Enter first name:</Form.Label>
+              <Form.Label>company_name:</Form.Label>
               <Form.Control
                 type="text"
-                name="name"
-                value={data.name}
-                placeholder="Enter first name"
+                name="company_name"
+                value={data.company_name}
+                placeholder="Enter company Name"
                 onChange={handleChange}
                 autoFocus
               />
@@ -134,12 +124,12 @@ content={() => componentRef.current} ></ReactToPrint>
             <Form.Group
               className="mb-3" controlId="exampleForm.ControlTextarea1"
             >
-              <Form.Label>Enter last name:</Form.Label>
+              <Form.Label>person1_first_name:</Form.Label>
               <Form.Control
                 type="text"
-                name="lname"
-                value={data.lname}
-                placeholder="Enter last name"
+                name="person1_first_name"
+                value={data.person1_first_name}
+                placeholder="Add person1 first name"
                 onChange={handleChange}
                 autoFocus
               />
@@ -148,28 +138,12 @@ content={() => componentRef.current} ></ReactToPrint>
             <Form.Group
               className="mb-3" controlId="exampleForm.ControlTextarea1"
             >
-              <Form.Label>Enter NIC:</Form.Label>
+              <Form.Label>person1_last_name:</Form.Label>
               <Form.Control
                 type="text"
-                name="NIC"
-                value={data.NIC}
-                placeholder="Enter NIC"
-                onChange={handleChange}
-                autoFocus
-              />
-            </Form.Group>
-
-
-
-            <Form.Group
-              className="mb-3" controlId="exampleForm.ControlTextarea1"
-            >
-              <Form.Label>Enter phone number:</Form.Label>
-              <Form.Control
-                type="text"
-                name="phoneno"
-                value={data.phoneno}
-                placeholder="Enter phone number"
+                name="person1_last_name"
+                value={data.person1_last_name}
+                placeholder="Enter person1_last_name"
                 onChange={handleChange}
                 autoFocus
               />
@@ -178,12 +152,12 @@ content={() => componentRef.current} ></ReactToPrint>
             <Form.Group
               className="mb-3" controlId="exampleForm.ControlTextarea1"
             >
-              <Form.Label>Enter address:</Form.Label>
+              <Form.Label>person2_first_name:</Form.Label>
               <Form.Control
                 type="text"
-                name="address"
-                value={data.address}
-                placeholder="Enter address"
+                name="person2_first_name"
+                value={data.person2_first_name}
+                placeholder="Enter person2_first_name"
                 onChange={handleChange}
                 autoFocus
               />
@@ -192,49 +166,93 @@ content={() => componentRef.current} ></ReactToPrint>
             <Form.Group
               className="mb-3" controlId="exampleForm.ControlTextarea1"
             >
-              <Form.Label>Enter Gender:</Form.Label>
-              <Form.Control as = "select"
-                  name="gender"
-                  value={data.gender}
-                  onChange={handleChange}>
-              <option value="select">Select</option>
-              <option value="male">Male</option>
-               <option value="empfemaleloyee">Female</option>
-              </Form.Control>
-  
+              <Form.Label>person2_last_name:</Form.Label>
+              <Form.Control
+                type="text"
+                name="person2_last_name"
+                value={data.person2_last_name}
+                placeholder="Enter person2_last_name"
+                onChange={handleChange}
+                autoFocus
+              />
+            </Form.Group>
 
+            
+
+
+
+            <Form.Group
+              className="mb-3" controlId="exampleForm.ControlTextarea1"
+            >
+              <Form.Label>email1:</Form.Label>
+              <Form.Control
+                type="text"
+                name="email1"
+                value={data.email1}
+                placeholder="Enter email1"
+                onChange={handleChange}
+                autoFocus
+              />
             </Form.Group>
 
             <Form.Group
               className="mb-3" controlId="exampleForm.ControlTextarea1"
             >
-              <Form.Label>Enter birthday:</Form.Label>
+              <Form.Label>email2:</Form.Label>
+              <Form.Control
+                type="text"
+                name="email2"
+                value={data.email2}
+                placeholder="Enter email2"
+                onChange={handleChange}
+                autoFocus
+              />
+            </Form.Group>
+
+            <Form.Group
+              className="mb-3" controlId="exampleForm.ControlTextarea1"
+            >
+              <Form.Label>contact_no1:</Form.Label>
+              <Form.Control
+                type="text"
+                name="contact_no1"
+                value={data.contact_no1}
+                placeholder="Enter contact_no1"
+                onChange={handleChange}
+                autoFocus
+              />
+            </Form.Group>
+
+            <Form.Group
+              className="mb-3" controlId="exampleForm.ControlTextarea1"
+            >
+              <Form.Label>contact_no2:</Form.Label>
+              <Form.Control
+                type="text"
+                name="contact_no2"
+                value={data.contact_no2}
+                placeholder="Enter contact_no2"
+                onChange={handleChange}
+                autoFocus
+              />
+            </Form.Group>
+
+            <Form.Group
+              className="mb-3" controlId="exampleForm.ControlTextarea1"
+            >
+              <Form.Label>registerd_data:</Form.Label>
               <Form.Control
                 type="date"
-                name="birthday"
-                value={data.birthday}
-                placeholder="Enter birthday"
+                name="registerd_date"
+                value={data.registerd_date}
+                placeholder="Enter registerd_data "
                 onChange={handleChange}
                 autoFocus
               />
             </Form.Group>
 
-            <Form.Group
-              className="mb-3" controlId="exampleForm.ControlTextarea1"
-            >
-              <Form.Label>Enter job role:</Form.Label>
-              <Form.Control as = "select"
-                  name="jobrole"
-                  value={data.jobrole}
-                  onChange={handleChange}>
-              <option value="select">Select</option>
-              <option value="doctor">Doctor</option>
-               <option value="employee">Employee</option>
-              </Form.Control>
-  
-
-            </Form.Group>
-
+           
+           
             
 
 
@@ -242,97 +260,101 @@ content={() => componentRef.current} ></ReactToPrint>
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant='info' onClick={handleClick}>Add</Button>
-          <Button  variant='danger' onClick={handleClose}>Close</Button>
+          <Button onClick={handleClick}>Add</Button>
+          <Button onClick={handleClose}>Close</Button>
         </Modal.Footer>
       </Modal>
 
-      <h1 align="center">Employee List</h1>
+      <h1 align="center">Supplier List</h1>
       <h4 className="text-right">
         <b>Total: {count}</b>
       </h4>
 
-        {
+      {
         //-------------------------Side Menue Buttons-------------------
-        }
-         
+      }
+      
     
         <div className='tablestyle'>
             <div className='buttonframe'>
             <table className='buttonstyle'>
               <tr>
                     <td>       
-                        <Link onClick={handleShow} className="nav-link">
-                            <p>Add Employee</p>
+                        <Link className="nav-link">
+                            <p>Add Item</p>
                         </Link>                 
                     </td>
                 </tr>
                 <tr>
                     <td>       
-                        <Link to="/employees" className="nav-link">
-                            <p>View all Employee</p>
-                        </Link>                 
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>       
-                        <Link  className="nav-link">
-                            <p>Create Accounts</p>
+                        <Link to="/store" className="nav-link"> 
+                            <p>View Item</p>
                         </Link>                 
                     </td>
                 </tr>
                 <tr>
                     <td>       
-                        <Link to="/accounts" className="nav-link">
-                            <p>View All Accounts</p>
+                        <Link to="/additem" className="nav-link">
+                            <p>Add Category</p>
+                        </Link>                 
+                    </td>
+                </tr>
+                <tr>
+                    <td>       
+                        <Link to="/category" className="nav-link">
+                            <p>View Categories</p>
+                        </Link>                 
+                    </td>
+                </tr>
+                <tr>
+                    <td>       
+                        <Link onClick={handleShow}   className="nav-link">
+                            <p>Add Supplier</p>
+                        </Link>                 
+                    </td>
+                </tr>
+                <tr>
+                    <td>       
+                        <Link to="/supplier" className="nav-link">
+                            <p>View Suppliers</p>
                         </Link>                 
                         </td>
                 </tr>
+
             </table>
             </div>
             {
           //-------------------------Display data from database-------------------
         }
-
-<EmployeePrint ref={componentRef}>
-        <Table responsive className="table table-striped" style={{ width: "54em" }}>
+        <table className="table table-striped" style={{ width: "54em" }}>
           <tr>
             <td>
-              <b>First Name</b>
+              <b>company_name</b>
             </td>
             <td>
-              <b>Last Name</b>
+              <b>first_name</b>
             </td>
             <td>
-              <b>NIC</b>
+              <b>last_name</b>
             </td>
             <td>
-              <b>Phone no</b>
+              <b>email1</b>
             </td>
             <td>
-              <b>Address</b>
+              <b>contact_no1</b>
             </td>
             <td>
-              <b>Gender</b>
+              <b>contact_no2</b>
             </td>
             <td>
-              <b>Birthday</b>
-            </td>
-            <td>
-              <b>Job role</b>
+              <b>registerd_data</b>
             </td>
 
           </tr>
           <tbody>{tabRow()}</tbody>
-        </Table>
-        </EmployeePrint>
-
+        </table>
       </div>
     </div>
-
-   
-
   );
 }
-export default withRouter(EmployeeList);
+export default withRouter(SupplierList);

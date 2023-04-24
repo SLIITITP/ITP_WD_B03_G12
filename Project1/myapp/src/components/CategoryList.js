@@ -1,31 +1,26 @@
-import React, { useState, useEffect, useRef} from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import EmployeeLoginTableRow from './EmployeeLoginTableRow'
+import CategoryTableRow from './CategoryTableRow'
 import { Link } from 'react-router-dom';
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import { withRouter } from './withRouter';
-import Table from 'react-bootstrap/Table';
-import { EmployeePrint } from './EmployeePrint';
-import ReactToPrint from 'react-to-print';
 
 
 import '../components/CSS/listmain.css';
 
-function EmployeeLoginList(props) {
-  const componentRef = useRef();
 
+
+function CategoryList(props) {
     //read hook
-    const [employeelogin, setEmployeelogin] = useState([]);
+    const [item, setItem] = useState([]);
   
     //insert hook
     const [data, setData] = useState({
-        email: '',
-        password: '',
-        acctype: '',
-        
-
+        name: '',
+        description: '',
+      
     });
   
     const handleChange = (e) => {
@@ -46,9 +41,9 @@ function EmployeeLoginList(props) {
   //get data from database
   useEffect(() => {
     axios
-      .get("http://localhost:5000/accounts/")
+      .get("http://localhost:5000/category/")
       .then((response) => {
-        setEmployeelogin(response.data);
+        setItem(response.data);
       })
       .catch((error) => {
         console.log(error);
@@ -56,8 +51,8 @@ function EmployeeLoginList(props) {
   }, []);
 
   const tabRow = () => {
-    return employeelogin.map((object, i) => {
-      return <EmployeeLoginTableRow obj={object} key={i} />;
+    return item.map((object, i) => {
+      return <CategoryTableRow obj={object} key={i} />;
     });
   };
 
@@ -66,7 +61,7 @@ function EmployeeLoginList(props) {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/accounts/get/count")
+      .get("http://localhost:5000/category/get/count")
       .then((response) => {
         console.log(response);
         setCount(response.data);
@@ -79,8 +74,9 @@ function EmployeeLoginList(props) {
   //send new data to database
   const handleClick = (e) => {
     e.preventDefault();
+    console.log(data)
     axios
-      .post(`http://localhost:5000/accounts/add`, data)
+      .post(`http://localhost:5000/category/add`, data)
       .then((res) => {
         alert(`Added Successfully`);
         handleClose();
@@ -96,30 +92,23 @@ function EmployeeLoginList(props) {
       {
         //-------------------------Insert form using bootstrap Modal-------------------
       }
-            <ReactToPrint
-
-documentTitle='Our Employees'
-
-trigger={() => <Button style={{float:'right'}}>Print</Button>}
-
-content={() => componentRef.current} ></ReactToPrint>
 
       <Modal {...props} size="lg" show={show} onHide={handleClose} centered>
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
-            Create Accounts
+            Add New Category
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
 
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Enter Email:</Form.Label>
+              <Form.Label>category_name:</Form.Label>
               <Form.Control
                 type="text"
-                name="email"
-                value={data.email}
-                placeholder="Enter email"
+                name="category"
+                value={data.category}
+                placeholder="Enter category Name"
                 onChange={handleChange}
                 autoFocus
               />
@@ -128,118 +117,103 @@ content={() => componentRef.current} ></ReactToPrint>
             <Form.Group
               className="mb-3" controlId="exampleForm.ControlTextarea1"
             >
-              <Form.Label>Password:</Form.Label>
+              <Form.Label>description:</Form.Label>
               <Form.Control
                 type="text"
-                name="password"
-                value={data.password}
-                placeholder="Enter password"
+                name="description"
+                value={data.description}
+                placeholder="Add description"
                 onChange={handleChange}
                 autoFocus
               />
             </Form.Group>
 
-            <Form.Group
-              className="mb-3" controlId="exampleForm.ControlTextarea1"
-            >
-              <Form.Label>Select account type:</Form.Label>
-              <Form.Control as = "select"
-                  name="acctype"
-                  value={data.acctype}
-                  onChange={handleChange}>
-              <option value="select">Select</option>
-              <option value="doctor">Doctor</option>
-               <option value="admin">Admin</option>
-               <option value="cashier">Cashier</option>
-              </Form.Control>
-  
-
-            </Form.Group>
-
+           
 
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant='info' onClick={handleClick}>Create</Button>
-          <Button variant='danger' onClick={handleClose}>Close</Button>
+          <Button onClick={handleClick}>Add</Button>
+          <Button onClick={handleClose}>Close</Button>
         </Modal.Footer>
       </Modal>
 
-      <h1 align="center">View all Accounts</h1>
+      <h1 align="center">Category List</h1>
       <h4 className="text-right">
         <b>Total: {count}</b>
       </h4>
 
-        {
+      {
         //-------------------------Side Menue Buttons-------------------
-        }
-         
+      }
+      
     
         <div className='tablestyle'>
             <div className='buttonframe'>
             <table className='buttonstyle'>
               <tr>
                     <td>       
-                        <Link to="/employeeAdd" className="nav-link">
-                            <p>Add Employee</p>
+                        <Link className="nav-link">
+                            <p>Add Item</p>
                         </Link>                 
                     </td>
                 </tr>
                 <tr>
                     <td>       
-                        <Link to="/employees" className="nav-link">
-                            <p>View all Employee</p>
+                        <Link to="/items" className="nav-link"> 
+                            <p>View Item</p>
                         </Link>                 
                     </td>
                 </tr>
-
                 <tr>
                     <td>       
                         <Link onClick={handleShow} className="nav-link">
-                            <p>Create Accounts</p>
+                            <p>Add Category</p>
                         </Link>                 
                     </td>
                 </tr>
                 <tr>
                     <td>       
-                        <Link to="/accounts" className="nav-link">
-                            <p>View All Accounts</p>
+                        <Link to="/categories" className="nav-link">
+                            <p>View Categories</p>
+                        </Link>                 
+                    </td>
+                </tr>
+                <tr>
+                    <td>       
+                        <Link   className="nav-link">
+                            <p>Add Supplier</p>
+                        </Link>                 
+                    </td>
+                </tr>
+                <tr>
+                    <td>       
+                        <Link to="/supplier" className="nav-link">
+                            <p>View Suppliers</p>
                         </Link>                 
                         </td>
                 </tr>
+
             </table>
             </div>
             {
           //-------------------------Display data from database-------------------
         }
-
-<EmployeePrint ref={componentRef}>
-
-        <Table responsive className="table table-striped" style={{ width: "54em" }}>
+        <table className="table table-striped" style={{ width: "54em" }}>
           <tr>
             <td>
-              <b>Email</b>
+              <b>category</b>
             </td>
             <td>
-              <b>Password</b>
+              <b>description</b>
             </td>
-            <td>
-              <b>Account type</b>
-            </td>
-            <td>
-              <b>Date</b>
-            </td>
-   
+           
+
           </tr>
           <tbody>{tabRow()}</tbody>
-        </Table>
-        </EmployeePrint>
-
+        </table>
       </div>
     </div>
-
-   
-
   );
 }
-export default withRouter(EmployeeLoginList);
+export default withRouter(CategoryList);

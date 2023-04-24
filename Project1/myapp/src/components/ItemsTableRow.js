@@ -6,18 +6,17 @@ import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import { withRouter } from "./withRouter";
 
-
-const EmployeeTableRow = (props) => {
-  const [employeeState] = useState({
+const ItemTableRow = (props) => {
+  const [itemState] = useState({
     _id: props.obj._id,
-    employee_name: props.obj.name,
-    employee_lname: props.obj.lname,
-    employee_NIC: props.obj.NIC,
-    employee_phoneno: props.obj.phoneno,
-    employee_address: props.obj.address,
-    employee_gender: props.obj.gender,
-    employee_birthday: props.obj.birthday,
-    employee_jobrole: props.obj.jobrole,
+    item_name: props.obj.name,
+    item_category: props.obj.category,
+    item_price: props.obj.price,
+    item_Supplier: props.obj.Supplier,
+    item_description: props.obj.description,
+    item_qty: props.obj.qty,
+    item_manufacture_date: props.obj.manufacture_date,
+    item_expire_date: props.obj.expire_date,
 
   });
 
@@ -29,15 +28,15 @@ const EmployeeTableRow = (props) => {
   const [updated, setUpdated] = useState({});
 
   const onDelete = (id) => {
-    axios.get(`http://localhost:5000/employee/delete/${id}`).then((res) => {
+    axios.get(`http://localhost:5000/item/delete/${id}`).then((res) => {
       alert(`Deleted Successfully : ${id}`);
       window.location.reload();
     });
   };
 
-  const updateEmployee = (employeeState) => {
-    console.log(employeeState);
-    setUpdated(employeeState);
+  const updateItem = (itemState) => {
+    console.log(itemState);
+    setUpdated(itemState);
 
     handleShow();
   };
@@ -51,7 +50,7 @@ const EmployeeTableRow = (props) => {
 
   const onUpdate = (_id) => {
     axios
-      .put(`http://localhost:5000/employee/update/${_id}`, updated)
+      .put(`http://localhost:5000/item/update/${_id}`, updated)
       .then((res) => {
         alert(`Updated Successfully : ${_id}`);
         handleClose();
@@ -75,16 +74,16 @@ const EmployeeTableRow = (props) => {
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            
+     
             <Form>
 
               <Form.Group className="mb-3" 
               controlId="exampleForm.ControlInput1">
-              <Form.Label>Enter first name:</Form.Label>
+              <Form.Label>Enter name:</Form.Label>
               <Form.Control
                 type="text"
-                name="employee_name"
-                value={updated.employee_name}
+                name="item_name"
+                value={updated.item_name}
                 onChange={handleChange}
                 autoFocus
               />
@@ -94,11 +93,11 @@ const EmployeeTableRow = (props) => {
               className="mb-3" 
               controlId="exampleForm.ControlTextarea1"
             >
-              <Form.Label>Enter last name</Form.Label>
+              <Form.Label>Enter category</Form.Label>
               <Form.Control
                 type="text"
-                name="employee_lname"
-                value={updated.employee_lname} 
+                name="item_category"
+                value={updated.item_category} 
                 onChange={handleChange}
                 autoFocus
               />
@@ -108,11 +107,11 @@ const EmployeeTableRow = (props) => {
               className="mb-3" 
               controlId="exampleForm.ControlTextarea1"
             >
-              <Form.Label>Enter NIC</Form.Label>
+              <Form.Label>Enter Price</Form.Label>
               <Form.Control
                 type="text"
-                name="employee_NIC"
-                value={updated.employee_NIC}
+                name="item_price"
+                value={updated.item_price}
                 onChange={handleChange}
                 autoFocus
               />
@@ -122,11 +121,11 @@ const EmployeeTableRow = (props) => {
               className="mb-3" 
               controlId="exampleForm.ControlTextarea1"
             >
-              <Form.Label>Enter phone number</Form.Label>
+              <Form.Label>Enter Supplier</Form.Label>
               <Form.Control
                 type="text"
-                name="employee_phoneno"
-                value={updated.employee_phoneno}
+                name="item_Supplier"
+                value={updated.item_Supplier}
                 onChange={handleChange}
                 autoFocus
               />
@@ -136,68 +135,56 @@ const EmployeeTableRow = (props) => {
               className="mb-3" 
               controlId="exampleForm.ControlTextarea1"
             >
-              <Form.Label>Enter address</Form.Label>
+              <Form.Label>Enter Description</Form.Label>
               <Form.Control
                 type="text"
-                name="employee_address"
-                value={updated.employee_address}
+                name="item_description"
+                value={updated.item_description}
                 onChange={handleChange}
                 autoFocus
               />
             </Form.Group>
 
-
             <Form.Group
-              className="mb-3" controlId="exampleForm.ControlTextarea1"
+              className="mb-3" 
+              controlId="exampleForm.ControlTextarea1"
             >
-              <Form.Label>Enter Gender:</Form.Label>
-              <Form.Control as = "select"
-                  name="gender"
-                  value={updated.employee_gender}
-                  onChange={handleChange}>
-              <option value="select">Select</option>
-              <option value="male">Male</option>
-               <option value="female">Female</option>
-              </Form.Control>
-  
-
+              <Form.Label>Enter qty</Form.Label>
+              <Form.Control
+                type="text"
+                name="item_qty"
+                value={updated.item_qty}
+                onChange={handleChange}
+                autoFocus
+              />
             </Form.Group>
-
-
-
-
 
             <Form.Group
               className="mb-3" 
               controlId="exampleForm.ControlTextarea1"
             >
-              <Form.Label>Enter birthday</Form.Label>
+              <Form.Label>Enter manufacture_data</Form.Label>
               <Form.Control
                 type="date"
-                name="employee_birthday"
-                value={updated.employee_birthday}
+                name="item_manufacture_date"
+                value={updated.item_manufacture_date}
                 onChange={handleChange}
                 autoFocus
               />
             </Form.Group>
 
-            
-
-
             <Form.Group
-              className="mb-3" controlId="exampleForm.ControlTextarea1"
+              className="mb-3" 
+              controlId="exampleForm.ControlTextarea1"
             >
-              <Form.Label>Enter job role:</Form.Label>
-              <Form.Control as = "select"
-                  name="jobrole"
-                  value={updated.employee_jobrole}
-                  onChange={handleChange}>
-              <option value="select">Select</option>
-              <option value="doctor">Doctor</option>
-               <option value="employee">Employee</option>
-              </Form.Control>
-  
-
+              <Form.Label>Enter expire_data</Form.Label>
+              <Form.Control
+                type="date"
+                name="item_expire_date"
+                value={updated.item_expire_date}
+                onChange={handleChange}
+                autoFocus
+              />
             </Form.Group>
               
 
@@ -205,8 +192,8 @@ const EmployeeTableRow = (props) => {
             </Form>
           </Modal.Body>
           <Modal.Footer>
-            <Button variant='info' onClick={() => onUpdate(employeeState._id)}>Update</Button>
-            <Button  variant='danger'onClick={handleClose}>Close</Button>
+            <Button onClick={() => onUpdate(itemState._id)}>Update</Button>
+            <Button onClick={handleClose}>Close</Button>
           </Modal.Footer>
         </Modal>
 
@@ -214,40 +201,38 @@ const EmployeeTableRow = (props) => {
           //-------------------------Display All data -------------------
         }
 
-        <td key={employeeState._id} style={{ display: "none" }}>
+        <td key={itemState._id} style={{ display: "none" }}>
           {" "}
         </td>
-        <td>{employeeState.employee_name}</td>
-        <td>{employeeState.employee_lname}</td>
-        <td>{employeeState.employee_NIC}</td>
-        <td>{employeeState.employee_phoneno}</td>
-        <td>{employeeState.employee_address}</td>
-        <td>{employeeState.employee_gender}</td>
-        <td>{employeeState.employee_birthday}</td>
-        <td>{employeeState.employee_jobrole}</td>
+        <td>{itemState.item_name}</td>
+        <td>{itemState.item_category}</td>
+        <td>{itemState.item_price}</td>
+        <td>{itemState.item_Supplier}</td>
+        <td>{itemState.item_description}</td>
+        <td>{itemState.item_qty}</td>
+        <td>{itemState.item_manufacture_date}</td>
+        <td>{itemState.item_expire_date}</td>
         <td>
-          <Button
+          <button
             type="submit"
             className="submit"
-            variant="success"
-            onClick={() => updateEmployee(employeeState)}
+            onClick={() => updateItem(itemState)}
           >
-            Update
-          </Button>
+            <Link className="nav-link">Update</Link>
+          </button>
         </td>
         <td>
-          <Button
+          <button
             type="submit"
             className="delete"
-            variant="danger"
-            onClick={() => onDelete(employeeState._id)}
+            onClick={() => onDelete(itemState._id)}
           >
-          Delete
-          </Button>
+            <Link className="nav-link">Delete</Link>
+          </button>
         </td>
       </tr>
     
   );
 };
 
-export default withRouter(EmployeeTableRow);
+export default withRouter(ItemTableRow);
