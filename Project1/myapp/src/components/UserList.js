@@ -1,21 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect,useRef } from "react";
+import axios from "axios";
+import UsersTableRow from "./UsersTableRow";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import { withRouter } from "./withRouter";
+import ReactToPrint from 'react-to-print';
 
-const AnimalTableRow = (props) => {
-  const [animalState] = useState({
-    _id: props.obj._id,
-    animal_name: props.obj.animal_name,
-    animal_type: props.obj.animal_type,
-    animal_breed: props.obj.animal_breed,
-    animal_gender: props.obj.animal_gender,
-    DOB: props.obj.DOB,
-    owner_email: props.obj.owner_email,
-    date: props.obj.date,
+import { UserPrint} from "./UserPrint";
+
+import "../components/CSS/listmain.css";
+
+function UserList(props) {
+    //read hook
+    const [user, setUser] = useState([]);
+
+  //insert hook
+  const [data, setData] = useState({
+    first_name: "",
+    last_name: "",
+    email: "",
+    password: "",
+    
   });
 
   const [show, setShow] = useState(false);
@@ -57,141 +65,139 @@ const AnimalTableRow = (props) => {
   };
 
   return (
-    
-      <tr>
-        {
-          //-------------------------Update form using bootstrap Modal-------------------
-        }
+    <div>
+      {
+        //-------------------------Insert form using bootstrap Modal-------------------
+      }
 
-        <Modal {...props} size="lg" show={show} onHide={handleClose} centered>
-          <Modal.Header closeButton>
-            <Modal.Title id="contained-modal-title-vcenter">
-              Update Animal
-            </Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <h4>Centered Modal</h4>
-            <Form>
-              <Form.Group
-                className="mb-3"
-                controlId="exampleForm.ControlInput1"
-              >
-                <Form.Label>Animal Name:</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="animal_name"
-                  value={updated.animal_name}
-                  onChange={handleChange}
-                  autoFocus
-                />
-              </Form.Group>
-              <Form.Group
-                className="mb-3"
-                controlId="exampleForm.ControlTextarea1"
-              >
-                <Form.Label>Animal Type</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="animal_type"
-                  value={updated.animal_type}
-                  onChange={handleChange}
-                  autoFocus
-                />
-              </Form.Group>
-              <Form.Group
-                className="mb-3"
-                controlId="exampleForm.ControlTextarea1" >
-                <Form.Label>Animal Type</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="animal_breed"
-                  value={updated.animal_breed}
-                  onChange={handleChange}
-                  autoFocus
-                />
-              </Form.Group>
+      <Modal {...props} size="lg" show={show} onHide={handleClose} centered>
+        <Modal.Header closeButton>
+          <Modal.Title id="contained-modal-title-vcenter">
+            Add New User
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Label>First Name:</Form.Label>
+              <Form.Control
+                type="text"
+                name="first_name"
+                value={data.first_name}
+                placeholder="Enter First Name"
+                onChange={handleChange}
+                autoFocus
+              />
+            </Form.Group>
+            <Form.Group
+              className="mb-3"
+              controlId="exampleForm.ControlTextarea1"
+            >
+              <Form.Label>Last Name</Form.Label>
+              <Form.Control
+                type="text"
+                name="last_name"
+                value={data.last_name}
+                placeholder="Enter Last Name"
+                onChange={handleChange}
+                autoFocus
+              />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Label>Email:</Form.Label>
+              <Form.Control
+                type="email"
+                name="email"
+                value={data.email}
+                placeholder="Enter Email"
+                onChange={handleChange}
+                autoFocus
+              />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Label>Password:</Form.Label>
+              <Form.Control
+                type="text"
+                name="password"
+                value={data.password}
+                placeholder="Enter Password"
+                onChange={handleChange}
+                autoFocus
+              />
+            </Form.Group>
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button onClick={handleClick}>Add</Button>
+          <Button onClick={handleClose}>Close</Button>
+        </Modal.Footer>
+      </Modal>
 
-          
-              <Form.Group
-                className="mb-3"
-                controlId="exampleForm.ControlTextarea1"
-              >
-                <Form.Label>Animal Gender</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="animal_gender"
-                  value={updated.animal_gender}
-                  onChange={handleChange}
-                  autoFocus
-                />
-              </Form.Group>
-              <Form.Group
-                className="mb-3"
-                controlId="exampleForm.ControlTextarea1"
-              >
-                <Form.Label>DOB</Form.Label>
-                <Form.Control
-                  type="date"
-                  name="DOB"
-                  value={updated.DOB}
-                  onChange={handleChange}
-                  autoFocus
-                />
-              </Form.Group>
-              <Form.Group
-                className="mb-3"
-                controlId="exampleForm.ControlTextarea1"
-              >
-                <Form.Label>Owner Email</Form.Label>
-                <Form.Control
-                  type="email"
-                  name="owner_email"
-                  value={updated.owner_email}
-                  onChange={handleChange}
-                  autoFocus
-                />
-              </Form.Group>
-            </Form>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button onClick={() => onUpdate(animalState._id)}>Update</Button>
-            <Button onClick={handleClose}>Close</Button>
-          </Modal.Footer>
-        </Modal>
+      <h1 align="center">Users List</h1>
+      <h4 className="text-right">
+        <b>Total: {count}</b>
+      </h4>
+
+      {
+        //-------------------------Side Menue Buttons-------------------
+      }
+
+      <div className="tablestyle">
+        <div className="buttonframe">
+          <table className="buttonstyle">
+            <tr>
+              <td>
+                <Link onClick={handleShow} className="nav-link">
+                  <p>Add User</p>
+                </Link>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <Link to="/invoiceViewAll" className="nav-link">
+                  <p>View all Users</p>
+                </Link>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <Link  className="nav-link">
+                  <p>Add Animal</p>
+                </Link>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <Link to="/services" className="nav-link">
+                  <p>View all Animal</p>
+                </Link>
+              </td>
+            </tr>
+          </table>
+        </div>
 
         {
           //-------------------------Display All data -------------------
         }
-
-        <td key={animalState._id} style={{ display: "none" }}>
-        </td>
-        <td>{animalState.animal_name}</td>
-        <td>{animalState.animal_type}</td>
-        <td>{animalState.animal_breed}</td>
-        <td>{animalState.animal_gender}</td>
-        <td>{animalState.DOB}</td>
-        <td>{animalState.owner_email}</td>
-        
-        <td>
-          <button
-            type="submit"
-            className="submit"
-            onClick={() => updateAnimal(animalState)}
-          >
-            <Link className="nav-link">Update</Link>
-          </button>
-        </td>
-        <td>
-          <button
-            type="submit"
-            className="delete"
-            onClick={() => onDelete(animalState._id)}
-          >
-            <Link className="nav-link">Delete</Link>
-          </button>
-        </td>
-      </tr>
-    
+        <table className="table table-striped" style={{ width: "54em" }}>
+          <tr>
+            <td>
+              <b>First Name</b>
+            </td>
+            <td>
+              <b>Last Name</b>
+            </td>
+            <td>
+              <b>Email</b>
+            </td>
+            <td>
+              <b>Registered Date</b>
+            </td>
+          </tr>
+          <tbody>{tabRow()}</tbody>
+        </table>
+      </div>
+    </div>
   );
 };
 

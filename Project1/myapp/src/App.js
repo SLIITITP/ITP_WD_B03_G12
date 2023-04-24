@@ -11,6 +11,8 @@ import Navbar3 from './components/NavigationAdmin'
 import ServiceList from './components/ServicesList'
 import UserList from './components/UserList';
 import EmployeeList from './components/EmployeeList'
+import AnimalList from './components/AnimalList';
+import AnimalTypeList from './components/AnimalTypeList';
 import EmployeeLoginList from './components/EmployeeLoginList'
 import PrescriptionList from './components/PrescriptionList';
 import VaccineList from './components/VaccineList';
@@ -56,22 +58,7 @@ class App extends Component {
             <Route path = "/regUser" element={<UserList/>}/>
             
             <Route path = "/employees" element={<EmployeeList/>}/>
-            <Route path = "/accounts" element={<EmployeeLoginList/>}/>
-            <Route path = "/payments" element={<PaymentList/>}/>
-            
-            <Route path = "/items" element={<ItemList/>}/>
-            <Route path = "/prescriptions" element={<PrescriptionList/>}/>
-            <Route path = "/category" element={<CategoryList/>}/>
-            <Route path = "/supplier" element={<Suppliers/>}/>
-            <Route path = "/admissions" element={<Admission/>}/>
-            <Route path = "/shelters" element={<ShelterList/>}/>
-            <Route path = "/orderList" element={<OrderList/>}/>
-            <Route path = "/placedOrder" element={<PlacedOrder/>}/>
-            <Route path = "/payee" element={<PaymentMethod/>}/>
-            <Route path = "/proccess" element={<ProccessOrder/>}/>
-            <Route path = "/store" element={<StoreCard/>}/>
-            <Route path = "/medicalrecords" element={<MedicalRecordsList/>}/>
-          
+
 
 
 
