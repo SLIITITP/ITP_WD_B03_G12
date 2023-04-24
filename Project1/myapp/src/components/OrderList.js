@@ -93,7 +93,7 @@ function OrderList(props) {
 
       <ReactToPrint
       documentTitle='Our Orders' 
-      trigger={() => <Button style={{float:'right'}}>Print</Button>}
+      trigger={() => <Button style={{float:'right', backgroundColor:"black"}}>Print</Button>}
       content={() => componentRef.current} ></ReactToPrint>
       {
         //-------------------------Insert form using bootstrap Modal-------------------

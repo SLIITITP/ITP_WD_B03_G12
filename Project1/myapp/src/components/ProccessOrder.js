@@ -62,7 +62,7 @@ function ProccessOrder(props){
    
     <div>
       
-        <h1>Shipping address</h1>
+        <h1 style={{backgroundColor:"gray"}}>Shipping address</h1>
         <Form {...props}>
         <Form.Label></Form.Label>
         
@@ -106,7 +106,7 @@ function ProccessOrder(props){
              onChange={handleChange}/>
       </Form.Group>
       <Link to={"/payee"} state={{data:total2 , data2:total , data3 : data}}>
-      <Button variant="primary" type="submit" >
+      <Button variant="primary" type="submit" style={{backgroundColor:"darkBlue"}}>
         Next
       </Button>
       </Link>
