@@ -242,8 +242,8 @@ content={() => componentRef.current} ></ReactToPrint>
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button onClick={handleClick}>Add</Button>
-          <Button onClick={handleClose}>Close</Button>
+          <Button variant='info' onClick={handleClick}>Add</Button>
+          <Button  variant='danger' onClick={handleClose}>Close</Button>
         </Modal.Footer>
       </Modal>
 
@@ -269,7 +269,7 @@ content={() => componentRef.current} ></ReactToPrint>
                 </tr>
                 <tr>
                     <td>       
-                        <Link to="/employeeViewAll" className="nav-link">
+                        <Link to="/employees" className="nav-link">
                             <p>View all Employee</p>
                         </Link>                 
                     </td>
