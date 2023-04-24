@@ -1,19 +1,15 @@
-import React, { useState, useEffect,useRef } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import UsersTableRow from "./UsersTableRow";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import { withRouter } from "./withRouter";
-import ReactToPrint from 'react-to-print';
-
-import { UserPrint} from "./UserPrint";
 
 import "../components/CSS/listmain.css";
 
-function UserList(props) {
+function UsersList(props) {
     //read hook
     const [user, setUser] = useState([]);
 
@@ -26,42 +22,67 @@ function UserList(props) {
     
   });
 
-  const [show, setShow] = useState(false);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
 
+    setData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  //Bootsrap Modal configurations
+
+  const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const [updated, setUpdated] = useState({});
+  //get data from database
+  useEffect(() => {
+    axios
+      .get("http://localhost:5000/users/")
+      .then((response) => {
+        setUser(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
-  const onDelete = (id) => {
-    axios.get(`http://localhost:5000/animal/delete/${id}`).then((res) => {
-      alert(`Deleted Successfully : ${id}`);
-      window.location.reload();
+  const tabRow = () => {
+    return user.map((object, i) => {
+      return <UsersTableRow obj={object} key={i} />;
     });
   };
 
-  const updateAnimal = (animalState) => {
-    console.log(animalState);
-    setUpdated(animalState);
+  //taking count
+  const [count, setCount] = useState(0);
 
-    handleShow();
-  };
-
-  const handleChange = (e) => {
-    e.preventDefault();
-    const { name, value } = e.target;
-    setUpdated((prevState) => ({ ...prevState, [name]: value }));
-  };
-
-  const onUpdate = (_id) => {
+  useEffect(() => {
     axios
-      .put(`http://localhost:5000/animal/update/${_id}`, updated)
+      .get("http://localhost:5000/users/get/count")
+      .then((response) => {
+        console.log(response);
+        setCount(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
+  //send new data to database
+  const handleClick = (e) => {
+    e.preventDefault();
+    axios
+      .post(`http://localhost:5000/users/register`, data)
       .then((res) => {
-        alert(`Updated Successfully : ${_id}`);
+        alert(`Added Successfully`);
         handleClose();
         window.location.reload();
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
@@ -154,7 +175,7 @@ function UserList(props) {
             </tr>
             <tr>
               <td>
-                <Link to="/invoiceViewAll" className="nav-link">
+                <Link to="/regUser" className="nav-link">
                   <p>View all Users</p>
                 </Link>
               </td>
@@ -168,16 +189,31 @@ function UserList(props) {
             </tr>
             <tr>
               <td>
-                <Link to="/services" className="nav-link">
+                <Link to="/animals" className="nav-link">
                   <p>View all Animal</p>
+                </Link>
+              </td>
+            </tr>
+            <tr>
+            
+              <td>
+                <Link to="/animals" className="nav-link">
+                  <p>Add Animal Type </p>
+                </Link>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <Link to="/animaltype" className="nav-link">
+                  <p>View all Animal Types</p>
                 </Link>
               </td>
             </tr>
           </table>
         </div>
-
+        
         {
-          //-------------------------Display All data -------------------
+          //-------------------------Display data from database-------------------
         }
         <table className="table table-striped" style={{ width: "54em" }}>
           <tr>
@@ -199,6 +235,6 @@ function UserList(props) {
       </div>
     </div>
   );
-};
+}
 
-export default withRouter(AnimalTableRow);
+export default withRouter(UsersList);
