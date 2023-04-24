@@ -147,7 +147,7 @@ const OrderListTableRow = (props) => {
               >
                 <Form.Label>orderDate</Form.Label>
                 <Form.Control
-                  type="text"
+                  type="date"
                   name="orderDate"
                   value={updated.orderDate}
                   onChange={handleChange}
