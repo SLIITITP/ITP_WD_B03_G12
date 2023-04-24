@@ -11,6 +11,8 @@ import Navbar3 from './components/NavigationAdmin'
 import ServiceList from './components/ServicesList'
 import UserList from './components/UserList';
 import EmployeeList from './components/EmployeeList'
+import AnimalList from './components/AnimalList';
+import AnimalTypeList from './components/AnimalTypeList';
 import EmployeeLoginList from './components/EmployeeLoginList'
 import PrescriptionList from './components/PrescriptionList';
 import VaccineList from './components/VaccineList';
@@ -20,6 +22,10 @@ import ProccessOrder from './components/ProccessOrder';
 import PaymentMethod from './components/PaymentMethod';
 import PlacedOrder from './components/PlacedOrder';
 import OrderList from './components/OrderList';
+
+
+import PaymentList from './components/PayementList'
+
 import ItemList from './components/ItemList';
 import CategoryList from './components/CategoryList'
 import Suppliers from './components/SupplierList';
@@ -50,8 +56,6 @@ class App extends Component {
             <Route path = "/profile" element={<Profile/>}/>
             <Route path = "/services" element={<ServiceList/>}/>
             <Route path = "/regUser" element={<UserList/>}/>
-            
-            <Route path = "/employees" element={<EmployeeList/>}/>
             <Route path = "/accounts" element={<EmployeeLoginList/>}/>
             <Route path = "/items" element={<ItemList/>}/>
             <Route path = "/prescriptions" element={<PrescriptionList/>}/>
@@ -65,10 +69,10 @@ class App extends Component {
             <Route path = "/proccess" element={<ProccessOrder/>}/>
             <Route path = "/store" element={<StoreCard/>}/>
             <Route path = "/medicalrecords" element={<MedicalRecordsList/>}/>
-          
-
-
-
+            <Route path = "/employees" element={<EmployeeList/>}/>
+            <Route path = "/animals" element={<AnimalList/>}/>
+            <Route path = "/animaltype" element={<AnimalTypeList/>}/>
+            <Route path = "/payments" element={<PaymentList/>}/>
           </Routes>
          
           </div> 

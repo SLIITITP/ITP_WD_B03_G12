@@ -108,7 +108,7 @@ function StoreCard() {
             max="10"
             value={item.quantity}
             onChange={(event) => handleQuantityChange(event, item)}></Form.Control>
-          <Button onClick={() => removeFromCart(item)}>remove</Button>
+          <Button onClick={() => removeFromCart(item)} style={{backgroundColor:"red"}}>remove</Button>
         </Form.Group>
       </Form>
     </div> 
@@ -211,7 +211,7 @@ function StoreCard() {
         </Modal.Body>
         <Modal.Footer>
             <Link to={"/proccess"} state={{data: cart, data2: cartTotal}} >
-          <Button variant="primary" onClick={handleClose}  >
+          <Button variant="primary" onClick={handleClose} style={{backgroundColor:"darkgoldenrod"}}  >
             Confirm
           </Button>
           </Link>

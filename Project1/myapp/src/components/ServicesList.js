@@ -163,7 +163,7 @@ function ServicesList(props) {
             </tr>
             <tr>
               <td>
-                <Link to="/invoiceViewAll" className="nav-link">
+                <Link to="/payments" className="nav-link">
                   <p>View all Invoices</p>
                 </Link>
               </td>

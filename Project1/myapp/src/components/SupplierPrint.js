@@ -1,6 +1,7 @@
 import React from 'react';
+import { useEffect } from 'react';
 
-export const ServicePrint = React.forwardRef((props, ref) => {
+export const SupplierPrint = React.forwardRef((props, ref) => {
 
     return (
         <>

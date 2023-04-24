@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect,useRef } from 'react'
 import axios from 'axios'
 import ItemsTableRow from './ItemsTableRow'
 import { Link } from 'react-router-dom';
@@ -6,6 +6,8 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import { withRouter } from './withRouter';
+import ReactToPrint from 'react-to-print'; 
+import { ItemPrint } from './ItemPrint';
 
 
 import '../components/CSS/listmain.css';
@@ -13,6 +15,7 @@ import '../components/CSS/listmain.css';
 
 
 function ItemList(props) {
+  const componentRef = useRef(); 
     //read hook
     const [item, setItem] = useState([]);
   
@@ -97,6 +100,10 @@ function ItemList(props) {
 
     return (
         <div>
+           <ReactToPrint
+      documentTitle='Our Item list' 
+      trigger={() => <Button style={{float:'right'}}>Print</Button>}
+      content={() => componentRef.current} ></ReactToPrint>
       {
         //-------------------------Insert form using bootstrap Modal-------------------
       }
@@ -296,6 +303,7 @@ function ItemList(props) {
             {
           //-------------------------Display data from database-------------------
         }
+        <ItemPrint ref={componentRef}>
         <table className="table table-striped" style={{ width: "54em" }}>
           <tr>
             <td>
@@ -326,6 +334,7 @@ function ItemList(props) {
           </tr>
           <tbody>{tabRow()}</tbody>
         </table>
+        </ItemPrint>
       </div>
     </div>
   );

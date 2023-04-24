@@ -6,11 +6,11 @@ import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import { withRouter } from "./withRouter";
 
-const MedicalRecordsTableRow = (props) => {
-  const [MedicalRecordsState] = useState({
+const AnimalTypeTableRow = (props) => {
+  const [animaltypeState] = useState({
     _id: props.obj._id,
-    issued_doctor_ID: props.obj.issued_doctor_ID,
-    description: props.obj.description,
+    animal_type: props.obj.animal_type,
+    
   });
 
   const [show, setShow] = useState(false);
@@ -21,15 +21,15 @@ const MedicalRecordsTableRow = (props) => {
   const [updated, setUpdated] = useState({});
 
   const onDelete = (id) => {
-    axios.get(`http://localhost:5000/medicalrecords/delete/${id}`).then((res) => {
+    axios.get(`http://localhost:5000/animaltype/delete/${id}`).then((res) => {
       alert(`Deleted Successfully : ${id}`);
       window.location.reload();
     });
   };
 
-  const updateMedicalRecords = (MedicalRecordsState) => {
-    console.log(MedicalRecordsState);
-    setUpdated(MedicalRecordsState);
+  const updateAnimalType = (animaltypeState) => {
+    console.log(animaltypeState);
+    setUpdated(animaltypeState);
 
     handleShow();
   };
@@ -42,7 +42,7 @@ const MedicalRecordsTableRow = (props) => {
 
   const onUpdate = (_id) => {
     axios
-      .put(`http://localhost:5000/medicalrecords/update/${_id}`, updated)
+      .put(`http://localhost:5000/animaltype/update/${_id}`, updated)
       .then((res) => {
         alert(`Updated Successfully : ${_id}`);
         handleClose();
@@ -61,7 +61,7 @@ const MedicalRecordsTableRow = (props) => {
         <Modal {...props} size="lg" show={show} onHide={handleClose} centered>
           <Modal.Header closeButton>
             <Modal.Title id="contained-modal-title-vcenter">
-              Update MedicalRecords
+              Update Animal Type
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
@@ -71,32 +71,20 @@ const MedicalRecordsTableRow = (props) => {
                 className="mb-3"
                 controlId="exampleForm.ControlInput1"
               >
-                <Form.Label>Issued DoctorID:</Form.Label>
+                <Form.Label>Animal Type:</Form.Label>
                 <Form.Control
                   type="text"
-                  name="issued_doctorID"
-                  value={updated.issued_doctorID}
+                  name="animal_type"
+                  value={updated.animal_type}
                   onChange={handleChange}
                   autoFocus
                 />
               </Form.Group>
-              <Form.Group
-                className="mb-3"
-                controlId="exampleForm.ControlTextarea1"
-              >
-                <Form.Label>Description</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="description"
-                  value={updated.description}
-                  onChange={handleChange}
-                  autoFocus
-                />
-              </Form.Group>
+             
             </Form>
           </Modal.Body>
           <Modal.Footer>
-            <Button onClick={() => onUpdate(MedicalRecordsState._id)}>Update</Button>
+            <Button onClick={() => onUpdate(animaltypeState._id)}>Update</Button>
             <Button onClick={handleClose}>Close</Button>
           </Modal.Footer>
         </Modal>
@@ -105,16 +93,15 @@ const MedicalRecordsTableRow = (props) => {
           //-------------------------Display All data -------------------
         }
 
-        <td key={MedicalRecordsState._id} style={{ display: "none" }}>
+        <td key={animaltypeState._id} style={{ display: "none" }}>
           {" "}
         </td>
-        <td>{MedicalRecordsState.issued_doctor_ID}</td>
-        <td>{MedicalRecordsState.description}</td>
+        <td>{animaltypeState.animal_type}</td>
         <td>
           <button
             type="submit"
             className="submit"
-            onClick={() => updateMedicalRecords(MedicalRecordsState)}
+            onClick={() => updateAnimalType(animaltypeState)}
           >
             <Link className="nav-link">Update</Link>
           </button>
@@ -123,7 +110,7 @@ const MedicalRecordsTableRow = (props) => {
           <button
             type="submit"
             className="delete"
-            onClick={() => onDelete(MedicalRecordsState._id)}
+            onClick={() => onDelete(animaltypeState._id)}
           >
             <Link className="nav-link">Delete</Link>
           </button>
@@ -133,4 +120,4 @@ const MedicalRecordsTableRow = (props) => {
   );
 };
 
-export default withRouter(MedicalRecordsTableRow);
+export default withRouter(AnimalTypeTableRow);

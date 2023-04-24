@@ -16,20 +16,17 @@ export const UserPrint = React.forwardRef((props, ref) => {
 
 
 
- <table ref={ref} className="table table-striped" >
-
+<table ref={ref} className="table table-striped" >
 
 
 <tr>
+ </tr> 
 
- </tr>  
-
- <tbody>{props.children}</tbody>
+<tbody>{props.children}</tbody>
 
 </table>
 
-</>
-
+ </>
  )
 
 })

@@ -1,30 +1,49 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef  } from "react";
 import axios from "axios";
-import UsersTableRow from "./UsersTableRow";
+import PaymentTableRow from "./PaymentTableRow";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
-import { withRouter } from "./withRouter";
-import ReactToPrint from 'react-to-print';
-
-import { UserPrint} from "./UserPrint";
-
-
+import { withRouter } from "./withRouter"; 
+import ReactToPrint from 'react-to-print'; 
 import "../components/CSS/listmain.css";
+import jwt_decode from "jwt-decode";
 
-function UsersList(props) {
-  const componentRef = useRef();
-    //read hook
-    const [user, setUser] = useState([]);
+import { ServicePrint } from "./ServicePrint";
+
+function PaymentList(props) {
+ 
+    const token = localStorage.getItem("usertoken");
+
+    console.log(token);
+  
+    const [userData, setUserData] = useState({});
+  
+    useEffect(() => {
+      try {
+        const decoded = jwt_decode(token);
+        setUserData({
+          first_name: decoded.first_name,
+          last_name: decoded.last_name,
+          email: decoded.email,
+        });
+        console.log("decoded:", decoded);
+      } catch (error) {
+        setUserData({ error: "Error decoding token: " + error.message });
+      }
+    }, [token]);
+
+  
+  //read hook
+  const [payment, setPayment] = useState([]);
 
   //insert hook
   const [data, setData] = useState({
-    first_name: "",
-    last_name: "",
-    email: "",
-    password: "",
-    
+    _id: "",
+    pay_total: "",
+    pay_cashierName: "",
+    pay_date: "",
   });
 
   const handleChange = (e) => {
@@ -45,9 +64,9 @@ function UsersList(props) {
   //get data from database
   useEffect(() => {
     axios
-      .get("http://localhost:5000/users/")
+      .get("http://localhost:5000/payments/")
       .then((response) => {
-        setUser(response.data);
+        setPayment(response.data);
       })
       .catch((error) => {
         console.log(error);
@@ -55,8 +74,8 @@ function UsersList(props) {
   }, []);
 
   const tabRow = () => {
-    return user.map((object, i) => {
-      return <UsersTableRow obj={object} key={i} />;
+    return payment.map((object, i) => {
+      return <PaymentTableRow obj={object} key={i} />;
     });
   };
 
@@ -65,7 +84,7 @@ function UsersList(props) {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/users/get/count")
+      .get("http://localhost:5000/payments/get/count")
       .then((response) => {
         console.log(response);
         setCount(response.data);
@@ -79,45 +98,45 @@ function UsersList(props) {
   const handleClick = (e) => {
     e.preventDefault();
     axios
-      .post(`http://localhost:5000/users/register`, data)
+      .post(`http://localhost:5000/payments/add`, data)
       .then((res) => {
         alert(`Added Successfully`);
         handleClose();
         window.location.reload();
       })
-      .catch((err) => {
+      .catch((err) => { 
         console.log(err);
       });
   };
-
+  const componentRef = useRef(); 
+ 
   return (
     <div>
+      
       <ReactToPrint
-
- documentTitle='Our Orders'
-
-trigger={() => <Button style={{float:'right'}}>Print</Button>}
-
- content={() => componentRef.current} ></ReactToPrint>
+      documentTitle='Our Services' 
+      trigger={() => <Button style={{float:'right'}}>Print</Button>}
+      content={() => componentRef.current} ></ReactToPrint>
+     
+    
       {
         //-------------------------Insert form using bootstrap Modal-------------------
       }
-
       <Modal {...props} size="lg" show={show} onHide={handleClose} centered>
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
-            Add New User
+            Add New Invoice
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>First Name:</Form.Label>
+              <Form.Label>Total:</Form.Label>
               <Form.Control
                 type="text"
-                name="first_name"
-                value={data.first_name}
-                placeholder="Enter First Name"
+                name="pay_total"
+                value={data.pay_total}
+                placeholder="Total"
                 onChange={handleChange}
                 autoFocus
               />
@@ -126,34 +145,14 @@ trigger={() => <Button style={{float:'right'}}>Print</Button>}
               className="mb-3"
               controlId="exampleForm.ControlTextarea1"
             >
-              <Form.Label>Last Name</Form.Label>
+              <Form.Label>Cashier</Form.Label>
               <Form.Control
+              plaintext
+              readOnly
                 type="text"
-                name="last_name"
-                value={data.last_name}
-                placeholder="Enter Last Name"
-                onChange={handleChange}
-                autoFocus
-              />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Email:</Form.Label>
-              <Form.Control
-                type="email"
-                name="email"
-                value={data.email}
-                placeholder="Enter Email"
-                onChange={handleChange}
-                autoFocus
-              />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Password:</Form.Label>
-              <Form.Control
-                type="text"
-                name="password"
-                value={data.password}
-                placeholder="Enter Password"
+                name="pay_cashierName"
+                value={userData.first_name}
+                placeholder="Enter cashier Name"
                 onChange={handleChange}
                 autoFocus
               />
@@ -166,7 +165,7 @@ trigger={() => <Button style={{float:'right'}}>Print</Button>}
         </Modal.Footer>
       </Modal>
 
-      <h1 align="center">Users List</h1>
+      <h1 align="center">Payment List</h1>
       <h4 className="text-right">
         <b>Total: {count}</b>
       </h4>
@@ -181,74 +180,55 @@ trigger={() => <Button style={{float:'right'}}>Print</Button>}
             <tr>
               <td>
                 <Link onClick={handleShow} className="nav-link">
-                  <p>Add User</p>
+                  <p>Issue Invoice</p>
                 </Link>
               </td>
             </tr>
             <tr>
               <td>
-                <Link to="/regUser" className="nav-link">
-                  <p>View all Users</p>
+                <Link to="/payments" className="nav-link">
+                  <p>View all Invoices</p>
                 </Link>
               </td>
             </tr>
             <tr>
               <td>
-                <Link  className="nav-link">
-                  <p>Add Animal</p>
+                <Link className="nav-link">
+                  <p>Add a Service</p>
                 </Link>
               </td>
             </tr>
             <tr>
               <td>
-                <Link to="/animals" className="nav-link">
-                  <p>View all Animal</p>
-                </Link>
-              </td>
-            </tr>
-            <tr>
-            
-              <td>
-                <Link to="/animals" className="nav-link">
-                  <p>Add Animal Type </p>
-                </Link>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <Link to="/animaltype" className="nav-link">
-                  <p>View all Animal Types</p>
+                <Link to="/services" className="nav-link">
+                  <p>View Services</p>
                 </Link>
               </td>
             </tr>
           </table>
         </div>
-        
+
         {
           //-------------------------Display data from database-------------------
         }
-        <UserPrint ref={componentRef}>
+        <ServicePrint ref={componentRef}>
         <table className="table table-striped" style={{ width: "54em" }}>
           <tr>
             <td>
-              <b>First Name</b>
+              <b>Payment Date</b>
             </td>
             <td>
-              <b>Last Name</b>
-            </td>
-            <td>
-              <b>Email</b>
-            </td>
-            <td>
-              <b>Registered Date</b>
+              <b>Total</b>
             </td>
           </tr>
           <tbody>{tabRow()}</tbody>
         </table>
-        </UserPrint>
+        </ServicePrint>
       </div>
+      
+
     </div>
   );
-}
+};
 
-export default withRouter(UsersList);
+export default withRouter(PaymentList);

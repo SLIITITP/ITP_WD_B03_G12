@@ -1,29 +1,25 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import UsersTableRow from "./UsersTableRow";
+import AnimalTableRow from "./AnimalTableRow";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import { withRouter } from "./withRouter";
-import ReactToPrint from 'react-to-print';
-
-import { UserPrint} from "./UserPrint";
-
 
 import "../components/CSS/listmain.css";
 
-function UsersList(props) {
-  const componentRef = useRef();
+function AnimalList(props) {
     //read hook
-    const [user, setUser] = useState([]);
+    const [animal, setAnimal] = useState([]);
 
   //insert hook
   const [data, setData] = useState({
-    first_name: "",
-    last_name: "",
-    email: "",
-    password: "",
+    animal_name: "",
+    animal_type: "",
+    animal_breed: "",
+    animal_gender: "",
+    DOB: "",
     
   });
 
@@ -45,9 +41,9 @@ function UsersList(props) {
   //get data from database
   useEffect(() => {
     axios
-      .get("http://localhost:5000/users/")
+      .get("http://localhost:5000/animal/")
       .then((response) => {
-        setUser(response.data);
+        setAnimal(response.data);
       })
       .catch((error) => {
         console.log(error);
@@ -55,8 +51,8 @@ function UsersList(props) {
   }, []);
 
   const tabRow = () => {
-    return user.map((object, i) => {
-      return <UsersTableRow obj={object} key={i} />;
+    return animal.map((object, i) => {
+      return <  AnimalTableRow obj={object} key={i} />;
     });
   };
 
@@ -65,7 +61,7 @@ function UsersList(props) {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/users/get/count")
+      .get("http://localhost:5000/animal/get/count")
       .then((response) => {
         console.log(response);
         setCount(response.data);
@@ -79,7 +75,7 @@ function UsersList(props) {
   const handleClick = (e) => {
     e.preventDefault();
     axios
-      .post(`http://localhost:5000/users/register`, data)
+      .post(`http://localhost:5000/animal/add`, data)
       .then((res) => {
         alert(`Added Successfully`);
         handleClose();
@@ -92,13 +88,6 @@ function UsersList(props) {
 
   return (
     <div>
-      <ReactToPrint
-
- documentTitle='Our Orders'
-
-trigger={() => <Button style={{float:'right'}}>Print</Button>}
-
- content={() => componentRef.current} ></ReactToPrint>
       {
         //-------------------------Insert form using bootstrap Modal-------------------
       }
@@ -106,18 +95,18 @@ trigger={() => <Button style={{float:'right'}}>Print</Button>}
       <Modal {...props} size="lg" show={show} onHide={handleClose} centered>
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
-            Add New User
+            Add New Animal
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>First Name:</Form.Label>
+              <Form.Label>Animal Name:</Form.Label>
               <Form.Control
                 type="text"
-                name="first_name"
+                name="animal_name"
                 value={data.first_name}
-                placeholder="Enter First Name"
+                placeholder="Enter Animal Name"
                 onChange={handleChange}
                 autoFocus
               />
@@ -126,38 +115,56 @@ trigger={() => <Button style={{float:'right'}}>Print</Button>}
               className="mb-3"
               controlId="exampleForm.ControlTextarea1"
             >
-              <Form.Label>Last Name</Form.Label>
+              <Form.Label>Animal Type:</Form.Label>
               <Form.Control
                 type="text"
-                name="last_name"
-                value={data.last_name}
-                placeholder="Enter Last Name"
+                name="animal_type"
+                value={data.animal_type}
+                placeholder="Enter Animal Type"
                 onChange={handleChange}
                 autoFocus
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Email:</Form.Label>
+              <Form.Label>Animal Breed:</Form.Label>
               <Form.Control
-                type="email"
-                name="email"
-                value={data.email}
-                placeholder="Enter Email"
+                type="text"
+                name="animal_breed"
+                value={data.animal_breed}
+                placeholder="Enter Animal Breed"
                 onChange={handleChange}
                 autoFocus
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Password:</Form.Label>
+              <Form.Label>Animal Gender:</Form.Label>
               <Form.Control
                 type="text"
-                name="password"
-                value={data.password}
-                placeholder="Enter Password"
+                name="animal_gender"
+                value={data.animal_gender}
+                placeholder="Enter Animal Breed"
                 onChange={handleChange}
                 autoFocus
               />
             </Form.Group>
+
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Label>DOB:</Form.Label>
+              <Form.Control
+                type="date"
+                name="DOB"
+                value={data.DOB}
+                placeholder="Enter DOB"
+                onChange={handleChange}
+                autoFocus
+              />
+            </Form.Group>
+
+
+
+
+            
+            
           </Form>
         </Modal.Body>
         <Modal.Footer>
@@ -166,7 +173,7 @@ trigger={() => <Button style={{float:'right'}}>Print</Button>}
         </Modal.Footer>
       </Modal>
 
-      <h1 align="center">Users List</h1>
+      <h1 align="center">Animal List</h1>
       <h4 className="text-right">
         <b>Total: {count}</b>
       </h4>
@@ -180,7 +187,7 @@ trigger={() => <Button style={{float:'right'}}>Print</Button>}
           <table className="buttonstyle">
             <tr>
               <td>
-                <Link onClick={handleShow} className="nav-link">
+                <Link  className="nav-link">
                   <p>Add User</p>
                 </Link>
               </td>
@@ -194,7 +201,7 @@ trigger={() => <Button style={{float:'right'}}>Print</Button>}
             </tr>
             <tr>
               <td>
-                <Link  className="nav-link">
+                <Link onClick={handleShow} className="nav-link">
                   <p>Add Animal</p>
                 </Link>
               </td>
@@ -208,47 +215,48 @@ trigger={() => <Button style={{float:'right'}}>Print</Button>}
             </tr>
             <tr>
             
-              <td>
-                <Link to="/animals" className="nav-link">
-                  <p>Add Animal Type </p>
-                </Link>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <Link to="/animaltype" className="nav-link">
-                  <p>View all Animal Types</p>
-                </Link>
-              </td>
-            </tr>
+            <td>
+              <Link to="/animals" className="nav-link">
+                <p>Add Animal Type </p>
+              </Link>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <Link to="/animaltype" className="nav-link">
+                <p>View all Animal Types</p>
+              </Link>
+            </td>
+          </tr>
           </table>
         </div>
-        
+
         {
           //-------------------------Display data from database-------------------
         }
-        <UserPrint ref={componentRef}>
         <table className="table table-striped" style={{ width: "54em" }}>
           <tr>
             <td>
-              <b>First Name</b>
+              <b>Animal Name</b>
             </td>
             <td>
-              <b>Last Name</b>
+              <b>Animal Type</b>
             </td>
             <td>
-              <b>Email</b>
+              <b>Animal Breed</b>
             </td>
             <td>
-              <b>Registered Date</b>
+              <b>Animal Gender</b>
+            </td>
+            <td>
+              <b>DOB</b>
             </td>
           </tr>
           <tbody>{tabRow()}</tbody>
         </table>
-        </UserPrint>
       </div>
     </div>
   );
 }
 
-export default withRouter(UsersList);
+export default withRouter(AnimalList);
