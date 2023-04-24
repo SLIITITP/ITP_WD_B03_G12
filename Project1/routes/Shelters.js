@@ -1,96 +1,97 @@
 const express = require('express');
-const admissionRoutes = express.Router();
-let Admission =require("../models/Admission");
-const { Await } = require('react-router-dom');
+const shelterRoutes = express.Router();
+let Shelter = require("../models/Shelters");
 
 
-//insert operation
-admissionRoutes.route('/add').post(function(req,res){
-    let admission = new Admission(req.body);
-    admission.save()
-    .then(admission =>{
-      
-        res.status(200).json({'admission': 'admission added'});
+//inset Operation
+shelterRoutes.route('/add').post(function(req,res){
+
+    let shelter = new Shelter(req.body);
+    shelter.save()
+    .then(shelter =>{
+        res.status(200).json({'shelter': 'Shelter Added'});
+
     })
+
     .catch(err =>{
-        res.status(400).send("noooo")
+        res.status(400).send("Not Added")
 
     })
 
-  
 })
 
 
-    //Reading part
+  //Reading part
 
     
-    admissionRoutes.route('/').get(async function (req, res) {
-        try{
-            const admission = await Admission.find();
-            res.json(admission);
-        }
-        catch{
-            console.log(err);
-        }
-    })
-    
-
-    //Update Operation
-    admissionRoutes.route('/update/:id').put(async (req,res) =>{
-        try {
-            const admission = await Admission.findById(req.params.id);
-
-            if(!admission){
-                return res.status(400).json({error:'Admission not Found'});
-            }
-            
-            if(!req.body.first_name ||!req.body.last_name ||!req.body.contact_no ||!req.body.weight ||!req.body.diagnosis ||!req.body.shelter_type ||!req.body.special_notes ||!req.body.shelter_no){
-                return res.status(400).json({error: 'Missing Required Fields!!'});
-
-            }
-            admission.first_name = req.body.first_name;
-            admission.last_name = req.body.last_name;
-            admission.contact_no  = req.body.contact_no ;
-            admission.weight= req.body.weight;
-            admission.diagnosis = req.body.diagnosis;
-            admission.shelter_type  = req.body.shelter_type ;
-            admission.special_notes= req.body.special_notes;
-            admission.shelter_no= req.body.shelter_no;
-
-            
-            await admission.save();
-            res.json(admission);
-
-        } catch (err) {
-            res.status(500).json({error: err.message});
-            
-        }
-        
-    });
-
- //Delete Operation
-
-    admissionRoutes.route('/delete/:id').get(async(req,res)=>{
-
-       try {
-        const admission = await Admission.findByIdAndRemove({ _id: req.params.id});
-        if(admission){
-            res.json('Removed Successfully!');
-        }else{
-            res.json('Not Found!');
-        }
-        
-       } catch (err) {
-        res.json(err);
-        
-       }
-    });
+  shelterRoutes.route('/').get(async function (req, res) {
+    try{
+        const shelter = await Shelter.find();
+        res.json(shelter);
+    }
+    catch{
+        console.log(err);
+    }
+})
 
 
-  //count
-  admissionRoutes.route('/get/count').get(async function (req, res) {
+
+//Update Operation
+
+shelterRoutes.route('/update/:id').put(async (req,res) =>{
     try {
-      const count = await Admission.countDocuments();
+        const shelter = await Shelter.findById(req.params.id);
+
+        if(!shelter){
+            return res.status(400).json({error:'Shelter not Found'});
+        }
+        
+        if(!req.body.shelter_id ||!req.body.shelter_type ||!req.body.special_details ){
+            return res.status(400).json({error: 'Missing Required Fields!!'});
+
+        }
+        shelter.shelter_id = req.body.shelter_id;
+        shelter.shelter_type = req.body.shelter_type;
+        shelter.special_details  = req.body.special_details;
+      
+
+        
+        await shelter.save();
+        res.json(shelter);
+
+    } catch (err) {
+        res.status(500).json({error: err.message});
+        
+    }
+    
+});
+
+
+//Delete Operation
+
+shelterRoutes.route('/delete/:id').get(async(req,res)=>{
+
+    try {
+     const shelter = await Shelter.findByIdAndRemove({ _id: req.params.id});
+     if(shelter){
+         res.json('Removed Successfully!');
+     }else{
+         res.json('Not Found!');
+     }
+     
+    } catch (err) {
+     res.json(err);
+     
+    }
+ });
+
+
+ // count increment code
+
+
+ shelterRoutes.route('/get/count').get(async function (req, res) {
+    try {
+      const count = await Shelter.countDocuments();
       res.json(count);
     } catch (err) {
       console.log(err);
@@ -98,43 +99,4 @@ admissionRoutes.route('/add').post(function(req,res){
     }
   });
 
-    
-
-
-
-    module.exports = admissionRoutes;
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-   
-
-
-
+module.exports = shelterRoutes;

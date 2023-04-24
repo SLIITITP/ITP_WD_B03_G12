@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useRef } from "react";
 import axios from "axios";
 import ShelterTableRow from "./ShelterTableRow";
 import { Link } from "react-router-dom";
@@ -7,11 +7,15 @@ import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import { withRouter } from "./withRouter";
 import "../components/CSS/listmain.css";
+import ReactToPrint from 'react-to-print';
+import {ShelterPrint} from "./ShelterPrint"
 
 
 
 
 function ShelterList(props){
+
+  const componentRef = useRef(); 
 
      //read hook
 
@@ -98,6 +102,11 @@ useEffect(() => {
               //-------------------------Insert form using bootstrap Modal-------------------
 
         }
+
+        <ReactToPrint
+      documentTitle='Our Services' 
+      trigger={() => <Button style={{float:'right'}}>Print</Button>}
+      content={() => componentRef.current} ></ReactToPrint>
 
         <Modal {...props} size="lg" show={show} onHide={handleClose} centered>
         <Modal.Header closeButton>
@@ -216,6 +225,8 @@ useEffect(() => {
           //-------------------------Display data from database-------------------
         }
 
+        <ShelterPrint ref={componentRef}>
+
         <table className="table table-striped" style={{ width: "54em" }}>
         <tr>
         <td>
@@ -233,6 +244,7 @@ useEffect(() => {
         <tbody>{tabRow()}</tbody>
             
         </table>
+        </ShelterPrint>
 
 
 
