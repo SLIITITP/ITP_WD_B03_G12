@@ -93,7 +93,7 @@ const PaymentTableRow = (props) => {
                 name="first_name"
                 plaintext
                 readOnly
-                value={updated.pay_cashierName}
+                value={userData.first_name}
                 onChange={handleChange}
                 autoFocus
               />
@@ -132,7 +132,7 @@ const PaymentTableRow = (props) => {
       </td>
       <td>{paymentState.pay_date}</td>
       <td>{paymentState.pay_total}</td>
-      <td>{paymentState.pay_cashierName}</td>
+      
       <td>
         <button
           type="submit"

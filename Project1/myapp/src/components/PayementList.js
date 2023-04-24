@@ -220,9 +220,6 @@ function PaymentList(props) {
             <td>
               <b>Total</b>
             </td>
-            <td>
-              <b>Cashier</b>
-            </td>
           </tr>
           <tbody>{tabRow()}</tbody>
         </table>
