@@ -54,7 +54,7 @@ p {
 }
 
 .nav-tabs3 {       
-    background-color:rgb(193, 71, 91); 
+    background-color: rgb(193, 71, 91); ;
     border-radius: 0.5em;
     display: flex;   
     padding-left: 20px;

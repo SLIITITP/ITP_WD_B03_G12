@@ -20,6 +20,10 @@ import ProccessOrder from './components/ProccessOrder';
 import PaymentMethod from './components/PaymentMethod';
 import PlacedOrder from './components/PlacedOrder';
 import OrderList from './components/OrderList';
+
+
+import PaymentList from './components/PayementList'
+
 import ItemList from './components/ItemList';
 import CategoryList from './components/CategoryList'
 import Suppliers from './components/SupplierList';
@@ -53,6 +57,8 @@ class App extends Component {
             
             <Route path = "/employees" element={<EmployeeList/>}/>
             <Route path = "/accounts" element={<EmployeeLoginList/>}/>
+            <Route path = "/payments" element={<PaymentList/>}/>
+            
             <Route path = "/items" element={<ItemList/>}/>
             <Route path = "/prescriptions" element={<PrescriptionList/>}/>
             <Route path = "/category" element={<CategoryList/>}/>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef  } from "react";
 import axios from "axios";
-import ServicesTableRow from "./ServicesTableRow";
+import PaymentTableRow from "./PaymentTableRow";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
@@ -11,18 +11,20 @@ import "../components/CSS/listmain.css";
 
 import { ServicePrint } from "./ServicePrint";
 
-function ServicesList(props) {
+function PaymentList(props) {
  
   
 
   
   //read hook
-  const [service, setService] = useState([]);
+  const [payment, setPayment] = useState([]);
 
   //insert hook
   const [data, setData] = useState({
-    service_name: "",
-    service_price: "",
+    _id: "",
+    pay_total: "",
+    pay_cashierName: "",
+    pay_date: "",
   });
 
   const handleChange = (e) => {
@@ -43,9 +45,9 @@ function ServicesList(props) {
   //get data from database
   useEffect(() => {
     axios
-      .get("http://localhost:5000/service/")
+      .get("http://localhost:5000/payments/")
       .then((response) => {
-        setService(response.data);
+        setPayment(response.data);
       })
       .catch((error) => {
         console.log(error);
@@ -53,8 +55,8 @@ function ServicesList(props) {
   }, []);
 
   const tabRow = () => {
-    return service.map((object, i) => {
-      return <ServicesTableRow obj={object} key={i} />;
+    return payment.map((object, i) => {
+      return <PaymentTableRow obj={object} key={i} />;
     });
   };
 
@@ -63,7 +65,7 @@ function ServicesList(props) {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/service/get/count")
+      .get("http://localhost:5000/payments/get/count")
       .then((response) => {
         console.log(response);
         setCount(response.data);
@@ -142,7 +144,7 @@ function ServicesList(props) {
         </Modal.Footer>
       </Modal>
 
-      <h1 align="center">Service List</h1>
+      <h1 align="center">Payment List</h1>
       <h4 className="text-right">
         <b>Total: {count}</b>
       </h4>
@@ -156,7 +158,7 @@ function ServicesList(props) {
           <table className="buttonstyle">
             <tr>
               <td>
-                <Link to="/invoiceAdd" className="nav-link">
+                <Link onClick={handleShow} className="nav-link">
                   <p>Issue Invoice</p>
                 </Link>
               </td>
@@ -170,7 +172,7 @@ function ServicesList(props) {
             </tr>
             <tr>
               <td>
-                <Link onClick={handleShow} className="nav-link">
+                <Link className="nav-link">
                   <p>Add a Service</p>
                 </Link>
               </td>
@@ -192,10 +194,13 @@ function ServicesList(props) {
         <table className="table table-striped" style={{ width: "54em" }}>
           <tr>
             <td>
-              <b>Service Name</b>
+              <b>Payment Date</b>
             </td>
             <td>
-              <b>Service Price</b>
+              <b>Total</b>
+            </td>
+            <td>
+              <b>Cashier</b>
             </td>
           </tr>
           <tbody>{tabRow()}</tbody>
@@ -208,4 +213,4 @@ function ServicesList(props) {
   );
 };
 
-export default withRouter(ServicesList);
+export default withRouter(PaymentList);

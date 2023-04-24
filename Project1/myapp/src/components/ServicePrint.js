@@ -1,5 +1,4 @@
 import React from 'react';
-import { useEffect } from 'react';
 
 export const ServicePrint = React.forwardRef((props, ref) => {
 
