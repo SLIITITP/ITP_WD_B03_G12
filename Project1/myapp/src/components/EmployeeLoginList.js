@@ -14,6 +14,8 @@ import ReactToPrint from 'react-to-print';
 import '../components/CSS/listmain.css';
 
 function EmployeeLoginList(props) {
+  const componentRef = useRef();
+
     //read hook
     const [employeelogin, setEmployeelogin] = useState([]);
   
@@ -94,6 +96,13 @@ function EmployeeLoginList(props) {
       {
         //-------------------------Insert form using bootstrap Modal-------------------
       }
+            <ReactToPrint
+
+documentTitle='Our Employees'
+
+trigger={() => <Button style={{float:'right'}}>Print</Button>}
+
+content={() => componentRef.current} ></ReactToPrint>
 
       <Modal {...props} size="lg" show={show} onHide={handleClose} centered>
         <Modal.Header closeButton>
@@ -203,6 +212,9 @@ function EmployeeLoginList(props) {
             {
           //-------------------------Display data from database-------------------
         }
+
+<EmployeePrint ref={componentRef}>
+
         <Table responsive className="table table-striped" style={{ width: "54em" }}>
           <tr>
             <td>
@@ -221,6 +233,7 @@ function EmployeeLoginList(props) {
           </tr>
           <tbody>{tabRow()}</tbody>
         </Table>
+        </EmployeePrint>
 
       </div>
     </div>
