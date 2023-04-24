@@ -150,7 +150,7 @@ function MedicalRecordsList(props) {
             </tr>
             <tr>
               <td>
-                <Link to="/prescription" className="nav-link">
+                <Link to="/prescriptions" className="nav-link">
                   <p>View all Prescriptions</p>
                 </Link>
               </td>

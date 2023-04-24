@@ -54,7 +54,7 @@ class App extends Component {
             <Route path = "/employees" element={<EmployeeList/>}/>
             <Route path = "/accounts" element={<EmployeeLoginList/>}/>
             <Route path = "/items" element={<ItemList/>}/>
-            <Route path = "/medicalrecords" element={<PrescriptionList/>}/>
+            <Route path = "/prescriptions" element={<PrescriptionList/>}/>
             <Route path = "/category" element={<CategoryList/>}/>
             <Route path = "/supplier" element={<Suppliers/>}/>
             <Route path = "/admissions" element={<Admission/>}/>
@@ -64,6 +64,7 @@ class App extends Component {
             <Route path = "/payee" element={<PaymentMethod/>}/>
             <Route path = "/proccess" element={<ProccessOrder/>}/>
             <Route path = "/store" element={<StoreCard/>}/>
+            <Route path = "/medicalrecords" element={<MedicalRecordsList/>}/>
           
 
 

@@ -40,7 +40,7 @@ class Navbar3 extends Component {
 
 
                     <li className="nav-item2" >
-                        <Link to="/medicalrecords" className="nav-link" > 
+                        <Link to="/prescriptions" className="nav-link" > 
                             <h6>Medical Records</h6>
                         </Link>
                     </li>
