@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useRef } from "react";
 import axios from "axios";
 import UsersTableRow from "./UsersTableRow";
 import { Link } from "react-router-dom";
@@ -6,10 +6,14 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import { withRouter } from "./withRouter";
+import ReactToPrint from 'react-to-print';
+
+import { UserPrint} from "./UserPrint";
 
 import "../components/CSS/listmain.css";
 
 function UserList(props) {
+  const componentRef = useRef();
     //read hook
     const [user, setUser] = useState([]);
 
@@ -90,6 +94,13 @@ function UserList(props) {
       {
         //-------------------------Insert form using bootstrap Modal-------------------
       }
+      <ReactToPrint
+
+ documentTitle='Our Orders'
+
+ trigger={() => <Button style={{float:'right'}}>Print</Button>}
+
+ content={() => componentRef.current} ></ReactToPrint>
 
       <Modal {...props} size="lg" show={show} onHide={handleClose} centered>
         <Modal.Header closeButton>
@@ -214,6 +225,7 @@ function UserList(props) {
         {
           //-------------------------Display data from database-------------------
         }
+        <UserPrint ref={componentRef}>
         <table className="table table-striped" style={{ width: "54em" }}>
           <tr>
             <td>
@@ -231,6 +243,7 @@ function UserList(props) {
           </tr>
           <tbody>{tabRow()}</tbody>
         </table>
+        </UserPrint>
       </div>
     </div>
   );
