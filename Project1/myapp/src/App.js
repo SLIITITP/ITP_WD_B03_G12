@@ -56,12 +56,23 @@ class App extends Component {
             <Route path = "/profile" element={<Profile/>}/>
             <Route path = "/services" element={<ServiceList/>}/>
             <Route path = "/regUser" element={<UserList/>}/>
-            
+            <Route path = "/accounts" element={<EmployeeLoginList/>}/>
+            <Route path = "/items" element={<ItemList/>}/>
+            <Route path = "/prescriptions" element={<PrescriptionList/>}/>
+            <Route path = "/category" element={<CategoryList/>}/>
+            <Route path = "/supplier" element={<Suppliers/>}/>
+            <Route path = "/admissions" element={<Admission/>}/>
+            <Route path = "/shelters" element={<ShelterList/>}/>
+            <Route path = "/orderList" element={<OrderList/>}/>
+            <Route path = "/placedOrder" element={<PlacedOrder/>}/>
+            <Route path = "/payee" element={<PaymentMethod/>}/>
+            <Route path = "/proccess" element={<ProccessOrder/>}/>
+            <Route path = "/store" element={<StoreCard/>}/>
+            <Route path = "/medicalrecords" element={<MedicalRecordsList/>}/>
             <Route path = "/employees" element={<EmployeeList/>}/>
-
-
-
-
+            <Route path = "/animals" element={<AnimalList/>}/>
+            <Route path = "/animaltype" element={<AnimalTypeList/>}/>
+            <Route path = "/payments" element={<PaymentList/>}/>
           </Routes>
          
           </div> 

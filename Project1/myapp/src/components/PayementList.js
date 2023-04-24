@@ -8,12 +8,31 @@ import Modal from "react-bootstrap/Modal";
 import { withRouter } from "./withRouter"; 
 import ReactToPrint from 'react-to-print'; 
 import "../components/CSS/listmain.css";
+import jwt_decode from "jwt-decode";
 
 import { ServicePrint } from "./ServicePrint";
 
 function PaymentList(props) {
  
+    const token = localStorage.getItem("usertoken");
+
+    console.log(token);
   
+    const [userData, setUserData] = useState({});
+  
+    useEffect(() => {
+      try {
+        const decoded = jwt_decode(token);
+        setUserData({
+          first_name: decoded.first_name,
+          last_name: decoded.last_name,
+          email: decoded.email,
+        });
+        console.log("decoded:", decoded);
+      } catch (error) {
+        setUserData({ error: "Error decoding token: " + error.message });
+      }
+    }, [token]);
 
   
   //read hook
@@ -79,7 +98,7 @@ function PaymentList(props) {
   const handleClick = (e) => {
     e.preventDefault();
     axios
-      .post(`http://localhost:5000/service/add`, data)
+      .post(`http://localhost:5000/payments/add`, data)
       .then((res) => {
         alert(`Added Successfully`);
         handleClose();
@@ -106,18 +125,18 @@ function PaymentList(props) {
       <Modal {...props} size="lg" show={show} onHide={handleClose} centered>
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
-            Add New Service
+            Add New Invoice
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Service Name:</Form.Label>
+              <Form.Label>Total:</Form.Label>
               <Form.Control
                 type="text"
-                name="service_name"
-                value={data.service_name}
-                placeholder="Enter New service"
+                name="pay_total"
+                value={data.pay_total}
+                placeholder="Total"
                 onChange={handleChange}
                 autoFocus
               />
@@ -126,12 +145,14 @@ function PaymentList(props) {
               className="mb-3"
               controlId="exampleForm.ControlTextarea1"
             >
-              <Form.Label>Service Price</Form.Label>
+              <Form.Label>Cashier</Form.Label>
               <Form.Control
+              plaintext
+              readOnly
                 type="text"
-                name="service_price"
-                value={data.service_price}
-                placeholder="Enter service Price"
+                name="pay_cashierName"
+                value={userData.first_name}
+                placeholder="Enter cashier Name"
                 onChange={handleChange}
                 autoFocus
               />
