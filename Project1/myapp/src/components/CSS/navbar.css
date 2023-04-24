@@ -1,6 +1,6 @@
 .app-logo {
-    height: 4.5em;
-    width: 4.5em;
+    height: 4em;
+    width: 9em;
     margin-left: 1.5em;
 } 
 
@@ -69,3 +69,4 @@ p {
     background-color:rgb(193, 71, 91); 
     display: flex;   
 }
+

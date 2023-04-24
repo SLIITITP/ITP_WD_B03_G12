@@ -78,14 +78,14 @@ employeeRoutes.route('/update/:id').put(async (req, res) => {
       return res.status(404).json({ error: 'Employee not found' });
     }
 
-    employee.name = req.body.name;
-    employee.lname = req.body.lname;
-    employee.NIC = req.body.NIC
-    employee.phoneno = req.body.phoneno
-    employee.address = req.body.address
-    employee.gender = req.body.gender
-    employee.birthday = req.body.birthday
-    employee.jobrole = req.body.jobrole
+    employee.name = req.body.employee_name;
+    employee.lname = req.body.employee_lname;
+    employee.NIC = req.body.employee_NIC
+    employee.phoneno = req.body.employee_phoneno
+    employee.address = req.body.employee_address
+    employee.gender = req.body.employee_gender
+    employee.birthday = req.body.employee_birthday
+    employee.jobrole = req.body.employee_jobrole
 
     await employee.save();
     res.json(employee);
@@ -104,7 +104,6 @@ employeeRoutes.route('/update/:id').put(async (req, res) => {
       res.status(500).send("Server error");
     }
   });
-  
 
 
 module.exports =employeeRoutes;

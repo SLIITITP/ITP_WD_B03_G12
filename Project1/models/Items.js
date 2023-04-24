@@ -1,7 +1,5 @@
 const { Double } = require("mongodb");
 
-
-
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
@@ -39,12 +37,12 @@ const ItemSchema = new Schema ({
 
    manufacture_date: {
         type: Date,
-        default: Date.now
+      
     },
 
     expire_date: {
         type: Date,
-        default: Date.now
+        
     },
 }, {
     collection: 'item'
