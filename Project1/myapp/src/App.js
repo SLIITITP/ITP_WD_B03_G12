@@ -59,6 +59,13 @@ class App extends Component {
             <Route path = "/supplier" element={<Suppliers/>}/>
             <Route path = "/admissions" element={<Admission/>}/>
             <Route path = "/shelters" element={<ShelterList/>}/>
+            <Route path = "/orderList" element={<OrderList/>}/>
+            <Route path = "/placedOrder" element={<PlacedOrder/>}/>
+            <Route path = "/payee" element={<PaymentMethod/>}/>
+            <Route path = "/proccess" element={<ProccessOrder/>}/>
+            <Route path = "/store" element={<StoreCard/>}/>
+          
+
 
 
           </Routes>
