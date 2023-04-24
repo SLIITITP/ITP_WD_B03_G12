@@ -20,7 +20,7 @@ export const UserPrint = React.forwardRef((props, ref) => {
 
 
 <tr>
- </tr>  
+ </tr> 
 
 <tbody>{props.children}</tbody>
 
