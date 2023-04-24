@@ -1,20 +1,48 @@
 import React, { Component } from 'react'
+import Carousel from 'react-bootstrap/Carousel';
 
 class Landing extends Component {
   render() {
     return (
-      <div className='container'>
-        <div className='jumbotron mt-5'>
-            <div align="center" className='col-sm-8 mx-auto'>
-                <h1>Animal Clinc Management System</h1>
-                <br/>
-                <div align="center" className='col-sm-8 mx-auto'>
-                <h1>Welcome</h1>
-                </div>
-            </div>
-        </div>
+
+      <Carousel>
+      <Carousel.Item>
+        <img
+          className="d-block w-100"
+          src="../img/HomeSlide1.png"
+          alt="First slide"
+       
+        />
+        <Carousel.Caption>
+         
+        </Carousel.Caption>
+      </Carousel.Item>
+      <Carousel.Item>
+        <img
+          className="d-block w-100"
+          src="../img/HomeSlide3.jpg"
+          alt="Second slide"
+        />
+
+        <Carousel.Caption>
+         
+         
+        </Carousel.Caption>
+      </Carousel.Item>
+      <Carousel.Item>
+        <img
+          className="d-block w-100"
+          src="../img/HomeSlide2.jpg"
+          alt="Third slide"
+        />
+
+        <Carousel.Caption>
         
-      </div>
+          
+        </Carousel.Caption>
+      </Carousel.Item>
+    </Carousel>
+     
     )
   }
 }

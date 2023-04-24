@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, Component, useRef } from 'react'
 import axios from 'axios'
 import EmployeeTableRow from './EmployeeTableRow'
 import { Link } from 'react-router-dom';
@@ -6,11 +6,16 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import { withRouter } from './withRouter';
+import Table from 'react-bootstrap/Table';
+import { EmployeePrint } from './EmployeePrint';
+import ReactToPrint from 'react-to-print';
 
 
 import '../components/CSS/listmain.css';
 
 function EmployeeList(props) {
+   const componentRef = useRef();
+
     //read hook
     const [employee, setEmployee] = useState([]);
   
@@ -95,6 +100,15 @@ function EmployeeList(props) {
       {
         //-------------------------Insert form using bootstrap Modal-------------------
       }
+
+      <ReactToPrint
+
+ documentTitle='Our Employees'
+
+trigger={() => <Button style={{float:'right'}}>Print</Button>}
+
+content={() => componentRef.current} ></ReactToPrint>
+
 
       <Modal {...props} size="lg" show={show} onHide={handleClose} centered>
         <Modal.Header closeButton>
@@ -228,8 +242,8 @@ function EmployeeList(props) {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button onClick={handleClick}>Add</Button>
-          <Button onClick={handleClose}>Close</Button>
+          <Button variant='info' onClick={handleClick}>Add</Button>
+          <Button  variant='danger' onClick={handleClose}>Close</Button>
         </Modal.Footer>
       </Modal>
 
@@ -238,24 +252,24 @@ function EmployeeList(props) {
         <b>Total: {count}</b>
       </h4>
 
-      {
+        {
         //-------------------------Side Menue Buttons-------------------
-      }
-      
+        }
+         
     
         <div className='tablestyle'>
             <div className='buttonframe'>
             <table className='buttonstyle'>
               <tr>
                     <td>       
-                        <Link to="/employeeAdd" className="nav-link">
+                        <Link onClick={handleShow} className="nav-link">
                             <p>Add Employee</p>
                         </Link>                 
                     </td>
                 </tr>
                 <tr>
                     <td>       
-                        <Link to="/employeeViewAll" className="nav-link">
+                        <Link to="/employees" className="nav-link">
                             <p>View all Employee</p>
                         </Link>                 
                     </td>
@@ -263,14 +277,14 @@ function EmployeeList(props) {
 
                 <tr>
                     <td>       
-                        <Link onClick={handleShow} className="nav-link">
+                        <Link  className="nav-link">
                             <p>Create Accounts</p>
                         </Link>                 
                     </td>
                 </tr>
                 <tr>
                     <td>       
-                        <Link to="/Employees" className="nav-link">
+                        <Link to="/accounts" className="nav-link">
                             <p>View All Accounts</p>
                         </Link>                 
                         </td>
@@ -280,13 +294,15 @@ function EmployeeList(props) {
             {
           //-------------------------Display data from database-------------------
         }
-        <table className="table table-striped" style={{ width: "54em" }}>
+
+<EmployeePrint ref={componentRef}>
+        <Table responsive className="table table-striped" style={{ width: "54em" }}>
           <tr>
             <td>
               <b>First Name</b>
             </td>
             <td>
-              <b>Last Price</b>
+              <b>Last Name</b>
             </td>
             <td>
               <b>NIC</b>
@@ -309,9 +325,14 @@ function EmployeeList(props) {
 
           </tr>
           <tbody>{tabRow()}</tbody>
-        </table>
+        </Table>
+        </EmployeePrint>
+
       </div>
     </div>
+
+   
+
   );
 }
 export default withRouter(EmployeeList);

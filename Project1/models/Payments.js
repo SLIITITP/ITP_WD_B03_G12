@@ -1,27 +1,20 @@
-const { Double } = require("mongodb");
-
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-let Payement = new Schema ({
+let Payment = new Schema ({
 
-    item_name: {
+    pay_total: {
         type: String,
-    } ,
-    
-    item_price: {
-        type: Double,
-        required: true
     },
 
-    total: {
-        type: Double
+    pay_cashierName: {
+        type: String,
     },
 
-    date: {
+    pay_date: { 
         type: Date,
-        default: Date.now
-    }
+        default: Date.now,
+    },
 }, 
 {
     collection: 'payment'
@@ -29,4 +22,6 @@ let Payement = new Schema ({
 
 );
 
-module.exports = mongoose.mode ('Payment', Payment)
+
+
+module.exports = mongoose.model ('Payment', Payment)

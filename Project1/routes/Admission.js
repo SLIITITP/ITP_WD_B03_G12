@@ -41,11 +41,12 @@ admissionRoutes.route('/add').post(function(req,res){
                 return res.status(400).json({error:'Admission not Found'});
             }
             
-            if(!req.body.owner_name ||!req.body.contact_no ||!req.body.weight ||!req.body.diagnosis ||!req.body.shelter_type ||!req.body.special_notes ||!req.body.shelter_no){
+            if(!req.body.first_name ||!req.body.last_name ||!req.body.contact_no ||!req.body.weight ||!req.body.diagnosis ||!req.body.shelter_type ||!req.body.special_notes ||!req.body.shelter_no){
                 return res.status(400).json({error: 'Missing Required Fields!!'});
 
             }
-            admission.owner_name = req.body.owner_name;
+            admission.first_name = req.body.first_name;
+            admission.last_name = req.body.last_name;
             admission.contact_no  = req.body.contact_no ;
             admission.weight= req.body.weight;
             admission.diagnosis = req.body.diagnosis;
@@ -82,6 +83,20 @@ admissionRoutes.route('/add').post(function(req,res){
          
         }
      });
+
+
+     //count
+    admissionRoutes.route('/get/count').get(async function (req, res) {
+    try {
+      const count = await Admission.countDocuments();
+      res.json(count);
+    } catch (err) {
+      console.log(err);
+      res.status(500).send("Server error");
+    }
+  });
+
+   
     module.exports = admissionRoutes;
 
 

@@ -88,3 +88,23 @@ app.use('/itemOrder', ItemOrderRoutes);
 
 var OnlinePaymentRoutes = require('./routes/OnlinePaymentRoutes');
 app.use('/onlinePayment', OnlinePaymentRoutes);
+
+var AdminOrderRoutes = require('./routes/AdminOrderRoutes');
+app.use('/adminOrder', AdminOrderRoutes);
+
+var employeeloginRoutes = require('./routes/EmployeeLogin');
+app.use('/accounts',employeeloginRoutes);
+
+var paymentRoutes = require('./routes/Payments');
+app.use('/payments', paymentRoutes);
+var prescriptionRoutes = require('./routes/Prescription');
+app.use('/prescription', prescriptionRoutes);
+
+var vaccineRoutes = require('./routes/Vaccine');
+app.use('/vaccine', vaccineRoutes);
+
+var medicalrecordsRoutes = require('./routes/MedicalRecords');
+app.use('/medicalrecords', medicalrecordsRoutes);
+
+var shelterRoutes = require('./routes/Shelters');
+app.use('/shelters', shelterRoutes);
