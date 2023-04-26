@@ -105,7 +105,7 @@ function ItemList(props) {
       trigger={() => <Button style={{float:'right'}}>Print</Button>}
       content={() => componentRef.current} ></ReactToPrint>
       {
-        //-------------------------Insert form using bootstrap Modal-------------------
+        //-------------------------Insert form using bootstrap Modal------------------
       }
 
       <Modal {...props} size="lg" show={show} onHide={handleClose} centered>
@@ -301,7 +301,7 @@ function ItemList(props) {
             </table>
             </div>
             {
-          //-------------------------Display data from database-------------------
+          //-------------------------Display data from database---------------------
         }
         <ItemPrint ref={componentRef}>
         <table className="table table-striped" style={{ width: "54em" }}>
