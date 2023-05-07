@@ -88,6 +88,3 @@ app.use('/itemOrder', ItemOrderRoutes);
 
 var OnlinePaymentRoutes = require('./routes/OnlinePaymentRoutes');
 app.use('/onlinePayment', OnlinePaymentRoutes);
-
-var AppointmentRoutes = require('./routes/Appointments');
-app.use('/appointments',AppointmentRoutes);

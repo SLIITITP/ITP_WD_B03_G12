@@ -6,6 +6,7 @@ import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import { withRouter } from "./withRouter";
 
+
 const EmployeeTableRow = (props) => {
   const [employeeState] = useState({
     _id: props.obj._id,
@@ -74,7 +75,7 @@ const EmployeeTableRow = (props) => {
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <h4></h4>
+            
             <Form>
 
               <Form.Group className="mb-3" 
@@ -145,19 +146,26 @@ const EmployeeTableRow = (props) => {
               />
             </Form.Group>
 
+
             <Form.Group
-              className="mb-3" 
-              controlId="exampleForm.ControlTextarea1"
+              className="mb-3" controlId="exampleForm.ControlTextarea1"
             >
-              <Form.Label>Enter gender</Form.Label>
-              <Form.Control
-                type="text"
-                name="employee_gender"
-                value={updated.employee_gender}
-                onChange={handleChange}
-                autoFocus
-              />
+              <Form.Label>Enter Gender:</Form.Label>
+              <Form.Control as = "select"
+                  name="gender"
+                  value={updated.employee_gender}
+                  onChange={handleChange}>
+              <option value="select">Select</option>
+              <option value="male">Male</option>
+               <option value="female">Female</option>
+              </Form.Control>
+  
+
             </Form.Group>
+
+
+
+
 
             <Form.Group
               className="mb-3" 
@@ -165,7 +173,7 @@ const EmployeeTableRow = (props) => {
             >
               <Form.Label>Enter birthday</Form.Label>
               <Form.Control
-                type="text"
+                type="date"
                 name="employee_birthday"
                 value={updated.employee_birthday}
                 onChange={handleChange}
@@ -173,18 +181,23 @@ const EmployeeTableRow = (props) => {
               />
             </Form.Group>
 
+            
+
+
             <Form.Group
-              className="mb-3" 
-              controlId="exampleForm.ControlTextarea1"
+              className="mb-3" controlId="exampleForm.ControlTextarea1"
             >
-              <Form.Label>Enter job role</Form.Label>
-              <Form.Control
-                type="text"
-                name="employee_jobrole"
-                value={updated.employee_jobrole}
-                onChange={handleChange}
-                autoFocus
-              />
+              <Form.Label>Enter job role:</Form.Label>
+              <Form.Control as = "select"
+                  name="jobrole"
+                  value={updated.employee_jobrole}
+                  onChange={handleChange}>
+              <option value="select">Select</option>
+              <option value="doctor">Doctor</option>
+               <option value="employee">Employee</option>
+              </Form.Control>
+  
+
             </Form.Group>
               
 
@@ -192,8 +205,8 @@ const EmployeeTableRow = (props) => {
             </Form>
           </Modal.Body>
           <Modal.Footer>
-            <Button onClick={() => onUpdate(employeeState._id)}>Update</Button>
-            <Button onClick={handleClose}>Close</Button>
+            <Button variant='info' onClick={() => onUpdate(employeeState._id)}>Update</Button>
+            <Button  variant='danger'onClick={handleClose}>Close</Button>
           </Modal.Footer>
         </Modal>
 
@@ -213,22 +226,24 @@ const EmployeeTableRow = (props) => {
         <td>{employeeState.employee_birthday}</td>
         <td>{employeeState.employee_jobrole}</td>
         <td>
-          <button
+          <Button
             type="submit"
             className="submit"
+            variant="success"
             onClick={() => updateEmployee(employeeState)}
           >
-            <Link className="nav-link">Update</Link>
-          </button>
+            Update
+          </Button>
         </td>
         <td>
-          <button
+          <Button
             type="submit"
             className="delete"
+            variant="danger"
             onClick={() => onDelete(employeeState._id)}
           >
-            <Link className="nav-link">Delete</Link>
-          </button>
+          Delete
+          </Button>
         </td>
       </tr>
     

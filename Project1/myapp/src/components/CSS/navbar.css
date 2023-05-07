@@ -1,6 +1,6 @@
 .app-logo {
-    height: 4.5em;
-    width: 4.5em;
+    height: 4em;
+    width: 9em;
     margin-left: 1.5em;
 } 
 
@@ -15,7 +15,7 @@ p {
 }
 
 .navigation1 {
-    height: 4em;  
+    height: 4.5em;  
 }
 
 .nav-tabs1 {
@@ -54,7 +54,7 @@ p {
 }
 
 .nav-tabs3 {       
-    background-color:rgb(193, 71, 91); 
+    background-color: rgb(193, 71, 91); ;
     border-radius: 0.5em;
     display: flex;   
     padding-left: 20px;
@@ -69,3 +69,4 @@ p {
     background-color:rgb(193, 71, 91); 
     display: flex;   
 }
+

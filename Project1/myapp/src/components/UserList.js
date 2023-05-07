@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import UsersTableRow from "./UsersTableRow";
 import { Link } from "react-router-dom";
@@ -6,10 +6,15 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import { withRouter } from "./withRouter";
+import ReactToPrint from 'react-to-print';
+
+import { UserPrint} from "./UserPrint";
+
 
 import "../components/CSS/listmain.css";
 
-function UserList(props) {
+function UsersList(props) {
+  const componentRef = useRef();
     //read hook
     const [user, setUser] = useState([]);
 
@@ -87,6 +92,13 @@ function UserList(props) {
 
   return (
     <div>
+      <ReactToPrint
+
+ documentTitle='Our Orders'
+
+trigger={() => <Button style={{float:'right'}}>Print</Button>}
+
+ content={() => componentRef.current} ></ReactToPrint>
       {
         //-------------------------Insert form using bootstrap Modal-------------------
       }
@@ -175,7 +187,7 @@ function UserList(props) {
             </tr>
             <tr>
               <td>
-                <Link to="/invoiceViewAll" className="nav-link">
+                <Link to="/regUser" className="nav-link">
                   <p>View all Users</p>
                 </Link>
               </td>
@@ -189,17 +201,33 @@ function UserList(props) {
             </tr>
             <tr>
               <td>
-                <Link to="/services" className="nav-link">
+                <Link to="/animals" className="nav-link">
                   <p>View all Animal</p>
+                </Link>
+              </td>
+            </tr>
+            <tr>
+            
+              <td>
+                <Link to="/animals" className="nav-link">
+                  <p>Add Animal Type </p>
+                </Link>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <Link to="/animaltype" className="nav-link">
+                  <p>View all Animal Types</p>
                 </Link>
               </td>
             </tr>
           </table>
         </div>
-
+        
         {
           //-------------------------Display data from database-------------------
         }
+        <UserPrint ref={componentRef}>
         <table className="table table-striped" style={{ width: "54em" }}>
           <tr>
             <td>
@@ -217,9 +245,10 @@ function UserList(props) {
           </tr>
           <tbody>{tabRow()}</tbody>
         </table>
+        </UserPrint>
       </div>
     </div>
   );
 }
 
-export default withRouter(UserList);
+export default withRouter(UsersList);
