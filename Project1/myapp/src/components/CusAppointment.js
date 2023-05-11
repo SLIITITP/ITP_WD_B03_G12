@@ -1,4 +1,4 @@
-import React, { useState, useEffect , useRef} from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import AppointmentTableRow from "./AppointmentTableRow";
 import { Link } from "react-router-dom";
@@ -6,13 +6,11 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import { withRouter } from "./withRouter";
-import ReactToPrint from 'react-to-print';
-import "../components/CSS/listmain.css";
-import { AppointmentPrint } from './AppointmentPrint';
 
-function ApplicationList(props) {
+import "../components/CSS/listmain.css";
+
+function CusAppointment(props) {
   //read hook
-  const componentRef = useRef();
   const [application, setApplication] = useState([]);
 
   //insert hook
@@ -95,14 +93,6 @@ function ApplicationList(props) {
       {
         //-------------------------Insert form using bootstrap Modal-------------------
       }
-       <ReactToPrint
-
-documentTitle='Our Employees'
-
-trigger={() => <Button style={{float:'right'}}>Print</Button>}
-
-content={() => componentRef.current} ></ReactToPrint>
-
 
       <Modal {...props} size="lg" show={show} onHide={handleClose} centered>
         <Modal.Header closeButton>
@@ -211,74 +201,17 @@ content={() => componentRef.current} ></ReactToPrint>
         </Modal.Footer>
       </Modal>
 
-      <h1 align="center">Application List</h1>
-      <h4 className="text-right">
-        <b>Total: {count}</b>
-      </h4>
+      
 
       {
         //-------------------------Side Menue Buttons-------------------
       }
 
-      <div className="tablestyle">
-        <div className="buttonframe">
-          <table className="buttonstyle">
-            
-              
-            <tr>
-              <td>
-                <Link onClick={handleShow} className="nav-link">
+    <Link onClick={handleShow} className="nav-link">
                   <p>Make an Appointment</p>
                 </Link>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <Link to="/services" className="nav-link">
-                  <p>View Appointments</p>
-                </Link>
-              </td>
-            </tr>
-          </table>
-        </div>
-
-        {
-          //-------------------------Display data from database-------------------
-        }
-        <AppointmentPrint ref={componentRef}>
-        <table className="table table-striped" style={{ width: "54em" }}>
-          <tr>
-            <td>
-              <b>Name</b>
-            </td>
-            <td>
-              <b>Email</b>
-            </td>
-            <td>
-              <b>Phone</b>
-            </td>
-            <td>
-              <b>Pet Name</b>
-            </td>
-            <td>
-              <b>Species</b>
-            </td>
-            <td>
-              <b>Breed</b>
-            </td>
-            <td>
-              <b>Reason</b>
-            </td>
-            <td>
-              <b>Note</b>
-            </td>
-          </tr>
-          <tbody>{tabRow()}</tbody>
-        </table>
-        </AppointmentPrint>
-      </div>
     </div>
   );
 }
 
-export default withRouter(ApplicationList);
+export default withRouter(CusAppointment);

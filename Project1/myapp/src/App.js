@@ -33,6 +33,7 @@ import CategoryList from './components/CategoryList'
 import Suppliers from './components/SupplierList';
 import Admission from './components/AdmissionList';
 import ShelterList from './components/ShelterList'
+import CusAppointment from './components/CusAppointment';
 
 class App extends Component {
 
@@ -74,6 +75,7 @@ class App extends Component {
             <Route path = "/employees" element={<EmployeeList/>}/>
 
             <Route path = "/appointment" element={<AppointmentList/>}/>
+            <Route path = "/CusAppointment" element={<CusAppointment/>}/>
 
 
             <Route path = "/animals" element={<AnimalList/>}/>

@@ -59,7 +59,7 @@ class Navbar2 extends Component {
                 </li>
 
                 <li className="nav-item2" >
-                    <Link to="/appointments" className="nav-link" > 
+                    <Link to="/CusAppointment" className="nav-link" > 
                         <h6>Appointments</h6>
                     </Link>
                 </li>
