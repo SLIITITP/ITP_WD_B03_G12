@@ -218,14 +218,14 @@ function ApplicationList(props) {
             <tr>
               <td>
                 <Link onClick={handleShow} className="nav-link">
-                  <p>Add a Service</p>
+                  <p>Make an Appointment</p>
                 </Link>
               </td>
             </tr>
             <tr>
               <td>
                 <Link to="/services" className="nav-link">
-                  <p>View Services</p>
+                  <p>View Appointments</p>
                 </Link>
               </td>
             </tr>
@@ -238,10 +238,28 @@ function ApplicationList(props) {
         <table className="table table-striped" style={{ width: "54em" }}>
           <tr>
             <td>
-              <b>Service Name</b>
+              <b>Name</b>
             </td>
             <td>
-              <b>Service Price</b>
+              <b>Email</b>
+            </td>
+            <td>
+              <b>Phone</b>
+            </td>
+            <td>
+              <b>Pet Name</b>
+            </td>
+            <td>
+              <b>Species</b>
+            </td>
+            <td>
+              <b>Breed</b>
+            </td>
+            <td>
+              <b>Reason</b>
+            </td>
+            <td>
+              <b>Note</b>
             </td>
           </tr>
           <tbody>{tabRow()}</tbody>
