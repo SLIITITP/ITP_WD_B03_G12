@@ -80,7 +80,6 @@ function ServicesList(props) {
         console.log(err);
       });
   };
-  const componentRef = useRef();
 
   return (
     <div>

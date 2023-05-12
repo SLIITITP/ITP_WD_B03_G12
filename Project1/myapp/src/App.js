@@ -83,7 +83,7 @@ class App extends Component {
             <Route path = "/animaltype" element={<AnimalTypeList/>}/>
             <Route path = "/payments" element={<PaymentList/>}/>
             <Route path = "/servicePreview" element={<ServicePrintPreview/>}/>
-
+            <Route path = "/vaccines" element={<VaccineList/>}/>
 
 
 

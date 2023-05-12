@@ -65,13 +65,10 @@ function ServicePrintPreview(props) {
       trigger={() => <Button style={{float:'right'}}>Print</Button>}
       content={() => componentRef.current} ></ReactToPrint>
      
-    
-      {
-        //-------------------------Insert form using bootstrap Modal-------------------
-      }
-    
     <ServicePrint ref={componentRef}>
+
     <PrintHeader/>
+    
       <h1 align="center">Service List</h1>
       <h4 className="text-right">
         <b>Total: {count}</b>
