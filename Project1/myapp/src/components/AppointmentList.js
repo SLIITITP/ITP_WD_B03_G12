@@ -234,7 +234,7 @@ content={() => componentRef.current} ></ReactToPrint>
             </tr>
             <tr>
               <td>
-                <Link to="/services" className="nav-link">
+                <Link to="/appointments" className="nav-link">
                   <p>View Appointments</p>
                 </Link>
               </td>
