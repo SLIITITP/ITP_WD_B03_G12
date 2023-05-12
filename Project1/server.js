@@ -108,3 +108,6 @@ app.use('/medicalrecords', medicalrecordsRoutes);
 
 var shelterRoutes = require('./routes/Shelters');
 app.use('/shelters', shelterRoutes);
+
+var appointmentsRoutes = require('./routes/Appointments');
+app.use('/appointments', appointmentsRoutes);

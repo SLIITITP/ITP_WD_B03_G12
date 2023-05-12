@@ -11,6 +11,8 @@ import Navbar3 from './components/NavigationAdmin'
 import ServiceList from './components/ServicesList'
 import UserList from './components/UserList';
 import EmployeeList from './components/EmployeeList'
+import AppointmentList from './components/AppointmentList';
+//import ServiceAdd from './Components/ServicesAdd'
 import AnimalList from './components/AnimalList';
 import AnimalTypeList from './components/AnimalTypeList';
 import EmployeeLoginList from './components/EmployeeLoginList'
@@ -31,6 +33,7 @@ import CategoryList from './components/CategoryList'
 import Suppliers from './components/SupplierList';
 import Admission from './components/AdmissionList';
 import ShelterList from './components/ShelterList'
+import CusAppointment from './components/CusAppointment';
 
 class App extends Component {
 
@@ -70,6 +73,11 @@ class App extends Component {
             <Route path = "/store" element={<StoreCard/>}/>
             <Route path = "/medicalrecords" element={<MedicalRecordsList/>}/>
             <Route path = "/employees" element={<EmployeeList/>}/>
+
+            <Route path = "/appointment" element={<AppointmentList/>}/>
+            <Route path = "/CusAppointment" element={<CusAppointment/>}/>
+
+
             <Route path = "/animals" element={<AnimalList/>}/>
             <Route path = "/animaltype" element={<AnimalTypeList/>}/>
             <Route path = "/payments" element={<PaymentList/>}/>
@@ -84,5 +92,10 @@ class App extends Component {
 }
 
 export default App;
+
+
+
+
+
 
 
