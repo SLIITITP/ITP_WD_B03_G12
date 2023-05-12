@@ -1,21 +1,14 @@
-import React, { useState, useEffect, useRef  } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import ServicesTableRow from "./ServicesTableRow";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
-import { withRouter } from "./withRouter"; 
-import ReactToPrint from 'react-to-print'; 
+import { withRouter } from "./withRouter";
 import "../components/CSS/listmain.css";
 
-import { ServicePrint } from "./ServicePrint";
-
 function ServicesList(props) {
- 
-  
-
-  
   //read hook
   const [service, setService] = useState([]);
 
@@ -83,21 +76,18 @@ function ServicesList(props) {
         handleClose();
         window.location.reload();
       })
-      .catch((err) => { 
+      .catch((err) => {
         console.log(err);
       });
   };
-  const componentRef = useRef(); 
- 
+  const componentRef = useRef();
+
   return (
     <div>
-      
-      <ReactToPrint
-      documentTitle='Our Services' 
-      trigger={() => <Button style={{float:'right'}}>Print</Button>}
-      content={() => componentRef.current} ></ReactToPrint>
-     
-    
+      <Link to="/servicePreview" className="nav-link">
+        <Button style={{ float: "right" }}>Print Preview</Button>
+      </Link>
+
       {
         //-------------------------Insert form using bootstrap Modal-------------------
       }
@@ -188,7 +178,7 @@ function ServicesList(props) {
         {
           //-------------------------Display data from database-------------------
         }
-        <ServicePrint ref={componentRef}>
+
         <table className="table table-striped" style={{ width: "54em" }}>
           <tr>
             <td>
@@ -200,12 +190,9 @@ function ServicesList(props) {
           </tr>
           <tbody>{tabRow()}</tbody>
         </table>
-        </ServicePrint>
       </div>
-      
-
     </div>
   );
-};
+}
 
 export default withRouter(ServicesList);

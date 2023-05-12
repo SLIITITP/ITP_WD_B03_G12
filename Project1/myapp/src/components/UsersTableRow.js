@@ -139,7 +139,7 @@ const UsersTableRow = (props) => {
         <td>{userState.first_name}</td>
         <td>{userState.last_name}</td>
         <td>{userState.email}</td>
-        <td>{userState.date}</td>
+        <td>{userState.date.substring(0, 10)}</td> 
         <td>
           <button
             type="submit"

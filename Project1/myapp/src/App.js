@@ -34,6 +34,7 @@ import Suppliers from './components/SupplierList';
 import Admission from './components/AdmissionList';
 import ShelterList from './components/ShelterList'
 import CusAppointment from './components/CusAppointment';
+import ServicePrintPreview from './components/ServicePrintPreview';
 
 class App extends Component {
 
@@ -81,6 +82,11 @@ class App extends Component {
             <Route path = "/animals" element={<AnimalList/>}/>
             <Route path = "/animaltype" element={<AnimalTypeList/>}/>
             <Route path = "/payments" element={<PaymentList/>}/>
+            <Route path = "/servicePreview" element={<ServicePrintPreview/>}/>
+
+
+
+
           </Routes>
          
           </div> 
