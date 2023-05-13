@@ -7,14 +7,10 @@ import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import { withRouter } from './withRouter';
 import Table from 'react-bootstrap/Table';
-import { EmployeePrint } from './EmployeePrint';
-import ReactToPrint from 'react-to-print';
-
-
 import '../components/CSS/listmain.css';
 
 function EmployeeList(props) {
-   const componentRef = useRef();
+   
 
     //read hook
     const [employee, setEmployee] = useState([]);
@@ -101,13 +97,11 @@ function EmployeeList(props) {
         //-------------------------Insert form using bootstrap Modal-------------------
       }
 
-      <ReactToPrint
+      <Link to="/employeePreviewList" className="nav-link">
+        <Button style={{ float: "right" }}>Print Preview</Button>
+      </Link>
 
- documentTitle='Our Employees'
-
-trigger={() => <Button style={{float:'right'}}>Print</Button>}
-
-content={() => componentRef.current} ></ReactToPrint>
+   
 
 
       <Modal {...props} size="lg" show={show} onHide={handleClose} centered>
@@ -295,7 +289,7 @@ content={() => componentRef.current} ></ReactToPrint>
           //-------------------------Display data from database-------------------
         }
 
-<EmployeePrint ref={componentRef}>
+
         <Table responsive className="table table-striped" style={{ width: "54em" }}>
           <tr>
             <td>
@@ -326,7 +320,7 @@ content={() => componentRef.current} ></ReactToPrint>
           </tr>
           <tbody>{tabRow()}</tbody>
         </Table>
-        </EmployeePrint>
+       
 
       </div>
     </div>

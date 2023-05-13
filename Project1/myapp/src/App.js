@@ -34,7 +34,14 @@ import Suppliers from './components/SupplierList';
 import Admission from './components/AdmissionList';
 import ShelterList from './components/ShelterList'
 import CusAppointment from './components/CusAppointment';
-
+import ServicePrintPreview from './components/ServicePrintPreview';
+import AdmissionPrintPreview from './components/AdmissionPrintPreview'
+import AppoinmentListPreview from "./components/AppoinmentListPreview"
+import EmployeeListPreview from './components/EmployeeListPreview';
+import PrescriptionListPreview from './components/PrescriptionListPrintPreview'
+import ShelterListPrintPreview from './components/ShelterListPrintPreview'
+import SupplierListPrintPreview from './components/SupplierListPrintPreview';
+import UserListPrintPreview from './components/UserListPrintPreview';
 class App extends Component {
 
 
@@ -81,6 +88,25 @@ class App extends Component {
             <Route path = "/animals" element={<AnimalList/>}/>
             <Route path = "/animaltype" element={<AnimalTypeList/>}/>
             <Route path = "/payments" element={<PaymentList/>}/>
+            <Route path = "/servicePreview" element={<ServicePrintPreview/>}/>
+            <Route path = "/vaccines" element={<VaccineList/>}/>
+            <Route path = "/admissionPreview" element={<AdmissionPrintPreview/>}/>
+            <Route path = "/appoinmentListPreview" element={<AppoinmentListPreview/>}/>
+            <Route path = "/employeePreviewList" element={<EmployeeListPreview/>}/>
+            <Route path = "/prescriptionListPreview" element={<PrescriptionListPreview/>}/>
+            <Route path = "/shelterListPrintPreview" element={<ShelterListPrintPreview/>}/>
+            <Route path = "/supplierListPrintPreview" element={<SupplierListPrintPreview/>}/>
+            <Route path = "/userListPrintPreview" element={<UserListPrintPreview/>}/>
+
+          
+           
+            
+
+
+
+
+
+
           </Routes>
          
           </div> 

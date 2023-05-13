@@ -3,6 +3,8 @@ import axios from "axios";
 import { Link, useLocation } from 'react-router-dom';
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
+import Badge from "react-bootstrap/Badge";
 
 
 
@@ -15,7 +17,7 @@ export default function(props){
     const data2 = location.state?.data2;
     const data3 = location.state?.data3;
    
-    
+
    
   
     const [data , setData] = useState({
@@ -26,7 +28,7 @@ export default function(props){
         validThru: "",
         cvc: "",
     });
-
+    
 
   
     const handleChange = (e) => {
@@ -56,23 +58,23 @@ export default function(props){
         console.log(err);
       });
   };
-
+ 
   
-    
+  const currency = "USD";
   return(
       
    
     <div>
       
         <h1 style={{backgroundColor:"gray"}}>Payment Details</h1>
-        <Form {...props}>
+        <Form {...props} >
         <Form.Label></Form.Label>
         
       
-        <Form.Label></Form.Label>
+        <Form.Label></Form.Label> 
        
 
-       
+        <h1><Badge bg="success">Total Price = Rs.{total2}</Badge></h1> 
         <Form.Group
               className="mb-3" controlId="exampleForm.ControlTextarea1"
             >
@@ -89,39 +91,34 @@ export default function(props){
 
             </Form.Group>
 
-       
- 
-     
+            <PayPalScriptProvider options={{"client-id": "AehwU_5GcgihtZptoVjRbwsmv4ze5amVpWIQMfw7shanSLa8iIb_GYhADSKUCRIqpjuKFAAIAfBVb9Nn"}}>
+        <PayPalButtons
+           createOrder={(data, actions) => {
+            return actions.order
+                .create({
+                    purchase_units: [
+                        {
+                            amount: {
+                              currency_code: currency,
+                                value: total2,
+                                
+                            },
+                        },
+                    ],
+                })
+           }}
 
-            <Form.Group className="mb-3" controlId="formBasicPassword">
-      <Form.Label>Card Number</Form.Label>
-      <Form.Control type="text" placeholder="cardNumber" 
-            value={data.cardNumber}
-          name="cardNumber"
-          onChange={handleChange} />
-      </Form.Group>
-
-     
-      <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>validThru</Form.Label>
-        <Form.Control type="text" placeholder="MONTH / YEAR" value={data.validThru}
-             name="validThru"
-             onChange={handleChange}/>
-      </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>cvc</Form.Label>
-        <Form.Control type="text" placeholder="cvc"
-             value={data.cvc}
-             name="cvc"
-             onChange={handleChange}
+           onApprove={async (data, actions) => {
+            const details = await actions.order.capture();
+            const name = details.payer.name.given_name;
+            alert("Transaction completed by " + name);
+          }}
         />
-        <Form.Text className="text-muted">
-      
-        </Form.Text>
-      </Form.Group>
-      
+      </PayPalScriptProvider>
+ 
+
      <Link to={"/placedOrder"} state={{data:total2,data2:data2 , data3:data3, data4:data}}>
-      <Button variant="primary" type="submit" style={{backgroundColor:"darkBlue"}}>
+      <Button variant="primary" type="submit"  style={{backgroundColor:"darkBlue"}} disabled={!data.paymentMethod}>
           Next
       </Button>
       </Link>

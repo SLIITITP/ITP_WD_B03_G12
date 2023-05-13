@@ -6,13 +6,13 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import { withRouter } from "./withRouter";
-import ReactToPrint from 'react-to-print';
+
 import "../components/CSS/listmain.css";
-import { AppointmentPrint } from './AppointmentPrint';
+
 
 function ApplicationList(props) {
   //read hook
-  const componentRef = useRef();
+  
   const [application, setApplication] = useState([]);
 
   //insert hook
@@ -92,16 +92,14 @@ function ApplicationList(props) {
 
   return (
     <div>
+
+<Link to="/appoinmentListPreview" className="nav-link">
+        <Button style={{ float: "right" }}>Print Preview</Button>
+      </Link>
       {
         //-------------------------Insert form using bootstrap Modal-------------------
       }
-       <ReactToPrint
-
-documentTitle='Our Employees'
-
-trigger={() => <Button style={{float:'right'}}>Print</Button>}
-
-content={() => componentRef.current} ></ReactToPrint>
+    
 
 
       <Modal {...props} size="lg" show={show} onHide={handleClose} centered>
@@ -234,7 +232,7 @@ content={() => componentRef.current} ></ReactToPrint>
             </tr>
             <tr>
               <td>
-                <Link to="/services" className="nav-link">
+                <Link to="/appointments" className="nav-link">
                   <p>View Appointments</p>
                 </Link>
               </td>
@@ -245,7 +243,7 @@ content={() => componentRef.current} ></ReactToPrint>
         {
           //-------------------------Display data from database-------------------
         }
-        <AppointmentPrint ref={componentRef}>
+       
         <table className="table table-striped" style={{ width: "54em" }}>
           <tr>
             <td>
@@ -275,7 +273,7 @@ content={() => componentRef.current} ></ReactToPrint>
           </tr>
           <tbody>{tabRow()}</tbody>
         </table>
-        </AppointmentPrint>
+       
       </div>
     </div>
   );
