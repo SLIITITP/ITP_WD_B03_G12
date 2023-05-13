@@ -7,15 +7,12 @@ import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import { withRouter } from "./withRouter";
 import "../components/CSS/listmain.css";
-import ReactToPrint from 'react-to-print';
-import {ShelterPrint} from "./ShelterPrint"
+
 
 
 
 
 function ShelterList(props){
-
-  const componentRef = useRef(); 
 
      //read hook
 
@@ -102,11 +99,11 @@ useEffect(() => {
               //-------------------------Insert form using bootstrap Modal-------------------
 
         }
+        <Link to="/shelterListPrintPreview" className="nav-link">
+        <Button style={{ float: "right" }}>Print Preview</Button>
+      </Link>
 
-        <ReactToPrint
-      documentTitle='Our Services' 
-      trigger={() => <Button style={{float:'right'}}>Print</Button>}
-      content={() => componentRef.current} ></ReactToPrint>
+      
 
         <Modal {...props} size="lg" show={show} onHide={handleClose} centered>
         <Modal.Header closeButton>
@@ -225,7 +222,7 @@ useEffect(() => {
           //-------------------------Display data from database-------------------
         }
 
-        <ShelterPrint ref={componentRef}>
+       
 
         <table className="table table-striped" style={{ width: "54em" }}>
         <tr>
@@ -244,7 +241,7 @@ useEffect(() => {
         <tbody>{tabRow()}</tbody>
             
         </table>
-        </ShelterPrint>
+      
 
 
 

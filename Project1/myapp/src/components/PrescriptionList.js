@@ -87,9 +87,11 @@ function PrescriptionList(props) {
 
   return (
     <div>
-      {
-        //-------------------------Insert form using bootstrap Modal-------------------
-      }
+
+<Link to="/prescriptionListPreview" className="nav-link">
+        <Button style={{ float: "right" }}>Print Preview</Button>
+      </Link>
+      
       
 
       <Modal {...props} size="lg" show={show} onHide={handleClose} centered>

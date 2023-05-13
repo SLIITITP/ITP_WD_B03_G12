@@ -6,10 +6,6 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import { withRouter } from "./withRouter";
-import ReactToPrint from 'react-to-print';
-
-import { UserPrint} from "./UserPrint";
-
 
 import "../components/CSS/listmain.css";
 
@@ -92,13 +88,10 @@ function UsersList(props) {
 
   return (
     <div>
-      <ReactToPrint
 
- documentTitle='Our Orders'
-
-trigger={() => <Button style={{float:'right'}}>Print</Button>}
-
- content={() => componentRef.current} ></ReactToPrint>
+ <Link to="/userListPrintPreview" className="nav-link">
+        <Button style={{ float: "right" }}>Print Preview</Button>
+      </Link>
       {
         //-------------------------Insert form using bootstrap Modal-------------------
       }
@@ -227,7 +220,7 @@ trigger={() => <Button style={{float:'right'}}>Print</Button>}
         {
           //-------------------------Display data from database-------------------
         }
-        <UserPrint ref={componentRef}>
+     
         <table className="table table-striped" style={{ width: "54em" }}>
           <tr>
             <td>
@@ -245,7 +238,7 @@ trigger={() => <Button style={{float:'right'}}>Print</Button>}
           </tr>
           <tbody>{tabRow()}</tbody>
         </table>
-        </UserPrint>
+      
       </div>
     </div>
   );
