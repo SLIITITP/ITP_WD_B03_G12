@@ -38,7 +38,7 @@ let Appointment = new Schema({
         
    
     },
-    note:{
+   note:{
         type:String,
         
     }

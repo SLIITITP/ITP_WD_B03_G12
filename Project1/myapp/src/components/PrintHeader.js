@@ -27,7 +27,7 @@ const PrintHeader = () => {
   return (
     <>
       <h1 style={topicStyle}>Happy Paws Pet CLINIC</h1>
-      <div className="row" style={{marginBottom: "30px"}}> 
+      <div className="row" style={{marginBottom: "15px"}}> 
         <div className="col1"style={{ textAlign: "start" }}>
           <img
             style={imgStyle}
@@ -42,7 +42,17 @@ const PrintHeader = () => {
           <h6 style={contactsStyle}>www.happypaws.com</h6>
           <h6 style={contactsStyle}>0112-354354</h6>
         </div>
+        
       </div>
+      <hr
+        style={{
+          background: 'black',
+          color: 'black',
+          borderColor: 'black',
+          height: '3px',
+        }}
+      />
+      <br/>
     </>
   );
 };

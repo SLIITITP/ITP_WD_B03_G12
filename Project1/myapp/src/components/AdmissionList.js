@@ -8,16 +8,11 @@ import Modal from "react-bootstrap/Modal";
 import { withRouter } from "./withRouter";
 import e from "cors";
 import "../components/CSS/listmain.css";
-import ReactToPrint from 'react-to-print';
-import { AdmissionPrint} from "./AdmissionPrint";
+
 
 
 
 function AdmissionForm(props) {
-
-  const componentRef = useRef(); 
-
-
 
   //read hook
   const [admission, setAdmission] = useState([]);
@@ -101,14 +96,16 @@ function AdmissionForm(props) {
 
   return (
     <div>
-      {
-        //-------------------------Insert form using bootstrap Modal-------------------
-      }
+     
+     <Link to="/admissionPreview" className="nav-link">
+        <Button style={{ float: "right" }}>Print Preview</Button>
+      </Link>
 
-      <ReactToPrint
-      documentTitle='Our Services' 
-      trigger={() => <Button style={{float:'right'}}>Print</Button>}
-      content={() => componentRef.current} ></ReactToPrint>
+        {
+              //-------------------------Insert form using bootstrap Modal-------------------
+
+        }
+
      
 
       <Modal {...props} size="lg" show={show} onHide={handleClose} centered>
@@ -274,7 +271,7 @@ function AdmissionForm(props) {
           //-------------------------Display data from database-------------------
         }
 
-        <AdmissionPrint ref={componentRef}>
+      
         <table className="table table-striped" style={{ width: "54em" }}>
           <tr>
             <td>
@@ -312,7 +309,7 @@ function AdmissionForm(props) {
           </tr>
           <tbody>{tabRow()}</tbody>
         </table>
-        </AdmissionPrint>
+      
       </div>
 
 
