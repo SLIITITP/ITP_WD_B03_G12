@@ -10,6 +10,7 @@ import { withRouter } from "./withRouter";
 const EmployeeLoginTableRow = (props) => {
   const [employeeloginState] = useState({
     _id: props.obj._id,
+    employeelogin_image: props.obj.image,
     employeelogin_email: props.obj.email,
     employeelogin_password: props.obj.password,
     employeelogin_acctype: props.obj.acctype,
@@ -136,6 +137,8 @@ const EmployeeLoginTableRow = (props) => {
         <td key={employeeloginState._id} style={{ display: "none" }}>
           {" "}
         </td>
+        <img src={`../uploads/${employeeloginState.employeelogin_image}`} className="app-logo" alt="img" />
+
         <td>{employeeloginState.employeelogin_email}</td>
     
         <td>{employeeloginState.employeelogin_acctype}</td>

@@ -1,14 +1,53 @@
 var express = require ('express');
-var fileUpload = require('express-fileupload'); 
 var path = require('path');
 var cors = require('cors');
-const app = express();
 
 var bodyParser = require ('body-parser');
 
 
 //file upload intializer
-app.use(fileUpload());
+const File = require('./models/File');
+const multer = require('multer');
+
+
+const app = express();
+const storage = multer.diskStorage({
+  destination: 'myapp/public/uploads/',
+  filename: function (req, file, cb) {
+    cb(null, file.originalname); // Save the file with the original filename
+  },
+});
+const upload = multer({ storage: storage });
+
+app.post('/api/upload', upload.single('file'), (req, res) => {
+
+  // Access the form data
+  const file = req.file;
+
+    // Save the file to MongoDB
+    const fileData = new File({
+        email: file.email,
+        filename: file.filename,
+        originalname: file.originalname,
+        path: file.path,
+
+      });
+      
+      fileData.save()
+      .then(() => {
+        res.json({ message: 'File uploaded successfully' });
+      })
+      .catch((error) => {
+        console.error('Error saving file to MongoDB:', error);
+        res.status(500).json({ error: 'Failed to save file' });
+        
+      });
+      
+  // Move the uploaded file to a specific directory
+  const filePath = path.join(__dirname, 'uploads', file.filename); // Define your desired directory path
+
+});
+
 
 //db connection
 const mongoose = require('mongoose');

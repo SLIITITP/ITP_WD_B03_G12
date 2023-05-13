@@ -18,6 +18,11 @@ const employeeloginSchema = new Schema ({
         type: String,
         required: true,
     },
+    image: {
+        type: String,
+
+    },
+
 
     reggdate: {
         type: Date,
