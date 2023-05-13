@@ -5,9 +5,6 @@ import { withRouter } from "./withRouter";
 import ReactToPrint from 'react-to-print';
 import { UserPrint} from "./UserPrint";
 import PrintHeader from "./PrintHeader";
-
-
-
 import "../components/CSS/listmain.css";
 
 function UsersListPrintPreview(props) {
@@ -39,7 +36,6 @@ function UsersListPrintPreview(props) {
         <td>{object.first_name}</td>
         <td>{object.last_name}</td>
         <td>{object.email}</td>
-        <td>{object.password}</td>
         <td>{object.date}</td>
       </tr>
     ));
