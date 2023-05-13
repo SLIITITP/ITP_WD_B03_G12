@@ -14,6 +14,7 @@ employeeloginRoutes.route('/add').post(async function(req,res) {
          email:req.body.email,
          password:req.body.password,
          acctype:req.body.acctype,
+         image:req.body.image,
         created: today,
         };
   

@@ -13,21 +13,25 @@ import ReactToPrint from 'react-to-print';
 
 import '../components/CSS/listmain.css';
 
+
 function EmployeeLoginList(props) {
+  
   const componentRef = useRef();
 
     //read hook
     const [employeelogin, setEmployeelogin] = useState([]);
-  
+
+    
+
     //insert hook
     const [data, setData] = useState({
         email: '',
         password: '',
         acctype: '',
-        
+        image: '',
 
     });
-  
+
     const handleChange = (e) => {
       const { name, value } = e.target;
   
@@ -35,6 +39,7 @@ function EmployeeLoginList(props) {
         ...prev,
         [name]: value,
       }));
+
     };
 
       //Bootsrap Modal configurations
@@ -76,9 +81,44 @@ function EmployeeLoginList(props) {
       });
   }, []);
 
-  //send new data to database
-  const handleClick = (e) => {
-    e.preventDefault();
+  //upload file
+  const [fileName, setFileName] = useState('');
+   const [file, setFile] = useState(null);
+
+   const handleFileChange = (e) => {
+    const selectedFile = e.target.files[0];
+    setFile(selectedFile);
+    setFileName(selectedFile ? selectedFile.name : '');
+
+    setData((prev) => ({
+      ...prev,
+      image: selectedFile ? selectedFile.name : '',
+    }));
+
+
+   };
+
+    //send new data to database
+    const handleClick = async (e) => {
+      e.preventDefault();
+      const formData = new FormData();
+      formData.append('file', file);
+      
+      try {
+        await axios.post('http://localhost:5000/api/upload', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        });
+        // Handle success
+        console.log('File uploaded successfully');
+      } catch (error) {
+        // Handle error
+        console.log('Error uploading file:', error);
+      }
+  
+   
+
     axios
       .post(`http://localhost:5000/accounts/add`, data)
       .then((res) => {
@@ -89,7 +129,8 @@ function EmployeeLoginList(props) {
       .catch((err) => {
         console.log(err);
       });
-  };
+    }
+  
 
     return (
         <div>
@@ -138,6 +179,26 @@ content={() => componentRef.current} ></ReactToPrint>
                 autoFocus
               />
             </Form.Group>
+
+          
+            <Form.Control 
+                  type="text"
+                  name="image"
+                  value={data.image}
+                  readOnly
+                  style={{ display: "none" }}
+                />
+
+                
+              
+
+            
+
+            <div>
+        <label>File:</label>
+        <input type="file" onChange={handleFileChange} />
+      </div>
+      
 
             <Form.Group
               className="mb-3" controlId="exampleForm.ControlTextarea1"
