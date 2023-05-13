@@ -6,13 +6,10 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import { withRouter } from './withRouter';
-import ReactToPrint from 'react-to-print'; 
-
-import { SupplierPrint } from './SupplierPrint';
 import '../components/CSS/listmain.css';
 
 function SupplierList(props) {
-  const componentRef = useRef(); 
+  
     //read hook
     const [item, setItem] = useState([]);
   
@@ -98,10 +95,11 @@ function SupplierList(props) {
 
     return (
         <div>
-           <ReactToPrint
-      documentTitle='Our Supplier list' 
-      trigger={() => <Button style={{float:'right'}}>Print</Button>}
-      content={() => componentRef.current} ></ReactToPrint>
+
+<Link to="/supplierListPrintPreview" className="nav-link">
+        <Button style={{ float: "right" }}>Print Preview</Button>
+      </Link>
+      
       {
         //-------------------------Insert form using bootstrap Modal-------------------
       }
@@ -332,8 +330,8 @@ function SupplierList(props) {
             {
           //-------------------------Display data from database-------------------
         }
-        <SupplierPrint ref={componentRef}>
-        <table className="table table-striped" style={{ width: "54em" }}>
+       
+        <table className="table table-striped" >
           <tr>
             <td>
               <b>company_name</b>
@@ -360,7 +358,7 @@ function SupplierList(props) {
           </tr>
           <tbody>{tabRow()}</tbody>
         </table>
-        </SupplierPrint>
+      
       </div>
     </div>
   );

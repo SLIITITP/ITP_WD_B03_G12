@@ -137,7 +137,7 @@ const EmployeeLoginTableRow = (props) => {
           {" "}
         </td>
         <td>{employeeloginState.employeelogin_email}</td>
-        <td>{employeeloginState.employeelogin_password}</td>
+    
         <td>{employeeloginState.employeelogin_acctype}</td>
         <td>{employeeloginState.employeelogin_date}</td>
 

@@ -91,17 +91,11 @@ function PrescriptionList(props) {
 
   return (
     <div>
+
+<Link to="/prescriptionListPreview" className="nav-link">
+        <Button style={{ float: "right" }}>Print Preview</Button>
+      </Link>
       
-      {
-        //-------------------------Insert form using bootstrap Modal-------------------
-      }
-      <ReactToPrint
-
- documentTitle='Our Orders'
-
- trigger={() => <Button style={{float:'right'}}>Print</Button>}
-
- content={() => componentRef.current} ></ReactToPrint>
       
 
       <Modal {...props} size="lg" show={show} onHide={handleClose} centered>
@@ -209,7 +203,7 @@ function PrescriptionList(props) {
             </tr>
             <tr>
               <td>
-                <Link to="/prescriptions" className="nav-link">
+                <Link to="/prescription" className="nav-link">
                   <p>View all Prescriptions</p>
                 </Link>
               </td>

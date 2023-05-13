@@ -1,31 +1,30 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect , useRef} from "react";
 import axios from "axios";
-import AdmissionTableRow from "./AdmissionTableRow";
+import AppointmentTableRow from "./AppointmentTableRow";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import { withRouter } from "./withRouter";
-import e from "cors";
+
 import "../components/CSS/listmain.css";
 
 
-
-
-function AdmissionForm(props) {
-
+function ApplicationList(props) {
   //read hook
-  const [admission, setAdmission] = useState([]);
+  
+  const [application, setApplication] = useState([]);
+
   //insert hook
   const [data, setData] = useState({
-    first_name: "",
-    last_name: "",
-    contact_no: "",
-    weight: "",
-    diagnosis: "",
-    shelter_type: "",
-    special_notes: "",
-    shelter_no: "",
+    name:"",
+    email:"",
+    phone:"",
+    petName:"",
+    Species:"",
+    Breed:"",
+    Reason:"",
+    note:"",     
   });
 
   const handleChange = (e) => {
@@ -43,13 +42,12 @@ function AdmissionForm(props) {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  // get data from DB
-
+  //get data from database
   useEffect(() => {
     axios
-      .get("http://localhost:5000/admission/")
+      .get("http://localhost:5000/appointments/")
       .then((response) => {
-        setAdmission(response.data);
+        setApplication(response.data);
       })
       .catch((error) => {
         console.log(error);
@@ -57,8 +55,8 @@ function AdmissionForm(props) {
   }, []);
 
   const tabRow = () => {
-    return admission.map((object, i) => {
-      return <AdmissionTableRow obj={object} key={i} />;
+    return application.map((object, i) => {
+      return <AppointmentTableRow obj={object} key={i} />;
     });
   };
 
@@ -67,7 +65,7 @@ function AdmissionForm(props) {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/admission/get/count")
+      .get("http://localhost:5000/appointments/get/count")
       .then((response) => {
         console.log(response);
         setCount(response.data);
@@ -77,13 +75,11 @@ function AdmissionForm(props) {
       });
   }, []);
 
-  // send new data to database
-
+  //send new data to database
   const handleClick = (e) => {
     e.preventDefault();
     axios
-      .post(`http://localhost:5000/admission/add`, data)
-
+      .post(`http://localhost:5000/appointments/add`, data)
       .then((res) => {
         alert(`Added Successfully`);
         handleClose();
@@ -96,121 +92,111 @@ function AdmissionForm(props) {
 
   return (
     <div>
-     
-     <Link to="/admissionPreview" className="nav-link">
+
+<Link to="/appoinmentListPreview" className="nav-link">
         <Button style={{ float: "right" }}>Print Preview</Button>
       </Link>
+      {
+        //-------------------------Insert form using bootstrap Modal-------------------
+      }
+    
 
-        {
-              //-------------------------Insert form using bootstrap Modal-------------------
-
-        }
-
-     
 
       <Modal {...props} size="lg" show={show} onHide={handleClose} centered>
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
-          Admission Form
+            Add  New Appiontment
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>First Name:</Form.Label>
+              <Form.Label> Full Name:</Form.Label>
               <Form.Control
                 type="text"
-                name="first_name"
-                value={data.first_name}
-                placeholder="Enter First Name"
+                name="name"
+                value={data.name}
+                placeholder="Full Name"
                 onChange={handleChange}
                 autoFocus
               />
             </Form.Group>
-
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Last Name:</Form.Label>
-              <Form.Control
-                type="text"
-                name="last_name"
-                value={data.last_name}
-                placeholder="Enter Last Name"
-                onChange={handleChange}
-                autoFocus
-              />
-            </Form.Group>
-
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Contact No:</Form.Label>
-              <Form.Control
-                type="text"
-                name="contact_no"
-                value={data.contact_no}
-                placeholder="Enter Contact No"
-                onChange={handleChange}
-                autoFocus
-              />
-            </Form.Group>
-
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Weight:</Form.Label>
-              <Form.Control
-                type="text"
-                name="weight"
-                value={data.weight}
-                placeholder="Enter Animal Weight"
-                onChange={handleChange}
-                autoFocus
-              />
-            </Form.Group>
-
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Diagnosis:</Form.Label>
-              <Form.Control as = "textarea" rows={3} 
-                name="diagnosis"
-                value={data.diagnosis}
-                placeholder="Enter Diagnosis"
-                onChange={handleChange}
-                autoFocus
-              />
-            </Form.Group>
-
             <Form.Group
               className="mb-3"
               controlId="exampleForm.ControlTextarea1"
             >
-              <Form.Label>Shelter Type</Form.Label>
+              <Form.Label>Email Address</Form.Label>
               <Form.Control
-                as="select"
-                name="shelter_type"
-                value={data.jobrole}
-                onChange={handleChange}
-              >
-                <option value="">Select</option>
-                <option value="small">Small</option>
-                <option value="medium">Medium</option>
-                <option value="large">Large</option>
-              </Form.Control>
-            </Form.Group>
-
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Special Notes:</Form.Label>
-              <Form.Control as = "textarea" rows={3} 
-               name="special_notes"
-                value={data.special_notes}
-                placeholder="Enter Special Notes"
+                type="text"
+                name="email"
+                value={data.email}
+                placeholder="Enter Email"
                 onChange={handleChange}
                 autoFocus
               />
             </Form.Group>
-
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Shelter No:</Form.Label>
+              <Form.Label> Phone number:</Form.Label>
               <Form.Control
                 type="text"
-                name="shelter_no"
-                value={data.shelter_no}
-                placeholder="Enter Shelter No"
+                name="phone"
+                value={data.phone}
+                placeholder="Mobile Number"
+                onChange={handleChange}
+                autoFocus
+              />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Label> Pet's Name:</Form.Label>
+              <Form.Control
+                type="text"
+                name="petName"
+                value={data.petName}
+                placeholder="Pet's Name"
+                onChange={handleChange}
+                autoFocus
+              />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Label> Species:</Form.Label>
+              <Form.Control
+                type="text"
+                name="Species"
+                value={data.Species}
+                placeholder="Cat"
+                onChange={handleChange}
+                autoFocus
+              />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Label> Breed:</Form.Label>
+              <Form.Control
+                type="text"
+                name="Breed"
+                value={data.Breed}
+                placeholder="Breed"
+                onChange={handleChange}
+                autoFocus
+              />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Label> Reasons:</Form.Label>
+              <Form.Control
+                type="text"
+                name="Reason"
+                value={data.Reason}
+                placeholder="Reason(s) to make appointment"
+                onChange={handleChange}
+                autoFocus
+              />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Label>Note:</Form.Label>
+              <Form.Control
+                type="text"
+                name="note"
+                value={data.note}
+                placeholder="Note"
                 onChange={handleChange}
                 autoFocus
               />
@@ -223,8 +209,7 @@ function AdmissionForm(props) {
         </Modal.Footer>
       </Modal>
 
-
-      <h1 align="center">Admission List</h1>
+      <h1 align="center">Application List</h1>
       <h4 className="text-right">
         <b>Total: {count}</b>
       </h4>
@@ -236,31 +221,19 @@ function AdmissionForm(props) {
       <div className="tablestyle">
         <div className="buttonframe">
           <table className="buttonstyle">
+            
+              
             <tr>
               <td>
                 <Link onClick={handleShow} className="nav-link">
-                  <p>Add Admission</p>
+                  <p>Make an Appointment</p>
                 </Link>
               </td>
             </tr>
             <tr>
               <td>
-                <Link to="" className="nav-link">
-                  <p>View all Admissions</p>
-                </Link>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <Link onClick="/" className="nav-link">
-                  <p>Add Shelter</p>
-                </Link>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <Link to="/shelters" className="nav-link">
-                  <p>View Shelters</p>
+                <Link to="/appointments" className="nav-link">
+                  <p>View Appointments</p>
                 </Link>
               </td>
             </tr>
@@ -270,52 +243,40 @@ function AdmissionForm(props) {
         {
           //-------------------------Display data from database-------------------
         }
-
-      
+       
         <table className="table table-striped" style={{ width: "54em" }}>
           <tr>
             <td>
-              <b>First Name</b>
+              <b>Name</b>
             </td>
             <td>
-              <b>Last Name</b>
+              <b>Email</b>
             </td>
-
             <td>
-              <b>Contact No</b>
+              <b>Phone</b>
             </td>
-
             <td>
-              <b>Weight</b>
+              <b>Pet Name</b>
             </td>
-
             <td>
-              <b>Diagnosis</b>
+              <b>Species</b>
             </td>
-
             <td>
-              <b>Shelter Type</b>
+              <b>Breed</b>
             </td>
-
             <td>
-              <b>Special Notes</b>
+              <b>Reason</b>
             </td>
-
             <td>
-              <b>Shelter No</b>
+              <b>Note</b>
             </td>
-
-
           </tr>
           <tbody>{tabRow()}</tbody>
         </table>
-      
+       
       </div>
-
-
-
-
     </div>
   );
 }
-export default withRouter(AdmissionForm);
+
+export default withRouter(ApplicationList);

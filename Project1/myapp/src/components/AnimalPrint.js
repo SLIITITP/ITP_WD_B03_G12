@@ -1,12 +1,12 @@
 import React from 'react';
+import { useEffect } from 'react';
 
-
-export const AdmissionPrint = React.forwardRef((props, ref) => {
+export const AnimalPrint = React.forwardRef((props, ref) => {
 
     return (
         <>
        
-        <table ref={ref} className="" >
+        <table ref={ref} className="table table-striped" >
     
       <tr>
       </tr>  
