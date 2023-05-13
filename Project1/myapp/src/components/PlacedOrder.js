@@ -195,39 +195,6 @@ export default function(props){
           {data4.paymentMethod}
         </Badge>
       </ListGroup.Item>
-      <ListGroup.Item
-        as="li"
-        className="d-flex justify-content-between align-items-start"
-      >
-    
-          <div className="fw-bold">Card Number</div>
-   
-        <Badge bg="primary" pill style={{color:"white"}}>
-        {data4.cardNumber}
-        </Badge>
-      </ListGroup.Item>
-      <ListGroup.Item
-        as="li"
-        className="d-flex justify-content-between align-items-start"
-      >
-      
-          <div className="fw-bold">validThru</div>
-      
-        <Badge bg="primary" pill style={{color:"white"}}> 
-        {data4.validThru}
-        </Badge>
-      </ListGroup.Item>
-      <ListGroup.Item
-        as="li"
-        className="d-flex justify-content-between align-items-start"
-      >
-      
-          <div className="fw-bold">CVC</div>
-      
-        <Badge bg="primary" pill style={{color:"white"}}>
-        {data4.cvc}
-        </Badge>
-      </ListGroup.Item>
       
     </ListGroup>
 
