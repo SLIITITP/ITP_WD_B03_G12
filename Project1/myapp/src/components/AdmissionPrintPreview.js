@@ -20,8 +20,6 @@ function AdmissionPrintPreview(props){
   //read hook
   const [admission, setAdmission] = useState([]);
   
-  
-
 
 
   // get data from DB
