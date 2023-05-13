@@ -5,10 +5,10 @@ let Vaccine = require ( "../models/Vaccine");
 
 //insert
 vaccineRoutes.route('/add').post(function(req,res) {
-    let service = new Service(req.body);
+    let vaccine = new Vaccine(req.body);
     vaccine.save()
-        .then(service => {
-            res.status(200).json({'service': 'service added succesfully'});
+        .then(vaccine => {
+            res.status(200).json({'vaccine': 'vaccine added succesfully'});
         })
         .catch (err => {
             res.status(400).send ("Unable to save")

@@ -108,8 +108,8 @@ const VaccineTableRow = (props) => {
         <td key={vaccineState._id} style={{ display: "none" }}>
           {" "}
         </td>
-        <td>{vaccineState.vaccination_name}</td>
-        <td>{vaccineState.vaccine_description}</td>
+        <td>{vaccineState.vaccination_Name}</td>
+        <td>{vaccineState.vaccine_Description}</td>
         <td>
           <button
             type="submit"
