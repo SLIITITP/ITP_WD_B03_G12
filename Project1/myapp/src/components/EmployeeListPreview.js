@@ -43,7 +43,7 @@ function EmployeeListPreview(props) {
         <td>{object.gender}</td>
         <td>{object.birthday}</td>
         <td>{object.jobrole}</td>
-        <td>{object.date}</td>
+        <td>{object.date.substring(0, 10)}</td>
        
       </tr>
     ));
@@ -94,7 +94,7 @@ content={() => componentRef.current} ></ReactToPrint>
         }
 
 
-        <Table responsive className="table table-striped" style={{ width: "54em" }}>
+        <Table responsive className="table table-striped" >
           <tr>
             <td>
               <b>First Name</b>

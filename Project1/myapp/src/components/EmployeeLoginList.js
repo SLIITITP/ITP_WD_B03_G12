@@ -278,6 +278,9 @@ content={() => componentRef.current} ></ReactToPrint>
 
         <Table responsive className="table table-striped" style={{ width: "54em" }}>
           <tr>
+          <td>
+              <b>Image</b>
+            </td>
             <td>
               <b>Email</b>
             </td>
