@@ -4,13 +4,62 @@ var cors = require('cors');
 
 var bodyParser = require ('body-parser');
 
-
-//file upload intializer
-const File = require('./models/File');
+const app = express();
 const multer = require('multer');
 
 
-const app = express();
+
+//file upload intializer
+const FileItem = require('./models/FilesItem');
+
+
+const storageItem = multer.diskStorage({
+  destination: 'myapp/public/itemsUpload/',
+  filename: function (req, file, cb) {
+    cb(null, file.originalname); // Save the file with the original filename
+  },
+});
+
+const uploaditem = multer({ storageItem: storageItem });
+
+app.post('/api/item', uploaditem.single('file'), (req, res) => {
+
+  // Access the form data
+  const fileItem = req.file;
+
+    // Save the file to MongoDB
+    const fileItemData = new FileItem({
+
+        filename: fileItem.filename,
+        originalname: fileItem.originalname,
+        path: fileItem.path,
+
+      });
+      
+      fileItemData.save()
+      .then(() => {
+        res.json({ message: 'File uploaded successfully' });
+      })
+      .catch((error) => {
+        console.error('Error saving file to MongoDB:', error);
+        res.status(500).json({ error: 'Failed to save file' });
+        
+      });
+      
+  // Move the uploaded file to a specific directory
+  const filePathItem = path.join(__dirname, 'itemsUpload', fileItem.filename); // Define your desired directory path
+
+});
+
+
+
+
+//file upload intializer
+const File = require('./models/File');
+
+
+
+
 const storage = multer.diskStorage({
   destination: 'myapp/public/uploads/',
   filename: function (req, file, cb) {

@@ -17,7 +17,7 @@ const ItemTableRow = (props) => {
     item_qty: props.obj.qty,
     item_manufacture_date: props.obj.manufacture_date,
     item_expire_date: props.obj.expire_date,
-
+    image: props.obj.image,
   });
 
   const [show, setShow] = useState(false);
@@ -61,6 +61,7 @@ const ItemTableRow = (props) => {
 
 
   return (
+    
     
       <tr>
         {
@@ -203,7 +204,9 @@ const ItemTableRow = (props) => {
 
         <td key={itemState._id} style={{ display: "none" }}>
           {" "}
-        </td>
+        </td >
+        <img src={`../uploads/${itemState.image}`} className="img" style={{width: "10em", height: "10em"}} alt="img" />
+
         <td>{itemState.item_name}</td>
         <td>{itemState.item_category}</td>
         <td>{itemState.item_price}</td>
