@@ -187,13 +187,6 @@ function UsersList(props) {
             </tr>
             <tr>
               <td>
-                <Link  className="nav-link">
-                  <p>Add Animal</p>
-                </Link>
-              </td>
-            </tr>
-            <tr>
-              <td>
                 <Link to="/animals" className="nav-link">
                   <p>View all Animal</p>
                 </Link>

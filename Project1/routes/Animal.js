@@ -59,7 +59,7 @@ animalRoutes.route('/update/:id').put(async (req, res) => {
       if (!animal) {
         return res.status(404).json({ error: 'Animal not found' });
       }
-  
+
       animal.animal_name = req.body.animal_name;
       animal.animal_type = req.body.animal_type;
       animal.animal_breed = req.body.animal_breed;

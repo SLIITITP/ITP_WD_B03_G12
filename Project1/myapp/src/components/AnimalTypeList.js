@@ -144,14 +144,7 @@ function AnimalTypeList(props) {
             </tr>
             <tr>
               <td>
-                <Link onClick={handleShow} className="nav-link">
-                  <p>Add Animal</p>
-                </Link>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <Link to="/services" className="nav-link">
+                <Link to="/animals" className="nav-link">
                   <p>View all Animal</p>
                 </Link>
               </td>

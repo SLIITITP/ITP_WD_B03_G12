@@ -15,6 +15,7 @@ function AnimalList(props) {
 
   //insert hook
   const [data, setData] = useState({
+    owner_ID: "",
     animal_name: "",
     animal_type: "",
     animal_breed: "",
@@ -88,90 +89,9 @@ function AnimalList(props) {
 
   return (
     <div>
-      {
-        //-------------------------Insert form using bootstrap Modal-------------------
-      }
+  
 
-      <Modal {...props} size="lg" show={show} onHide={handleClose} centered>
-        <Modal.Header closeButton>
-          <Modal.Title id="contained-modal-title-vcenter">
-            Add New Animal
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Form>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Animal Name:</Form.Label>
-              <Form.Control
-                type="text"
-                name="animal_name"
-                value={data.first_name}
-                placeholder="Enter Animal Name"
-                onChange={handleChange}
-                autoFocus
-              />
-            </Form.Group>
-            <Form.Group
-              className="mb-3"
-              controlId="exampleForm.ControlTextarea1"
-            >
-              <Form.Label>Animal Type:</Form.Label>
-              <Form.Control
-                type="text"
-                name="animal_type"
-                value={data.animal_type}
-                placeholder="Enter Animal Type"
-                onChange={handleChange}
-                autoFocus
-              />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Animal Breed:</Form.Label>
-              <Form.Control
-                type="text"
-                name="animal_breed"
-                value={data.animal_breed}
-                placeholder="Enter Animal Breed"
-                onChange={handleChange}
-                autoFocus
-              />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Animal Gender:</Form.Label>
-              <Form.Control
-                type="text"
-                name="animal_gender"
-                value={data.animal_gender}
-                placeholder="Enter Animal Breed"
-                onChange={handleChange}
-                autoFocus
-              />
-            </Form.Group>
-
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>DOB:</Form.Label>
-              <Form.Control
-                type="date"
-                name="DOB"
-                value={data.DOB}
-                placeholder="Enter DOB"
-                onChange={handleChange}
-                autoFocus
-              />
-            </Form.Group>
-
-
-
-
-            
-            
-          </Form>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button onClick={handleClick}>Add</Button>
-          <Button onClick={handleClose}>Close</Button>
-        </Modal.Footer>
-      </Modal>
+     
 
       <h1 align="center">Animal List</h1>
       <h4 className="text-right">
@@ -196,13 +116,6 @@ function AnimalList(props) {
               <td>
                 <Link to="/regUser" className="nav-link">
                   <p>View all Users</p>
-                </Link>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <Link onClick={handleShow} className="nav-link">
-                  <p>Add Animal</p>
                 </Link>
               </td>
             </tr>
@@ -234,7 +147,7 @@ function AnimalList(props) {
         {
           //-------------------------Display data from database-------------------
         }
-        <table className="table table-striped" style={{ width: "54em" }}>
+        <table className="table table-striped" >
           <tr>
             <td>
               <b>Animal Name</b>
@@ -248,8 +161,11 @@ function AnimalList(props) {
             <td>
               <b>Animal Gender</b>
             </td>
-            <td>
-              <b>DOB</b>
+            <td >
+              <b>DateOfBirth</b>
+            </td>
+            <td >
+              <b>Owner</b>
             </td>
           </tr>
           <tbody>{tabRow()}</tbody>
