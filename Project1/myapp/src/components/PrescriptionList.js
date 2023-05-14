@@ -87,11 +87,9 @@ function PrescriptionList(props) {
 
   return (
     <div>
-
-<Link to="/prescriptionListPreview" className="nav-link">
-        <Button style={{ float: "right" }}>Print Preview</Button>
-      </Link>
-      
+      {
+        //-------------------------Insert form using bootstrap Modal-------------------
+      }
       
 
       <Modal {...props} size="lg" show={show} onHide={handleClose} centered>
@@ -199,22 +197,22 @@ function PrescriptionList(props) {
             </tr>
             <tr>
               <td>
-                <Link to="/prescription" className="nav-link">
+                <Link to="/prescriptions" className="nav-link">
                   <p>View all Prescriptions</p>
                 </Link>
               </td>
             </tr>
             <tr>
               <td>
-                <Link onClick={handleShow} className="nav-link">
-                  <p>Add Medical Records</p>
+                <Link className="nav-link">
+                  <p>Add Vaccine</p>
                 </Link>
               </td>
             </tr>
             <tr>
               <td>
-                <Link to="/medicalrecords" className="nav-link">
-                  <p>View all Medical Records</p>
+                <Link to="/vaccines" className="nav-link">
+                  <p>View all Vaccinces</p>
                 </Link>
               </td>
             </tr>
