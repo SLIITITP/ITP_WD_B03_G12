@@ -42,6 +42,8 @@ import PrescriptionListPreview from './components/PrescriptionListPrintPreview'
 import ShelterListPrintPreview from './components/ShelterListPrintPreview'
 import SupplierListPrintPreview from './components/SupplierListPrintPreview';
 import UserListPrintPreview from './components/UserListPrintPreview';
+import OrderListPrintPreview from './components/OrderListPrintPreview'
+import EmployeeLoginPrintPreview from './components/EmployeeLoginPrintPreview'
 class App extends Component {
 
 
@@ -97,15 +99,17 @@ class App extends Component {
             <Route path = "/shelterListPrintPreview" element={<ShelterListPrintPreview/>}/>
             <Route path = "/supplierListPrintPreview" element={<SupplierListPrintPreview/>}/>
             <Route path = "/userListPrintPreview" element={<UserListPrintPreview/>}/>
+            <Route path = "/orderListPrintPreview" element={<OrderListPrintPreview/>}/>
+            <Route path = "/employeeLoginListPreview" element={<EmployeeLoginPrintPreview/>}/>
 
           
            
             
 
+            
 
 
-
-
+            /employeeLoginListPreview
 
           </Routes>
          

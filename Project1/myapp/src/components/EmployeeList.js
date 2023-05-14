@@ -204,7 +204,7 @@ function EmployeeList(props) {
             >
               <Form.Label>Enter birthday:</Form.Label>
               <Form.Control
-                type="date"
+                type="date" min="1950-01-01" max="2010-12-31"
                 name="birthday"
                 value={data.birthday}
                 placeholder="Enter birthday"
