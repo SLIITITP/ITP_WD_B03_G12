@@ -1,6 +1,5 @@
 import React, { useState, useEffect,useRef } from 'react'
 import axios from 'axios'
-import { Link } from 'react-router-dom';
 import Button from "react-bootstrap/Button";
 import { withRouter } from './withRouter';
 import ReactToPrint from 'react-to-print'; 
