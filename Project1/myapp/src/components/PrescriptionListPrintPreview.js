@@ -106,6 +106,9 @@ function PrescriptionListPrintPreview(props) {
             <td>
               <b>Medicine</b>
             </td>
+            <td>
+              <b>Date</b>
+            </td>
           </tr>
           <tbody>{tabRow()}</tbody>
           </table>

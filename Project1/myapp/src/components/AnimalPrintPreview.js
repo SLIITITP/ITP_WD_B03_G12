@@ -1,24 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useRef } from "react";
 import axios from "axios";
-import AnimalTableRow from "./AnimalTableRow";
-import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
-import Modal from "react-bootstrap/Modal";
 import { withRouter } from "./withRouter";
-
+import ReactToPrint from 'react-to-print';
 import "../components/CSS/listmain.css";
-import { response } from "express";
-import { set } from "mongoose";
-import { AnimalPrint } from "./AnimalPrint";
-
-function AnimalList(props) {
+import {AnimalPrint} from "./AnimalPrint"
+import PrintHeader from "./PrintHeader";
 
 
+function AnimalPrintPreview(props) {
     //read hook
     const [animal, setAnimal] = useState([]);
 
-   //get data from database
+    const componentRef = useRef(); 
+  
+
+  //get data from database
   useEffect(() => {
     axios
       .get("http://localhost:5000/animal/")
@@ -31,7 +28,7 @@ function AnimalList(props) {
   }, []);
 
   const tabRow = () => {
-    return service.map((object, i) => (
+    return animal.map((object, i) => (
       <tr key={object._id}>
         <td style={{ display: "none" }}>{object._id}</td>
         <td>{object.animal_name}</td>
@@ -39,12 +36,11 @@ function AnimalList(props) {
         <td>{object.animal_breed}</td>
         <td>{object.animal_gender}</td>
         <td>{object.DOB}</td>
-        <td>{object.date}</td>
+         <td>{object.date}</td>
       </tr>
     ));
   };
 
-  
   //taking count
   const [count, setCount] = useState(0);
 
@@ -60,46 +56,32 @@ function AnimalList(props) {
       });
   }, []);
 
+  
 
-  const componentRef = useRef(); 
- 
   return (
     <div>
-      
-      <ReactToPrint
+
+
+<ReactToPrint
       documentTitle='Our Animals' 
       trigger={() => <Button style={{float:'right'}}>Print</Button>}
       content={() => componentRef.current} ></ReactToPrint>
-     
-    <AnimalPrint ref={componentRef}>
-
-    <PrintHeader/>
     
-      <h1 align="center">AnimalList List</h1>
-      <h4 className="text-right">
-        <b>Total: {count}</b>
-      </h4>
-      
-      {
-        //-------------------------Insert form using bootstrap Modal-------------------
-      }
-
-      
-
+    <AnimalPrint ref={componentRef}>
+    <PrintHeader/>
       <h1 align="center">Animal List</h1>
       <h4 className="text-right">
         <b>Total: {count}</b>
       </h4>
 
-      {
-        //-------------------------Side Menue Buttons-------------------
-      }
-
      
+
+      
+
         {
           //-------------------------Display data from database-------------------
         }
-        <table className="table table-striped" style={{ width: "54em" }}>
+        <table className="table table-striped">
           <tr>
             <td>
               <b>Animal Name</b>
@@ -116,14 +98,16 @@ function AnimalList(props) {
             <td>
               <b>DOB</b>
             </td>
+            <td>
+              <b>Date</b>
+            </td>
           </tr>
           <tbody>{tabRow()}</tbody>
         </table>
         </AnimalPrint>
-      
-    </div>
+      </div>
+   
   );
-};
+}
 
-
-export default withRouter(AnimalList);
+export default withRouter(AnimalPrintPreview);

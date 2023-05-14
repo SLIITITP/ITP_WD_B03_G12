@@ -6,7 +6,6 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import { withRouter } from "./withRouter";
-
 import "../components/CSS/listmain.css";
 
 function AnimalList(props) {
@@ -89,7 +88,13 @@ function AnimalList(props) {
 
   return (
     <div>
-  
+
+<Link to="/animalPrintPreview" className="nav-link">
+        <Button style={{ float: "right" }}>Print Preview</Button>
+      </Link>
+      {
+        //-------------------------Insert form using bootstrap Modal-------------------
+      }
 
      
 
@@ -166,6 +171,12 @@ function AnimalList(props) {
             </td>
             <td >
               <b>Owner</b>
+            </td>
+            <td>
+              <b>Date</b>
+            </td>
+            <td>
+              <b>Date</b>
             </td>
           </tr>
           <tbody>{tabRow()}</tbody>

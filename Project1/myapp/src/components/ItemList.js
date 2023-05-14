@@ -29,6 +29,7 @@ function ItemList(props) {
         qty:'',
         manufacture_date:'',
         expire_date:'',
+        image:'',
 
     });
   
@@ -80,10 +81,46 @@ function ItemList(props) {
       });
   }, []);
 
+  //upload file
+  const [fileName, setFileName] = useState('');
+   const [file, setFile] = useState(null);
+
+   const handleFileChange = (e) => {
+    const selectedFile = e.target.files[0];
+    setFile(selectedFile);
+    setFileName(selectedFile ? selectedFile.name : '');
+
+    setData((prev) => ({
+      ...prev,
+      image: selectedFile ? selectedFile.name : '',
+    }));
+
+
+   };
+  
+
   //send new data to database
   const handleClick = (e) => {
     e.preventDefault();
     console.log(data)
+
+    const formData = new FormData();
+    formData.append('file', file);
+    
+    try {
+      axios.post('http://localhost:5000/api/upload', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      // Handle success
+      console.log('File uploaded successfully');
+    } catch (error) {
+      // Handle error
+      console.log('Error uploading file:', error);
+    }
+
+
     axios
       .post(`http://localhost:5000/item/add`, data)
       .then((res) => {
@@ -230,6 +267,20 @@ function ItemList(props) {
               />
             </Form.Group>
 
+            <Form.Control 
+                  type="text"
+                  name="image"
+                  value={data.image}
+                  readOnly
+                  style={{ display: "none" }}
+                />
+
+            <div>
+        <label>File:</label>
+        <input type="file" onChange={handleFileChange} />
+      </div>
+      
+
             
 
 
@@ -304,8 +355,11 @@ function ItemList(props) {
           //-------------------------Display data from database---------------------
         }
         <ItemPrint ref={componentRef}>
-        <table className="table table-striped" style={{ width: "54em" }}>
-          <tr>
+        <table className="table table-striped" style={{ width: "54em", height: "55em" }}>
+          <tr >
+          <td>
+              <b>image</b>
+            </td>
             <td>
               <b>name</b>
             </td>
@@ -325,10 +379,10 @@ function ItemList(props) {
               <b>qty</b>
             </td>
             <td>
-              <b>manufacture_data</b>
+              <b>manufacture_date</b>
             </td>
             <td>
-              <b>expire_data</b>
+              <b>expire_date</b>
             </td>
 
           </tr>
@@ -339,4 +393,6 @@ function ItemList(props) {
     </div>
   );
 }
+
+
 export default withRouter(ItemList);

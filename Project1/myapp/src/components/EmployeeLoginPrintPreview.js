@@ -34,7 +34,6 @@ function EmployeeLoginPrintPreview(props) {
       <tr key={object._id}>
         <td style={{ display: "none" }}>{object._id}</td>
         <td>{object.email}</td>
-        <td>{object.password}</td>
         <td>{object.acctype}</td>
         <td>{object.reggdate}</td>
      
@@ -86,7 +85,7 @@ function EmployeeLoginPrintPreview(props) {
 
 
 
-        <Table responsive className="table table-striped" style={{ width: "54em" }}>
+        <Table responsive className="table table-striped" >
           <tr>
             <td>
               <b>Email</b>

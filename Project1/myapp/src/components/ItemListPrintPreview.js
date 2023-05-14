@@ -1,22 +1,19 @@
-import React, { useState, useEffect,useRef } from 'react'
+import React, { useState, useEffect,useRef } from "react";
 import axios from 'axios'
-import ItemsTableRow from './ItemsTableRow'
-import { Link } from 'react-router-dom';
 import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
-import Modal from "react-bootstrap/Modal";
 import { withRouter } from './withRouter';
 import ReactToPrint from 'react-to-print'; 
 import { ItemPrint } from './ItemPrint';
-
-
+import PrintHeader from "./PrintHeader";
 import '../components/CSS/listmain.css';
-import { ItemListPrint } from './ItemListPrint';
 
 
-function ItemList(props){
-  const [service, setService] = useState([]);
 
+
+function ItemListPrintPreview(props){
+
+  const componentRef = useRef(); 
+ 
 
     //read hook
     const [item, setItem] = useState([]);
@@ -28,7 +25,7 @@ function ItemList(props){
     axios
       .get("http://localhost:5000/item/")
       .then((response) => {
-        setService(response.data);
+        setItem(response.data);
       })
       .catch((error) => {
         console.log(error);
@@ -36,7 +33,7 @@ function ItemList(props){
   }, []);
 
   const tabRow = () => {
-    return service.map((object, i) => (
+    return item.map((object, i) => (
       <tr key={object._id}>
         <td style={{ display: "none" }}>{object._id}</td>
         <td>{object.name}</td>
@@ -69,7 +66,7 @@ function ItemList(props){
       });
   }, []);
 
-  const componentRef = useRef();
+  
 
   
 
@@ -84,7 +81,7 @@ function ItemList(props){
 
         <PrintHeader/>
 
-        <h1 align="center">Service List</h1>
+        <h1 align="center">Item List</h1>
         <h4 className="text-right">
             <b>Total: {count}</b>
         </h4>
@@ -96,7 +93,7 @@ function ItemList(props){
           //-------------------------Display data from database---------------------
         }
         
-        <table className="table table-striped" style={{ width: "54em" }}>
+        <table className="table table-striped">
           <tr>
             <td>
               <b>name</b>
@@ -131,4 +128,4 @@ function ItemList(props){
        </div>
    );
 };
-export default withRouter(ItemList);
+export default withRouter(ItemListPrintPreview);

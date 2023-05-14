@@ -5,6 +5,41 @@ let Item = require ( "../models/Items");
 
 //insert
 itemRoutes.route('/add').post(function(req,res) {
+/*  try {
+    
+    const itemData ={
+      name:req.body.name,
+      category:req.body.category,
+      price:req.body.price,
+      Supplier:req.body.Supplier,
+      description:req.body.description,
+      qty:req.body.qty,
+      manufacture_date:req.body.manufacture_date,
+      expire_date:req.body.expire_date,
+      image: req.body.image
+    };
+
+    const item =  Item.findOne({name:req.body.name});
+
+    if(!item){
+      let item = new Item(req.body);
+      item.save()
+        .then(item=>{
+          res.status(200).json({'item':'item added succesfully'});
+        })
+        .catch (err=>{
+          res.status(400).send ("Unable to add")   
+       })
+    }
+    else{
+      res.json({error:"Item already add"});
+    }
+  }catch(err){
+    res.send("error"+err);
+  }
+})  */
+
+
     let item = new Item(req.body);
     item.save()
         .then(item => {

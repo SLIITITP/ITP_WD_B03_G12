@@ -69,7 +69,6 @@ const PrescriptionsTableRow = (props) => {
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <h4>Centered Modal</h4>
             <Form>
               <Form.Group
                 className="mb-3"
