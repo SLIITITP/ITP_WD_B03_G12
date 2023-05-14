@@ -140,36 +140,35 @@ function VaccineList(props) {
 
       <div className="tablestyle">
         <div className="buttonframe">
-          <table className="buttonstyle">
+        <table className="buttonstyle">
             <tr>
               <td>
-                <Link to="/invoiceViewAll" className="nav-link">
+                <Link className="nav-link">
                   <p>Add prescription</p>
                 </Link>
               </td>
             </tr>
             <tr>
               <td>
+                <Link to="/prescriptions" className="nav-link">
+                  <p>View all Prescriptions</p>
+                </Link>
+              </td>
+            </tr>
+            <tr>
+              <td>
                 <Link onClick={handleShow} className="nav-link">
-                  <p> View all Prescriptions</p>
+                  <p>Add Vaccine</p>
                 </Link>
               </td>
             </tr>
             <tr>
               <td>
-                <Link to="/services" className="nav-link">
-                  <p>Add Medical Records</p>
+                <Link to="/vaccines" className="nav-link">
+                  <p>View all Vaccinces</p>
                 </Link>
               </td>
             </tr>
-            <tr>
-              <td>
-                <Link to="/services" className="nav-link">
-                  <p>View all Medical Records</p>
-                </Link>
-              </td>
-            </tr>
-            
           </table>
         </div>
 

@@ -69,7 +69,7 @@ class Navbar3 extends Component {
                     </li>
 
                     <li className="nav-item2" >
-                        <Link to="/payee" className="nav-link" > 
+                        <Link to="/orderList" className="nav-link" > 
                             <h6>Online Payments</h6>
                         </Link>
                     </li>

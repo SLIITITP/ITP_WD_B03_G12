@@ -61,11 +61,10 @@ const VaccineTableRow = (props) => {
         <Modal {...props} size="lg" show={show} onHide={handleClose} centered>
           <Modal.Header closeButton>
             <Modal.Title id="contained-modal-title-vcenter">
-              Update Services
+              Update Vaccine
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <h4>Centered Modal</h4>
             <Form>
               <Form.Group
                 className="mb-3"
@@ -74,8 +73,8 @@ const VaccineTableRow = (props) => {
                 <Form.Label>Vaccination Name:</Form.Label>
                 <Form.Control
                   type="text"
-                  name="vaccination_name"
-                  value={updated.vaccination_name}
+                  name="vaccination_Name"
+                  value={updated.vaccination_Name}
                   onChange={handleChange}
                   autoFocus
                 />
@@ -87,8 +86,8 @@ const VaccineTableRow = (props) => {
                 <Form.Label>Vaccine Description</Form.Label>
                 <Form.Control
                   type="text"
-                  name="vaccine_description"
-                  value={updated.vaccine_description}
+                  name="vaccine_Description"
+                  value={updated.vaccine_Description}
                   onChange={handleChange}
                   autoFocus
                 />
@@ -108,8 +107,8 @@ const VaccineTableRow = (props) => {
         <td key={vaccineState._id} style={{ display: "none" }}>
           {" "}
         </td>
-        <td>{vaccineState.vaccination_name}</td>
-        <td>{vaccineState.vaccine_description}</td>
+        <td>{vaccineState.vaccination_Name}</td>
+        <td>{vaccineState.vaccine_Description}</td>
         <td>
           <button
             type="submit"

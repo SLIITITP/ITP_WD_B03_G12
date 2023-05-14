@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Component, useRef } from 'react'
+import React, { useState, useEffect, useRef} from 'react'
 import axios from 'axios'
 import Button from "react-bootstrap/Button";
 import { withRouter } from './withRouter';
@@ -6,25 +6,23 @@ import Table from 'react-bootstrap/Table';
 import { EmployeePrint } from './EmployeePrint';
 import ReactToPrint from 'react-to-print';
 import PrintHeader from "./PrintHeader";
-
-
 import '../components/CSS/listmain.css';
 
-function EmployeeListPreview(props) {
-   const componentRef = useRef();
+function EmployeeLoginPrintPreview(props) {
+
+
+  const componentRef = useRef();
 
     //read hook
-    const [employee, setEmployee] = useState([]);
+    const [employeelogin, setEmployeelogin] = useState([]);
   
-
-  
-
+    
   //get data from database
   useEffect(() => {
     axios
-      .get("http://localhost:5000/employee/")
+      .get("http://localhost:5000/accounts/")
       .then((response) => {
-        setEmployee(response.data);
+        setEmployeelogin(response.data);
       })
       .catch((error) => {
         console.log(error);
@@ -32,19 +30,13 @@ function EmployeeListPreview(props) {
   }, []);
 
   const tabRow = () => {
-    return employee.map((object, i) => (
+    return employeelogin.map((object, i) => (
       <tr key={object._id}>
         <td style={{ display: "none" }}>{object._id}</td>
-        <td>{object.name}</td>
-        <td>{object.lname}</td>
-        <td>{object.NIC}</td>
-        <td>{object.phoneno}</td>
-        <td>{object.address}</td>
-        <td>{object.gender}</td>
-        <td>{object.birthday}</td>
-        <td>{object.jobrole}</td>
-        <td>{object.date.substring(0, 10)}</td>
-       
+        <td>{object.email}</td>
+        <td>{object.acctype}</td>
+        <td>{object.reggdate}</td>
+     
       </tr>
     ));
   };
@@ -54,7 +46,7 @@ function EmployeeListPreview(props) {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/employee/get/count")
+      .get("http://localhost:5000/accounts/get/count")
       .then((response) => {
         console.log(response);
         setCount(response.data);
@@ -64,73 +56,58 @@ function EmployeeListPreview(props) {
       });
   }, []);
 
- 
+  
 
     return (
         <div>
      
+     <ReactToPrint
+      documentTitle='Our Employees' 
+      trigger={() => <Button style={{float:'right'}}>Print</Button>}
+      content={() => componentRef.current} ></ReactToPrint>
 
-      <ReactToPrint
 
- documentTitle='Our Employees'
-
-trigger={() => <Button style={{float:'right'}}>Print</Button>}
-
-content={() => componentRef.current} ></ReactToPrint>
 <EmployeePrint ref={componentRef}>
 <PrintHeader/>
 
-    
-      <h1 align="center">Employee List</h1>
+      <h1 align="center">View all Accounts</h1>
       <h4 className="text-right">
         <b>Total: {count}</b>
       </h4>
 
+       
     
-      
+        
            
             {
           //-------------------------Display data from database-------------------
         }
 
 
+
         <Table responsive className="table table-striped" >
           <tr>
             <td>
-              <b>First Name</b>
+              <b>Email</b>
+            </td>
+            
+            <td>
+              <b>Account type</b>
             </td>
             <td>
-              <b>Last Name</b>
+              <b>Date</b>
             </td>
-            <td>
-              <b>NIC</b>
-            </td>
-            <td>
-              <b>Phone no</b>
-            </td>
-            <td>
-              <b>Address</b>
-            </td>
-            <td>
-              <b>Gender</b>
-            </td>
-            <td>
-              <b>Birthday</b>
-            </td>
-            <td>
-              <b>Job role</b>
-            </td>
-
+   
           </tr>
           <tbody>{tabRow()}</tbody>
         </Table>
         </EmployeePrint>
 
       </div>
-   
+  
 
    
 
   );
 }
-export default withRouter(EmployeeListPreview);
+export default withRouter(EmployeeLoginPrintPreview);
