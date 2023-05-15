@@ -17,6 +17,7 @@ const AppointmentTableRow = (props) => {
     Breed:props.obj.Breed,
     Reason:props.obj.Reason,
     note:props.obj.note,
+    date:props.obj.reggdate,
   });
 
   const [show, setShow] = useState(false);
@@ -71,7 +72,7 @@ const AppointmentTableRow = (props) => {
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <h4>Centered Modal</h4>
+            
             <Form>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label> Full Name:</Form.Label>
@@ -113,7 +114,7 @@ const AppointmentTableRow = (props) => {
               <Form.Label> Pet's Name:</Form.Label>
               <Form.Control
                 type="text"
-                name="petname"
+                name="petName"
                 value={updated.petName}
                 placeholder="Pet's Name"
                 onChange={handleChange}
@@ -124,9 +125,9 @@ const AppointmentTableRow = (props) => {
               <Form.Label> Species:</Form.Label>
               <Form.Control
                 type="text"
-                name="species"
+                name="Species"
                 value={updated.Species}
-                placeholder="Cat"
+                placeholder="Species Ex:-Cat"
                 onChange={handleChange}
                 autoFocus
               />
@@ -135,7 +136,7 @@ const AppointmentTableRow = (props) => {
               <Form.Label> Breed:</Form.Label>
               <Form.Control
                 type="text"
-                name="breed"
+                name="Breed"
                 value={updated.Breed}
                 placeholder="Breed"
                 onChange={handleChange}
@@ -146,7 +147,7 @@ const AppointmentTableRow = (props) => {
               <Form.Label> Reasons:</Form.Label>
               <Form.Control
                 type="text"
-                name="reason"
+                name="Reason"
                 value={updated.Reason}
                 placeholder="Reason(s) to make appointment"
                 onChange={handleChange}
@@ -180,13 +181,10 @@ const AppointmentTableRow = (props) => {
           {" "}
         </td>
         <td>{appointmentState.name}</td>
-        <td>{appointmentState.email}</td>
         <td>{appointmentState.phone}</td>
         <td>{appointmentState.petName}</td>
-        <td>{appointmentState.Species}</td>
-        <td>{appointmentState.Breed}</td>
-        <td>{appointmentState.Reason}</td>
-        <td>{appointmentState.note}</td>
+        <td>{appointmentState.date}</td>
+       
         <td>
           <button
             type="submit"

@@ -7,6 +7,8 @@ import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import { withRouter } from "./withRouter";
 
+
+
 import "../components/CSS/listmain.css";
 
 
@@ -127,7 +129,7 @@ function ApplicationList(props) {
             >
               <Form.Label>Email Address</Form.Label>
               <Form.Control
-                type="text"
+                type="email"
                 name="email"
                 value={data.email}
                 placeholder="Enter Email"
@@ -138,8 +140,9 @@ function ApplicationList(props) {
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label> Phone number:</Form.Label>
               <Form.Control
-                type="text"
+                type="tel"
                 name="phone"
+                country={'sri lanka'}
                 value={data.phone}
                 placeholder="Mobile Number"
                 onChange={handleChange}
@@ -209,7 +212,7 @@ function ApplicationList(props) {
         </Modal.Footer>
       </Modal>
 
-      <h1 align="center">Application List</h1>
+      <h1 align="center">Appointment List</h1>
       <h4 className="text-right">
         <b>Total: {count}</b>
       </h4>
@@ -232,11 +235,25 @@ function ApplicationList(props) {
             </tr>
             <tr>
               <td>
-                <Link to="/appointments" className="nav-link">
+                <Link to="/appointment" className="nav-link">
                   <p>View Appointments</p>
                 </Link>
               </td>
             </tr>
+            <tr>
+                    <td>       
+                        <Link to ="/ScheduleList"  className="nav-link">
+                            <p>Create Schedule</p>
+                        </Link>          
+                    </td>
+                </tr>
+                <tr>
+                    <td>       
+                        <Link to ="/schedule" className="nav-link">
+                            <p>View Schedules</p>
+                        </Link>                 
+                    </td>
+                </tr>
           </table>
         </div>
 
@@ -250,26 +267,15 @@ function ApplicationList(props) {
               <b>Name</b>
             </td>
             <td>
-              <b>Email</b>
-            </td>
-            <td>
               <b>Phone</b>
             </td>
             <td>
               <b>Pet Name</b>
             </td>
             <td>
-              <b>Species</b>
+              <b>Date & Time</b>
             </td>
-            <td>
-              <b>Breed</b>
-            </td>
-            <td>
-              <b>Reason</b>
-            </td>
-            <td>
-              <b>Note</b>
-            </td>
+           
           </tr>
           <tbody>{tabRow()}</tbody>
         </table>

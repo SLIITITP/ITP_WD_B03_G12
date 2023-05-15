@@ -42,6 +42,9 @@ import PrescriptionListPreview from './components/PrescriptionListPrintPreview'
 import ShelterListPrintPreview from './components/ShelterListPrintPreview'
 import SupplierListPrintPreview from './components/SupplierListPrintPreview';
 import UserListPrintPreview from './components/UserListPrintPreview';
+import DoctorsList from './components/DoctorsList';
+import ScheduleList from './components/ScheduleList'
+
 class App extends Component {
 
 
@@ -80,9 +83,10 @@ class App extends Component {
             <Route path = "/store" element={<StoreCard/>}/>
             <Route path = "/medicalrecords" element={<MedicalRecordsList/>}/>
             <Route path = "/employees" element={<EmployeeList/>}/>
-
+ 
             <Route path = "/appointment" element={<AppointmentList/>}/>
             <Route path = "/CusAppointment" element={<CusAppointment/>}/>
+            <Route path = "/ScheduleList" element={<DoctorsList/>}/>
 
 
             <Route path = "/animals" element={<AnimalList/>}/>
@@ -97,7 +101,7 @@ class App extends Component {
             <Route path = "/shelterListPrintPreview" element={<ShelterListPrintPreview/>}/>
             <Route path = "/supplierListPrintPreview" element={<SupplierListPrintPreview/>}/>
             <Route path = "/userListPrintPreview" element={<UserListPrintPreview/>}/>
-
+            <Route path = "/schedule" element={<ScheduleList/>}/>
           
            
             

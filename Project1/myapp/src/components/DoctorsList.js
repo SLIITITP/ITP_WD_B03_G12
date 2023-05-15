@@ -1,7 +1,6 @@
 import React, { useState, useEffect, Component, useRef } from 'react'
 import axios from 'axios'
 import DoctorsTableRow from './DoctorsTableRow'
-import EmployeeLoginTableRow from './EmployeeLoginTableRow'
 import Button from "react-bootstrap/Button";
 import { withRouter } from './withRouter';
 import Table from 'react-bootstrap/Table';
@@ -17,13 +16,7 @@ import '../components/CSS/listmain.css';
 
 
 function DoctorsList(props) {
-  const [employeeloginState] = useState({
-    _id: props.obj._id,
-    employeelogin_fname: props.obj.name,
-    employeelogin_lname: props.obj.lname,
-    employeelogin_date: props.obj.reggdate,
-
-  });
+  
 
    const componentRef = useRef();
   
@@ -37,39 +30,6 @@ function DoctorsList(props) {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true); 
 
-  const[updated,setUpdated] = useState({});
-
-  const onDelete = (id) => {
-    axios.get(`http://localhost:5000/accounts/delete/${id}`).then((res) => {
-      alert(`Deleted Successfully : ${id}`);
-      window.location.reload();
-    });
-  };
-
-  const updateEmployeelogin = (employeeloginState) => {
-    console.log(employeeloginState);
-    setUpdated(employeeloginState);
-
-    handleShow();
-  };
-
-  const handleChange = (e) => {
-    e.preventDefault();
-    const { name, value } = e.target;
-    setUpdated((prevState) => ({ ...prevState, [name]: value }));
-  };
-  
-
-  const onUpdate = (_id) => {
-    axios
-      .put(`http://localhost:5000/accounts/update/${_id}`, updated)
-      .then((res) => {
-        alert(`Updated Successfully : ${_id}`);
-        handleClose();
-        window.location.reload();
-      })
-      .catch((err) => console.log(err));
-  };
 
   //get data from database
   useEffect(() => {
@@ -84,9 +44,10 @@ function DoctorsList(props) {
   }, []);
 
  
+  
 
   const tabRow = () => {
-    return <EmployeeLoginTableRow obj={object} key={i} />;
+   
     return  employee
     .filter((employee) => employee.jobrole === 'doctor')
     .map((object, i) => (
@@ -100,7 +61,7 @@ function DoctorsList(props) {
             type="submit"
             className="submit"
             variant="success"
-            onClick={() => updateEmployeelogin(employeeloginState)}
+            onClick= {handleShow}
           >
             Add
           </Button>
@@ -187,9 +148,9 @@ function DoctorsList(props) {
                 <Form.Label> F Name:</Form.Label>
                 <Form.Control
                   type="text"
-                  name="employeelogin_fname"
-                  value={updated.employeelogin_fname}
-                  onChange={handleChange}
+                  name="name"
+                  value={employee.name}
+  
                   autoFocus />
               </Form.Group>
               <Form.Group
@@ -199,16 +160,16 @@ function DoctorsList(props) {
                 <Form.Label>L Name</Form.Label>
                 <Form.Control
                   type="text"
-                  name="employeelogin_lname" 
-                  value={updated.employeelogin_lname}
+                  name="lname" 
+                  value={employee.lname}
                   autoFocus />
               </Form.Group>
               <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                 <Form.Label> Date:</Form.Label>
                 <Form.Control
                   type="text"
-                  name="employeelogin_date" 
-                  value={updated.employeelogin_date}
+                  name="date" 
+                  value={employee.date}
                   autoFocus />
              </Form.Group> 
             </Form>

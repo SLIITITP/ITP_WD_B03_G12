@@ -8,19 +8,23 @@ let Appointment = new Schema({
 
     name : {
         type : String,
+        required: true
         
     },
     email:{
         type:String,
+        required: true
         
     },
     phone:{
         type:String,
+        required: true
         
     },
 
     petName:{
         type:String,
+        required: true
         
     },
 
@@ -35,13 +39,19 @@ let Appointment = new Schema({
     },
     Reason:{
         type:String,
+        required: true
         
    
     },
    note:{
         type:String,
         
-    }
+    },
+
+    reggdate: {
+        type: Date,
+        default: Date.now,
+    },
 },
 
 {

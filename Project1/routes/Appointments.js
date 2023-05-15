@@ -75,6 +75,7 @@ AppointmentRoutes.route('/update/:id').put(async (req, res) => {
     appointment.Breed = req.body.Breed;
     appointment.Reason = req.body.Reason;
     appointment.note = req.body.note;
+    const today = new Date();
     
       await appointment.save();
       res.json(appointment);

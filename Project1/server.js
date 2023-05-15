@@ -111,3 +111,8 @@ app.use('/shelters', shelterRoutes);
 
 var appointmentsRoutes = require('./routes/Appointments');
 app.use('/appointments', appointmentsRoutes);
+
+var schedulesRoutes = require('./routes/Schedule');
+app.use('/schedules', schedulesRoutes);
+
+

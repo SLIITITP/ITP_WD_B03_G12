@@ -62,7 +62,7 @@ function EmployeeLoginList(props) {
   };
 
   //taking count
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(0); 
 
   useEffect(() => {
     axios

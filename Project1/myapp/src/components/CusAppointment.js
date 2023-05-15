@@ -119,7 +119,7 @@ function CusAppointment(props) {
             >
               <Form.Label>Email Address</Form.Label>
               <Form.Control
-                type="text"
+                type="email"
                 name="email"
                 value={data.email}
                 placeholder="Enter Email"
@@ -208,7 +208,7 @@ function CusAppointment(props) {
       }
 
     <Link onClick={handleShow} className="nav-link">
-                  <p>Make an Appointment</p>
+                  <button style={{marginTop:"40px",marginLeft:"450px",paddingLeft:"30px",paddingRight:"30px",paddingTop:"20px",paddingBottom:"20px",backgroundColor:"rgb(193, 71, 91)",borderRadius:"10px"}}>Make an Appointment</button>
                 </Link>
     </div>
   );
