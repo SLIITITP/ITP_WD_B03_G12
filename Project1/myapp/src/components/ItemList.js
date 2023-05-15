@@ -8,6 +8,7 @@ import Modal from "react-bootstrap/Modal";
 import { withRouter } from './withRouter';
 import ReactToPrint from 'react-to-print'; 
 import { ItemPrint } from './ItemPrint';
+import { Alert } from "react-bootstrap";
 
 
 import '../components/CSS/listmain.css';
@@ -16,6 +17,62 @@ import '../components/CSS/listmain.css';
 
 function ItemList(props) {
   const componentRef = useRef(); 
+
+  //Form validation
+  const [errors, setErrors] = useState({});
+
+  const validateForm = () => {
+    let isValid = true;
+    const newErrors = {};
+  
+    // Validate name field
+    if (data.name.trim() === "") {
+      newErrors.name = "Name is required";
+      isValid = false;
+    }
+  
+    if (data.category.trim() === "") {
+      newErrors.category = "Category required";
+      isValid = false;
+    }
+  
+    if (data.price.trim() === "") {
+      newErrors.price = "Price is required";
+      isValid = false;
+    }
+  
+    if (data.Supplier.trim() === "") {
+      newErrors.Supplier = "Supplier is required";
+      isValid = false;
+    }
+  
+    if (data.description.trim() === "") {
+      newErrors.description = "Description is required";
+      isValid = false;
+    }
+  
+    if (data.qty.trim() === "===") {
+      newErrors.qty = "qty is required";
+      isValid = false;
+    }
+  
+    if (data.manufacture_date.trim() === "") {
+      newErrors.manufacture_date = "manufacture date is required";
+      isValid = false;
+    }
+  
+    if (data.expire_date === "select") {
+      newErrors.expire_date = "Expire date is required";
+      isValid = false;
+    }
+  
+    setErrors(newErrors);
+    return isValid;
+  };
+  
+
+   
+
     //read hook
     const [item, setItem] = useState([]);
   
@@ -120,7 +177,7 @@ function ItemList(props) {
       console.log('Error uploading file:', error);
     }
 
-
+    if (validateForm()) {
     axios
       .post(`http://localhost:5000/item/add`, data)
       .then((res) => {
@@ -132,14 +189,15 @@ function ItemList(props) {
         console.log(err);
       });
   };
-
+  }
   
 
     return (
         <div>
-         <Link to="/itemListPrintPreview" className="nav-link">
-        <Button style={{ float: "right" }}>Print Preview</Button>
-      </Link>
+           <ReactToPrint
+      documentTitle='Our Item list' 
+      trigger={() => <Button style={{float:'right'}}>Print</Button>}
+      content={() => componentRef.current} ></ReactToPrint>
       {
         //-------------------------Insert form using bootstrap Modal------------------
       }
@@ -163,6 +221,7 @@ function ItemList(props) {
                 onChange={handleChange}
                 autoFocus
               />
+              {errors.name && <Alert variant="danger">{errors.name}</Alert>}
             </Form.Group>
 
             <Form.Group
@@ -177,6 +236,7 @@ function ItemList(props) {
                 onChange={handleChange}
                 autoFocus
               />
+              {errors.category && <Alert variant="danger">{errors.category}</Alert>}
             </Form.Group>
 
             <Form.Group
@@ -191,6 +251,7 @@ function ItemList(props) {
                 onChange={handleChange}
                 autoFocus
               />
+              {errors.price && <Alert variant="danger">{errors.price}</Alert>}
             </Form.Group>
 
 
@@ -207,6 +268,7 @@ function ItemList(props) {
                 onChange={handleChange}
                 autoFocus
               />
+              {errors.Supplier && <Alert variant="danger">{errors.Supplier}</Alert>}
             </Form.Group>
 
             <Form.Group
@@ -221,6 +283,7 @@ function ItemList(props) {
                 onChange={handleChange}
                 autoFocus
               />
+              {errors.description && <Alert variant="danger">{errors.description}</Alert>}
             </Form.Group>
 
             <Form.Group
@@ -235,6 +298,7 @@ function ItemList(props) {
                 onChange={handleChange}
                 autoFocus
               />
+              {errors.qty && <Alert variant="danger">{errors.qty}</Alert>}
             </Form.Group>
 
             <Form.Group
@@ -249,6 +313,7 @@ function ItemList(props) {
                 onChange={handleChange}
                 autoFocus
               />
+              {errors.manufacture_date && <Alert variant="danger">{errors.manufacture_date}</Alert>}
             </Form.Group>
 
            
@@ -264,6 +329,7 @@ function ItemList(props) {
                 onChange={handleChange}
                 autoFocus
               />
+              {errors.expire_date && <Alert variant="danger">{errors.expire_date}</Alert>}
             </Form.Group>
 
             <Form.Control 
