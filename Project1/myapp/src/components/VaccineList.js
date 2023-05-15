@@ -6,7 +6,6 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import { withRouter } from "./withRouter";
-
 import "../components/CSS/listmain.css";
 
 function VaccineList(props) {
@@ -84,10 +83,15 @@ function VaccineList(props) {
 
   return (
     <div>
-      {
+    {
         //-------------------------Insert form using bootstrap Modal-------------------
       }
 
+<Link to="/vaccinePrintPreview" className="nav-link">
+        <Button style={{ float: "right" }}>Print Preview</Button>
+      </Link>
+
+   
       <Modal {...props} size="lg" show={show} onHide={handleClose} centered>
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">

@@ -100,10 +100,9 @@ function ItemList(props) {
 
     return (
         <div>
-           <ReactToPrint
-      documentTitle='Our Item list' 
-      trigger={() => <Button style={{float:'right'}}>Print</Button>}
-      content={() => componentRef.current} ></ReactToPrint>
+         <Link to="/itemListPrintPreview" className="nav-link">
+        <Button style={{ float: "right" }}>Print Preview</Button>
+      </Link>
       {
         //-------------------------Insert form using bootstrap Modal------------------
       }

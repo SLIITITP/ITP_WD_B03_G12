@@ -1,22 +1,20 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import AdmissionTableRow from "./AdmissionTableRow";
+import InPatientTableRow from "./InPatientTableRow";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import { withRouter } from "./withRouter";
-import e from "cors";
 import "../components/CSS/listmain.css";
 
-
-
-
-function AdmissionForm(props) {
+function InPatient(props) {
 
   //read hook
-  const [admission, setAdmission] = useState([]);
+
+  const [inpatient, setInPatient] = useState([]);
   //insert hook
+  
   const [data, setData] = useState({
     first_name: "",
     last_name: "",
@@ -48,9 +46,9 @@ function AdmissionForm(props) {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/admission/")
+      .get("http://localhost:5000/inpatient/")
       .then((response) => {
-        setAdmission(response.data);
+        setInPatient(response.data);
       })
       .catch((error) => {
         console.log(error);
@@ -58,8 +56,8 @@ function AdmissionForm(props) {
   }, []);
 
   const tabRow = () => {
-    return admission.map((object, i) => {
-      return <AdmissionTableRow obj={object} key={i} />;
+    return inpatient.map((object, i) => {
+      return <InPatientTableRow obj={object} key={i} />;
     });
   };
 
@@ -68,7 +66,7 @@ function AdmissionForm(props) {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/admission/get/count")
+      .get("http://localhost:5000/inpatient/get/count")
       .then((response) => {
         console.log(response);
         setCount(response.data);
@@ -82,29 +80,7 @@ function AdmissionForm(props) {
 
   const handleClick = (e) => {
     e.preventDefault();
-    axios
-      .post(`http://localhost:5000/admission/add`, data)
-
-      .then((res) => {
-        alert(`Added Successfully`);
-        handleClose();
-        window.location.reload();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-
-       axios
-      .post(`http://localhost:5000/inpatient/add`, data)
-
-      .then((res) => {
-        alert(`Added Successfully`);
-        handleClose();
-        window.location.reload();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+   
   };
 
   return (
@@ -237,7 +213,7 @@ function AdmissionForm(props) {
       </Modal>
 
 
-      <h1 align="center">Admission List</h1>
+      <h1 align="center">inpatient List</h1>
       <h4 className="text-right">
         <b>Total: {count}</b>
       </h4>
@@ -274,13 +250,6 @@ function AdmissionForm(props) {
               <td>
                 <Link to="/shelters" className="nav-link">
                   <p>View Shelters</p>
-                </Link>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <Link to="/inpatient" className="nav-link">
-                  <p>InPatients</p>
                 </Link>
               </td>
             </tr>
@@ -324,9 +293,7 @@ function AdmissionForm(props) {
             <td>
               <b>Shelter No</b>
             </td>
-            <td>
-              <b>Status</b>
-            </td>
+           
 
 
           </tr>
@@ -341,4 +308,4 @@ function AdmissionForm(props) {
     </div>
   );
 }
-export default withRouter(AdmissionForm);
+export default withRouter(InPatient);

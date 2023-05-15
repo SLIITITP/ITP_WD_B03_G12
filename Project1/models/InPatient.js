@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
-let Admission = new Schema({
+let InPatient = new Schema({
 
     first_name: {
         type: String,
@@ -47,8 +47,8 @@ let Admission = new Schema({
 },
 
 {
-    collection:'admission'
+    collection:'inpatient'
 
 }
 );
-module.exports =mongoose.model('Admission',Admission)
+module.exports =mongoose.model('InPatient',InPatient)

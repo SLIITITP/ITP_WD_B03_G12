@@ -150,3 +150,6 @@ app.use('/shelters', shelterRoutes);
 
 var appointmentsRoutes = require('./routes/Appointments');
 app.use('/appointments', appointmentsRoutes);
+
+var inpatientRoutes = require('./routes/InPatient');
+app.use('/inpatient',inpatientRoutes)

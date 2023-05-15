@@ -41,7 +41,7 @@ admissionRoutes.route('/add').post(function(req,res){
                 return res.status(400).json({error:'Admission not Found'});
             }
             
-            if(!req.body.first_name ||!req.body.last_name ||!req.body.contact_no ||!req.body.weight ||!req.body.diagnosis ||!req.body.shelter_type ||!req.body.special_notes ||!req.body.shelter_no){
+            if(!req.body.first_name ||!req.body.last_name ||!req.body.contact_no ||!req.body.weight ||!req.body.diagnosis ||!req.body.shelter_type ||!req.body.special_notes ||!req.body.shelter_no ||!req.body.status){
                 return res.status(400).json({error: 'Missing Required Fields!!'});
 
             }
@@ -53,6 +53,7 @@ admissionRoutes.route('/add').post(function(req,res){
             admission.shelter_type  = req.body.shelter_type ;
             admission.special_notes= req.body.special_notes;
             admission.shelter_no= req.body.shelter_no;
+            admission.status = req.body.status
 
             
             await admission.save();
@@ -65,6 +66,21 @@ admissionRoutes.route('/add').post(function(req,res){
         
     });
 
+
+         //Update discharge Operation
+         admissionRoutes.route('/discharge/:id').put(async (req,res) =>{
+            try {
+                const admission = await Admission.findById(req.params.id);
+                admission.status = "Discharged"
+                await admission.save();
+                res.json(admission);
+    
+            } catch (err) {
+                res.status(500).json({error: err.message});
+                
+            }
+            
+        });
     
     //Delete Operation
 

@@ -67,16 +67,23 @@ function EmployeeListPreview(props) {
  
 
     return (
+
         <div>
-     
 
-      <ReactToPrint
+<ReactToPrint
 
- documentTitle='Our Employees'
+documentTitle='Our Employees'
 
 trigger={() => <Button style={{float:'right'}}>Print</Button>}
 
 content={() => componentRef.current} ></ReactToPrint>
+
+        <div>
+          
+       
+     
+
+      
 <EmployeePrint ref={componentRef}>
 <PrintHeader/>
 
@@ -125,6 +132,7 @@ content={() => componentRef.current} ></ReactToPrint>
           <tbody>{tabRow()}</tbody>
         </Table>
         </EmployeePrint>
+        </div>
 
       </div>
    

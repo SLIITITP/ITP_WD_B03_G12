@@ -17,6 +17,7 @@ const AdmissionTableRow = (props) => {
       shelter_type: props.obj.shelter_type,
       special_notes: props.obj.special_notes,
       shelter_no:props.obj.shelter_no,
+      status:props.obj.status
     });
 
     const [show, setShow] = useState(false);
@@ -192,6 +193,20 @@ const AdmissionTableRow = (props) => {
                   autoFocus
                 />
               </Form.Group>
+
+              <Form.Group
+                className="mb-3"
+                controlId="exampleForm.ControlInput1"
+              >
+                <Form.Label>Admit Status:</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="status"
+                  value={updated.status}
+                  onChange={handleChange}
+                  autoFocus
+                />
+              </Form.Group>
         </Form>
        </Modal.Body>
        <Modal.Footer>
@@ -218,6 +233,7 @@ const AdmissionTableRow = (props) => {
         <td>{admissionState.shelter_type}</td>
         <td>{admissionState.special_notes}</td>
         <td>{admissionState.shelter_no}</td>
+        <td>{admissionState.status}</td>
         <td>
           <button
             type="submit"
