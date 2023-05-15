@@ -81,8 +81,8 @@ class Navbar3 extends Component {
                     </li>
 
                     <li className="nav-item2" >
-                        <Link to="/dashboard" className="nav-link" > 
-                            <h6>Dashboard</h6>
+                        <Link to="/insights" className="nav-link" > 
+                            <h6>Insights</h6>
                         </Link>
                     </li>
 

@@ -10,14 +10,12 @@ import ReactToPrint from 'react-to-print';
 import "../components/CSS/listmain.css";
 import jwt_decode from "jwt-decode";
 
-import { ServicePrint } from "./ServicePrint";
+
 
 function PaymentList(props) {
  
+  //taking user
     const token = localStorage.getItem("usertoken");
-
-    console.log(token);
-  
     const [userData, setUserData] = useState({});
   
     useEffect(() => {
@@ -40,10 +38,9 @@ function PaymentList(props) {
 
   //insert hook
   const [data, setData] = useState({
-    _id: "",
     pay_total: "",
     pay_cashierName: "",
-    pay_date: "",
+  
   });
 
   const handleChange = (e) => {
@@ -96,9 +93,13 @@ function PaymentList(props) {
 
   //send new data to database
   const handleClick = (e) => {
-    e.preventDefault();
+    const newData = {
+      ...data,
+      pay_cashierName: userData.first_name,
+    };
+    console.log(newData);
     axios
-      .post(`http://localhost:5000/payments/add`, data)
+      .post(`http://localhost:5000/payments/add`, newData)
       .then((res) => {
         alert(`Added Successfully`);
         handleClose();
@@ -108,6 +109,7 @@ function PaymentList(props) {
         console.log(err);
       });
   };
+
   const componentRef = useRef(); 
  
   return (
@@ -151,7 +153,7 @@ function PaymentList(props) {
               readOnly
                 type="text"
                 name="pay_cashierName"
-                value={userData.first_name}
+                value={data.pay_cashierName}
                 placeholder="Enter cashier Name"
                 onChange={handleChange}
                 autoFocus
@@ -179,7 +181,11 @@ function PaymentList(props) {
           <table className="buttonstyle">
             <tr>
               <td>
-                <Link onClick={handleShow} className="nav-link">
+              {
+                //<Link onClick={handleShow} className="nav-link">
+              }  
+                <Link to="/payservice" className="nav-link">
+                
                   <p>Issue Invoice</p>
                 </Link>
               </td>
@@ -211,7 +217,7 @@ function PaymentList(props) {
         {
           //-------------------------Display data from database-------------------
         }
-        <ServicePrint ref={componentRef}>
+       
         <table className="table table-striped" style={{ width: "54em" }}>
           <tr>
             <td>
@@ -220,10 +226,13 @@ function PaymentList(props) {
             <td>
               <b>Total</b>
             </td>
+            <td>
+              <b>Cashier</b>
+            </td>
           </tr>
           <tbody>{tabRow()}</tbody>
         </table>
-        </ServicePrint>
+    
       </div>
       
 

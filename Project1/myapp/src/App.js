@@ -46,6 +46,11 @@ import OrderListPrintPreview from './components/OrderListPrintPreview'
 import EmployeeLoginPrintPreview from './components/EmployeeLoginPrintPreview'
 import AnimalPrintPreview from './components/AnimalPrintPreview'
 import ItemListPrintPreview from './components/ItemListPrintPreview'
+import InsightsService from './components/InsightsService';
+import PaymentService from './components/PaymentService';
+
+
+
 class App extends Component {
 
 
@@ -105,8 +110,8 @@ class App extends Component {
             <Route path = "/employeeLoginListPreview" element={<EmployeeLoginPrintPreview/>}/>
             <Route path = "/animalPrintPreview" element={<AnimalPrintPreview/>}/>
             <Route path = "/itemListPrintPreview" element={<ItemListPrintPreview/>}/>
-
-
+            <Route path = "/insights" element={<InsightsService/>}/>
+            <Route path = "/payservice" element={<PaymentService/>}/>
           
            
             

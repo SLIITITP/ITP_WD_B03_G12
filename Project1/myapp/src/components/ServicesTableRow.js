@@ -65,7 +65,7 @@ const ServicesTableRow = (props) => {
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <h4>Centered Modal</h4>
+            <h4>{updated.service_name}</h4>
             <Form>
               <Form.Group
                 className="mb-3"
