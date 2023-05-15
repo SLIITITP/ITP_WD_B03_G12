@@ -172,12 +172,7 @@ function AnimalList(props) {
             <td >
               <b>Owner</b>
             </td>
-            <td>
-              <b>Date</b>
-            </td>
-            <td>
-              <b>Date</b>
-            </td>
+
           </tr>
           <tbody>{tabRow()}</tbody>
         </table>

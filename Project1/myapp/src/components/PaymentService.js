@@ -152,7 +152,7 @@ function PaymentService(props) {
     } else {
       const newService = { ...service, quantity: 1 };
       setCart([...cart, newService]);
-      alert("Item Added Successfully");
+      
     }
   };
 
@@ -235,6 +235,22 @@ function PaymentService(props) {
         console.log(err);
       });
 
+      const incomeData = {
+        type: "Service",
+        total:cartTotal
+      }
+      console.log(incomeData);
+    axios
+      .post(`http://localhost:5000/income/add`, incomeData)
+      .then((res) => {
+        handleClose();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+
+
     handleShowModal();
   };
 
@@ -268,7 +284,7 @@ function PaymentService(props) {
               onClick={finalBill}
               style={{ backgroundColor: "darkgoldenrod" }}
             >
-              Confirm
+              Confirm 
             </Button>
           </Link>
           <Button variant="secondary" onClick={handleClose}>
