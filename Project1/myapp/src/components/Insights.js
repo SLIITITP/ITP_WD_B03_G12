@@ -1,30 +1,34 @@
 import React from 'react';
 
-const Table = () => {
-  const numRows = 8;
-  const numCols = 8;
-
+function Table() {
   const renderTable = () => {
-    const table = [];
-
-    for (let i = 0; i < numRows; i++) {
-      const row = [];
-      for (let j = 0; j < numCols; j++) {
-        row.push(<td key={j}></td>);
+    const rows = [];
+    for (let i = 0; i < 8; i++) {
+      const cells = [];
+      for (let j = 0; j < 8; j++) {
+        
       }
-      table.push(<tr key={i}>{row}</tr>);
+      rows.push(<tr key={i}>{cells}</tr>);
     }
+    return rows;
+  };
 
-    return table;
+  const boxStyle = {
+    width: '50px',
+    height: '50px',
+    border: '1px solid black',
+    textAlign: 'center',
+    verticalAlign: 'middle',
   };
 
   return (
-    <table>
-      <tbody>
-        {renderTable()}
-      </tbody>
-    </table>
+    <div>
+      <h1>Box Table Example</h1>
+      <table style={{ borderCollapse: 'collapse' }}>
+        <tbody>{renderTable()}</tbody>
+      </table>
+    </div>
   );
-};
+}
 
 export default Table;
