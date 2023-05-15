@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { PieChart, Pie, ResponsiveContainer } from 'recharts';
+import Insights from './Insights'
 
 const InsightsService = () => {
   const [service, setService] = useState([]);
