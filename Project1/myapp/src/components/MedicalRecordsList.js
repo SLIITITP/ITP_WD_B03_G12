@@ -100,9 +100,9 @@ function MedicalRecordsList(props) {
               <Form.Label>Issued DoctorID:</Form.Label>
               <Form.Control
                 type="text"
-                name="issued_doctorID"
-                value={data.issued_doctorID}
-                placeholder="Enter New Issued DoctorID"
+                name="issued_doctor_ID"
+                value={data.issued_doctor_ID}
+                placeholder="Enter Doctor name"
                 onChange={handleChange}
                 autoFocus
               />
@@ -178,7 +178,7 @@ function MedicalRecordsList(props) {
         <table className="table table-striped" style={{ width: "54em" }}>
           <tr>
             <td>
-              <b>Issued DoctorID</b>
+              <b>Issued Doctor</b>
             </td>
             <td>
               <b>Description</b>

@@ -15,6 +15,7 @@ const AnimalTableRow = (props) => {
     animal_gender: props.obj.animal_gender,
     DOB: props.obj.DOB,
     date: props.obj.date,
+    owner_ID: props.obj.owner_ID
   });
 
   const [show, setShow] = useState(false);
@@ -24,6 +25,18 @@ const AnimalTableRow = (props) => {
 
   const [updated, setUpdated] = useState({});
 
+  const [showModal, setShowModal] = useState(false)
+
+  const handleShowModal = () => setShowModal(true)
+  const handleCloseModal = () => setShowModal(false)
+
+  const viewAnimal = (id) => {
+    console.log(animalState);
+    console.log(id);
+    handleShowModal()
+   
+
+  };
   const onDelete = (id) => {
     axios.get(`http://localhost:5000/animal/delete/${id}`).then((res) => {
       alert(`Deleted Successfully : ${id}`);
@@ -69,7 +82,6 @@ const AnimalTableRow = (props) => {
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <h4>Centered Modal</h4>
             <Form>
               <Form.Group
                 className="mb-3"
@@ -97,20 +109,7 @@ const AnimalTableRow = (props) => {
                   autoFocus
                 />
               </Form.Group>
-              <Form.Group
-                className="mb-3"
-                controlId="exampleForm.ControlTextarea1" >
-                <Form.Label>Animal Type</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="animal_breed"
-                  value={updated.animal_breed}
-                  onChange={handleChange}
-                  autoFocus
-                />
-              </Form.Group>
-
-          
+              
               <Form.Group
                 className="mb-3"
                 controlId="exampleForm.ControlTextarea1"
@@ -120,6 +119,19 @@ const AnimalTableRow = (props) => {
                   type="text"
                   name="animal_gender"
                   value={updated.animal_gender}
+                  onChange={handleChange}
+                  autoFocus
+                />
+              </Form.Group>
+              <Form.Group
+                className="mb-3"
+                controlId="exampleForm.ControlTextarea1"
+              >
+                <Form.Label>Animal Breed</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="animal_breed"
+                  value={updated.animal_breed}
                   onChange={handleChange}
                   autoFocus
                 />
@@ -145,6 +157,128 @@ const AnimalTableRow = (props) => {
           </Modal.Footer>
         </Modal>
 
+
+
+        {
+          //-------------------------View using bootstrap Modal-------------------
+        }
+
+        <Modal {...props} size="lg" show={showModal} onHide={handleCloseModal} centered>
+          <Modal.Header closeButton>
+            <Modal.Title id="contained-modal-title-vcenter">
+              Pet Profile
+            </Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <h4>{updated.animal_name}</h4>
+            <h5>{updated.animal_type}</h5>
+            <h5>{updated.animal_gender}</h5>
+            <h5>{updated.animal_breed}</h5>
+            <h5>{updated.DOB}</h5>  
+
+            <Form>
+              <Form.Group
+                className="mb-3"
+                controlId="exampleForm.ControlInput1"
+              >
+                <Form.Label>Vaccine:</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="vaccine"
+                  value={updated.vaccine}
+                  onChange={handleChange}
+                  autoFocus
+                />
+              </Form.Group>
+              <Form.Group
+                className="mb-3"
+                controlId="exampleForm.ControlTextarea1"
+              >
+                <Form.Label>Date</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="date"
+                  value={updated.date}
+                  onChange={handleChange}
+                  autoFocus
+                />
+              </Form.Group>
+              
+              <Form.Group
+                className="mb-3"
+                controlId="exampleForm.ControlTextarea1"
+              >
+                <Form.Label>Next Date</Form.Label>
+                <Form.Control
+                  type="date"
+                  name="next_date"
+                  value={updated.next_date}
+                  onChange={handleChange}
+                  autoFocus
+                />
+              </Form.Group>
+              <Form.Group
+                className="mb-3"
+                controlId="exampleForm.ControlTextarea1"
+              >
+                <Form.Label>Batch</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="batch"
+                  value={updated.batch}
+                  onChange={handleChange}
+                  autoFocus
+                />
+              </Form.Group>
+              <Form.Group
+                className="mb-3"
+                controlId="exampleForm.ControlTextarea1"
+              >
+                <Form.Label>MFD</Form.Label>
+                <Form.Control
+                  type="date"
+                  name="MFD"
+                  value={updated.MFD}
+                  onChange={handleChange}
+                  autoFocus
+                />
+              </Form.Group>
+              <Form.Group
+                className="mb-3"
+                controlId="exampleForm.ControlTextarea1"
+              >
+                <Form.Label>EXP</Form.Label>
+                <Form.Control
+                  type="date"
+                  name="EXP"
+                  value={updated.EXP}
+                  onChange={handleChange}
+                  autoFocus
+                />
+              </Form.Group>
+              <Form.Group
+                className="mb-3"
+                controlId="exampleForm.ControlTextarea1"
+              >
+                <Form.Label>Veterinarian</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="vaterinarian"
+                  value={updated.vaterinarian}
+                  onChange={handleChange}
+                  autoFocus
+                />
+              </Form.Group>
+            </Form>
+            
+
+          </Modal.Body>
+          <Modal.Footer>
+            <Button onClick={() => onUpdate(animalState._id)}>Add</Button>
+            <Button onClick={handleCloseModal}>Close</Button>
+          </Modal.Footer>
+        </Modal>
+
         {
           //-------------------------Display All data -------------------
         }
@@ -155,7 +289,18 @@ const AnimalTableRow = (props) => {
         <td>{animalState.animal_type}</td>
         <td>{animalState.animal_breed}</td>
         <td>{animalState.animal_gender}</td>
-        <td>{animalState.DOB}</td>
+        <td>{animalState.DOB.substring(0, 10)}</td>
+        <td>{animalState.owner_ID}</td>
+        <td>
+          <button
+            type="submit"
+            className="view"
+            onClick={() => viewAnimal(animalState)}
+          >
+            <Link className="nav-link">View</Link>
+          </button>
+        </td>
+       
         <td>
           <button
             type="submit"
