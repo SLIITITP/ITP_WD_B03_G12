@@ -1,29 +1,30 @@
 import React from 'react';
 
-function Table() {
+const Table = () => {
   const numRows = 8;
   const numCols = 8;
 
   const renderTable = () => {
     const table = [];
 
-    // Create rows
     for (let i = 0; i < numRows; i++) {
       const row = [];
-
-      // Create columns
       for (let j = 0; j < numCols; j++) {
-        row.push(<div key={j} className="cell">{`Row ${i + 1}, Col ${j + 1}`}</div>);
+        row.push(<td key={j}></td>);
       }
-
-      // Add the row to the table
-      table.push(<div key={i} className="row">{row}</div>);
+      table.push(<tr key={i}>{row}</tr>);
     }
 
     return table;
   };
 
-  return <div className="table">{renderTable()}</div>;
-}
+  return (
+    <table>
+      <tbody>
+        {renderTable()}
+      </tbody>
+    </table>
+  );
+};
 
 export default Table;
