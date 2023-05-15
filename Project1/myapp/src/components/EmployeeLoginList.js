@@ -7,6 +7,7 @@ import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import { withRouter } from './withRouter';
 import Table from 'react-bootstrap/Table';
+import { Alert } from "react-bootstrap";
 
 
 
@@ -17,29 +18,98 @@ function EmployeeLoginList(props) {
   
   const componentRef = useRef();
 
+
+  // Form validation errors
+  const [errors, setErrors] = useState({
+    email: '',
+    password: '',
+    acctype: '',
+  });
+
+  // Form data
+  const [data, setData] = useState({
+    email: '',
+    password: '',
+    acctype: '',
+    image: '',
+  });
+
+  // Validation rules
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  // Form validation functions
+  const validateEmail = () => {
+    if (!data.email) {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        email: 'Email is required',
+      }));
+    } else if (!emailRegex.test(data.email)) {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        email: 'Invalid email format',
+      }));
+    } else {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        email: '',
+      }));
+    }
+  };
+
+  const validatePassword = () => {
+    if (!data.password) {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        password: 'Password is required',
+      }));
+    } else {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        password: '',
+      }));
+    }
+  };
+
+  const validateAcctype = () => {
+    if (!data.acctype || data.acctype === 'select') {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        acctype: 'Account type is required',
+      }));
+    } else {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        acctype: '',
+      }));
+    }
+  };
+
+  // Event handler for form field changes
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+
+    // Validate the field on change
+    if (name === 'email') {
+      validateEmail();
+    } else if (name === 'password') {
+      validatePassword();
+    } else if (name === 'acctype') {
+      validateAcctype();
+    }
+  };
+
     //read hook
     const [employeelogin, setEmployeelogin] = useState([]);
 
     
 
-    //insert hook
-    const [data, setData] = useState({
-        email: '',
-        password: '',
-        acctype: '',
-        image: '',
-
-    });
-
-    const handleChange = (e) => {
-      const { name, value } = e.target;
-  
-      setData((prev) => ({
-        ...prev,
-        [name]: value,
-      }));
-
-    };
+ 
 
       //Bootsrap Modal configurations
 
@@ -100,6 +170,18 @@ function EmployeeLoginList(props) {
     //send new data to database
     const handleClick = async (e) => {
       e.preventDefault();
+
+      // Validate all fields before submitting
+    validateEmail();
+    validatePassword();
+    validateAcctype();
+
+    // Check if there are any errors
+    if (errors.email || errors.password || errors.acctype) {
+      return;
+    }
+
+
       const formData = new FormData();
       formData.append('file', file);
       
@@ -161,6 +243,7 @@ function EmployeeLoginList(props) {
                 onChange={handleChange}
                 autoFocus
               />
+              {errors.email && <Alert variant="danger">{errors.email}</Alert>}
             </Form.Group>
 
             <Form.Group
@@ -175,6 +258,7 @@ function EmployeeLoginList(props) {
                 onChange={handleChange}
                 autoFocus
               />
+              {errors.password && <Alert variant="danger">{errors.password}</Alert>}
             </Form.Group>
 
           
@@ -209,7 +293,9 @@ function EmployeeLoginList(props) {
               <option value="doctor">Doctor</option>
                <option value="admin">Admin</option>
                <option value="cashier">Cashier</option>
+               
               </Form.Control>
+              {errors.acctype && <Alert variant="danger">{errors.acctype}</Alert>}
   
 
             </Form.Group>

@@ -8,8 +8,63 @@ import Modal from "react-bootstrap/Modal";
 import { withRouter } from './withRouter';
 import Table from 'react-bootstrap/Table';
 import '../components/CSS/listmain.css';
+import { Alert } from "react-bootstrap";
 
 function EmployeeList(props) {
+
+  //Form validation
+  const [errors, setErrors] = useState({});
+
+  const validateForm = () => {
+    let isValid = true;
+    const newErrors = {};
+  
+    // Validate name field
+    if (data.name.trim() === "") {
+      newErrors.name = "Name is required";
+      isValid = false;
+    }
+  
+    if (data.lname.trim() === "") {
+      newErrors.lname = "Last name is required";
+      isValid = false;
+    }
+  
+    if (data.NIC.trim() === "") {
+      newErrors.NIC = "NIC is required";
+      isValid = false;
+    }
+  
+    if (data.phoneno.trim() === "") {
+      newErrors.phoneno = "Phone number is required";
+      isValid = false;
+    }
+  
+    if (data.address.trim() === "") {
+      newErrors.address = "Address is required";
+      isValid = false;
+    }
+  
+    if (data.gender === "select") {
+      newErrors.gender = "Gender is required";
+      isValid = false;
+    }
+  
+    if (data.birthday.trim() === "") {
+      newErrors.birthday = "Birthday is required";
+      isValid = false;
+    }
+  
+    if (data.jobrole === "select") {
+      newErrors.jobrole = "Job role is required";
+      isValid = false;
+    }
+  
+    setErrors(newErrors);
+    return isValid;
+  };
+  
+
    
 
     //read hook
@@ -79,17 +134,21 @@ function EmployeeList(props) {
   //send new data to database
   const handleClick = (e) => {
     e.preventDefault();
-    axios
-      .post(`http://localhost:5000/employee/add`, data)
-      .then((res) => {
-        alert(`Added Successfully`);
-        handleClose();
-        window.location.reload();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  
+    if (validateForm()) {
+      axios
+        .post(`http://localhost:5000/employee/add`, data)
+        .then((res) => {
+          alert(`Added Successfully`);
+          handleClose();
+          window.location.reload();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   };
+  
 
     return (
         <div>
@@ -115,6 +174,7 @@ function EmployeeList(props) {
 
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Enter first name:</Form.Label>
+              
               <Form.Control
                 type="text"
                 name="name"
@@ -122,7 +182,9 @@ function EmployeeList(props) {
                 placeholder="Enter first name"
                 onChange={handleChange}
                 autoFocus
+      
               />
+              {errors.name && <Alert variant="danger">{errors.name}</Alert>}
             </Form.Group>
 
             <Form.Group
@@ -137,6 +199,7 @@ function EmployeeList(props) {
                 onChange={handleChange}
                 autoFocus
               />
+              {errors.lname && <Alert variant="danger">{errors.lname}</Alert>}
             </Form.Group>
 
             <Form.Group
@@ -151,6 +214,7 @@ function EmployeeList(props) {
                 onChange={handleChange}
                 autoFocus
               />
+              {errors.NIC && <Alert variant="danger">{errors.NIC}</Alert>}
             </Form.Group>
 
 
@@ -167,6 +231,7 @@ function EmployeeList(props) {
                 onChange={handleChange}
                 autoFocus
               />
+              {errors.phoneno && <Alert variant="danger">{errors.phoneno}</Alert>}
             </Form.Group>
 
             <Form.Group
@@ -181,6 +246,7 @@ function EmployeeList(props) {
                 onChange={handleChange}
                 autoFocus
               />
+              {errors.address && <Alert variant="danger">{errors.address}</Alert>}
             </Form.Group>
 
             <Form.Group
@@ -195,6 +261,7 @@ function EmployeeList(props) {
               <option value="male">Male</option>
                <option value="empfemaleloyee">Female</option>
               </Form.Control>
+              {errors.gender && <Alert variant="danger">{errors.gender}</Alert>}
   
 
             </Form.Group>
@@ -211,6 +278,7 @@ function EmployeeList(props) {
                 onChange={handleChange}
                 autoFocus
               />
+              {errors.birthday && <Alert variant="danger">{errors.birthday}</Alert>}
             </Form.Group>
 
             <Form.Group
@@ -225,6 +293,7 @@ function EmployeeList(props) {
               <option value="doctor">Doctor</option>
                <option value="employee">Employee</option>
               </Form.Control>
+              {errors.jobrole && <Alert variant="danger">{errors.jobrole}</Alert>}
   
 
             </Form.Group>
