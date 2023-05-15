@@ -7,10 +7,34 @@ import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import { withRouter } from "./withRouter";
 import "../components/CSS/listmain.css";
+import { Alert } from "react-bootstrap";
 
 function ServicesList(props) {
+  //Form validation
+  const [errors, setErrors] = useState({});
   //read hook
   const [service, setService] = useState([]);
+
+//Validations
+  const validateForm = () => {
+    let isValid = true;
+    const newErrors = {};
+  
+    // Validate name field
+    if (data.service_name.trim() === "") {
+      newErrors.service_name = "Service Name is required";
+      isValid = false;
+    }
+  
+    if (data.service_price.trim() === "") {
+      newErrors.service_price = "Price is required";
+      isValid = false;
+    }
+  
+    setErrors(newErrors);
+    return isValid;
+  };
+  
 
   //insert hook
   const [data, setData] = useState({
@@ -79,10 +103,9 @@ function ServicesList(props) {
   const handleClick = (e) => {
     e.preventDefault();
   
-    const form = e.currentTarget;
-    if (form.checkValidity() === false) {
-      e.stopPropagation();
-    } else {
+   
+
+    if  (validateForm()) {
       axios
         .post(`http://localhost:5000/service/add`, data)
         .then((res) => {
@@ -95,7 +118,6 @@ function ServicesList(props) {
         });
     }
   
-    setValidated(true);
   };
   
   
@@ -128,8 +150,9 @@ function ServicesList(props) {
                 placeholder="Enter New service"
                 onChange={handleChange}
                 autoFocus
-                required
               />
+              {errors.service_name && <Alert variant="danger">{errors.service_name}</Alert>}
+
                <Form.Control.Feedback type="invalid">
               Please choose a service name.
             </Form.Control.Feedback>
@@ -146,8 +169,8 @@ function ServicesList(props) {
                 placeholder="Enter service Price"
                 onChange={handleChange}
                 autoFocus
-                required
               />
+              {errors.service_price && <Alert variant="danger">{errors.service_price}</Alert>}
                <Form.Control.Feedback type="invalid">
               Please enter a price.
             </Form.Control.Feedback>

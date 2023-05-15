@@ -7,16 +7,44 @@ import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import { withRouter } from "./withRouter";
 import "../components/CSS/listmain.css";
+import { Alert } from "react-bootstrap";
 
 
 
 
 
 function ShelterList(props){
+  //Form validation
+  const [errors, setErrors] = useState({});
 
      //read hook
 
   const [shelter, setShelter] = useState([]);
+
+//Validations
+const validateForm = () => {
+  let isValid = true;
+  const newErrors = {};
+
+  // Validate name field
+  if (data.shelter_id.trim() === "") {
+    newErrors.shelter_id = "Shelter Id is required";
+    isValid = false;
+  }
+
+  if (data.shelter_type.trim() === "") {
+    newErrors.shelter_type = "Shelter Type  is required";
+    isValid = false;
+  }
+  if (data.special_details.trim() === "") {
+    newErrors.special_details = "Details are required";
+    isValid = false;
+  }
+
+  setErrors(newErrors);
+  return isValid;
+};
+
 
   //insert hook
   const [data, setData] = useState({
@@ -80,6 +108,7 @@ useEffect(() => {
 
   const handleClick = (e) => {
     e.preventDefault();
+    if  (validateForm()){
     axios
     .post(`http://localhost:5000/shelters/add`, data)
 
@@ -91,6 +120,7 @@ useEffect(() => {
       .catch((err) => {
         console.log(err);
       });
+    }
   };
 
   return(
@@ -125,6 +155,8 @@ useEffect(() => {
                 onChange={handleChange}
                 autoFocus
               />
+               {errors.shelter_id && <Alert variant="danger">{errors.shelter_id}</Alert>}
+
             </Form.Group>
 
 
@@ -139,6 +171,8 @@ useEffect(() => {
                 value={data.shelter_type}
                 onChange={handleChange}
               >
+               {errors.shelter_type && <Alert variant="danger">{errors.shelter_type}</Alert>}
+
                 <option value="">Select</option>
                 <option value="small">Small</option>
                 <option value="medium">Medium</option>
@@ -158,6 +192,8 @@ useEffect(() => {
                 onChange={handleChange}
                 autoFocus
               />
+               {errors.special_details && <Alert variant="danger">{errors.special_details}</Alert>}
+
             </Form.Group>
 
 

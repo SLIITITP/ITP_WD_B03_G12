@@ -87,6 +87,9 @@ function PrescriptionList(props) {
 
   return (
     <div>
+     <Link to="/prescriptionListPreview" className="nav-link">
+        <Button style={{ float: "right" }}>Print Preview</Button>
+      </Link>
       {
         //-------------------------Insert form using bootstrap Modal-------------------
       }
