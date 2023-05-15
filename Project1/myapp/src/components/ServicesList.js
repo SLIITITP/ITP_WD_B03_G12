@@ -46,7 +46,7 @@ function ServicesList(props) {
     const { name, value } = e.target;
 
     // Validate the service price
-    if (name === "service_price" && !/^\d+(\.\d{1,2})?$/.test(value)) {
+    if (name === "service_price" && !/^\d*\.?\d{0,2}$/.test(value)) {
       // Price validation failed
       return;
     }

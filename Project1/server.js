@@ -75,7 +75,6 @@ app.post('/api/upload', upload.single('file'), (req, res) => {
 
     // Save the file to MongoDB
     const fileData = new File({
-        email: file.email,
         filename: file.filename,
         originalname: file.originalname,
         path: file.path,
@@ -202,3 +201,6 @@ app.use('/appointments', appointmentsRoutes);
 
 var inpatientRoutes = require('./routes/InPatient');
 app.use('/inpatient',inpatientRoutes)
+
+var incomeRoutes = require('./routes/Income');
+app.use('/income',incomeRoutes)
