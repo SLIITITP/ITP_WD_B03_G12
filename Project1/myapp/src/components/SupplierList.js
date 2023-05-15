@@ -7,8 +7,61 @@ import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import { withRouter } from './withRouter';
 import '../components/CSS/listmain.css';
+import { Alert } from "react-bootstrap";
 
 function SupplierList(props) {
+
+   //Form validation
+  const [errors, setErrors] = useState({});
+
+  const validateForm = () => {
+    let isValid = true;
+    const newErrors = {};
+  
+    // Validate name field
+    if (data.company_name.trim() === "") {
+      newErrors.company_name = "Company name is required";
+      isValid = false;
+    }
+  
+    if (data.person1_first_name.trim() === "") {
+      newErrors.person1_first_name = "First name is required";
+      isValid = false;
+    }
+  
+    if (data.person1_last_name.trim() === "") {
+      newErrors.person1_last_name = "Last name is required";
+      isValid = false;
+    }
+  
+    if (data.email1.trim() === "") {
+      newErrors.email1 = "Email is required";
+      isValid = false;
+    }
+  
+    if (data.contact_no1.trim() === "") {
+      newErrors.contact_no1 = "Contact no is required";
+      isValid = false;
+    }
+  
+    if (data.contact_no2.trim() === "===") {
+      newErrors.contact_no2 = "Contact no is required";
+      isValid = false;
+    }
+  
+    if (data.registerd_date.trim() === "") {
+      newErrors.registerd_date = "registerd date is required";
+      isValid = false;
+    }
+  
+   /* if (data.expire_date === "select") {
+      newErrors.expire_date = "Expire date is required";
+      isValid = false;
+    }*/
+  
+    setErrors(newErrors);
+    return isValid;
+  };
   
     //read hook
     const [item, setItem] = useState([]);
@@ -80,6 +133,12 @@ function SupplierList(props) {
   const handleClick = (e) => {
     e.preventDefault();
     console.log(data)
+    
+
+    
+    if(validateForm()){
+
+    
     axios
       .post(`http://localhost:5000/supplier/add`, data)
       .then((res) => {
@@ -90,8 +149,12 @@ function SupplierList(props) {
       .catch((err) => {
         alert(`Already have`);
         console.log(err);
+
+        
       });
   };
+  }
+  
 
     return (
         <div>
@@ -123,6 +186,7 @@ function SupplierList(props) {
                 onChange={handleChange}
                 autoFocus
               />
+              {errors.company_name && <Alert variant="danger">{errors.company_name}</Alert>}
             </Form.Group>
 
             <Form.Group
@@ -137,6 +201,7 @@ function SupplierList(props) {
                 onChange={handleChange}
                 autoFocus
               />
+              {errors.person1_first_name && <Alert variant="danger">{errors.person1_first_name}</Alert>}
             </Form.Group>
 
             <Form.Group
@@ -151,6 +216,7 @@ function SupplierList(props) {
                 onChange={handleChange}
                 autoFocus
               />
+              {errors.person1_last_name && <Alert variant="danger">{errors.person1_last_name}</Alert>}
             </Form.Group>
 
             <Form.Group
@@ -165,6 +231,7 @@ function SupplierList(props) {
                 onChange={handleChange}
                 autoFocus
               />
+              
             </Form.Group>
 
             <Form.Group
@@ -179,6 +246,7 @@ function SupplierList(props) {
                 onChange={handleChange}
                 autoFocus
               />
+              
             </Form.Group>
 
             
@@ -197,6 +265,7 @@ function SupplierList(props) {
                 onChange={handleChange}
                 autoFocus
               />
+              {errors.email1 && <Alert variant="danger">{errors.email1}</Alert>}
             </Form.Group>
 
             <Form.Group
@@ -225,6 +294,7 @@ function SupplierList(props) {
                 onChange={handleChange}
                 autoFocus
               />
+              {errors.contact_no1 && <Alert variant="danger">{errors.contact_no1}</Alert>}
             </Form.Group>
 
             <Form.Group
@@ -253,6 +323,7 @@ function SupplierList(props) {
                 onChange={handleChange}
                 autoFocus
               />
+              {errors.registerd_date && <Alert variant="danger">{errors.registerd_date}</Alert>}
             </Form.Group>
 
            
