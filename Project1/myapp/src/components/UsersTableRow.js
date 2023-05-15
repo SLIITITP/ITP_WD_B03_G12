@@ -20,7 +20,63 @@ const UsersTableRow = (props) => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  const [showModal, setShowModal] = useState(false)
+
+  const handleShowModal = () => setShowModal(true);
+  const handleCloseModal = () => setShowModal(false)
+  
+  //insert hook
+  const [data, setData] = useState({
+    owner_ID: "", 
+    animal_name: "",
+    animal_type: "",
+    animal_breed: "",
+    animal_gender: "", 
+    DOB: "",
+    
+  });
+
+    //send new data to database
+    const handleClick = (e) => {
+      e.preventDefault();
+      axios
+        .post(`http://localhost:5000/animal/add`, data)
+        .then((res) => {
+          alert(`Added Successfully`);
+          handleClose();
+          window.location.reload();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+
   const [updated, setUpdated] = useState({});
+
+  const addAnimal = (id) => {
+    console.log(userState);
+    console.log(id);
+    handleShowModal()
+   
+
+  };
+
+  const handleChangeAnimal = (e) => {
+    const { name, value } = e.target;
+
+    setData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+
+    setData((prev) => ({
+      ...prev,
+      [name]: value,
+      owner_ID: userState.email, // set owner_ID to the user ID
+    }));
+  };
+
+  
 
   const onDelete = (id) => {
     axios.get(`http://localhost:5000/users/delete/${id}`).then((res) => {
@@ -67,7 +123,6 @@ const UsersTableRow = (props) => {
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <h4>Centered Modal</h4>
             <Form>
               <Form.Group
                 className="mb-3"
@@ -130,6 +185,104 @@ const UsersTableRow = (props) => {
         </Modal>
 
         {
+          //-------------------------Add animal form using bootstrap Modal-------------------
+        }
+
+<Modal {...props} size="lg" show={showModal} onHide={handleCloseModal} centered>
+        <Modal.Header closeButton>
+          <Modal.Title id="contained-modal-title-vcenter">
+            Add New Animal
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form>
+         
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Label>Animal Name:</Form.Label>
+              <Form.Control
+                type="text"
+                name="animal_name"
+                value={data.animal_name}
+                placeholder="Enter Animal Name"
+                onChange={handleChangeAnimal}
+                autoFocus
+              />
+            </Form.Group>
+            <Form.Group
+              className="mb-3"
+              controlId="exampleForm.ControlTextarea1"
+            >
+              <Form.Label>Animal Type:</Form.Label>
+              <Form.Control
+                type="text"
+                name="animal_type"
+                value={data.animal_type}
+                placeholder="Enter Animal Type"
+                onChange={handleChangeAnimal}
+                autoFocus
+              />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Label>Animal Breed:</Form.Label>
+              <Form.Control
+                type="text"
+                name="animal_breed"
+                value={data.animal_breed}
+                placeholder="Enter Animal Breed"
+                onChange={handleChangeAnimal}
+                autoFocus
+              />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Label>Animal Gender:</Form.Label>
+              <Form.Control
+                type="text"
+                name="animal_gender"
+                value={data.animal_gender}
+                placeholder="Enter Animal Breed"
+                onChange={handleChangeAnimal}
+                autoFocus
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Label>DOB:</Form.Label>
+              <Form.Control
+                type="date"
+                name="DOB"
+                value={data.DOB}
+                placeholder="Enter DOB"
+                onChange={handleChangeAnimal}
+                autoFocus
+              />
+            </Form.Group>
+
+     
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1" style={{ display: "none" }}>
+              <Form.Label>User Id:</Form.Label>
+              <Form.Control
+                type="text"
+                name="owner_ID"
+                value={data.owner_ID}
+                placeholder="Enter Animal Breed"
+                onChange={handleChangeAnimal}
+                autoFocus
+              />
+            </Form.Group> 
+
+
+
+            
+            
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button onClick={handleClick}>Add</Button>
+          <Button onClick={handleCloseModal}>Close</Button>
+        </Modal.Footer>
+      </Modal>
+
+        {
           //-------------------------Display All data -------------------
         }
 
@@ -140,6 +293,15 @@ const UsersTableRow = (props) => {
         <td>{userState.last_name}</td>
         <td>{userState.email}</td>
         <td>{userState.date.substring(0, 10)}</td> 
+        <td>
+          <button
+            type="submit"
+            className="addanimal"
+            onClick={() => addAnimal(userState._id)}
+          >
+            <Link className="nav-link">Add Animal</Link>
+          </button>
+        </td>
         <td>
           <button
             type="submit"

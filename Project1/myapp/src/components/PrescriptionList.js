@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useRef } from "react";
 import axios from "axios";
 import PrescriptionTableRow from "./PrescriptionTableRow";
 import { Link } from "react-router-dom";
@@ -6,10 +6,14 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import { withRouter } from "./withRouter";
+import ReactToPrint from 'react-to-print';
+
+import {PrescriptionPrint} from "./PrescriptionPrint";
 
 import "../components/CSS/listmain.css";
 
 function PrescriptionList(props) {
+  const componentRef = useRef();
   //read hook
   const [prescription, setPrescription] = useState([]);
 
@@ -26,7 +30,7 @@ function PrescriptionList(props) {
     const { name, value } = e.target;
 
     setData((prev) => ({
-      ...prev,
+      ...prev, 
       [name]: value,
     }));
   };
@@ -225,13 +229,11 @@ function PrescriptionList(props) {
         {
           //-------------------------Display data from database-------------------
         }
+        <PrescriptionPrint ref={componentRef}>
         <table className="table table-striped" style={{ width: "54em" }}>
           <tr>
             <td>
-              <b>DoctorID</b>
-            </td>
-            <td>
-              <b>PetID</b>
+              <b>Doctor Name</b>
             </td>
             <td>
               <b>PetName</b>
@@ -248,6 +250,7 @@ function PrescriptionList(props) {
           </tr>
           <tbody>{tabRow()}</tbody>
         </table>
+        </PrescriptionPrint>
       </div>
     </div>
   );

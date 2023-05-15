@@ -154,7 +154,7 @@ const PrescriptionsTableRow = (props) => {
           {" "}
         </td>
         <td>{prescriptionState.DoctorID}</td>
-        <td>{prescriptionState.PetID}</td>
+     
         <td>{prescriptionState.PetName}</td>
         <td>{prescriptionState.Illness}</td>
         <td>{prescriptionState.Medicine}</td>

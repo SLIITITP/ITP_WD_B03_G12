@@ -74,8 +74,8 @@ const MedicalRecordsTableRow = (props) => {
                 <Form.Label>Issued DoctorID:</Form.Label>
                 <Form.Control
                   type="text"
-                  name="issued_doctorID"
-                  value={updated.issued_doctorID}
+                  name="issued_doctor_ID"
+                  value={updated.issued_doctor_ID}
                   onChange={handleChange}
                   autoFocus
                 />

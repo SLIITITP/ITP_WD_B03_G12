@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { PieChart, Pie, ResponsiveContainer } from 'recharts';
-import Insights from './Insights'
+import Insights from "./Insights";
 
 const InsightsService = () => {
   const [service, setService] = useState([]);
@@ -47,47 +47,8 @@ const InsightsService = () => {
       </ResponsiveContainer>
     </div> 
 
-    <div className="grid-container">
-      <header className="header">
-        <div className="menu-icon" onClick={toggleAside}>
-          <strong>&#9776;</strong>
-        </div>
-        <div className="header_search">Search</div>
-      </header>
-      <aside className={`aside ${asideActive ? 'active' : ''}`}>
-        <div className="aside_close-icon" onClick={toggleAside}>
-          <strong>&times;</strong>
-        </div>
-      </aside>
-      <main className="main">
-        <div className="main_overview">
-          <div className="overview_card">
-            <div className="overview_card-info">Overview</div>
-            <div className="overview_card-icon">Card</div>
-          </div>
-          <div className="overview_card">
-            <div className="overview_card-info">Overview</div>
-            <div className="overview_card-icon">Card</div>
-          </div>
-          <div className="overview_card">
-            <div className="overview_card-info">Overview</div>
-            <div className="overview_card-icon">Card</div>
-          </div>
-          <div className="overview_card">
-            <div className="overview_card-info">Overview</div>
-            <div className="overview_card-icon">Card</div>
-          </div>
-        </div>
-        <div className="main_cards">
-          <div className="card">Card</div>
-          <div className="card">Card</div>
-          <div className="card">Card</div>
-        </div>
-      </main>
-      <footer className="footer"></footer>
-    </div>
-
-
+   <Insights/>
+    <tbody>{Insights()}</tbody>
     </>
   );
 };

@@ -2,7 +2,10 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 let Animal = new Schema ({
-
+    
+    owner_ID: {
+        type: String,
+    } ,
     animal_name: {
         type: String,
     } ,
@@ -22,7 +25,7 @@ let Animal = new Schema ({
     },
 
     DOB: {
-        type: Date,
+        type: Date, 
         
     },
 
