@@ -11,7 +11,7 @@ import jwt_decode from "jwt-decode";
 const PaymentTableRow = (props) => {
   const token = localStorage.getItem("usertoken");
 
-  console.log(token);
+
 
   const [userData, setUserData] = useState({});
 
@@ -23,7 +23,7 @@ const PaymentTableRow = (props) => {
         last_name: decoded.last_name,
         email: decoded.email,
       });
-      console.log("decoded:", decoded);
+      
     } catch (error) {
       setUserData({ error: "Error decoding token: " + error.message });
     }
@@ -31,6 +31,7 @@ const PaymentTableRow = (props) => {
 
   const [paymentState] = useState({
     _id: props.obj._id,
+    pay_services: props.obj.pay_services,
     pay_total: props.obj.pay_total,
     pay_cashierName: props.obj.pay_cashierName,
     pay_date: props.obj.pay_date,
@@ -56,6 +57,23 @@ const PaymentTableRow = (props) => {
     setUpdated((prevState) => ({ ...prevState, [name]: value }));
   };
 
+  const [serviceArrays, setServiceArrays] = useState([]);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    try {
+      const response = await fetch('http://localhost:5000/payments/services');
+      const data = await response.json();
+      console.log('Fetched data:', data);
+      setServiceArrays(data);
+    } catch (error) {
+      console.log('Error:', error);
+    }
+  }; 
+
   return (
     <tr>
       {
@@ -69,54 +87,33 @@ const PaymentTableRow = (props) => {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form>
-            <Col>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Payment Date:</Form.Label>
-              <Form.Control
-                type="text"
-                plaintext
-                readOnly
-                name="service_name"
-                value={updated.pay_date}
-                onChange={handleChange}
-                autoFocus
-              />
-            </Form.Group>
+        <h2 style={{textAlign: "center"}}>Invoice</h2>
+          <Modal.Body> 
+            <p style={{ float: "right" }}>{updated.pay_date}</p>
+            <br />
+            <br />
+            
+            <p style={{ float: "right" }}>Cashier: {updated.pay_cashierName}</p>
+            <br />
+            <br />
+            <div>
+            {serviceArrays.map((service, index) => (
+    <div key={index}>
+      <h4>{service.service_name}</h4>
+      <p>{service.service_price}</p>
+    </div>
+  ))} 
+            </div>
+            <hr />
+            <br />
+            <div>
+              <h4>
+                <b>Total: Rs.{updated.pay_total}</b>
+              </h4>
+            </div> 
+          </Modal.Body>
 
-            <Form.Group
-              className="mb-3"
-              controlId="exampleForm.ControlTextarea1" >
-              <Form.Label>Cashier</Form.Label>
-              <Form.Control
-                type="text"
-                name="first_name"
-                plaintext
-                readOnly
-                value={userData.first_name}
-                onChange={handleChange}
-                autoFocus
-              />
-            </Form.Group>
-            </Col>
-            <Form.Group
-              className="mb-3"
-              controlId="exampleForm.ControlTextarea1"
-            >
-              <Form.Label>Total</Form.Label>
-              <Form.Control
-                type="text"
-                name="service_price"
-                plaintext
-                readOnly
-                value={updated.pay_total}
-                onChange={handleChange}
-                autoFocus
-              />
-            </Form.Group>
-
-
-          </Form>
+    
         </Modal.Body>
         <Modal.Footer>
           <Button onClick={handleClose}>Close</Button>
@@ -132,7 +129,7 @@ const PaymentTableRow = (props) => {
       </td>
       <td>{paymentState.pay_date}</td>
       <td>{paymentState.pay_total}</td>
-      
+      <td>{paymentState.pay_cashierName}</td>
       <td>
         <button
           type="submit"
