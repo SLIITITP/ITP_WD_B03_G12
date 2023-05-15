@@ -8,6 +8,8 @@ import Modal from "react-bootstrap/Modal";
 import { withRouter } from "./withRouter";
 import e from "cors";
 import "../components/CSS/listmain.css";
+import { Alert } from "react-bootstrap";
+
 
 
 
@@ -16,6 +18,58 @@ function AdmissionForm(props) {
 
   //read hook
   const [admission, setAdmission] = useState([]);
+
+  //Form validation
+  const [errors, setErrors] = useState({});
+
+
+  //Validations
+  const validateForm = () => {
+    let isValid = true;
+    const newErrors = {};
+  
+    // Validate name field
+    if (data.first_name.trim() === "") {
+      newErrors.first_name = "First Name is required";
+      isValid = false;
+    }
+  
+    if (data.last_name.trim() === "") {
+      newErrors.last_name = "Last name is required";
+      isValid = false;
+    }
+    if (data.contact_no.trim() === "") {
+      newErrors.contact_no = "Contact is required";
+      isValid = false;
+    }
+    if (data.weight.trim() === "") {
+      newErrors.weight = "Weight is required";
+      isValid = false;
+    }
+    if (data.diagnosis.trim() === "") {
+      newErrors.diagnosis = "Diagnosis is required";
+      isValid = false;
+    }
+    if (data.shelter_type.trim() === "") {
+      newErrors.shelter_type = "Type is required";
+      isValid = false;
+    }
+
+    if (data.special_notes.trim() === "") {
+      newErrors.special_notes = "Special Note is required";
+      isValid = false;
+    }
+
+    if (data.shelter_no.trim() === "") {
+      newErrors.shelter_no = "shelter No is required";
+      isValid = false;
+    }
+  
+    setErrors(newErrors);
+    return isValid;
+  };
+
+
   //insert hook
   const [data, setData] = useState({
     first_name: "",
@@ -82,9 +136,10 @@ function AdmissionForm(props) {
 
   const handleClick = (e) => {
     e.preventDefault();
+
+    if  (validateForm()){
     axios
       .post(`http://localhost:5000/admission/add`, data)
-
       .then((res) => {
         alert(`Added Successfully`);
         handleClose();
@@ -93,7 +148,11 @@ function AdmissionForm(props) {
       .catch((err) => {
         console.log(err);
       });
+    }
+  
 
+      
+    if  (validateForm()){
        axios
       .post(`http://localhost:5000/inpatient/add`, data)
 
@@ -105,6 +164,8 @@ function AdmissionForm(props) {
       .catch((err) => {
         console.log(err);
       });
+    }
+    
   };
 
   return (
@@ -139,6 +200,7 @@ function AdmissionForm(props) {
                 onChange={handleChange}
                 autoFocus
               />
+              {errors.first_name && <Alert variant="danger">{errors.first_name}</Alert>}
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
@@ -151,6 +213,7 @@ function AdmissionForm(props) {
                 onChange={handleChange}
                 autoFocus
               />
+              {errors.last_name && <Alert variant="danger">{errors.last_name}</Alert>}
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
@@ -163,6 +226,7 @@ function AdmissionForm(props) {
                 onChange={handleChange}
                 autoFocus
               />
+              {errors.contact_no && <Alert variant="danger">{errors.contact_no}</Alert>}
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
@@ -175,6 +239,7 @@ function AdmissionForm(props) {
                 onChange={handleChange}
                 autoFocus
               />
+              {errors.weight && <Alert variant="danger">{errors.weight}</Alert>}
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
@@ -186,6 +251,7 @@ function AdmissionForm(props) {
                 onChange={handleChange}
                 autoFocus
               />
+             {errors.diagnosis && <Alert variant="danger">{errors.diagnosis}</Alert>}
             </Form.Group>
 
             <Form.Group
@@ -199,6 +265,7 @@ function AdmissionForm(props) {
                 value={data.jobrole}
                 onChange={handleChange}
               >
+              {errors.shelter_type && <Alert variant="danger">{errors.shelter_type}</Alert>}
                 <option value="">Select</option>
                 <option value="small">Small</option>
                 <option value="medium">Medium</option>
@@ -215,6 +282,7 @@ function AdmissionForm(props) {
                 onChange={handleChange}
                 autoFocus
               />
+              {errors.special_notes && <Alert variant="danger">{errors.special_notes}</Alert>}
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
@@ -227,6 +295,7 @@ function AdmissionForm(props) {
                 onChange={handleChange}
                 autoFocus
               />
+              {errors.shelter_no && <Alert variant="danger">{errors.shelter_no}</Alert>}
             </Form.Group>
           </Form>
         </Modal.Body>

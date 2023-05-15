@@ -7,15 +7,52 @@ import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import { withRouter } from "./withRouter";
 import ReactToPrint from 'react-to-print';
+import { Alert } from "react-bootstrap";
 
 import {PrescriptionPrint} from "./PrescriptionPrint";
 
 import "../components/CSS/listmain.css";
 
 function PrescriptionList(props) {
+
+
   const componentRef = useRef();
+  //Form validation
+  const [errors, setErrors] = useState({});
   //read hook
   const [prescription, setPrescription] = useState([]);
+
+  //Validations
+  const validateForm = () => {
+    let isValid = true;
+    const newErrors = {};
+  
+    // Validate name field
+    if (data.DoctorID.trim() === "") {
+      newErrors.DoctorID = "Doctor Name is required";
+      isValid = false;
+    }
+  
+    if (data.PetID.trim() === "") {
+      newErrors.PetID = "Ped Id is required";
+      isValid = false;
+    }
+    if (data.PetName.trim() === "") {
+      newErrors.PetName = "Pet Name is required";
+      isValid = false;
+    }
+    if (data.Illness.trim() === "") {
+      newErrors.Illness = "Illness is required";
+      isValid = false;
+    }
+    if (data.Medicine.trim() === "") {
+      newErrors.Medicine = "Medicine is required";
+      isValid = false;
+    }
+  
+    setErrors(newErrors);
+    return isValid;
+  };
 
   //insert hook
   const [data, setData] = useState({
@@ -77,6 +114,8 @@ function PrescriptionList(props) {
   //send new data to database
   const handleClick = (e) => {
     e.preventDefault();
+
+    if  (validateForm()){
     axios
       .post(`http://localhost:5000/prescription/add`, data)
       .then((res) => {
@@ -87,6 +126,7 @@ function PrescriptionList(props) {
       .catch((err) => {
         console.log(err);
       });
+    }
   };
 
   return (
@@ -117,6 +157,7 @@ function PrescriptionList(props) {
                 onChange={handleChange}
                 autoFocus
               />
+               {errors.DoctorID && <Alert variant="danger">{errors.DoctorID}</Alert>}
             </Form.Group>
             <Form.Group
               className="mb-3"
@@ -131,6 +172,7 @@ function PrescriptionList(props) {
                 onChange={handleChange}
                 autoFocus
               />
+               {errors.PetID && <Alert variant="danger">{errors.PetID}</Alert>}
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
@@ -143,6 +185,7 @@ function PrescriptionList(props) {
                 onChange={handleChange}
                 autoFocus
               />
+               {errors.PetName && <Alert variant="danger">{errors.PetName}</Alert>}
             </Form.Group>
               
             <Form.Group
@@ -158,6 +201,7 @@ function PrescriptionList(props) {
                 onChange={handleChange}
                 autoFocus
               />
+               {errors.Illness && <Alert variant="danger">{errors.Illness}</Alert>}
             </Form.Group>
 
             <Form.Group
@@ -173,6 +217,7 @@ function PrescriptionList(props) {
                 onChange={handleChange}
                 autoFocus
               />
+               {errors.Medicine && <Alert variant="danger">{errors.Medicine}</Alert>}
             </Form.Group>
 
           </Form>

@@ -6,13 +6,49 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import { withRouter } from "./withRouter";
+import { Alert } from "react-bootstrap";
 
 import "../components/CSS/listmain.css";
 
 function UsersList(props) {
+
+  //Form validation
+  const [errors, setErrors] = useState({});
+
   const componentRef = useRef();
     //read hook
     const [user, setUser] = useState([]);
+
+    //Validations
+  const validateForm = () => {
+    let isValid = true;
+    const newErrors = {};
+  
+    // Validate name field
+    if (data.first_name.trim() === "") {
+      newErrors.first_name = "First Name is required";
+      isValid = false;
+    }
+  
+    if (data.last_name.trim() === "") {
+      newErrors.last_name = "LastName is required";
+      isValid = false;
+    }
+
+    if (data.email.trim() === "") {
+      newErrors.email = "Email is required";
+      isValid = false;
+    }
+
+    if (data.password.trim() === "") {
+      newErrors.password = "Password is required";
+      isValid = false;
+    }
+    
+  
+    setErrors(newErrors);
+    return isValid;
+  };
 
   //insert hook
   const [data, setData] = useState({
@@ -74,6 +110,7 @@ function UsersList(props) {
   //send new data to database
   const handleClick = (e) => {
     e.preventDefault();
+    if  (validateForm()){
     axios
       .post(`http://localhost:5000/users/register`, data)
       .then((res) => {
@@ -84,6 +121,7 @@ function UsersList(props) {
       .catch((err) => {
         console.log(err);
       });
+    }
   };
 
   return (
@@ -114,6 +152,7 @@ function UsersList(props) {
                 onChange={handleChange}
                 autoFocus
               />
+               {errors.first_name && <Alert variant="danger">{errors.first_name}</Alert>}
             </Form.Group>
             <Form.Group
               className="mb-3"
@@ -128,6 +167,7 @@ function UsersList(props) {
                 onChange={handleChange}
                 autoFocus
               />
+               {errors.last_name && <Alert variant="danger">{errors.last_name}</Alert>}
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Email:</Form.Label>
@@ -139,6 +179,7 @@ function UsersList(props) {
                 onChange={handleChange}
                 autoFocus
               />
+               {errors.email && <Alert variant="danger">{errors.email}</Alert>}
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Password:</Form.Label>
@@ -150,6 +191,7 @@ function UsersList(props) {
                 onChange={handleChange}
                 autoFocus
               />
+               {errors.password && <Alert variant="danger">{errors.password}</Alert>}
             </Form.Group>
           </Form>
         </Modal.Body>
