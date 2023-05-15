@@ -7,6 +7,11 @@ let Payment = new Schema ({
         type: String,
     },
 
+    pay_services: {
+        type: Array,
+        default: [],
+    },
+
     pay_cashierName: {
         type: String,
     },

@@ -46,6 +46,11 @@ import OrderListPrintPreview from './components/OrderListPrintPreview'
 import EmployeeLoginPrintPreview from './components/EmployeeLoginPrintPreview'
 import AnimalPrintPreview from './components/AnimalPrintPreview'
 import ItemListPrintPreview from './components/ItemListPrintPreview'
+import InsightsService from './components/InsightsService';
+import PaymentService from './components/PaymentService';
+
+
+
 import InPatientList from './components/InPatientList';
 import VaccinePrintPreview from './components/VaccinePrintPreview'
 
@@ -112,8 +117,8 @@ class App extends Component {
             <Route path = "/inpatient" element={<InPatientList/>}/>
             <Route path = "/vaccinePrintPreview" element={<VaccinePrintPreview/>}/>
 
-            
-
+                        <Route path = "/insights" element={<InsightsService/>}/>
+            <Route path = "/payservice" element={<PaymentService/>}/>
           
            
             

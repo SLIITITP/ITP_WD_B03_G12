@@ -87,6 +87,7 @@ function StoreCard() {
           controlId="formPlaintext"
           style={{ display: "flex" }}
         >
+           
           <Form.Control
             plaintext
             readOnly
@@ -158,7 +159,9 @@ function StoreCard() {
         cols.push(
           <Col xs={12} sm={6} md={4} lg={3} xl={2} key={item[j]._id}>
             <Card style={{ height: "20em" }}>
-              <Card.Img variant="top" src="./img/animal.jpg" />
+              <Card.Img className="justify-content-center" variant="top" src={`../uploads/${item[j].image}`}style={{width: "8em", height: "8em", marginTop: "1em"}} alt="img" />
+ 
+
               <Card.Body>
                 <Card.Title>
                   <b>{item[j].name.substring(0, 20)}</b>

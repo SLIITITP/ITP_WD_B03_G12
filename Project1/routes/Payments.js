@@ -26,6 +26,16 @@ paymentRoutes.route('/').get(async function (req, res) {
     }
 })
 
+paymentRoutes.route('/services/').get(async function (req, res) {
+  try {
+    const payments = await Payment.find();
+    const serviceArrays = payments.map(payment => payment.pay_services);
+    res.json(serviceArrays);
+  } catch (err) {
+    console.log(err);
+    res.status(500).send("Server error");
+  }
+});
 
 
 

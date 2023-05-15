@@ -21,6 +21,12 @@ function ServicesList(props) {
   const handleChange = (e) => {
     const { name, value } = e.target;
 
+    // Validate the service price
+    if (name === "service_price" && !/^\d+(\.\d{1,2})?$/.test(value)) {
+      // Price validation failed
+      return;
+    }
+
     setData((prev) => ({
       ...prev,
       [name]: value,
@@ -66,20 +72,35 @@ function ServicesList(props) {
       });
   }, []);
 
+
+  const [validated, setValidated] = useState(false)
+   
   //send new data to database
   const handleClick = (e) => {
     e.preventDefault();
-    axios
-      .post(`http://localhost:5000/service/add`, data)
-      .then((res) => {
-        alert(`Added Successfully`);
-        handleClose();
-        window.location.reload();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  
+    const form = e.currentTarget;
+    if (form.checkValidity() === false) {
+      e.stopPropagation();
+    } else {
+      axios
+        .post(`http://localhost:5000/service/add`, data)
+        .then((res) => {
+          alert(`Added Successfully`);
+          handleClose();
+          window.location.reload();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  
+    setValidated(true);
   };
+  
+  
+
+
 
   return (
     <div>
@@ -97,7 +118,7 @@ function ServicesList(props) {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form>
+          <Form noValidate validated={validated}>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Service Name:</Form.Label>
               <Form.Control
@@ -107,7 +128,11 @@ function ServicesList(props) {
                 placeholder="Enter New service"
                 onChange={handleChange}
                 autoFocus
+                required
               />
+               <Form.Control.Feedback type="invalid">
+              Please choose a service name.
+            </Form.Control.Feedback>
             </Form.Group>
             <Form.Group
               className="mb-3"
@@ -121,7 +146,11 @@ function ServicesList(props) {
                 placeholder="Enter service Price"
                 onChange={handleChange}
                 autoFocus
+                required
               />
+               <Form.Control.Feedback type="invalid">
+              Please enter a price.
+            </Form.Control.Feedback>
             </Form.Group>
           </Form>
         </Modal.Body>
@@ -145,7 +174,7 @@ function ServicesList(props) {
           <table className="buttonstyle">
             <tr>
               <td>
-                <Link to="/invoiceAdd" className="nav-link">
+                <Link to="/payservice" className="nav-link">
                   <p>Issue Invoice</p>
                 </Link>
               </td>
