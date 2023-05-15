@@ -87,6 +87,7 @@ function StoreCard() {
           controlId="formPlaintext"
           style={{ display: "flex" }}
         >
+           
           <Form.Control
             plaintext
             readOnly

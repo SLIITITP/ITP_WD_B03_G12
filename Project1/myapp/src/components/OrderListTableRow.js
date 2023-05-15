@@ -74,13 +74,15 @@ const OrderListTableRow = (props) => {
                 controlId="exampleForm.ControlInput1"
               >
                 <Form.Label>paymentMethod:</Form.Label>
-                <Form.Control
-                  type="text"
+                <Form.Control as = "select"
                   name="paymentMethod"
                   value={updated.paymentMethod}
-                  onChange={handleChange}
-                  autoFocus
-                />
+                  onChange={handleChange}>
+              <option value="select">Select</option>
+              <option value="Cash_On_dilivery">Cash On dilivery</option>
+               <option value="Card_payment">Card payment</option>
+              </Form.Control>
+             
               </Form.Group>
               <Form.Group
                 className="mb-3"
@@ -124,13 +126,13 @@ const OrderListTableRow = (props) => {
                 <Form.Group
               className="mb-3" controlId="exampleForm.ControlTextarea1"
             >
-              <Form.Label><h3>Order status</h3></Form.Label>
+              <Form.Label>Order status</Form.Label>
               <Form.Control as = "select"
                   name="orderStates"
                   value={updated.orderStates}
                   onChange={handleChange}>
                   Active
-                
+                  <option value="select">Select</option>
                <option value="Delivered">Delivered</option>
               <option value="Out_for_Delivery">Out for Delivery</option>
                <option value="Proccess">Proccess</option>
@@ -212,3 +214,10 @@ const OrderListTableRow = (props) => {
 };
 
 export default withRouter(OrderListTableRow);
+{/* <Form.Control
+type="text"
+name="paymentMethod"
+value={updated.paymentMethod}
+onChange={handleChange}
+autoFocus
+/> */}

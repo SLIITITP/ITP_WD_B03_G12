@@ -208,7 +208,7 @@ export default function(props){
                   value={data.orderStates}
                   onChange={handleChange}>
                   Active
-                
+                  <option value="select">Select</option>
                <option value="Delivered">Delivered</option>
               <option value="Out_for_Delivery">Out for Delivery</option>
                <option value="Proccess">Proccess</option>
@@ -225,11 +225,7 @@ export default function(props){
             </Button>
  
       
-     <Link to="/orderList">
-      <Button variant="info" type="submit"  >
-        OrderList
-      </Button>
-      </Link>
+  
    
     </Form>
     
@@ -237,3 +233,10 @@ export default function(props){
     </div>
   );
 }
+
+
+{/* <Link to="/orderList">
+<Button variant="info" type="submit"  >
+  OrderList
+</Button>
+</Link> */}
