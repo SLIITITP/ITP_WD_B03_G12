@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
 import { PieChart, Pie, ResponsiveContainer } from 'recharts';
 import Insights from "./Insights";
 
@@ -129,7 +131,7 @@ const [countInpatient, setCountInpatient] = useState(0);
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, []); 
 
   const [countOrder, setCountOrder] = useState(0);
 
@@ -221,22 +223,27 @@ const [countInpatient, setCountInpatient] = useState(0);
 
   return (
     <>
-<div style={{ display: "flex" }}>
-  <div style={{width:"35em", background: "pink"}}>
+<div style={{ background: "pink", marginLeft:"20px"}}>
+  <div >
+      
     <h1>OverView</h1>
-    <h3>Employees: {countEmp}</h3>
-    <h3>Registered Animals: {countAnimal}</h3>
-    <h3>Registered Users: {countUsers}</h3>
-    <h3>Inpatients: {countInpatient}</h3>
-    <h3>All Items: {countItem}</h3>
-    <h3>Suppliers: {countSupplier}</h3>
-    <h3>Ongoing Order: {countOrder}</h3>
-    <h3>Ongoing Appointments: {countAppointment}</h3>
-    <h3>Vaccine: {countEmp}</h3>
-  </div>
-  <div>
-    <h1>Income Insights</h1>
-    <ResponsiveContainer width="100%" height={400}>
+    <Row>
+    <Col style={{textAlign: 'center', padding:"10px", border: "1px solid black"}}>
+    <h3>Employees</h3>
+    <h3 style={{textAlign: 'center'}}>{countEmp}</h3>
+    </Col> 
+
+    <Col style={{textAlign: 'center', border: "1px solid black", padding:"10px", width:"100px"}}>
+    <h3>Registered Animals</h3>
+    <h3>{countAnimal}</h3></Col> 
+     
+    <Col style={{textAlign: 'center', border: "1px solid black", padding:"10px", width:"100px"}}><h3>Registered Users</h3>
+    <h3>{countUsers}</h3></Col>
+    </Row>
+    
+    <Row> 
+      <Col style={{textAlign: 'center', border: "1px solid black", padding:"10px"}} >
+    <ResponsiveContainer width="100%" height={400}> 
       <PieChart width={400} height={400}>
         <Pie data={data} dataKey="value" cx="50%" cy="50%" outerRadius={60} fill="#8884d8" />
         <Pie
@@ -244,14 +251,60 @@ const [countInpatient, setCountInpatient] = useState(0);
           dataKey="value"
           cx="50%"
           cy="50%"
-          innerRadius={70}
+          innerRadius={70} 
           outerRadius={90}
           fill="#82ca9d"
           label
         />
       </PieChart>
     </ResponsiveContainer>
+    </Col>
+    
+    <Col style={{textAlign: 'center', border: "1px solid black", padding:"10px"}}>
+    <h3>Inpatients</h3> 
+    <h3>{countInpatient}</h3>
+    </Col>
+    
+    <Col style={{textAlign: 'center', border: "1px solid black", padding:"10px"}}>
+    <h3>All Items</h3>
+    <h3>{countItem}</h3>
+    </Col>
+   </Row>
+   
+   <Row>
+      <Col style={{textAlign: 'center', border: "1px solid black", padding:"10px", width:"100px"}}>
+      <h3>Suppliers</h3>
+      <h3>{countSupplier}</h3>
+      </Col>
+    
+    
+    <Col style={{textAlign: 'center', border: "1px solid black", padding:"10px", width:"100px"}}>
+    <h3>Ongoing Order</h3>
+    <h3>{countOrder}</h3>
+    </Col>
+    
+   
+    
+    </Row>
+    <Row>
+    <Col style={{textAlign: 'center', border: "1px solid black", padding:"10px", width:"100px"}}>
+    <h3>Ongoing Appointments</h3>
+    <h3>{countAppointment}</h3>
+    </Col>
+
+      <Col  style={{textAlign: 'center', border: "1px solid black", padding:"10px", width:"100px"}}>
+      <h3>Vaccine</h3>
+      <h3>{countEmp}</h3> 
+      </Col> 
+    </Row>
+     
+    
+   
+    
+   
+   
   </div>
+ 
 </div>
 
 
