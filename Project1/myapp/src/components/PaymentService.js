@@ -276,6 +276,8 @@ function PaymentService(props) {
 
   return (
     <div>
+
+
       <Link to="/servicePreview" className="nav-link">
         <Button style={{ float: "right" }}>Print Preview</Button>
       </Link>
@@ -432,38 +434,7 @@ function PaymentService(props) {
       }
 
       <div className="tablestyle">
-        <div className="buttonframe">
-          <table className="buttonstyle">
-            <tr>
-              <td>
-                <Link to="/invoiceAdd" className="nav-link">
-                  <p>Issue Invoice</p>
-                </Link>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <Link to="/payments" className="nav-link">
-                  <p>View all Invoices</p>
-                </Link>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <Link onClick={handleShow} className="nav-link">
-                  <p>Add a Service</p>
-                </Link>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <Link to="/services" className="nav-link">
-                  <p>View Services</p>
-                </Link>
-              </td>
-            </tr>
-          </table>
-        </div>
+      
 
         {
           //-------------------------Display data from database-------------------

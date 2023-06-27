@@ -124,8 +124,9 @@ function UsersList(props) {
     }
   };
 
-  return (
+  return ( 
     <div>
+      <button className="material-icons floating-btn" onClick={handleShow}>add</button>
 
  <Link to="/userListPrintPreview" className="nav-link">
         <Button style={{ float: "right" }}>Print Preview</Button>
@@ -211,52 +212,13 @@ function UsersList(props) {
       }
 
       <div className="tablestyle">
-        <div className="buttonframe">
-          <table className="buttonstyle">
-            <tr>
-              <td>
-                <Link onClick={handleShow} className="nav-link">
-                  <p>Add User</p>
-                </Link>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <Link to="/regUser" className="nav-link">
-                  <p>View all Users</p>
-                </Link>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <Link to="/animals" className="nav-link">
-                  <p>View all Animal</p>
-                </Link>
-              </td>
-            </tr>
-            <tr>
-            
-              <td>
-                <Link to="/animals" className="nav-link">
-                  <p>Add Animal Type </p>
-                </Link>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <Link to="/animaltype" className="nav-link">
-                  <p>View all Animal Types</p>
-                </Link>
-              </td>
-            </tr>
-          </table>
-        </div>
+        
         
         {
           //-------------------------Display data from database-------------------
         }
      
-        <table className="table table-striped" style={{ width: "54em" }}>
+        <table className="table table-striped" >
           <tr>
             <td>
               <b>First Name</b>
