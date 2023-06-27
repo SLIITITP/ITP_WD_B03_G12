@@ -64,6 +64,8 @@ function PaymentService(props) {
   const [data, setData] = useState({
     service_name: "",
     service_price: "",
+    pay_owner: "", 
+    pay_pet: "",
   });
 
   //Bootsrap Cart Modal configurations
@@ -224,6 +226,8 @@ function PaymentService(props) {
       pay_services: cart, // Assign the 'cart' array to the 'service' property
       pay_cashierName: userData.first_name,
       pay_total: cartTotal,
+      pay_owner: data.pay_owner,
+      pay_pet: data.pay_pet
     };
     console.log(newData);
     axios
@@ -254,6 +258,22 @@ function PaymentService(props) {
     handleShowModal();
   };
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    // Validate the service price
+    if (name === "service_price" && !/^\d*\.?\d{0,2}$/.test(value)) {
+      // Price validation failed
+      return;
+    }
+
+    setData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+ 
+
   return (
     <div>
       <Link to="/servicePreview" className="nav-link">
@@ -270,12 +290,48 @@ function PaymentService(props) {
         <Modal.Body>
           <div style={{ float: "right" }}>Cashier: {userData.first_name}</div>
           <br />
+         
           <div>{cartItems}</div>
           <div>
             <h4>
               <b>Total: Rs.{cartTotal}</b>
             </h4>
           </div>
+
+          <Form>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Label>Customer Name:</Form.Label>
+              <Form.Control
+                type="text"
+                name="pay_owner"
+                value={data.pay_owner}
+                placeholder="Enter Customer Name"
+                onChange={handleChange}
+                autoFocus
+              />
+              
+
+            </Form.Group>
+            <Form.Group
+              className="mb-3"
+              controlId="exampleForm.ControlTextarea1"
+            >
+              <Form.Label>Pet Name</Form.Label>
+              <Form.Control
+                type="text"
+                name="pay_pet"
+                value={data.pay_pet}
+                placeholder="Enter Pet Name"
+                onChange={handleChange}
+                autoFocus
+              />
+             
+               <Form.Control.Feedback type="invalid">
+              Please enter a price.
+            </Form.Control.Feedback>
+            </Form.Group>
+          </Form>
+
         </Modal.Body>
         <Modal.Footer>
           <Link state={{ data: cart, data2: cartTotal }}>
@@ -319,6 +375,8 @@ function PaymentService(props) {
             <p style={{ float: "right" }}>Cashier: {userData.first_name}</p>
             <br />
             <br />
+            <div>Customer: {data.pay_owner}</div>
+          <div>Pet: {data.pay_pet}</div>
             <div>
               {cart.map((item) => (
                 <div key={item._id}>

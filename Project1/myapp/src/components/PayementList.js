@@ -229,6 +229,12 @@ function PaymentList(props) {
             <td>
               <b>Cashier</b>
             </td>
+            <td>
+              <b>Pet Owner</b>
+            </td>
+            <td>
+              <b>Pet</b>
+            </td>
           </tr>
           <tbody>{tabRow()}</tbody>
         </table>
