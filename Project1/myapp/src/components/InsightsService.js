@@ -229,16 +229,17 @@ const [countInpatient, setCountInpatient] = useState(0);
     <h1>OverView</h1>
     <Row>
     <Col style={{textAlign: 'center', padding:"10px", border: "1px solid black"}}>
-    <h3>Employees</h3>
-    <h3 style={{textAlign: 'center'}}>{countEmp}</h3>
+    <h5>Employees</h5> 
+    <h2 style={{textAlign: 'center'}}>{countEmp}</h2>
     </Col> 
 
     <Col style={{textAlign: 'center', border: "1px solid black", padding:"10px", width:"100px"}}>
-    <h3>Registered Animals</h3>
-    <h3>{countAnimal}</h3></Col> 
+    <h5>Registered Animals</h5>
+    <h2>{countAnimal}</h2></Col> 
      
-    <Col style={{textAlign: 'center', border: "1px solid black", padding:"10px", width:"100px"}}><h3>Registered Users</h3>
-    <h3>{countUsers}</h3></Col>
+    <Col style={{textAlign: 'center', border: "1px solid black", padding:"10px", width:"100px"}}>
+      <h5>Registered Users</h5>
+    <h2>{countUsers}</h2></Col>
     </Row>
     
     <Row> 
@@ -261,26 +262,26 @@ const [countInpatient, setCountInpatient] = useState(0);
     </Col>
     
     <Col style={{textAlign: 'center', border: "1px solid black", padding:"10px"}}>
-    <h3>Inpatients</h3> 
-    <h3>{countInpatient}</h3>
+    <h5>Inpatients</h5> 
+    <h2>{countInpatient}</h2>
     </Col>
     
     <Col style={{textAlign: 'center', border: "1px solid black", padding:"10px"}}>
-    <h3>All Items</h3>
-    <h3>{countItem}</h3>
+    <h5>All Items</h5>
+    <h2>{countItem}</h2>
     </Col>
    </Row>
    
    <Row>
       <Col style={{textAlign: 'center', border: "1px solid black", padding:"10px", width:"100px"}}>
-      <h3>Suppliers</h3>
-      <h3>{countSupplier}</h3>
+      <h5>Suppliers</h5>
+      <h2>{countSupplier}</h2>
       </Col>
     
     
     <Col style={{textAlign: 'center', border: "1px solid black", padding:"10px", width:"100px"}}>
-    <h3>Ongoing Order</h3>
-    <h3>{countOrder}</h3>
+    <h5>Ongoing Order</h5>
+    <h2>{countOrder}</h2>
     </Col>
     
    
@@ -288,13 +289,13 @@ const [countInpatient, setCountInpatient] = useState(0);
     </Row>
     <Row>
     <Col style={{textAlign: 'center', border: "1px solid black", padding:"10px", width:"100px"}}>
-    <h3>Ongoing Appointments</h3>
-    <h3>{countAppointment}</h3>
+    <h5>Ongoing Appointments</h5>
+    <h2>{countAppointment}</h2>
     </Col>
 
       <Col  style={{textAlign: 'center', border: "1px solid black", padding:"10px", width:"100px"}}>
-      <h3>Vaccine</h3>
-      <h3>{countEmp}</h3> 
+      <h5>Vaccine</h5>
+      <h2>{countEmp}</h2> 
       </Col> 
     </Row>
      
