@@ -17,7 +17,7 @@ class Navbar3 extends Component {
 
           <li className="nav-item2">
             <Link to="/regUser" className="nav-link">
-              <h6>Registered Users</h6>
+              <h6>Registered Users</h6> 
             </Link>
           </li>
 
@@ -95,6 +95,44 @@ class Navbar3 extends Component {
               <h6>Insights</h6>
             </Link>
           </li>
+
+          <li className="nav-item2">
+            <Link to="/insights" className="nav-link">
+              <h6>Insights</h6>
+            </Link>
+          </li>
+
+
+          <li className="nav-item2">
+            <Link to="/insights" className="nav-link">
+              <h6>Insights</h6>
+            </Link>
+          </li>
+
+
+          <li className="nav-item2">
+            <Link to="/insights" className="nav-link">
+              <h6>Insights</h6>
+            </Link>
+          </li>
+
+          <li className="nav-item2">
+            <Link to="/insights" className="nav-link">
+              <h6>Insights</h6>
+            </Link>
+          </li>
+
+          <li className="nav-item2">
+            <Link to="/insights" className="nav-link">
+              <h6>Insights</h6>
+            </Link>
+          </li>
+
+
+
+
+
+
         </ul>
       </ul>
     );

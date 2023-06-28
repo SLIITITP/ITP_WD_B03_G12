@@ -6,15 +6,25 @@
    
   .insights-col {
     text-align: center;
+    height: 6.5em; 
     border-radius: 20px;
     background-color: rgb(184, 165, 201);
-    padding: 10px 10px; 
-    margin-bottom: 10px;
+    padding: 15px; 
+    margin-bottom: 10px; 
     margin-right: 10px;
-    margin-left: 10px;
-    
+    margin-left: 10px;    
+    width: 20em ; 
   }
   
   .count {
-    text-align: center;
+    text-align: center; 
+  }
+
+  .chart-next {
+    
+  }
+
+  .chart { 
+    height: 25em;  
+    width: 60em;     
   }
