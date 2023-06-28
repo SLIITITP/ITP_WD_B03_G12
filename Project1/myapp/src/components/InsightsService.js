@@ -4,7 +4,8 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import { PieChart, Pie, ResponsiveContainer } from 'recharts';
 import Insights from "./Insights";
-
+import "../components/CSS/insight.css"
+    
 const InsightsService = () => {
   const [service, setService] = useState([]);
 
@@ -223,28 +224,28 @@ const [countInpatient, setCountInpatient] = useState(0);
 
   return (
     <>
-<div style={{ background: "pink", marginLeft:"20px"}}>
-  <div >
+<div className="insights-container">
+  <div > 
       
     <h1>OverView</h1>
     <Row>
-    <Col style={{textAlign: 'center', padding:"10px", border: "1px solid black"}}>
-    <h5>Employees</h5> 
+    <Col className="insights-col"> 
+      <h5>Employees</h5> 
     <h2 style={{textAlign: 'center'}}>{countEmp}</h2>
     </Col> 
 
-    <Col style={{textAlign: 'center', border: "1px solid black", padding:"10px", width:"100px"}}>
-    <h5>Registered Animals</h5>
+    <Col className="insights-col">
+        <h5>Registered Animals</h5>
     <h2>{countAnimal}</h2></Col> 
      
-    <Col style={{textAlign: 'center', border: "1px solid black", padding:"10px", width:"100px"}}>
-      <h5>Registered Users</h5>
+    <Col className="insights-col">
+         <h5>Registered Users</h5> 
     <h2>{countUsers}</h2></Col>
     </Row>
     
     <Row> 
-      <Col style={{textAlign: 'center', border: "1px solid black", padding:"10px"}} >
-    <ResponsiveContainer width="100%" height={400}> 
+    <Col className="insights-col">
+         <ResponsiveContainer width="100%" height={400}> 
       <PieChart width={400} height={400}>
         <Pie data={data} dataKey="value" cx="50%" cy="50%" outerRadius={60} fill="#8884d8" />
         <Pie
@@ -261,26 +262,29 @@ const [countInpatient, setCountInpatient] = useState(0);
     </ResponsiveContainer>
     </Col>
     
-    <Col style={{textAlign: 'center', border: "1px solid black", padding:"10px"}}>
-    <h5>Inpatients</h5> 
+    <Col className="insights-col"> 
+      <h5>Inpatients</h5> 
     <h2>{countInpatient}</h2>
     </Col>
     
-    <Col style={{textAlign: 'center', border: "1px solid black", padding:"10px"}}>
-    <h5>All Items</h5>
+    <Col className="insights-col"> 
+     <h5>All Items</h5>
     <h2>{countItem}</h2>
-    </Col>
+    </Col> 
+
+
+
    </Row>
    
    <Row>
-      <Col style={{textAlign: 'center', border: "1px solid black", padding:"10px", width:"100px"}}>
-      <h5>Suppliers</h5>
+   <Col className="insights-col"> 
+   <h5>Suppliers</h5>
       <h2>{countSupplier}</h2>
       </Col>
     
     
-    <Col style={{textAlign: 'center', border: "1px solid black", padding:"10px", width:"100px"}}>
-    <h5>Ongoing Order</h5>
+      <Col className="insights-col"> 
+       <h5>Ongoing Order</h5>
     <h2>{countOrder}</h2>
     </Col>
     
@@ -288,13 +292,13 @@ const [countInpatient, setCountInpatient] = useState(0);
     
     </Row>
     <Row>
-    <Col style={{textAlign: 'center', border: "1px solid black", padding:"10px", width:"100px"}}>
-    <h5>Ongoing Appointments</h5>
+    <Col className="insights-col">
+      <h5>Ongoing Appointments</h5>
     <h2>{countAppointment}</h2>
     </Col>
 
-      <Col  style={{textAlign: 'center', border: "1px solid black", padding:"10px", width:"100px"}}>
-      <h5>Vaccine</h5>
+    <Col className="insights-col">
+        <h5>Vaccine</h5>
       <h2>{countEmp}</h2> 
       </Col> 
     </Row>
