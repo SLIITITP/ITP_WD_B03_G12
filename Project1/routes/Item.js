@@ -91,6 +91,7 @@ itemRoutes.route('/update/:id').put(async (req, res) => {
       item. Supplier = req.body.item_Supplier;
       item.description = req.body.item_description;
       item. qty = req.body.item_qty;
+      item. re_order = req.body.item_re_order;
       item.manufacture_date = req.body.item_manufacture_date;
       item. expire_date = req.body.item_expire_date;
      

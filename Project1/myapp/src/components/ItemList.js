@@ -55,6 +55,11 @@ function ItemList(props) {
       newErrors.qty = "qty is required";
       isValid = false;
     }
+
+    if (data.re_order.trim() === "===") {
+      newErrors.re_order = "re order is required";
+      isValid = false;
+    }
   
     if (data.manufacture_date.trim() === "") {
       newErrors.manufacture_date = "manufacture date is required";
@@ -84,6 +89,7 @@ function ItemList(props) {
         Supplier:'',
         description:'',
         qty:'',
+        re_order:'',
         manufacture_date:'',
         expire_date:'',
         image:'',
@@ -304,6 +310,21 @@ function ItemList(props) {
             <Form.Group
               className="mb-3" controlId="exampleForm.ControlTextarea1"
             >
+              <Form.Label>re_order:</Form.Label>
+              <Form.Control
+                type="text"
+                name="re_order"
+                value={data.re_order}
+                placeholder="Enter re order "
+                onChange={handleChange}
+                autoFocus
+              />
+              {errors.qty && <Alert variant="danger">{errors.re_order}</Alert>}
+            </Form.Group>
+
+            <Form.Group
+              className="mb-3" controlId="exampleForm.ControlTextarea1"
+            >
               <Form.Label>manufacture_date:</Form.Label>
               <Form.Control
                 type="date"
@@ -442,6 +463,9 @@ function ItemList(props) {
             </td>
             <td>
               <b>qty</b>
+            </td>
+            <td>
+              <b>re_order</b>
             </td>
             <td>
               <b>manufacture_date</b>
