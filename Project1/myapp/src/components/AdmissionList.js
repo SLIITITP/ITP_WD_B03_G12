@@ -38,8 +38,12 @@ function AdmissionForm(props) {
       newErrors.last_name = "Last name is required";
       isValid = false;
     }
+
     if (data.contact_no.trim() === "") {
       newErrors.contact_no = "Contact is required";
+      isValid = false;
+    } else if (data.contact_no.trim().length !== 10) {
+      newErrors.contact_no = "Contact should be 10 digits";
       isValid = false;
     }
     if (data.weight.trim() === "") {
@@ -166,7 +170,12 @@ function AdmissionForm(props) {
       });
     }
     
+    
   };
+
+  
+
+
 
   return (
     <div>
@@ -216,31 +225,44 @@ function AdmissionForm(props) {
               {errors.last_name && <Alert variant="danger">{errors.last_name}</Alert>}
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+        {
+          //Modified field
+        }
+           <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Contact No:</Form.Label>
               <Form.Control
-                type="text"
-                name="contact_no"
-                value={data.contact_no}
-                placeholder="Enter Contact No"
+                 type="text"
+                 name="contact_no"
+                 value={data.contact_no}
+                 placeholder="Enter Contact No"
                 onChange={handleChange}
-                autoFocus
-              />
-              {errors.contact_no && <Alert variant="danger">{errors.contact_no}</Alert>}
-            </Form.Group>
+                 onKeyPress={(e) => {
+         if (e.target.value.length >= 10 || !/^\d$/.test(e.key)) {
+        e.preventDefault();
+      }
+    }}
+    autoFocus
+  />
+  {errors.contact_no && <Alert variant="danger">{errors.contact_no}</Alert>}
 
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Weight:</Form.Label>
-              <Form.Control
-                type="text"
-                name="weight"
-                value={data.weight}
-                placeholder="Enter Animal Weight"
-                onChange={handleChange}
-                autoFocus
-              />
-              {errors.weight && <Alert variant="danger">{errors.weight}</Alert>}
-            </Form.Group>
+      {
+          //Modified field
+        }
+</Form.Group>
+
+<Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+  <Form.Label>Weight:</Form.Label>
+  <Form.Control
+    type="text"
+    name="weight"
+    value={data.weight}
+    placeholder="Enter Animal Weight (e.g., 10Kg)"
+    onChange={handleChange}
+    pattern="\d+(\.\d{1,2})?Kg"
+    autoFocus
+  />
+  {errors.weight && <Alert variant="danger">{errors.weight}</Alert>}
+</Form.Group>
 
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Diagnosis:</Form.Label>
@@ -364,10 +386,10 @@ function AdmissionForm(props) {
         <table className="table table-striped" style={{ width: "54em" }}>
           <tr>
             <td>
-              <b>First Name</b>
+              <b>Owner's First Name</b>
             </td>
             <td>
-              <b>Last Name</b>
+              <b>Owner's Last Name</b>
             </td>
 
             <td>
@@ -375,7 +397,7 @@ function AdmissionForm(props) {
             </td>
 
             <td>
-              <b>Weight</b>
+              <b>Weight(Kg's)</b>
             </td>
 
             <td>
