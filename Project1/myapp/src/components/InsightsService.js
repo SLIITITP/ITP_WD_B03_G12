@@ -241,12 +241,12 @@ const InsightsService = () => {
           </Row>
 
           <Row>
-            <Col className="insights-col chart">
-              <ResponsiveContainer width="100%" height={400}>
-                <PieChart width={400} height={400}>
-                  <Pie
+            <Col className="insights-col chart" >
+              <ResponsiveContainer width="100%" height={400}>     
+                <PieChart>  
+                  <Pie  
                     data={data}
-                    dataKey="value"
+                    dataKey="value" 
                     cx="50%"
                     cy="50%"
                     outerRadius={60}

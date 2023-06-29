@@ -20,11 +20,11 @@
     text-align: center; 
   }
 
-  .chart-next {
-    
+  .chart-next { 
+    width: 10 em;  
   }
 
   .chart { 
     height: 25em;  
-    width: 60em;     
-  }
+    width: 45em;      
+  }  
