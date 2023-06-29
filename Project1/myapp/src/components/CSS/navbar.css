@@ -15,6 +15,7 @@ p {
 }
 
 .navigation1 {
+    
     height: 4.5em;  
 }
 
@@ -25,11 +26,13 @@ p {
 
 .nav-item1 {
     list-style: none; 
-    padding-right: 20px;       
+    padding-right: 20px;     
+      
 }
 
 .navigation2 {
     height: 3em;     
+     
 }
 
 .nav-tabs2 {  
@@ -39,22 +42,35 @@ p {
     padding-left: 4em;
     padding-right: 4em;
     margin-bottom: 0em;
+    
 }
+
+.nav-link {
+    border-radius: 20px; 
+    
+  }
+     
+
 
 .nav-item2 {
     list-style: none; 
     width: 10em;
-    text-align: center;   
+    text-align: center; 
+    margin-bottom: 2px;   
+    border-radius: 20px; 
+    transition: background 0.35s;
 }
-
+.nav-item2:active {
+    background-color: rgb(165, 102, 221);
+}
 
 .nav-tabs { 
     padding-left: 0em;
-    
+     
 }
 
 .nav-tabs3 {       
-    background-color: rgb(193, 71, 91); ;
+    
     border-radius: 0.5em; 
     padding-left: 5px;
     padding-right: 5px;  
@@ -66,19 +82,19 @@ p {
     padding-left: 5px;
     padding-right: 5px;  
     border-radius: 0.5em;
-    background-color:rgb(193, 71, 91); 
-      
+    
+       
 }
 
 .sidebar {
     position: fixed;
     left: 0;
-    top: 0px;
+    top: 0;
     width: 12em;
     height: 100%;
-    background-color:rgb(193, 71, 91);
-    padding: 20px;
-    padding-top: 100px;
+    background-color: rgb(25, 5, 43);
+    padding: 20px; 
+    padding-top: 10px;
     margin-right: 5px; 
 }
 
@@ -102,5 +118,5 @@ p {
 }
 
 .floating-btn:active {
-    background-color:rgb(193, 71, 91);
+    background-color: rgb(25, 5, 43);
 }
