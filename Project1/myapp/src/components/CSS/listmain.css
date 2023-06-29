@@ -1,15 +1,14 @@
 .tablestyle {
-    display: inline-flex;
-  
-    
+    display: grid;
     
 }
 
 .buttonstyle{
+    display: flex;
     height: fit-content;
     background-color: rgb(201, 183, 186);
-    float: inline-start;
     margin-right: 20px;
+    margin-bottom: 20px; 
 }
 
 .buttonstyle td {

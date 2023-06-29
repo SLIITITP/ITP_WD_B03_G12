@@ -35,6 +35,8 @@ const PaymentTableRow = (props) => {
     pay_total: props.obj.pay_total,
     pay_cashierName: props.obj.pay_cashierName,
     pay_date: props.obj.pay_date,
+    pay_owner: props.obj.pay_owner,
+    pay_pet: props.obj.pay_pet
   });
 
   const [show, setShow] = useState(false);
@@ -130,6 +132,8 @@ const PaymentTableRow = (props) => {
       <td>{paymentState.pay_date}</td>
       <td>{paymentState.pay_total}</td>
       <td>{paymentState.pay_cashierName}</td>
+      <td>{paymentState.pay_owner}</td>
+      <td>{paymentState.pay_pet}</td>
       <td>
         <button
           type="submit"

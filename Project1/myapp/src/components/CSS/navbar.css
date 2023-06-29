@@ -1,7 +1,7 @@
 .app-logo {
     height: 4em;
     width: 9em;
-    margin-left: 1.5em;
+    margin-left: 15em;
 } 
 
 h6 {
@@ -43,7 +43,7 @@ p {
 
 .nav-item2 {
     list-style: none; 
-    width: 14em;
+    width: 10em;
     text-align: center;   
 }
 
@@ -55,18 +55,52 @@ p {
 
 .nav-tabs3 {       
     background-color: rgb(193, 71, 91); ;
-    border-radius: 0.5em;
-    display: flex;   
-    padding-left: 20px;
-    padding-right: 20px;  
+    border-radius: 0.5em; 
+    padding-left: 5px;
+    padding-right: 5px;  
+    
 }
 
 .nav-tabs4 {    
-    margin-top: 0.2em;
-    padding-left: 20px;
-    padding-right: 20px;  
+    
+    padding-left: 5px;
+    padding-right: 5px;  
     border-radius: 0.5em;
     background-color:rgb(193, 71, 91); 
-    display: flex;   
+      
 }
 
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0px;
+    width: 12em;
+    height: 100%;
+    background-color:rgb(193, 71, 91);
+    padding: 20px;
+    padding-top: 100px;
+    margin-right: 5px; 
+}
+
+.floating-btn {
+    width: 80px;
+    height: 80px;
+    background-color:rgb(193, 71, 91);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    border-radius: 50%;
+    border-color: white;
+    color: white;
+    font-size: 40px;
+    box-shadow: 2px 2px 5px rgba(0,0, 0, 0.25);
+    position: fixed;
+    right: 40px;
+    bottom: 40px;
+    transition: background 0.25s;
+}
+
+.floating-btn:active {
+    background-color:rgb(193, 71, 91);
+}

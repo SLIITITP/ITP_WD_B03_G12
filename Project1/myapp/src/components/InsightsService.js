@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
 import { PieChart, Pie, ResponsiveContainer } from 'recharts';
 import Insights from "./Insights";
-
+import "../components/CSS/insight.css"
+    
 const InsightsService = () => {
   const [service, setService] = useState([]);
 
@@ -129,7 +132,7 @@ const [countInpatient, setCountInpatient] = useState(0);
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, []); 
 
   const [countOrder, setCountOrder] = useState(0);
 
@@ -221,22 +224,28 @@ const [countInpatient, setCountInpatient] = useState(0);
 
   return (
     <>
-<div style={{ display: "flex" }}>
-  <div style={{width:"35em", background: "pink"}}>
+<div className="insights-container">
+  <div > 
+      
     <h1>OverView</h1>
-    <h3>Employees: {countEmp}</h3>
-    <h3>Registered Animals: {countAnimal}</h3>
-    <h3>Registered Users: {countUsers}</h3>
-    <h3>Inpatients: {countInpatient}</h3>
-    <h3>All Items: {countItem}</h3>
-    <h3>Suppliers: {countSupplier}</h3>
-    <h3>Ongoing Order: {countOrder}</h3>
-    <h3>Ongoing Appointments: {countAppointment}</h3>
-    <h3>Vaccine: {countEmp}</h3>
-  </div>
-  <div>
-    <h1>Income Insights</h1>
-    <ResponsiveContainer width="100%" height={400}>
+    <Row>
+    <Col className="insights-col"> 
+      <h5>Employees</h5> 
+    <h2 style={{textAlign: 'center'}}>{countEmp}</h2>
+    </Col> 
+
+    <Col className="insights-col">
+        <h5>Registered Animals</h5>
+    <h2>{countAnimal}</h2></Col> 
+     
+    <Col className="insights-col">
+         <h5>Registered Users</h5> 
+    <h2>{countUsers}</h2></Col>
+    </Row>
+    
+    <Row> 
+    <Col className="insights-col">
+         <ResponsiveContainer width="100%" height={400}> 
       <PieChart width={400} height={400}>
         <Pie data={data} dataKey="value" cx="50%" cy="50%" outerRadius={60} fill="#8884d8" />
         <Pie
@@ -244,14 +253,63 @@ const [countInpatient, setCountInpatient] = useState(0);
           dataKey="value"
           cx="50%"
           cy="50%"
-          innerRadius={70}
+          innerRadius={70} 
           outerRadius={90}
           fill="#82ca9d"
           label
         />
       </PieChart>
     </ResponsiveContainer>
+    </Col>
+    
+    <Col className="insights-col"> 
+      <h5>Inpatients</h5> 
+    <h2>{countInpatient}</h2>
+    </Col>
+    
+    <Col className="insights-col"> 
+     <h5>All Items</h5>
+    <h2>{countItem}</h2>
+    </Col> 
+
+
+
+   </Row>
+   
+   <Row>
+   <Col className="insights-col"> 
+   <h5>Suppliers</h5>
+      <h2>{countSupplier}</h2>
+      </Col>
+    
+    
+      <Col className="insights-col"> 
+       <h5>Ongoing Order</h5>
+    <h2>{countOrder}</h2>
+    </Col>
+    
+   
+    
+    </Row>
+    <Row>
+    <Col className="insights-col">
+      <h5>Ongoing Appointments</h5>
+    <h2>{countAppointment}</h2>
+    </Col>
+
+    <Col className="insights-col">
+        <h5>Vaccine</h5>
+      <h2>{countEmp}</h2> 
+      </Col> 
+    </Row>
+     
+    
+   
+    
+   
+   
   </div>
+ 
 </div>
 
 

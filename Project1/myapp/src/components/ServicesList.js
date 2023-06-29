@@ -126,6 +126,8 @@ function ServicesList(props) {
 
   return (
     <div>
+      <button className="material-icons floating-btn" onClick={handleShow}>add</button>
+
       <Link to="/servicePreview" className="nav-link">
         <Button style={{ float: "right" }}>Print Preview</Button>
       </Link>
@@ -193,44 +195,12 @@ function ServicesList(props) {
       }
 
       <div className="tablestyle">
-        <div className="buttonframe">
-          <table className="buttonstyle">
-            <tr>
-              <td>
-                <Link to="/payservice" className="nav-link">
-                  <p>Issue Invoice</p>
-                </Link>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <Link to="/payments" className="nav-link">
-                  <p>View all Invoices</p>
-                </Link>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <Link onClick={handleShow} className="nav-link">
-                  <p>Add a Service</p>
-                </Link>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <Link to="/services" className="nav-link">
-                  <p>View Services</p>
-                </Link>
-              </td>
-            </tr>
-          </table>
-        </div>
-
+        
         {
           //-------------------------Display data from database-------------------
         }
 
-        <table className="table table-striped" style={{ width: "54em" }}>
+        <table className="table table-striped" >
           <tr>
             <td>
               <b>Service Name</b>

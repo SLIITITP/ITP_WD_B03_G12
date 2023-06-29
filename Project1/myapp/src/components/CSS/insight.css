@@ -1,0 +1,20 @@
+.insights-container {
+    background: rgb(237, 233, 234);
+    margin-left: 20px;
+    padding: 20px;
+  } 
+   
+  .insights-col {
+    text-align: center;
+    border-radius: 20px;
+    background-color: rgb(184, 165, 201);
+    padding: 10px 10px; 
+    margin-bottom: 10px;
+    margin-right: 10px;
+    margin-left: 10px;
+    
+  }
+  
+  .count {
+    text-align: center;
+  }
