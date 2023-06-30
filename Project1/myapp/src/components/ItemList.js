@@ -199,14 +199,15 @@ function ItemList(props) {
           style={{ marginBottom: "100px" }}
         >
           list
-        </button> 
+        </button>
       </Link>
 
-      <ReactToPrint
-        documentTitle="Our Item list"
-        trigger={() => <Button className="print-btn" style={{ float: "right" }}>Print</Button>}
-        content={() => componentRef.current}
-      ></ReactToPrint>
+      <Link to="/itemListPrintPreview" className="nav-link">
+        <Button className="print-btn" style={{ float: "right" }}>
+          Print Preview
+        </Button>
+      </Link>
+
       {
         //-------------------------Insert form using bootstrap Modal------------------
       }
@@ -404,12 +405,9 @@ function ItemList(props) {
           //-------------------------Display data from database---------------------
         }
         <ItemPrint ref={componentRef}>
-          <table
-            className="table table-striped"
-            style={{ width: "54em", height: "55em" }}
-          >
-            <tr>
-              <td>
+          <table className="table table-striped" style={{ height: "55em" }}>
+            <tr style={{ textAlign: "center" }}>
+              <td> 
                 <b>Item</b>
               </td>
               <td>
@@ -422,23 +420,17 @@ function ItemList(props) {
                 <b>Price</b>
               </td>
               <td>
-                <b>Supplier</b>
+                <b>R Lvl</b>
               </td>
-              <td>
-                <b>Description</b>
+              <td style={{ width: "110px" }}>
+                <b>MFD</b> 
               </td>
-              <td>
-                <b>Qty</b>
+              <td style={{ width: "110px" }}>
+                <b>EXP</b> 
               </td>
-              <td>
-                <b>Reorder</b>
-              </td>
-              <td>
-                <b>MFD</b>
-              </td>
-              <td>
-                <b>EXP</b>
-              </td>
+              <td></td>
+              <td></td>
+              <td></td> 
             </tr>
             <tbody>{tabRow()}</tbody>
           </table>
