@@ -65,6 +65,10 @@ export default function(props){
        
         orderStates:data.orderStates,
         paymentMethod: data4.paymentMethod,
+        addressLine1:data3.addressLine1,
+        addressLine2:data3.addressLine2,
+        city:data3.city,
+        postalCode:data3.postalCode,
         selectedItem: ffff+' ',
         selectedItemQty: cccc+' ',
         totalPrice:total2,
