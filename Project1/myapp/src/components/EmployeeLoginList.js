@@ -314,17 +314,17 @@ function EmployeeLoginList(props) {
           responsive
           className="table table-striped"
         >
-          <tr>
+          <tr style={{ textAlign: "center" }}>
             <td>
-              <b>Image</b>
+              <b>Image</b> 
             </td>
             <td>
               <b>Email</b>
             </td>
 
             <td>
-              <b>Account type</b>
-            </td>
+              <b>Account Type</b>
+            </td> 
             <td>
               <b>Date</b>
             </td>

@@ -244,8 +244,7 @@ const SupplierTableRow = (props) => {
           {" "}
         </td>
         <td>{supplierState.company_name}</td>
-        <td>{supplierState.person1_first_name}</td>
-        <td>{supplierState.person1_last_name}</td>
+        <td>{supplierState.person1_first_name} {supplierState.person1_last_name}</td>
         <td>{supplierState.email1}</td>
         <td>{supplierState.contact_no1}</td>
         <td>{supplierState.contact_no2}</td>

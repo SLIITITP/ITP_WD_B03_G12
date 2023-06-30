@@ -353,16 +353,13 @@ function SupplierList(props) {
           //-------------------------Display data from database-------------------
         }
 
-        <table className="table table-striped">
-          <tr>
+        <table className="table table-striped"> 
+          <tr style={{ textAlign: "center" }}>
             <td>
               <b>Company</b>
             </td>
             <td>
-              <b>First Name</b>
-            </td>
-            <td>
-              <b>Last Name</b>
+              <b>Name</b>
             </td>
             <td>
               <b>Email1</b>
