@@ -140,8 +140,8 @@ const ShelterTableRow = (props) => {
           {" "}
         </td>
 
-        <td>{shelterState.shelter_id}</td>
-        <td>{shelterState.shelter_type}</td>
+        <td  style={{ textAlign: "center" }}>{shelterState.shelter_id}</td>
+        <td  style={{ textAlign: "center" }}>{shelterState.shelter_type}</td>
         <td>{shelterState.special_details}</td>
 
 
