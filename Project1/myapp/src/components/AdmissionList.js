@@ -179,7 +179,8 @@ function AdmissionForm(props) {
 
   return (
     <div>
-     
+     <button className="material-icons floating-btn" onClick={handleShow}>add</button>
+
      <Link to="/admissionPreview" className="nav-link">
         <Button style={{ float: "right" }}>Print Preview</Button>
       </Link>
@@ -338,45 +339,7 @@ function AdmissionForm(props) {
       }
 
       <div className="tablestyle">
-        <div className="buttonframe">
-          <table className="buttonstyle">
-            <tr>
-              <td>
-                <Link onClick={handleShow} className="nav-link">
-                  <p>Add Admission</p>
-                </Link>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <Link to="" className="nav-link">
-                  <p>View all Admissions</p>
-                </Link>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <Link onClick="/" className="nav-link">
-                  <p>Add Shelter</p>
-                </Link>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <Link to="/shelters" className="nav-link">
-                  <p>View Shelters</p>
-                </Link>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <Link to="/inpatient" className="nav-link">
-                  <p>InPatients</p>
-                </Link>
-              </td>
-            </tr>
-          </table>
-        </div>
+         
 
         {
           //-------------------------Display data from database-------------------

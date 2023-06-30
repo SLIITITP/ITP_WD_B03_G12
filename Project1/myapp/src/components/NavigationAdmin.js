@@ -50,7 +50,13 @@ class Navbar3 extends Component {
             <Link to="/admissions" className="nav-link">
               <h6>Admissions</h6>
             </Link>
-          </li>
+          </li> 
+
+          <li className="nav-item2">
+            <Link to="/shelters" className="nav-link">
+              <h6>Shelters</h6>
+            </Link> 
+          </li> 
 
           <li className="nav-item2">
             <Link to="/prescriptions" className="nav-link">
@@ -96,11 +102,7 @@ class Navbar3 extends Component {
             </Link>
           </li>
 
-          <li className="nav-item2">
-            <Link to="/insights" className="nav-link">
-              <h6>Insights</h6>
-            </Link>
-          </li>
+
 
 
           <li className="nav-item2">
