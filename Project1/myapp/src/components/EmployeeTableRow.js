@@ -152,13 +152,13 @@ const EmployeeTableRow = (props) => {
               className="mb-3" controlId="exampleForm.ControlTextarea1"
             >
               <Form.Label>Enter Gender:</Form.Label>
-              <Form.Control as = "select"
-                  name="gender"
+              <Form.Control as = "select" 
+                  name="employee_gender"
                   value={updated.employee_gender}
                   onChange={handleChange}>
-              <option value="select">Select</option>
-              <option value="male">Male</option>
-               <option value="female">Female</option>
+              <option value="employee_gender">Select</option>
+              <option value="M">Male</option>
+               <option value="F">Female</option> 
               </Form.Control>
   
 

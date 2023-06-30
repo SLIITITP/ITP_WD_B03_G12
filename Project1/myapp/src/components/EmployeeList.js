@@ -277,7 +277,7 @@ function EmployeeList(props) {
                 value={data.address}
                 placeholder="Enter address"
                 onChange={handleChange}
-                autoFocus
+                autoFocus 
               />
               {errors.address && (
                 <Alert variant="danger">{errors.address}</Alert>
@@ -296,8 +296,8 @@ function EmployeeList(props) {
                 onChange={handleChange}
               >
                 <option value="select">Select</option>
-                <option value="male">Male</option>
-                <option value="empfemaleloyee">Female</option>
+                <option value="M">Male</option>
+                <option value="F">Female</option>
               </Form.Control>
               {errors.gender && <Alert variant="danger">{errors.gender}</Alert>}
             </Form.Group>
@@ -401,7 +401,7 @@ function EmployeeList(props) {
               <b>NIC</b>
             </td>
             <td>
-              <b>Phone no</b>
+              <b>Phone No</b>
             </td>
             <td style={{ width:"200px" }}>  
               <b>Address</b>
