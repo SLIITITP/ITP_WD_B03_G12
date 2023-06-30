@@ -277,7 +277,7 @@ function EmployeeList(props) {
                 value={data.address}
                 placeholder="Enter address"
                 onChange={handleChange}
-                autoFocus
+                autoFocus 
               />
               {errors.address && (
                 <Alert variant="danger">{errors.address}</Alert>
@@ -296,8 +296,8 @@ function EmployeeList(props) {
                 onChange={handleChange}
               >
                 <option value="select">Select</option>
-                <option value="male">Male</option>
-                <option value="empfemaleloyee">Female</option>
+                <option value="M">Male</option>
+                <option value="F">Female</option>
               </Form.Control>
               {errors.gender && <Alert variant="danger">{errors.gender}</Alert>}
             </Form.Group>
@@ -389,37 +389,34 @@ function EmployeeList(props) {
         }
 
         <Table
-          responsive
           className="table table-striped"
-          style={{ width: "54em" }}
+            
         >
-          <tr>
-            <td>
-              <b>First Name</b>
+          <tr style={{ textAlign:"center" }}>
+            <td style={{ width:"220px" }}>
+              <b>Full Name</b>  
             </td>
-            <td>
-              <b>Last Name</b>
-            </td>
+
             <td>
               <b>NIC</b>
             </td>
             <td>
-              <b>Phone no</b>
+              <b>Phone No</b>
             </td>
-            <td>
+            <td style={{ width:"200px" }}>  
               <b>Address</b>
             </td>
             <td>
-              <b>Gender</b>
+              <b>Sex</b>
+            </td> 
+            <td style={{ width:"150px" }}>
+              <b>Birthday</b> 
             </td>
             <td>
-              <b>Birthday</b>
-            </td>
-            <td>
-              <b>Job role</b>
-            </td>
-            <td>
-              <b>Basic Salary</b>
+              <b>Job role</b> 
+            </td>   
+            <td style={{ width:"100px"}}>  
+              <b>BasicSal (LKR)</b> 
             </td>
           </tr>
           <tbody>{tabRow()}</tbody>
