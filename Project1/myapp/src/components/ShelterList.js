@@ -204,10 +204,10 @@ function ShelterList(props) {
           //-------------------------Display data from database-------------------
         }
 
-        <table className="table table-striped" style={{ width: "54em" }}>
+        <table className="table table-striped">
           <tr>
             <td>
-              <b>Shelter ID</b>
+              <b>Shelter ID</b> 
             </td>
             <td>
               <b>Shelter Type</b>
