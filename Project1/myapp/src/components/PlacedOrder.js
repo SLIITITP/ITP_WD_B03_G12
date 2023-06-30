@@ -105,6 +105,22 @@ export default function(props){
 
   const handleClick = (e) => {
     e.preventDefault();
+
+    const incomeData = {
+      type: "Store",
+      total: total2 
+    }
+    console.log(incomeData); 
+  axios
+    .post(`http://localhost:5000/income/add`, incomeData)
+    .then((res) => {
+      
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+
+
     axios.all([
         axios.post(`http://localhost:5000/onlinePayment/add`, data),
         axios.post(`http://localhost:5000/delivery/add`, data2),

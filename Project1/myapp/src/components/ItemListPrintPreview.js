@@ -42,6 +42,7 @@ function ItemListPrintPreview(props){
         <td>{object.Supplier}</td>
         <td>{object.description}</td>
         <td>{object.qty}</td>
+        <td>{object.re_order}</td>
         <td>{object.manufacture_date}</td>
         <td>{object.expire_date}</td>
       </tr>
@@ -113,6 +114,11 @@ function ItemListPrintPreview(props){
             <td>
               <b>qty</b>
             </td>
+
+            <td>
+              <b>re_order</b>
+            </td>
+
             <td>
               <b>manufacture_data</b>
             </td>

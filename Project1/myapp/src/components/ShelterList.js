@@ -1,4 +1,4 @@
-import React, { useState, useEffect,useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import ShelterTableRow from "./ShelterTableRow";
 import { Link } from "react-router-dom";
@@ -7,23 +7,45 @@ import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import { withRouter } from "./withRouter";
 import "../components/CSS/listmain.css";
+import { Alert } from "react-bootstrap";
 
+function ShelterList(props) {
+  //Form validation
+  const [errors, setErrors] = useState({});
 
-
-
-
-function ShelterList(props){
-
-     //read hook
+  //read hook
 
   const [shelter, setShelter] = useState([]);
 
+  //Validations
+  const validateForm = () => {
+    let isValid = true;
+    const newErrors = {};
+
+    // Validate name field
+    if (data.shelter_id.trim() === "") {
+      newErrors.shelter_id = "Shelter Id is required";
+      isValid = false;
+    }
+
+    if (data.shelter_type.trim() === "") {
+      newErrors.shelter_type = "Shelter Type  is required";
+      isValid = false;
+    }
+    if (data.special_details.trim() === "") {
+      newErrors.special_details = "Details are required";
+      isValid = false;
+    }
+
+    setErrors(newErrors);
+    return isValid;
+  };
+
   //insert hook
   const [data, setData] = useState({
-   
-    shelter_id :"",
-    shelter_type:"",
-    special_details :"",
+    shelter_id: "",
+    shelter_type: "",
+    special_details: "",
   });
 
   const handleChange = (e) => {
@@ -35,18 +57,17 @@ function ShelterList(props){
     }));
   };
 
+  //Bootsrap Modal configurations
 
-//Bootsrap Modal configurations
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
-const [show, setShow] = useState(false);
-const handleClose = () => setShow(false);
-const handleShow = () => setShow(true);
+  // get data from DB
 
-// get data from DB
-
-useEffect(() => {
+  useEffect(() => {
     axios
-    .get("http://localhost:5000/shelters/")
+      .get("http://localhost:5000/shelters/")
       .then((response) => {
         setShelter(response.data);
       })
@@ -54,7 +75,6 @@ useEffect(() => {
         console.log(error);
       });
   }, []);
-
 
   const tabRow = () => {
     return shelter.map((object, i) => {
@@ -77,44 +97,44 @@ useEffect(() => {
       });
   }, []);
 
-
   const handleClick = (e) => {
     e.preventDefault();
-    axios
-    .post(`http://localhost:5000/shelters/add`, data)
+    if (validateForm()) {
+      axios
+        .post(`http://localhost:5000/shelters/add`, data)
 
-      .then((res) => {
-        alert(`Added Successfully`);
-        handleClose();
-        window.location.reload();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+        .then((res) => {
+          alert(`Added Successfully`);
+          handleClose();
+          window.location.reload();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   };
 
-  return(
+  return (
     <div>
-        {
-              //-------------------------Insert form using bootstrap Modal-------------------
+      <button className="material-icons floating-btn" onClick={handleShow}>
+        add
+      </button>
 
-        }
-        <Link to="/shelterListPrintPreview" className="nav-link">
+      {
+        //-------------------------Insert form using bootstrap Modal-------------------
+      }
+      <Link to="/shelterListPrintPreview" className="nav-link">
         <Button style={{ float: "right" }}>Print Preview</Button>
       </Link>
 
-      
-
-        <Modal {...props} size="lg" show={show} onHide={handleClose} centered>
+      <Modal {...props} size="lg" show={show} onHide={handleClose} centered>
         <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title-vcenter">
-        Add Shelter
-
-        </Modal.Title>
+          <Modal.Title id="contained-modal-title-vcenter">
+            Add Shelter
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-            <Form>
-
+          <Form>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Shelter Id:</Form.Label>
               <Form.Control
@@ -125,8 +145,10 @@ useEffect(() => {
                 onChange={handleChange}
                 autoFocus
               />
+              {errors.shelter_id && (
+                <Alert variant="danger">{errors.shelter_id}</Alert>
+              )}
             </Form.Group>
-
 
             <Form.Group
               className="mb-3"
@@ -139,14 +161,16 @@ useEffect(() => {
                 value={data.shelter_type}
                 onChange={handleChange}
               >
+                {errors.shelter_type && (
+                  <Alert variant="danger">{errors.shelter_type}</Alert>
+                )}
+
                 <option value="">Select</option>
                 <option value="small">Small</option>
                 <option value="medium">Medium</option>
                 <option value="large">Large</option>
               </Form.Control>
             </Form.Group>
-
-
 
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Special Details:</Form.Label>
@@ -158,75 +182,31 @@ useEffect(() => {
                 onChange={handleChange}
                 autoFocus
               />
+              {errors.special_details && (
+                <Alert variant="danger">{errors.special_details}</Alert>
+              )}
             </Form.Group>
-
-
-            </Form>
+          </Form>
         </Modal.Body>
         <Modal.Footer>
-
-        <Button onClick={handleClick}>Add</Button>
+          <Button onClick={handleClick}>Add</Button>
           <Button onClick={handleClose}>Close</Button>
-
         </Modal.Footer>
-   
+      </Modal>
 
-    </Modal>
-
-
-
-    {
+      {
         //-------------------------Side Menue Buttons-------------------
       }
 
       <div className="tablestyle">
-      <div className="buttonframe">
-      <table className="buttonstyle">
 
-
-      <tr>
-              <td>
-                <Link to ="" className="nav-link">
-                  <p>Add Admission</p>
-                </Link>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <Link to="/admissions" className="nav-link">
-                  <p>View all Admissions</p>
-                </Link>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <Link onClick={handleShow} className="nav-link">
-                  <p>Add Shelter</p>
-                </Link>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <Link to="/shelters" className="nav-link">
-                  <p>View Shelters</p>
-                </Link>
-              </td>
-            </tr>
-
-      </table>
-
-      </div>
-
-
-      {
+        {
           //-------------------------Display data from database-------------------
         }
 
-       
-
         <table className="table table-striped" style={{ width: "54em" }}>
-        <tr>
-        <td>
+          <tr>
+            <td>
               <b>Shelter ID</b>
             </td>
             <td>
@@ -236,21 +216,12 @@ useEffect(() => {
             <td>
               <b>Special Details</b>
             </td>
-        </tr>
+          </tr>
 
-        <tbody>{tabRow()}</tbody>
-            
+          <tbody>{tabRow()}</tbody>
         </table>
-      
-
-
-
       </div>
-
-
     </div>
-
-    
   );
 }
 export default withRouter(ShelterList);

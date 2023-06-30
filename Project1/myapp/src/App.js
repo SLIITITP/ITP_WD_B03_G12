@@ -53,7 +53,7 @@ import PaymentService from './components/PaymentService';
 
 import InPatientList from './components/InPatientList';
 import VaccinePrintPreview from './components/VaccinePrintPreview'
-
+import Footer from './components/Footer';
 
 class App extends Component {
 
@@ -128,7 +128,7 @@ class App extends Component {
 
            
           </Routes>
-         
+          <Footer/>
           </div> 
           
         </div>

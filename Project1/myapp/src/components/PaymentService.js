@@ -64,6 +64,8 @@ function PaymentService(props) {
   const [data, setData] = useState({
     service_name: "",
     service_price: "",
+    pay_owner: "", 
+    pay_pet: "",
   });
 
   //Bootsrap Cart Modal configurations
@@ -152,7 +154,7 @@ function PaymentService(props) {
     } else {
       const newService = { ...service, quantity: 1 };
       setCart([...cart, newService]);
-      alert("Item Added Successfully");
+      
     }
   };
 
@@ -224,6 +226,8 @@ function PaymentService(props) {
       pay_services: cart, // Assign the 'cart' array to the 'service' property
       pay_cashierName: userData.first_name,
       pay_total: cartTotal,
+      pay_owner: data.pay_owner,
+      pay_pet: data.pay_pet
     };
     console.log(newData);
     axios
@@ -235,11 +239,45 @@ function PaymentService(props) {
         console.log(err);
       });
 
+      const incomeData = {
+        type: "Service",
+        total:cartTotal
+      }
+      console.log(incomeData);
+    axios
+      .post(`http://localhost:5000/income/add`, incomeData)
+      .then((res) => {
+        handleClose();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+
+
     handleShowModal();
   };
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    // Validate the service price
+    if (name === "service_price" && !/^\d*\.?\d{0,2}$/.test(value)) {
+      // Price validation failed
+      return;
+    }
+
+    setData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+ 
+
   return (
     <div>
+
+
       <Link to="/servicePreview" className="nav-link">
         <Button style={{ float: "right" }}>Print Preview</Button>
       </Link>
@@ -254,12 +292,48 @@ function PaymentService(props) {
         <Modal.Body>
           <div style={{ float: "right" }}>Cashier: {userData.first_name}</div>
           <br />
+         
           <div>{cartItems}</div>
           <div>
             <h4>
               <b>Total: Rs.{cartTotal}</b>
             </h4>
           </div>
+
+          <Form>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Label>Customer Name:</Form.Label>
+              <Form.Control
+                type="text"
+                name="pay_owner"
+                value={data.pay_owner}
+                placeholder="Enter Customer Name"
+                onChange={handleChange}
+                autoFocus
+              />
+              
+
+            </Form.Group>
+            <Form.Group
+              className="mb-3"
+              controlId="exampleForm.ControlTextarea1"
+            >
+              <Form.Label>Pet Name</Form.Label>
+              <Form.Control
+                type="text"
+                name="pay_pet"
+                value={data.pay_pet}
+                placeholder="Enter Pet Name"
+                onChange={handleChange}
+                autoFocus
+              />
+             
+               <Form.Control.Feedback type="invalid">
+              Please enter a price.
+            </Form.Control.Feedback>
+            </Form.Group>
+          </Form>
+
         </Modal.Body>
         <Modal.Footer>
           <Link state={{ data: cart, data2: cartTotal }}>
@@ -268,7 +342,7 @@ function PaymentService(props) {
               onClick={finalBill}
               style={{ backgroundColor: "darkgoldenrod" }}
             >
-              Confirm
+              Confirm 
             </Button>
           </Link>
           <Button variant="secondary" onClick={handleClose}>
@@ -303,6 +377,8 @@ function PaymentService(props) {
             <p style={{ float: "right" }}>Cashier: {userData.first_name}</p>
             <br />
             <br />
+            <div>Customer: {data.pay_owner}</div>
+          <div>Pet: {data.pay_pet}</div>
             <div>
               {cart.map((item) => (
                 <div key={item._id}>
@@ -358,38 +434,7 @@ function PaymentService(props) {
       }
 
       <div className="tablestyle">
-        <div className="buttonframe">
-          <table className="buttonstyle">
-            <tr>
-              <td>
-                <Link to="/invoiceAdd" className="nav-link">
-                  <p>Issue Invoice</p>
-                </Link>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <Link to="/payments" className="nav-link">
-                  <p>View all Invoices</p>
-                </Link>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <Link onClick={handleShow} className="nav-link">
-                  <p>Add a Service</p>
-                </Link>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <Link to="/services" className="nav-link">
-                  <p>View Services</p>
-                </Link>
-              </td>
-            </tr>
-          </table>
-        </div>
+      
 
         {
           //-------------------------Display data from database-------------------

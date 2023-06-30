@@ -7,10 +7,34 @@ import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import { withRouter } from "./withRouter";
 import "../components/CSS/listmain.css";
+import { Alert } from "react-bootstrap";
 
 function ServicesList(props) {
+  //Form validation
+  const [errors, setErrors] = useState({});
   //read hook
   const [service, setService] = useState([]);
+
+//Validations
+  const validateForm = () => {
+    let isValid = true;
+    const newErrors = {};
+  
+    // Validate name field
+    if (data.service_name.trim() === "") {
+      newErrors.service_name = "Service Name is required";
+      isValid = false;
+    }
+  
+    if (data.service_price.trim() === "") {
+      newErrors.service_price = "Price is required";
+      isValid = false;
+    }
+  
+    setErrors(newErrors);
+    return isValid;
+  };
+  
 
   //insert hook
   const [data, setData] = useState({
@@ -22,7 +46,7 @@ function ServicesList(props) {
     const { name, value } = e.target;
 
     // Validate the service price
-    if (name === "service_price" && !/^\d+(\.\d{1,2})?$/.test(value)) {
+    if (name === "service_price" && !/^\d*\.?\d{0,2}$/.test(value)) {
       // Price validation failed
       return;
     }
@@ -79,10 +103,9 @@ function ServicesList(props) {
   const handleClick = (e) => {
     e.preventDefault();
   
-    const form = e.currentTarget;
-    if (form.checkValidity() === false) {
-      e.stopPropagation();
-    } else {
+   
+
+    if  (validateForm()) {
       axios
         .post(`http://localhost:5000/service/add`, data)
         .then((res) => {
@@ -95,7 +118,6 @@ function ServicesList(props) {
         });
     }
   
-    setValidated(true);
   };
   
   
@@ -104,6 +126,8 @@ function ServicesList(props) {
 
   return (
     <div>
+      <button className="material-icons floating-btn" onClick={handleShow}>add</button>
+
       <Link to="/servicePreview" className="nav-link">
         <Button style={{ float: "right" }}>Print Preview</Button>
       </Link>
@@ -128,8 +152,9 @@ function ServicesList(props) {
                 placeholder="Enter New service"
                 onChange={handleChange}
                 autoFocus
-                required
               />
+              {errors.service_name && <Alert variant="danger">{errors.service_name}</Alert>}
+
                <Form.Control.Feedback type="invalid">
               Please choose a service name.
             </Form.Control.Feedback>
@@ -146,8 +171,8 @@ function ServicesList(props) {
                 placeholder="Enter service Price"
                 onChange={handleChange}
                 autoFocus
-                required
               />
+              {errors.service_price && <Alert variant="danger">{errors.service_price}</Alert>}
                <Form.Control.Feedback type="invalid">
               Please enter a price.
             </Form.Control.Feedback>
@@ -170,44 +195,12 @@ function ServicesList(props) {
       }
 
       <div className="tablestyle">
-        <div className="buttonframe">
-          <table className="buttonstyle">
-            <tr>
-              <td>
-                <Link to="/payservice" className="nav-link">
-                  <p>Issue Invoice</p>
-                </Link>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <Link to="/payments" className="nav-link">
-                  <p>View all Invoices</p>
-                </Link>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <Link onClick={handleShow} className="nav-link">
-                  <p>Add a Service</p>
-                </Link>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <Link to="/services" className="nav-link">
-                  <p>View Services</p>
-                </Link>
-              </td>
-            </tr>
-          </table>
-        </div>
-
+        
         {
           //-------------------------Display data from database-------------------
         }
 
-        <table className="table table-striped" style={{ width: "54em" }}>
+        <table className="table table-striped" >
           <tr>
             <td>
               <b>Service Name</b>
