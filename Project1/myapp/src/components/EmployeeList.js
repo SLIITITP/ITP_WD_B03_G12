@@ -9,8 +9,8 @@ import { withRouter } from './withRouter';
 import Table from 'react-bootstrap/Table';
 import '../components/CSS/listmain.css';
 import { Alert } from "react-bootstrap";
-import InputMask from 'react-input-mask';
 
+ 
 function EmployeeList(props) {
 
   //Form validation
