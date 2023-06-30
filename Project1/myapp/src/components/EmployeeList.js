@@ -9,11 +9,12 @@ import { withRouter } from './withRouter';
 import Table from 'react-bootstrap/Table';
 import '../components/CSS/listmain.css';
 import { Alert } from "react-bootstrap";
+import InputMask from 'react-input-mask';
 
 function EmployeeList(props) {
 
   //Form validation
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors, setVal] = useState({});
 
   const validateForm = () => {
     let isValid = true;
@@ -59,6 +60,10 @@ function EmployeeList(props) {
       newErrors.jobrole = "Job role is required";
       isValid = false;
     }
+    if (data.basicSal === "select") {
+      newErrors.basicSal = "Salary is required";
+      isValid = false;
+    }
   
     setErrors(newErrors);
     return isValid;
@@ -80,11 +85,33 @@ function EmployeeList(props) {
         gender:'',
         birthday:'',
         jobrole:'',
+        basicSal:'',
 
     });
   
     const handleChange = (e) => {
       const { name, value } = e.target;
+
+   // Validate the service price
+ if (name === "basicSal" && !/^\d*\.?\d{0,2}$/.test(value)) {
+// Price validation failed
+ return;
+
+}
+
+   // Validate the service price
+   if (name === "NIC" && !/^\d*\.?\d{0,2}$/.test(value)) {
+    // Price validation failed
+     return;
+    
+    }
+
+       // Validate the service price
+   if (name === "phoneno" && !/^\d*\.?\d{0,2}$/.test(value)) {
+    // Price validation failed
+     return;
+    
+    }
   
       setData((prev) => ({
         ...prev,
@@ -198,24 +225,35 @@ function EmployeeList(props) {
                 placeholder="Enter last name"
                 onChange={handleChange}
                 autoFocus
+                
               />
               {errors.lname && <Alert variant="danger">{errors.lname}</Alert>}
             </Form.Group>
 
-            <Form.Group
-              className="mb-3" controlId="exampleForm.ControlTextarea1"
-            >
-              <Form.Label>Enter NIC:</Form.Label>
-              <Form.Control
-                type="text"
-                name="NIC"
-                value={data.NIC}
-                placeholder="Enter NIC"
-                onChange={handleChange}
-                autoFocus
-              />
-              {errors.NIC && <Alert variant="danger">{errors.NIC}</Alert>}
-            </Form.Group>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+  <Form.Label>Enter NIC:</Form.Label>
+  <Form.Control
+    type="text"
+    name="NIC"
+    value={data.NIC}
+    placeholder="Enter NIC"
+    onChange={handleChange}
+    maxLength={13} // Set the maximum length to 13 characters
+    pattern="[0-9]{12}v?" // Specify the pattern to accept 12 numbers followed by an optional 'v'
+    title="Please enter 12 numbers followed by an optional 'v'" // Display a title for the pattern validation
+    autoFocus
+    onKeyDown={(e) => {
+      const { key } = e;
+      if (key >= 0 && key <= 9) {
+        const inputValue = e.target.value;
+        if (inputValue.length === 12) {
+          e.target.value = inputValue + 'v';
+        }
+      }
+    }}
+  />
+  {errors.NIC && <Alert variant="danger">{errors.NIC}</Alert>}
+</Form.Group>
 
 
 
@@ -230,7 +268,9 @@ function EmployeeList(props) {
                 placeholder="Enter phone number"
                 onChange={handleChange}
                 autoFocus
+                
               />
+   
               {errors.phoneno && <Alert variant="danger">{errors.phoneno}</Alert>}
             </Form.Group>
 
@@ -297,6 +337,30 @@ function EmployeeList(props) {
   
 
             </Form.Group>
+
+            <Form.Group
+              className="mb-3" controlId="exampleForm.ControlTextarea1"
+            >
+              <Form.Label>Basic Salary</Form.Label>
+              Rs.
+              <Form.Control
+
+                type="text" 
+                name="basicSal"
+                value= {data.basicSal}
+                pattern="[0-9]*"
+                placeholder="Basic Salary"
+                onChange={handleChange}
+                autoFocus
+              
+                
+              />
+              
+              
+              {errors.basicSal && <Alert variant="danger">{errors.basicSal}</Alert>}
+            </Form.Group>
+
+     
 
             
 
@@ -384,6 +448,9 @@ function EmployeeList(props) {
             </td>
             <td>
               <b>Job role</b>
+            </td>
+            <td>
+              <b>Basic Salary</b>
             </td>
 
           </tr>

@@ -19,6 +19,8 @@ employeeRoutes.route('/add').post(async function(req,res) {
          gender:req.body.gender,
          birthday:req.body.birthday,
          jobrole:req.body.jobrole,
+         basicSal:req.body.basicSal,
+
 
           created: today
         };
@@ -86,6 +88,7 @@ employeeRoutes.route('/update/:id').put(async (req, res) => {
     employee.gender = req.body.employee_gender
     employee.birthday = req.body.employee_birthday
     employee.jobrole = req.body.employee_jobrole
+    employee.basicSal = req.body.employee_basicSal
 
     await employee.save();
     res.json(employee);
