@@ -249,7 +249,7 @@ const SupplierTableRow = (props) => {
         <td>{supplierState.email1}</td>
         <td>{supplierState.contact_no1}</td>
         <td>{supplierState.contact_no2}</td>
-        <td>{supplierState.registerd_date}</td>
+        <td>{supplierState.registerd_date.substring(0, 10)}</td>
 
 
         <td>

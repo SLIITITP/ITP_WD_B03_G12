@@ -87,6 +87,15 @@ function AnimalList(props) {
 
   return (
     <div>
+      <Link to="/animaltype"> 
+        <button
+          className="material-icons floating-btn"
+          style={{ marginBottom: "100px" }}
+        >
+          list
+        </button>
+      </Link>
+
       <Link to="/animalPrintPreview" className="nav-link">
         <Button className="print-btn" style={{ float: "right" }}>
           Print Preview

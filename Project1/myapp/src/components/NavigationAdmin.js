@@ -28,12 +28,6 @@ class Navbar3 extends Component {
           </li>
 
           <li className="nav-item2">
-            <Link to="/animaltype" className="nav-link">
-              <h6>Animal Types</h6>
-            </Link>
-          </li>
-
-          <li className="nav-item2">
             <Link to="/payments" className="nav-link">
               <h6>Invoice</h6>
             </Link>
@@ -80,7 +74,13 @@ class Navbar3 extends Component {
         <ul className="nav-tabs4">
           <li className="nav-item2">
             <Link to="/items" className="nav-link">
-              <h6>Store</h6>
+              <h6>Items</h6>
+            </Link>
+          </li>
+
+          <li className="nav-item2">
+            <Link to="/supplier " className="nav-link">
+              <h6>Suppliers</h6> 
             </Link>
           </li>
 
@@ -114,11 +114,6 @@ class Navbar3 extends Component {
 
 
 
-          <li className="nav-item2">
-            <Link to="/insights" className="nav-link">
-              <h6>Insights</h6>
-            </Link>
-          </li>
 
           <li className="nav-item2">
             <Link to="/insights" className="nav-link">
