@@ -47,21 +47,25 @@ p {
 
 .nav-link {
     border-radius: 20px; 
-    
-  }
-     
+    border-color: transparent; 
+}
 
+   
 
 .nav-item2 {
     list-style: none; 
     width: 10em;
     text-align: center; 
     margin-bottom: 2px;   
-    border-radius: 20px; 
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;  
     transition: background 0.35s;
-}
-.nav-item2:active {
+} 
+
+
+.nav-item2:hover {
     background-color: rgb(165, 102, 221);
+    border-color: transparent; 
 }
 
 .nav-tabs { 
