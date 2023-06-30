@@ -273,6 +273,22 @@ function AdmissionForm(props) {
               )}
             </Form.Group>
 
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Label>Special Notes:</Form.Label>
+              <Form.Control
+                as="textarea"
+                rows={3}
+                name="special_notes"
+                value={data.special_notes}
+                placeholder="Enter Special Notes"
+                onChange={handleChange}
+                autoFocus
+              />
+              {errors.special_notes && (
+                <Alert variant="danger">{errors.special_notes}</Alert>
+              )}
+            </Form.Group>
+
             <Form.Group
               className="mb-3"
               controlId="exampleForm.ControlTextarea1"
@@ -288,26 +304,10 @@ function AdmissionForm(props) {
                   <Alert variant="danger">{errors.shelter_type}</Alert>
                 )}
                 <option value="">Select</option>
-                <option value="small">Small</option>
-                <option value="medium">Medium</option>
-                <option value="large">Large</option>
+                <option value="S">Small</option>
+                <option value="M">Medium</option>
+                <option value="L">Large</option>
               </Form.Control>
-            </Form.Group>
-
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Special Notes:</Form.Label>
-              <Form.Control
-                as="textarea"
-                rows={3}
-                name="special_notes"
-                value={data.special_notes}
-                placeholder="Enter Special Notes"
-                onChange={handleChange}
-                autoFocus
-              />
-              {errors.special_notes && (
-                <Alert variant="danger">{errors.special_notes}</Alert>
-              )}
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
@@ -347,12 +347,9 @@ function AdmissionForm(props) {
         }
 
         <table className="table table-striped" style={{ width: "54em" }}>
-          <tr>
+          <tr style={{ textAlign: "center" }}>
             <td>
-              <b>Owner's First Name</b>
-            </td>
-            <td>
-              <b>Owner's Last Name</b>
+              <b>Owner Name</b>
             </td>
 
             <td>
@@ -360,14 +357,14 @@ function AdmissionForm(props) {
             </td>
 
             <td>
-              <b>Weight(Kg's)</b>
+              <b>Weight (Kg)</b>
             </td>
 
             <td>
               <b>Diagnosis</b>
             </td>
 
-            <td>
+            <td style={{ textAlign: "center" }}>
               <b>Shelter Type</b>
             </td>
 
