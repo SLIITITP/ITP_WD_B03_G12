@@ -128,6 +128,17 @@ const AdmissionTableRow = (props) => {
               />
             </Form.Group>
 
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Label>Special Notes:</Form.Label>
+              <Form.Control
+                type="text"
+                name="special_notes"
+                value={updated.special_notes}
+                onChange={handleChange}
+                autoFocus
+              />
+            </Form.Group>
+
             <Form.Group
               className="mb-3"
               controlId="exampleForm.ControlTextarea1"
@@ -140,21 +151,10 @@ const AdmissionTableRow = (props) => {
                 onChange={handleChange}
               >
                 <option value="">Select</option>
-                <option value="small">Small</option>
-                <option value="medium">Medium</option>
-                <option value="large">Large</option>
+                <option value="S">Small</option>
+                <option value="M">Medium</option>
+                <option value="L">Large</option>
               </Form.Control>
-            </Form.Group>
-
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Special Notes:</Form.Label>
-              <Form.Control
-                type="text"
-                name="special_notes"
-                value={updated.special_notes}
-                onChange={handleChange}
-                autoFocus
-              />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
@@ -193,8 +193,9 @@ const AdmissionTableRow = (props) => {
       <td key={admissionState._id} style={{ display: "none" }}>
         {" "}
       </td>
-      <td>{admissionState.first_name}</td>
-      <td>{admissionState.last_name}</td>
+      <td>
+        {admissionState.first_name} {admissionState.last_name}
+      </td>
       <td>{admissionState.contact_no}</td>
       <td>{admissionState.weight}</td>
       <td>{admissionState.diagnosis}</td>
