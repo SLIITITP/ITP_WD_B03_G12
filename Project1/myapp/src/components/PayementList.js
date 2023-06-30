@@ -120,7 +120,7 @@ function PaymentList(props) {
        
       <ReactToPrint
       documentTitle='Our Services' 
-      trigger={() => <Button style={{float:'right'}}>Print</Button>}
+      trigger={() => <Button className="print-btn"  style={{float:'right'}}>Print</Button>}
       content={() => componentRef.current} ></ReactToPrint>
      
     

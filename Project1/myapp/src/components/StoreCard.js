@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-import {  Link,} from "react-router-dom";
+import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
@@ -10,10 +10,8 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import { withRouter } from "./withRouter";
 
-
 import "../components/CSS/listmain.css";
-import '../components/CSS/shippingForm.css';
-
+import "../components/CSS/shippingForm.css";
 
 function StoreCard() {
   //read hook
@@ -28,10 +26,7 @@ function StoreCard() {
     if (storedCart) {
       setCart(storedCart);
     }
-    
-    
-  }, []); 
-  
+  }, []);
 
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
@@ -44,25 +39,21 @@ function StoreCard() {
       }, 0);
       setCartTotal(parseFloat(totalVal).toFixed(2));
     };
-     
-    calculateTotal(); 
-  }, [cart]);
-  
-   
 
+    calculateTotal();
+  }, [cart]);
 
   const addToCart = (item) => {
-    console.log(item) 
+    console.log(item);
     // check if item already exists in cart
     const itemExists = cart.some((cartItem) => cartItem._id === item._id);
     if (itemExists) {
       alert("Item already in cart");
-    } else { 
-        const newItem = { ...item, quantity: 1 };
-        setCart([...cart, newItem]);
-        alert("Item Added Successfully");
-        
-      }
+    } else {
+      const newItem = { ...item, quantity: 1 };
+      setCart([...cart, newItem]);
+      alert("Item Added Successfully");
+    }
   };
 
   const handleQuantityChange = (event, item) => {
@@ -72,9 +63,11 @@ function StoreCard() {
       alert("Quantity must be between 1 and 10");
     } else {
       const updatedCart = [...cart];
-      updatedCart[itemIndex] = { ...updatedCart[itemIndex], quantity: newQuantity };
+      updatedCart[itemIndex] = {
+        ...updatedCart[itemIndex],
+        quantity: newQuantity,
+      };
       setCart(updatedCart);
-      
     }
   };
 
@@ -83,11 +76,10 @@ function StoreCard() {
       <Form>
         <Form.Group
           as={Col}
-          className="mb-4" 
+          className="mb-4"
           controlId="formPlaintext"
           style={{ display: "flex" }}
         >
-           
           <Form.Control
             plaintext
             readOnly
@@ -108,11 +100,17 @@ function StoreCard() {
             min="1"
             max="10"
             value={item.quantity}
-            onChange={(event) => handleQuantityChange(event, item)}></Form.Control>
-          <Button onClick={() => removeFromCart(item)} style={{backgroundColor:"red"}}>remove</Button>
+            onChange={(event) => handleQuantityChange(event, item)}
+          ></Form.Control>
+          <Button
+            onClick={() => removeFromCart(item)}
+            style={{ backgroundColor: "red" }}
+          >
+            remove
+          </Button>
         </Form.Group>
       </Form>
-    </div> 
+    </div>
   ));
 
   const removeFromCart = (j) => {
@@ -120,7 +118,6 @@ function StoreCard() {
     hardCopy = hardCopy.filter((cartItem) => cartItem._id !== j._id);
     setCart(hardCopy);
     localStorage.setItem("cart", JSON.stringify(hardCopy));
-    
   };
 
   //Bootsrap Modal configurations
@@ -158,9 +155,14 @@ function StoreCard() {
       for (let j = i; j < i + 5 && j < item.length; j++) {
         cols.push(
           <Col xs={12} sm={6} md={4} lg={3} xl={2} key={item[j]._id}>
-            <Card style={{ height: "20em" }}>
-              <Card.Img className="justify-content-center" variant="top" src={`../uploads/${item[j].image}`}style={{width: "8em", height: "8em", marginTop: "1em"}} alt="img" />
- 
+            <Card style={{ height: "21em" }}>
+              <Card.Img
+                className="justify-content-center"
+                variant="top"
+                src={`../uploads/${item[j].image}`}
+                style={{ width: "8em", height: "8em", marginTop: "1em" }}
+                alt="img"
+              />
 
               <Card.Body>
                 <Card.Title>
@@ -170,12 +172,15 @@ function StoreCard() {
                   <p>Rs.{item[j].price}</p>
                 </Card.Text>
                 <Card.Text>
-                  <Button
-                    type="submit"
-                    onClick={() => addToCart(item[j])}
-                  >
-                    Add to cart
-                  </Button>
+                  <div className="add-to-cart">
+                    <Button
+                      className="cartbtn"
+                      type="submit"
+                      onClick={() => addToCart(item[j])}
+                    >
+                      Add to Cart
+                    </Button>
+                  </div> 
                 </Card.Text>
               </Card.Body>
             </Card>
@@ -186,7 +191,7 @@ function StoreCard() {
         <Row
           key={i}
           className="justify-content-center"
-          style={{ marginBottom: "10px", width: "70em", height: "20em" }}
+          style={{ marginBottom: "10px", width: "70em", height: "22em" }}
         >
           {cols}
         </Row>
@@ -197,8 +202,6 @@ function StoreCard() {
   };
 
   return (
-
-   
     <tr>
       <Modal size="lg" show={show} onHide={handleClose} centered>
         <Modal.Header closeButton>
@@ -213,30 +216,32 @@ function StoreCard() {
           </div>
         </Modal.Body>
         <Modal.Footer>
-            <Link to={"/proccess"} state={{data: cart, data2: cartTotal}} >
-          <Button variant="primary" onClick={handleClose} style={{backgroundColor:"darkgoldenrod"}}  >
-            Confirm
-          </Button>
+          <Link to={"/proccess"} state={{ data: cart, data2: cartTotal }}>
+            <Button
+              variant="primary"
+              onClick={handleClose}
+              style={{ backgroundColor: "darkgoldenrod" }}
+            >
+              Confirm
+            </Button>
           </Link>
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-    
         </Modal.Footer>
       </Modal>
 
-      <h1 align="center" style={{backgroundColor:"gray"}}>SHOP</h1>
+      <h1 align="center">Online Store</h1>
 
       <div className="cart">
-    <span>
-            <img
-        src="../img/cart.png"
-        onClick={handleShow}
-        style={{ width: "40px", height: "40px", float: "left" }}
-        ></img>
-      
-      </span>
-      <span style={{float: "left"}}>{cart.length}</span>
+        <span>
+          <img
+            src="../img/cart.png"
+            onClick={handleShow}
+            style={{ width: "40px", height: "40px", float: "left" }}
+          ></img>
+        </span>
+        <span style={{ float: "left" }}>{cart.length}</span>
       </div>
 
       <div>{tabRow()}</div>
@@ -250,4 +255,3 @@ src="../img/cart.png"
 onClick={handleShow}
 style={{ width: "40px", height: "40px", float: "right" }}
 ></img>*/
-

@@ -129,7 +129,7 @@ function UsersList(props) {
       <button className="material-icons floating-btn" onClick={handleShow}>add</button>
 
  <Link to="/userListPrintPreview" className="nav-link">
-        <Button style={{ float: "right" }}>Print Preview</Button>
+        <Button className="print-btn" style={{ float: "right" }}>Print Preview</Button>
       </Link>
       {
         //-------------------------Insert form using bootstrap Modal-------------------
