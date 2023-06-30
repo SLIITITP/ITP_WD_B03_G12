@@ -232,8 +232,7 @@ const EmployeeTableRow = (props) => {
         <td key={employeeState._id} style={{ display: "none" }}>
           {" "}
         </td>
-        <td>{employeeState.employee_name}</td>
-        <td>{employeeState.employee_lname}</td>
+        <td>{employeeState.employee_name} {employeeState.employee_lname}</td>
         <td>{employeeState.employee_NIC}</td>
         <td>{employeeState.employee_phoneno}</td>
         <td>{employeeState.employee_address}</td>

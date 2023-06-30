@@ -395,11 +395,9 @@ function EmployeeList(props) {
         >
           <tr>
             <td>
-              <b>First Name</b>
+              <b>Full Name</b>
             </td>
-            <td>
-              <b>Last Name</b>
-            </td>
+
             <td>
               <b>NIC</b>
             </td>
