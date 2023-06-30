@@ -204,7 +204,7 @@ function ItemList(props) {
 
       <ReactToPrint
         documentTitle="Our Item list"
-        trigger={() => <Button style={{ float: "right" }}>Print</Button>}
+        trigger={() => <Button className="print-btn" style={{ float: "right" }}>Print</Button>}
         content={() => componentRef.current}
       ></ReactToPrint>
       {

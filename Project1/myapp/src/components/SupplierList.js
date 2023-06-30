@@ -154,7 +154,7 @@ function SupplierList(props) {
       </button> 
 
       <Link to="/supplierListPrintPreview" className="nav-link">
-        <Button style={{ float: "right" }}>Print Preview</Button>
+        <Button className="print-btn" style={{ float: "right" }}>Print Preview</Button>
       </Link>
 
       {

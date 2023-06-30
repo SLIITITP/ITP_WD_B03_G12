@@ -178,7 +178,7 @@ function EmployeeList(props) {
       }
 
       <Link to="/employeePreviewList" className="nav-link">
-        <Button style={{ float: "right" }}>Print Preview</Button>
+        <Button className="print-btn" style={{ float: "right" }}>Print Preview</Button>
       </Link>
 
       <Modal {...props} size="lg" show={show} onHide={handleClose} centered>
