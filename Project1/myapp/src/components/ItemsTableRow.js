@@ -229,8 +229,8 @@ const ItemTableRow = (props) => {
         <td>{itemState.item_description}</td>
         <td>{itemState.item_qty}</td>
         <td>{itemState.item_re_order}</td>
-        <td>{itemState.item_manufacture_date}</td>
-        <td>{itemState.item_expire_date}</td>
+        <td>{itemState.item_manufacture_date.substring(0, 10)}</td>
+        <td>{itemState.item_expire_date.substring(0, 10)}</td>
         <td>
           <button
             type="submit"

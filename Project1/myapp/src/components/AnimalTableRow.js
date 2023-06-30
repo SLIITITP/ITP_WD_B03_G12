@@ -304,7 +304,7 @@ const AnimalTableRow = (props) => {
         <td>
           <button
             type="submit"
-            className="submit"
+            className="submit update-btn"
             onClick={() => updateAnimal(animalState)}
           >
             <Link className="nav-link">Update</Link>
@@ -313,7 +313,7 @@ const AnimalTableRow = (props) => {
         <td>
           <button
             type="submit"
-            className="delete"
+            className="delete delete-btn"
             onClick={() => onDelete(animalState._id)}
           >
             <Link className="nav-link">Delete</Link>

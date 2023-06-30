@@ -1,61 +1,59 @@
-import React, { useState, useEffect, Component, useRef } from 'react'
-import axios from 'axios'
-import EmployeeTableRow from './EmployeeTableRow'
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect, Component, useRef } from "react";
+import axios from "axios";
+import EmployeeTableRow from "./EmployeeTableRow";
+import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
-import { withRouter } from './withRouter';
-import Table from 'react-bootstrap/Table';
-import '../components/CSS/listmain.css';
+import { withRouter } from "./withRouter";
+import Table from "react-bootstrap/Table";
+import "../components/CSS/listmain.css";
 import { Alert } from "react-bootstrap";
-import InputMask from 'react-input-mask';
 
 function EmployeeList(props) {
-
   //Form validation
   const [errors, setErrors, setVal] = useState({});
 
   const validateForm = () => {
     let isValid = true;
     const newErrors = {};
-  
+
     // Validate name field
     if (data.name.trim() === "") {
       newErrors.name = "Name is required";
       isValid = false;
     }
-  
+
     if (data.lname.trim() === "") {
       newErrors.lname = "Last name is required";
       isValid = false;
     }
-  
+
     if (data.NIC.trim() === "") {
       newErrors.NIC = "NIC is required";
       isValid = false;
     }
-  
+
     if (data.phoneno.trim() === "") {
       newErrors.phoneno = "Phone number is required";
       isValid = false;
     }
-  
+
     if (data.address.trim() === "") {
       newErrors.address = "Address is required";
       isValid = false;
     }
-  
+
     if (data.gender === "select") {
       newErrors.gender = "Gender is required";
       isValid = false;
     }
-  
+
     if (data.birthday.trim() === "") {
       newErrors.birthday = "Birthday is required";
       isValid = false;
     }
-  
+
     if (data.jobrole === "select") {
       newErrors.jobrole = "Job role is required";
       isValid = false;
@@ -64,62 +62,55 @@ function EmployeeList(props) {
       newErrors.basicSal = "Salary is required";
       isValid = false;
     }
-  
+
     setErrors(newErrors);
     return isValid;
   };
-  
 
-   
+  //read hook
+  const [employee, setEmployee] = useState([]);
 
-    //read hook
-    const [employee, setEmployee] = useState([]);
-  
-    //insert hook
-    const [data, setData] = useState({
-        name: '',
-        lname: '',
-        NIC: '',
-        phoneno:'',
-        address:'',
-        gender:'',
-        birthday:'',
-        jobrole:'',
-        basicSal:'',
+  //insert hook
+  const [data, setData] = useState({
+    name: "",
+    lname: "",
+    NIC: "",
+    phoneno: "",
+    address: "",
+    gender: "",
+    birthday: "",
+    jobrole: "",
+    basicSal: "",
+  });
 
-    });
-  
-    const handleChange = (e) => {
-      const { name, value } = e.target;
+  const handleChange = (e) => {
+    const { name, value } = e.target;
 
-   // Validate the service price
- if (name === "basicSal" && !/^\d*\.?\d{0,2}$/.test(value)) {
-// Price validation failed
- return;
-
-}
-
-   // Validate the service price
-   if (name === "NIC" && !/^\d*\.?\d{0,2}$/.test(value)) {
-    // Price validation failed
-     return;
-    
+    // Validate the service price
+    if (name === "basicSal" && !/^\d*\.?\d{0,2}$/.test(value)) {
+      // Price validation failed
+      return;
     }
 
-       // Validate the service price
-   if (name === "phoneno" && !/^\d*\.?\d{0,2}$/.test(value)) {
-    // Price validation failed
-     return;
-    
+    // Validate the service price
+    if (name === "NIC" && !/^\d*\.?\d{0,2}$/.test(value)) {
+      // Price validation failed
+      return;
     }
-  
-      setData((prev) => ({
-        ...prev,
-        [name]: value,
-      }));
-    };
 
-      //Bootsrap Modal configurations
+    // Validate the service price
+    if (name === "phoneno" && !/^\d*\.?\d{0,2}$/.test(value)) {
+      // Price validation failed
+      return;
+    }
+
+    setData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  //Bootsrap Modal configurations
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -161,7 +152,7 @@ function EmployeeList(props) {
   //send new data to database
   const handleClick = (e) => {
     e.preventDefault();
-  
+
     if (validateForm()) {
       axios
         .post(`http://localhost:5000/employee/add`, data)
@@ -175,20 +166,20 @@ function EmployeeList(props) {
         });
     }
   };
-  
 
-    return (
-        <div>
+  return (
+    <div>
+      <button className="material-icons floating-btn" onClick={handleShow}>
+        add
+      </button>
+
       {
         //-------------------------Insert form using bootstrap Modal-------------------
       }
 
       <Link to="/employeePreviewList" className="nav-link">
-        <Button style={{ float: "right" }}>Print Preview</Button>
+        <Button className="print-btn" style={{ float: "right" }}>Print Preview</Button>
       </Link>
-
-   
-
 
       <Modal {...props} size="lg" show={show} onHide={handleClose} centered>
         <Modal.Header closeButton>
@@ -198,10 +189,9 @@ function EmployeeList(props) {
         </Modal.Header>
         <Modal.Body>
           <Form>
-
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Enter first name:</Form.Label>
-              
+
               <Form.Control
                 type="text"
                 name="name"
@@ -209,13 +199,13 @@ function EmployeeList(props) {
                 placeholder="Enter first name"
                 onChange={handleChange}
                 autoFocus
-      
               />
               {errors.name && <Alert variant="danger">{errors.name}</Alert>}
             </Form.Group>
 
             <Form.Group
-              className="mb-3" controlId="exampleForm.ControlTextarea1"
+              className="mb-3"
+              controlId="exampleForm.ControlTextarea1"
             >
               <Form.Label>Enter last name:</Form.Label>
               <Form.Control
@@ -225,40 +215,41 @@ function EmployeeList(props) {
                 placeholder="Enter last name"
                 onChange={handleChange}
                 autoFocus
-                
               />
               {errors.lname && <Alert variant="danger">{errors.lname}</Alert>}
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-  <Form.Label>Enter NIC:</Form.Label>
-  <Form.Control
-    type="text"
-    name="NIC"
-    value={data.NIC}
-    placeholder="Enter NIC"
-    onChange={handleChange}
-    maxLength={13} // Set the maximum length to 13 characters
-    pattern="[0-9]{12}v?" // Specify the pattern to accept 12 numbers followed by an optional 'v'
-    title="Please enter 12 numbers followed by an optional 'v'" // Display a title for the pattern validation
-    autoFocus
-    onKeyDown={(e) => {
-      const { key } = e;
-      if (key >= 0 && key <= 9) {
-        const inputValue = e.target.value;
-        if (inputValue.length === 12) {
-          e.target.value = inputValue + 'v';
-        }
-      }
-    }}
-  />
-  {errors.NIC && <Alert variant="danger">{errors.NIC}</Alert>}
-</Form.Group>
-
-
+            <Form.Group
+              className="mb-3"
+              controlId="exampleForm.ControlTextarea1"
+            >
+              <Form.Label>Enter NIC:</Form.Label>
+              <Form.Control
+                type="text"
+                name="NIC"
+                value={data.NIC}
+                placeholder="Enter NIC"
+                onChange={handleChange}
+                maxLength={13} // Set the maximum length to 13 characters
+                pattern="[0-9]{12}v?" // Specify the pattern to accept 12 numbers followed by an optional 'v'
+                title="Please enter 12 numbers followed by an optional 'v'" // Display a title for the pattern validation
+                autoFocus
+                onKeyDown={(e) => {
+                  const { key } = e;
+                  if (key >= 0 && key <= 9) {
+                    const inputValue = e.target.value;
+                    if (inputValue.length === 12) {
+                      e.target.value = inputValue + "v";
+                    }
+                  }
+                }}
+              />
+              {errors.NIC && <Alert variant="danger">{errors.NIC}</Alert>}
+            </Form.Group>
 
             <Form.Group
-              className="mb-3" controlId="exampleForm.ControlTextarea1"
+              className="mb-3"
+              controlId="exampleForm.ControlTextarea1"
             >
               <Form.Label>Enter phone number:</Form.Label>
               <Form.Control
@@ -268,14 +259,16 @@ function EmployeeList(props) {
                 placeholder="Enter phone number"
                 onChange={handleChange}
                 autoFocus
-                
               />
-   
-              {errors.phoneno && <Alert variant="danger">{errors.phoneno}</Alert>}
+
+              {errors.phoneno && (
+                <Alert variant="danger">{errors.phoneno}</Alert>
+              )}
             </Form.Group>
 
             <Form.Group
-              className="mb-3" controlId="exampleForm.ControlTextarea1"
+              className="mb-3"
+              controlId="exampleForm.ControlTextarea1"
             >
               <Form.Label>Enter address:</Form.Label>
               <Form.Control
@@ -286,91 +279,97 @@ function EmployeeList(props) {
                 onChange={handleChange}
                 autoFocus
               />
-              {errors.address && <Alert variant="danger">{errors.address}</Alert>}
+              {errors.address && (
+                <Alert variant="danger">{errors.address}</Alert>
+              )}
             </Form.Group>
 
             <Form.Group
-              className="mb-3" controlId="exampleForm.ControlTextarea1"
+              className="mb-3"
+              controlId="exampleForm.ControlTextarea1"
             >
               <Form.Label>Enter Gender:</Form.Label>
-              <Form.Control as = "select"
-                  name="gender"
-                  value={data.gender}
-                  onChange={handleChange}>
-              <option value="select">Select</option>
-              <option value="male">Male</option>
-               <option value="empfemaleloyee">Female</option>
+              <Form.Control
+                as="select"
+                name="gender"
+                value={data.gender}
+                onChange={handleChange}
+              >
+                <option value="select">Select</option>
+                <option value="male">Male</option>
+                <option value="empfemaleloyee">Female</option>
               </Form.Control>
               {errors.gender && <Alert variant="danger">{errors.gender}</Alert>}
-  
-
             </Form.Group>
 
             <Form.Group
-              className="mb-3" controlId="exampleForm.ControlTextarea1"
+              className="mb-3"
+              controlId="exampleForm.ControlTextarea1"
             >
               <Form.Label>Enter birthday:</Form.Label>
               <Form.Control
-                type="date" min="1950-01-01" max="2010-12-31"
+                type="date"
+                min="1950-01-01"
+                max="2010-12-31"
                 name="birthday"
                 value={data.birthday}
                 placeholder="Enter birthday"
                 onChange={handleChange}
                 autoFocus
               />
-              {errors.birthday && <Alert variant="danger">{errors.birthday}</Alert>}
+              {errors.birthday && (
+                <Alert variant="danger">{errors.birthday}</Alert>
+              )}
             </Form.Group>
 
             <Form.Group
-              className="mb-3" controlId="exampleForm.ControlTextarea1"
+              className="mb-3"
+              controlId="exampleForm.ControlTextarea1"
             >
               <Form.Label>Enter job role:</Form.Label>
-              <Form.Control as = "select"
-                  name="jobrole"
-                  value={data.jobrole}
-                  onChange={handleChange}>
-              <option value="select">Select</option>
-              <option value="doctor">Doctor</option>
-               <option value="employee">Employee</option>
+              <Form.Control
+                as="select"
+                name="jobrole"
+                value={data.jobrole}
+                onChange={handleChange}
+              >
+                <option value="select">Select</option>
+                <option value="doctor">Doctor</option>
+                <option value="employee">Employee</option>
               </Form.Control>
-              {errors.jobrole && <Alert variant="danger">{errors.jobrole}</Alert>}
-  
-
+              {errors.jobrole && (
+                <Alert variant="danger">{errors.jobrole}</Alert>
+              )}
             </Form.Group>
 
             <Form.Group
-              className="mb-3" controlId="exampleForm.ControlTextarea1"
+              className="mb-3"
+              controlId="exampleForm.ControlTextarea1"
             >
               <Form.Label>Basic Salary</Form.Label>
               Rs.
               <Form.Control
-
-                type="text" 
+                type="text"
                 name="basicSal"
-                value= {data.basicSal}
+                value={data.basicSal}
                 pattern="[0-9]*"
                 placeholder="Basic Salary"
                 onChange={handleChange}
                 autoFocus
-              
-                
               />
-              
-              
-              {errors.basicSal && <Alert variant="danger">{errors.basicSal}</Alert>}
+              {errors.basicSal && (
+                <Alert variant="danger">{errors.basicSal}</Alert>
+              )}
             </Form.Group>
-
-     
-
-            
-
-
-
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant='info' onClick={handleClick}>Add</Button>
-          <Button  variant='danger' onClick={handleClose}>Close</Button>
+          <Button variant="info" onClick={handleClick}>
+            Add
+          </Button>
+          <Button variant="danger" onClick={handleClose}>
+            Close
+          </Button>
         </Modal.Footer>
       </Modal>
 
@@ -379,51 +378,21 @@ function EmployeeList(props) {
         <b>Total: {count}</b>
       </h4>
 
-        {
+      {
         //-------------------------Side Menue Buttons-------------------
-        }
-         
-    
-        <div className='tablestyle'>
-            <div className='buttonframe'>
-            <table className='buttonstyle'>
-              <tr>
-                    <td>       
-                        <Link onClick={handleShow} className="nav-link">
-                            <p>Add Employee</p>
-                        </Link>                 
-                    </td>
-                </tr>
-                <tr>
-                    <td>       
-                        <Link to="/employees" className="nav-link">
-                            <p>View all Employee</p>
-                        </Link>                 
-                    </td>
-                </tr>
+      }
 
-                <tr>
-                    <td>       
-                        <Link  className="nav-link">
-                            <p>Create Accounts</p>
-                        </Link>                 
-                    </td>
-                </tr>
-                <tr>
-                    <td>       
-                        <Link to="/accounts" className="nav-link">
-                            <p>View All Accounts</p>
-                        </Link>                 
-                        </td>
-                </tr>
-            </table>
-            </div>
-            {
+      <div className="tablestyle">
+      
+        {
           //-------------------------Display data from database-------------------
         }
 
-
-        <Table responsive className="table table-striped" style={{ width: "54em" }}>
+        <Table
+          responsive
+          className="table table-striped"
+          style={{ width: "54em" }}
+        >
           <tr>
             <td>
               <b>First Name</b>
@@ -452,17 +421,11 @@ function EmployeeList(props) {
             <td>
               <b>Basic Salary</b>
             </td>
-
           </tr>
           <tbody>{tabRow()}</tbody>
         </Table>
-       
-
       </div>
     </div>
-
-   
-
   );
 }
 export default withRouter(EmployeeList);

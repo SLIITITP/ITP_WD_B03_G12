@@ -124,7 +124,7 @@ function ShelterList(props) {
         //-------------------------Insert form using bootstrap Modal-------------------
       }
       <Link to="/shelterListPrintPreview" className="nav-link">
-        <Button style={{ float: "right" }}>Print Preview</Button>
+        <Button className="print-btn" style={{ float: "right" }}>Print Preview</Button>
       </Link>
 
       <Modal {...props} size="lg" show={show} onHide={handleClose} centered>
@@ -204,10 +204,10 @@ function ShelterList(props) {
           //-------------------------Display data from database-------------------
         }
 
-        <table className="table table-striped" style={{ width: "54em" }}>
+        <table className="table table-striped">
           <tr>
             <td>
-              <b>Shelter ID</b>
+              <b>Shelter ID</b> 
             </td>
             <td>
               <b>Shelter Type</b>

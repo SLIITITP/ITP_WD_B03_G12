@@ -1,38 +1,34 @@
-import React, { useState, useEffect } from 'react'
-import axios from 'axios'
-import CategoryTableRow from './CategoryTableRow'
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import CategoryTableRow from "./CategoryTableRow";
+import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
-import { withRouter } from './withRouter';
+import { withRouter } from "./withRouter";
 
-
-import '../components/CSS/listmain.css';
-
-
+import "../components/CSS/listmain.css";
 
 function CategoryList(props) {
-    //read hook
-    const [item, setItem] = useState([]);
-  
-    //insert hook
-    const [data, setData] = useState({
-        name: '',
-        description: '',
-      
-    });
-  
-    const handleChange = (e) => {
-      const { name, value } = e.target;
-  
-      setData((prev) => ({
-        ...prev,
-        [name]: value,
-      }));
-    };
+  //read hook
+  const [item, setItem] = useState([]);
 
-      //Bootsrap Modal configurations
+  //insert hook
+  const [data, setData] = useState({
+    name: "",
+    description: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  //Bootsrap Modal configurations
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -74,7 +70,7 @@ function CategoryList(props) {
   //send new data to database
   const handleClick = (e) => {
     e.preventDefault();
-    console.log(data)
+    console.log(data);
     axios
       .post(`http://localhost:5000/category/add`, data)
       .then((res) => {
@@ -87,8 +83,12 @@ function CategoryList(props) {
       });
   };
 
-    return (
-        <div>
+  return (
+    <div>
+      <button className="material-icons floating-btn" onClick={handleShow}>
+        add
+      </button>
+
       {
         //-------------------------Insert form using bootstrap Modal-------------------
       }
@@ -101,7 +101,6 @@ function CategoryList(props) {
         </Modal.Header>
         <Modal.Body>
           <Form>
-
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>category_name:</Form.Label>
               <Form.Control
@@ -115,7 +114,8 @@ function CategoryList(props) {
             </Form.Group>
 
             <Form.Group
-              className="mb-3" controlId="exampleForm.ControlTextarea1"
+              className="mb-3"
+              controlId="exampleForm.ControlTextarea1"
             >
               <Form.Label>description:</Form.Label>
               <Form.Control
@@ -127,9 +127,6 @@ function CategoryList(props) {
                 autoFocus
               />
             </Form.Group>
-
-           
-
           </Form>
         </Modal.Body>
         <Modal.Footer>
@@ -146,69 +143,19 @@ function CategoryList(props) {
       {
         //-------------------------Side Menue Buttons-------------------
       }
-      
-    
-        <div className='tablestyle'>
-            <div className='buttonframe'>
-            <table className='buttonstyle'>
-              <tr>
-                    <td>       
-                        <Link className="nav-link">
-                            <p>Add Item</p>
-                        </Link>                 
-                    </td>
-                </tr>
-                <tr>
-                    <td>       
-                        <Link to="/items" className="nav-link"> 
-                            <p>View Item</p>
-                        </Link>                 
-                    </td>
-                </tr>
-                <tr>
-                    <td>       
-                        <Link onClick={handleShow} className="nav-link">
-                            <p>Add Category</p>
-                        </Link>                 
-                    </td>
-                </tr>
-                <tr>
-                    <td>       
-                        <Link to="/categories" className="nav-link">
-                            <p>View Categories</p>
-                        </Link>                 
-                    </td>
-                </tr>
-                <tr>
-                    <td>       
-                        <Link   className="nav-link">
-                            <p>Add Supplier</p>
-                        </Link>                 
-                    </td>
-                </tr>
-                <tr>
-                    <td>       
-                        <Link to="/supplier" className="nav-link">
-                            <p>View Suppliers</p>
-                        </Link>                 
-                        </td>
-                </tr>
 
-            </table>
-            </div>
-            {
+      <div className="tablestyle">
+        {
           //-------------------------Display data from database-------------------
         }
-        <table className="table table-striped" style={{ width: "54em" }}>
+        <table className="table table-striped"> 
           <tr>
             <td>
-              <b>category</b>
+              <b>Category</b>
             </td>
             <td>
-              <b>description</b>
+              <b>Description</b>
             </td>
-           
-
           </tr>
           <tbody>{tabRow()}</tbody>
         </table>

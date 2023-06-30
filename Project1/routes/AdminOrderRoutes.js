@@ -74,7 +74,11 @@ adminOrderRoutes.route('/update/:id').put(async (req, res) => {
       adminOrder.paymentMethod = req.body.paymentMethod;
       adminOrder.totalPrice = req.body.totalPrice;
       adminOrder.orderDate = req.body.orderDate;
-      
+      adminOrder.addressLine1 = req.body.addressLine1;
+      adminOrder.addressLine2 = req.body.addressLine2;
+      adminOrder.city = req.body.city;
+      adminOrder.postalCode = req.body.postalCode;
+    
   
       await adminOrder.save();
       res.json(adminOrder);

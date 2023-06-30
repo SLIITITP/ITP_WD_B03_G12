@@ -137,34 +137,32 @@ const EmployeeLoginTableRow = (props) => {
         <td key={employeeloginState._id} style={{ display: "none" }}>
           {" "}
         </td>
-        <img src={`../uploads/${employeeloginState.employeelogin_image}`} className="app-logo" alt="img" />
-
+        <img src={`../uploads/${employeeloginState.employeelogin_image}`} className="circular-image" alt="img" />
+ 
         <td>{employeeloginState.employeelogin_email}</td>
-    
+      
         <td>{employeeloginState.employeelogin_acctype}</td>
         <td>{employeeloginState.employeelogin_date.substring(0, 10)}</td>
 
 
         <td>
-          <Button
+          <button
             type="submit"
             className="submit"
-            variant="success"
             onClick={() => updateEmployeelogin(employeeloginState)}
           >
-            Update
-          </Button>
+           <Link className="nav-link">Update</Link> 
+          </button>
         </td>
+
         <td>
-          <Button
+          <button
             type="submit"
-            
-            variant="danger"
-            className="delete"
+            className="delete" 
             onClick={() => onDelete(employeeloginState._id)}
           >
-            Delete
-          </Button>
+             <Link className="nav-link">Delete</Link>
+          </button>
         </td>
       </tr>
     

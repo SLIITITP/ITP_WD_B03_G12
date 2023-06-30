@@ -1,22 +1,19 @@
-import React, { useState, useEffect,useRef } from 'react'
-import axios from 'axios'
-import ItemsTableRow from './ItemsTableRow'
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect, useRef } from "react";
+import axios from "axios";
+import ItemsTableRow from "./ItemsTableRow";
+import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
-import { withRouter } from './withRouter';
-import ReactToPrint from 'react-to-print'; 
-import { ItemPrint } from './ItemPrint';
+import { withRouter } from "./withRouter";
+import ReactToPrint from "react-to-print";
+import { ItemPrint } from "./ItemPrint";
 import { Alert } from "react-bootstrap";
 
-
-import '../components/CSS/listmain.css';
-
-
+import "../components/CSS/listmain.css";
 
 function ItemList(props) {
-  const componentRef = useRef(); 
+  const componentRef = useRef();
 
   //Form validation
   const [errors, setErrors] = useState({});
@@ -24,33 +21,33 @@ function ItemList(props) {
   const validateForm = () => {
     let isValid = true;
     const newErrors = {};
-  
+
     // Validate name field
     if (data.name.trim() === "") {
       newErrors.name = "Name is required";
       isValid = false;
     }
-  
+
     if (data.category.trim() === "") {
       newErrors.category = "Category required";
       isValid = false;
     }
-  
+
     if (data.price.trim() === "") {
       newErrors.price = "Price is required";
       isValid = false;
     }
-  
+
     if (data.Supplier.trim() === "") {
       newErrors.Supplier = "Supplier is required";
       isValid = false;
     }
-  
+
     if (data.description.trim() === "") {
       newErrors.description = "Description is required";
       isValid = false;
     }
-  
+
     if (data.qty.trim() === "===") {
       newErrors.qty = "qty is required";
       isValid = false;
@@ -60,52 +57,48 @@ function ItemList(props) {
       newErrors.re_order = "re order is required";
       isValid = false;
     }
-  
+
     if (data.manufacture_date.trim() === "") {
       newErrors.manufacture_date = "manufacture date is required";
       isValid = false;
     }
-  
+
     if (data.expire_date === "select") {
       newErrors.expire_date = "Expire date is required";
       isValid = false;
     }
-  
+
     setErrors(newErrors);
     return isValid;
   };
-  
 
-   
+  //read hook
+  const [item, setItem] = useState([]);
 
-    //read hook
-    const [item, setItem] = useState([]);
-  
-    //insert hook
-    const [data, setData] = useState({
-        name: '',
-        category: '',
-        price: '',
-        Supplier:'',
-        description:'',
-        qty:'',
-        re_order:'',
-        manufacture_date:'',
-        expire_date:'',
-        image:'',
+  //insert hook
+  const [data, setData] = useState({
+    name: "",
+    category: "",
+    price: "",
+    Supplier: "",
+    description: "",
+    qty: "",
+    re_order: "",
+    manufacture_date: "",
+    expire_date: "",
+    image: "",
+  });
 
-    });
-  
-    const handleChange = (e) => {
-      const { name, value } = e.target;
-  
-      setData((prev) => ({
-        ...prev,
-        [name]: value,
-      }));
-    };
+  const handleChange = (e) => {
+    const { name, value } = e.target;
 
-      //Bootsrap Modal configurations
+    setData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  //Bootsrap Modal configurations
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -145,65 +138,75 @@ function ItemList(props) {
   }, []);
 
   //upload file
-  const [fileName, setFileName] = useState('');
-   const [file, setFile] = useState(null);
+  const [fileName, setFileName] = useState("");
+  const [file, setFile] = useState(null);
 
-   const handleFileChange = (e) => {
+  const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
     setFile(selectedFile);
-    setFileName(selectedFile ? selectedFile.name : '');
+    setFileName(selectedFile ? selectedFile.name : "");
 
     setData((prev) => ({
       ...prev,
-      image: selectedFile ? selectedFile.name : '',
+      image: selectedFile ? selectedFile.name : "",
     }));
-
-
-   };
-  
+  };
 
   //send new data to database
   const handleClick = (e) => {
     e.preventDefault();
-    console.log(data)
+    console.log(data);
 
     const formData = new FormData();
-    formData.append('file', file);
-    
+    formData.append("file", file);
+
     try {
-      axios.post('http://localhost:5000/api/upload', formData, {
+      axios.post("http://localhost:5000/api/upload", formData, {
         headers: {
-          'Content-Type': 'multipart/form-data',
+          "Content-Type": "multipart/form-data",
         },
       });
       // Handle success
-      console.log('File uploaded successfully');
+      console.log("File uploaded successfully");
     } catch (error) {
       // Handle error
-      console.log('Error uploading file:', error);
+      console.log("Error uploading file:", error);
     }
 
     if (validateForm()) {
-    axios
-      .post(`http://localhost:5000/item/add`, data)
-      .then((res) => {
-        alert(`Added Successfully`);
-        handleClose();
-        window.location.reload();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+      axios
+        .post(`http://localhost:5000/item/add`, data)
+        .then((res) => {
+          alert(`Added Successfully`);
+          handleClose();
+          window.location.reload();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   };
-  }
-  
 
-    return (
-        <div>
-           <ReactToPrint
-      documentTitle='Our Item list' 
-      trigger={() => <Button style={{float:'right'}}>Print</Button>}
-      content={() => componentRef.current} ></ReactToPrint>
+  return (
+    <div>
+      <button className="material-icons floating-btn" onClick={handleShow}>
+        add
+      </button>
+
+      <Link to="/category">
+        <button
+          className="material-icons floating-btn"
+          style={{ marginBottom: "100px" }}
+        >
+          list
+        </button> 
+      </Link>
+
+      <ReactToPrint
+        documentTitle="Our Item list"
+        trigger={() => <Button className="print-btn" style={{ float: "right" }}>Print</Button>}
+        content={() => componentRef.current}
+      ></ReactToPrint>
       {
         //-------------------------Insert form using bootstrap Modal------------------
       }
@@ -216,7 +219,6 @@ function ItemList(props) {
         </Modal.Header>
         <Modal.Body>
           <Form>
-
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>name:</Form.Label>
               <Form.Control
@@ -231,7 +233,8 @@ function ItemList(props) {
             </Form.Group>
 
             <Form.Group
-              className="mb-3" controlId="exampleForm.ControlTextarea1"
+              className="mb-3"
+              controlId="exampleForm.ControlTextarea1"
             >
               <Form.Label>category:</Form.Label>
               <Form.Control
@@ -242,11 +245,14 @@ function ItemList(props) {
                 onChange={handleChange}
                 autoFocus
               />
-              {errors.category && <Alert variant="danger">{errors.category}</Alert>}
+              {errors.category && (
+                <Alert variant="danger">{errors.category}</Alert>
+              )}
             </Form.Group>
 
             <Form.Group
-              className="mb-3" controlId="exampleForm.ControlTextarea1"
+              className="mb-3"
+              controlId="exampleForm.ControlTextarea1"
             >
               <Form.Label>price:</Form.Label>
               <Form.Control
@@ -260,10 +266,9 @@ function ItemList(props) {
               {errors.price && <Alert variant="danger">{errors.price}</Alert>}
             </Form.Group>
 
-
-
             <Form.Group
-              className="mb-3" controlId="exampleForm.ControlTextarea1"
+              className="mb-3"
+              controlId="exampleForm.ControlTextarea1"
             >
               <Form.Label>Supplier:</Form.Label>
               <Form.Control
@@ -274,11 +279,14 @@ function ItemList(props) {
                 onChange={handleChange}
                 autoFocus
               />
-              {errors.Supplier && <Alert variant="danger">{errors.Supplier}</Alert>}
+              {errors.Supplier && (
+                <Alert variant="danger">{errors.Supplier}</Alert>
+              )}
             </Form.Group>
 
             <Form.Group
-              className="mb-3" controlId="exampleForm.ControlTextarea1"
+              className="mb-3"
+              controlId="exampleForm.ControlTextarea1"
             >
               <Form.Label>description:</Form.Label>
               <Form.Control
@@ -289,11 +297,14 @@ function ItemList(props) {
                 onChange={handleChange}
                 autoFocus
               />
-              {errors.description && <Alert variant="danger">{errors.description}</Alert>}
+              {errors.description && (
+                <Alert variant="danger">{errors.description}</Alert>
+              )}
             </Form.Group>
 
             <Form.Group
-              className="mb-3" controlId="exampleForm.ControlTextarea1"
+              className="mb-3"
+              controlId="exampleForm.ControlTextarea1"
             >
               <Form.Label>qty:</Form.Label>
               <Form.Control
@@ -308,7 +319,8 @@ function ItemList(props) {
             </Form.Group>
 
             <Form.Group
-              className="mb-3" controlId="exampleForm.ControlTextarea1"
+              className="mb-3"
+              controlId="exampleForm.ControlTextarea1"
             >
               <Form.Label>re_order:</Form.Label>
               <Form.Control
@@ -323,7 +335,8 @@ function ItemList(props) {
             </Form.Group>
 
             <Form.Group
-              className="mb-3" controlId="exampleForm.ControlTextarea1"
+              className="mb-3"
+              controlId="exampleForm.ControlTextarea1"
             >
               <Form.Label>manufacture_date:</Form.Label>
               <Form.Control
@@ -334,12 +347,14 @@ function ItemList(props) {
                 onChange={handleChange}
                 autoFocus
               />
-              {errors.manufacture_date && <Alert variant="danger">{errors.manufacture_date}</Alert>}
+              {errors.manufacture_date && (
+                <Alert variant="danger">{errors.manufacture_date}</Alert>
+              )}
             </Form.Group>
 
-           
             <Form.Group
-              className="mb-3" controlId="exampleForm.ControlTextarea1"
+              className="mb-3"
+              controlId="exampleForm.ControlTextarea1"
             >
               <Form.Label>expire_date:</Form.Label>
               <Form.Control
@@ -350,27 +365,23 @@ function ItemList(props) {
                 onChange={handleChange}
                 autoFocus
               />
-              {errors.expire_date && <Alert variant="danger">{errors.expire_date}</Alert>}
+              {errors.expire_date && (
+                <Alert variant="danger">{errors.expire_date}</Alert>
+              )}
             </Form.Group>
 
-            <Form.Control 
-                  type="text"
-                  name="image"
-                  value={data.image}
-                  readOnly
-                  style={{ display: "none" }}
-                />
+            <Form.Control
+              type="text"
+              name="image"
+              value={data.image}
+              readOnly
+              style={{ display: "none" }}
+            />
 
             <div>
-        <label>File:</label>
-        <input type="file" onChange={handleFileChange} />
-      </div>
-      
-
-            
-
-
-
+              <label>File:</label>
+              <input type="file" onChange={handleFileChange} />
+            </div>
           </Form>
         </Modal.Body>
         <Modal.Footer>
@@ -387,101 +398,54 @@ function ItemList(props) {
       {
         //-------------------------Side Menue Buttons-------------------
       }
-      
-    
-        <div className='tablestyle'>
-            <div className='buttonframe'>
-            <table className='buttonstyle'>
-              <tr>
-                    <td>       
-                        <Link onClick={handleShow} className="nav-link">
-                            <p>Add Item</p>
-                        </Link>                 
-                    </td>
-                </tr>
-                <tr>
-                    <td>       
-                        <Link to="/store" className="nav-link"> 
-                            <p>View Item</p>
-                        </Link>                 
-                    </td>
-                </tr>
-                <tr>
-                    <td>       
-                        <Link to="/additem" className="nav-link">
-                            <p>Add Category</p>
-                        </Link>                 
-                    </td>
-                </tr>
-                <tr>
-                    <td>       
-                        <Link to="/category" className="nav-link">
-                            <p>View Categories</p>
-                        </Link>                 
-                    </td>
-                </tr>
-                <tr>
-                    <td>       
-                        <Link  className="nav-link">
-                            <p>Add Supplier</p>
-                        </Link>                 
-                    </td>
-                </tr>
-                <tr>
-                    <td>       
-                        <Link to="/supplier" className="nav-link">
-                            <p>View Suppliers</p>
-                        </Link>                 
-                        </td>
-                </tr>
 
-            </table>
-            </div>
-            {
+      <div className="tablestyle">
+        {
           //-------------------------Display data from database---------------------
         }
         <ItemPrint ref={componentRef}>
-        <table className="table table-striped" style={{ width: "54em", height: "55em" }}>
-          <tr >
-          <td>
-              <b>image</b>
-            </td>
-            <td>
-              <b>name</b>
-            </td>
-            <td>
-              <b>category</b>
-            </td>
-            <td>
-              <b>price</b>
-            </td>
-            <td>
-              <b>Supplier</b>
-            </td>
-            <td>
-              <b>description</b>
-            </td>
-            <td>
-              <b>qty</b>
-            </td>
-            <td>
-              <b>re_order</b>
-            </td>
-            <td>
-              <b>manufacture_date</b>
-            </td>
-            <td>
-              <b>expire_date</b>
-            </td>
-
-          </tr>
-          <tbody>{tabRow()}</tbody>
-        </table>
+          <table
+            className="table table-striped"
+            style={{ width: "54em", height: "55em" }}
+          >
+            <tr>
+              <td>
+                <b>Item</b>
+              </td>
+              <td>
+                <b>Name</b>
+              </td>
+              <td>
+                <b>Category</b>
+              </td>
+              <td>
+                <b>Price</b>
+              </td>
+              <td>
+                <b>Supplier</b>
+              </td>
+              <td>
+                <b>Description</b>
+              </td>
+              <td>
+                <b>Qty</b>
+              </td>
+              <td>
+                <b>Reorder</b>
+              </td>
+              <td>
+                <b>MFD</b>
+              </td>
+              <td>
+                <b>EXP</b>
+              </td>
+            </tr>
+            <tbody>{tabRow()}</tbody>
+          </table>
         </ItemPrint>
       </div>
     </div>
   );
 }
-
 
 export default withRouter(ItemList);

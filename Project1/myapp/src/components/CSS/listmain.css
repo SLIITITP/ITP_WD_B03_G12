@@ -1,6 +1,6 @@
 .tablestyle {
     display: grid;
-    
+    width: 100%; 
 }
 
 .buttonstyle{
@@ -47,13 +47,40 @@ button {
     
 }  
 
-.update-btn {    
+.submit {    
     border-color: rgb(25, 5, 43);    
     width: 100px; 
-}
+} 
 
-.delete-btn {
+.delete { 
     background-color: rgb(184, 165, 201);     
     border-color: rgb(184, 165, 201); 
     width: 100px;   
 }
+
+.cartbtn {
+    background-color: rgb(25, 5, 43);     
+    border-color: rgb(184, 165, 201);  
+    width: 120px; 
+    font-weight: 500;   
+    margin-bottom: 1px;   
+
+} 
+
+.cartbtn:hover{
+    background-color: rgb(184, 165, 201); 
+}
+ 
+.circular-image {
+    border-radius: 50%;
+    height: 9em; 
+    width: 9em;  
+    padding: 5px ;
+  }
+ 
+  
+  
+  
+  
+     
+ 

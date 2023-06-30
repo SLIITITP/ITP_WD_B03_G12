@@ -1,37 +1,32 @@
-import React, { useState, useEffect, useRef} from 'react'
-import axios from 'axios'
-import EmployeeLoginTableRow from './EmployeeLoginTableRow'
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect, useRef } from "react";
+import axios from "axios";
+import EmployeeLoginTableRow from "./EmployeeLoginTableRow";
+import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
-import { withRouter } from './withRouter';
-import Table from 'react-bootstrap/Table';
+import { withRouter } from "./withRouter";
+import Table from "react-bootstrap/Table";
 import { Alert } from "react-bootstrap";
 
-
-
-import '../components/CSS/listmain.css';
-
+import "../components/CSS/listmain.css";
 
 function EmployeeLoginList(props) {
-  
   const componentRef = useRef();
-
 
   // Form validation errors
   const [errors, setErrors] = useState({
-    email: '',
-    password: '',
-    acctype: '',
+    email: "",
+    password: "",
+    acctype: "",
   });
 
   // Form data
   const [data, setData] = useState({
-    email: '',
-    password: '',
-    acctype: '',
-    image: '',
+    email: "",
+    password: "",
+    acctype: "",
+    image: "",
   });
 
   // Validation rules
@@ -42,17 +37,17 @@ function EmployeeLoginList(props) {
     if (!data.email) {
       setErrors((prevErrors) => ({
         ...prevErrors,
-        email: 'Email is required',
+        email: "Email is required",
       }));
     } else if (!emailRegex.test(data.email)) {
       setErrors((prevErrors) => ({
         ...prevErrors,
-        email: 'Invalid email format',
+        email: "Invalid email format",
       }));
     } else {
       setErrors((prevErrors) => ({
         ...prevErrors,
-        email: '',
+        email: "",
       }));
     }
   };
@@ -61,26 +56,26 @@ function EmployeeLoginList(props) {
     if (!data.password) {
       setErrors((prevErrors) => ({
         ...prevErrors,
-        password: 'Password is required',
+        password: "Password is required",
       }));
     } else {
       setErrors((prevErrors) => ({
         ...prevErrors,
-        password: '',
+        password: "",
       }));
     }
   };
 
   const validateAcctype = () => {
-    if (!data.acctype || data.acctype === 'select') {
+    if (!data.acctype || data.acctype === "select") {
       setErrors((prevErrors) => ({
         ...prevErrors,
-        acctype: 'Account type is required',
+        acctype: "Account type is required",
       }));
     } else {
       setErrors((prevErrors) => ({
         ...prevErrors,
-        acctype: '',
+        acctype: "",
       }));
     }
   };
@@ -95,23 +90,19 @@ function EmployeeLoginList(props) {
     }));
 
     // Validate the field on change
-    if (name === 'email') {
+    if (name === "email") {
       validateEmail();
-    } else if (name === 'password') {
+    } else if (name === "password") {
       validatePassword();
-    } else if (name === 'acctype') {
+    } else if (name === "acctype") {
       validateAcctype();
     }
   };
 
-    //read hook
-    const [employeelogin, setEmployeelogin] = useState([]);
+  //read hook
+  const [employeelogin, setEmployeelogin] = useState([]);
 
-    
-
- 
-
-      //Bootsrap Modal configurations
+  //Bootsrap Modal configurations
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -151,27 +142,25 @@ function EmployeeLoginList(props) {
   }, []);
 
   //upload file
-  const [fileName, setFileName] = useState('');
-   const [file, setFile] = useState(null);
+  const [fileName, setFileName] = useState("");
+  const [file, setFile] = useState(null);
 
-   const handleFileChange = (e) => {
+  const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
     setFile(selectedFile);
-    setFileName(selectedFile ? selectedFile.name : '');
+    setFileName(selectedFile ? selectedFile.name : "");
 
     setData((prev) => ({
       ...prev,
-      image: selectedFile ? selectedFile.name : '',
+      image: selectedFile ? selectedFile.name : "",
     }));
+  };
 
+  //send new data to database
+  const handleClick = async (e) => {
+    e.preventDefault();
 
-   };
-
-    //send new data to database
-    const handleClick = async (e) => {
-      e.preventDefault();
-
-      // Validate all fields before submitting
+    // Validate all fields before submitting
     validateEmail();
     validatePassword();
     validateAcctype();
@@ -181,24 +170,21 @@ function EmployeeLoginList(props) {
       return;
     }
 
+    const formData = new FormData();
+    formData.append("file", file);
 
-      const formData = new FormData();
-      formData.append('file', file);
-      
-      try {
-        await axios.post('http://localhost:5000/api/upload', formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
-        });
-        // Handle success
-        console.log('File uploaded successfully');
-      } catch (error) {
-        // Handle error
-        console.log('Error uploading file:', error);
-      }
-  
-   
+    try {
+      await axios.post("http://localhost:5000/api/upload", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      // Handle success
+      console.log("File uploaded successfully");
+    } catch (error) {
+      // Handle error
+      console.log("Error uploading file:", error);
+    }
 
     axios
       .post(`http://localhost:5000/accounts/add`, data)
@@ -210,19 +196,20 @@ function EmployeeLoginList(props) {
       .catch((err) => {
         console.log(err);
       });
-    }
-  
+  };
 
-    return (
-        <div>
+  return (
+    <div>
+      <button className="material-icons floating-btn" onClick={handleShow}>
+        add
+      </button>
 
-<Link to="/employeeLoginListPreview" className="nav-link">
-        <Button style={{ float: "right" }}>Print Preview</Button>
+      <Link to="/employeeLoginListPreview" className="nav-link">
+        <Button className="print-btn" style={{ float: "right" }}>Print Preview</Button>
       </Link>
       {
         //-------------------------Insert form using bootstrap Modal-------------------
       }
-
 
       <Modal {...props} size="lg" show={show} onHide={handleClose} centered>
         <Modal.Header closeButton>
@@ -232,7 +219,6 @@ function EmployeeLoginList(props) {
         </Modal.Header>
         <Modal.Body>
           <Form>
-
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Enter Email:</Form.Label>
               <Form.Control
@@ -247,7 +233,8 @@ function EmployeeLoginList(props) {
             </Form.Group>
 
             <Form.Group
-              className="mb-3" controlId="exampleForm.ControlTextarea1"
+              className="mb-3"
+              controlId="exampleForm.ControlTextarea1"
             >
               <Form.Label>Password:</Form.Label>
               <Form.Control
@@ -258,54 +245,53 @@ function EmployeeLoginList(props) {
                 onChange={handleChange}
                 autoFocus
               />
-              {errors.password && <Alert variant="danger">{errors.password}</Alert>}
+              {errors.password && (
+                <Alert variant="danger">{errors.password}</Alert>
+              )}
             </Form.Group>
 
-          
-            <Form.Control 
-                  type="text"
-                  name="image"
-                  value={data.image}
-                  readOnly
-                  style={{ display: "none" }}
-                />
-
-                
-              
-
-            
+            <Form.Control
+              type="text"
+              name="image"
+              value={data.image}
+              readOnly
+              style={{ display: "none" }}
+            />
 
             <div>
-        <label>File:</label>
-        <input type="file" onChange={handleFileChange} />
-      </div>
-      
+              <label>File:</label>
+              <input type="file" onChange={handleFileChange} />
+            </div>
 
             <Form.Group
-              className="mb-3" controlId="exampleForm.ControlTextarea1"
+              className="mb-3"
+              controlId="exampleForm.ControlTextarea1"
             >
               <Form.Label>Select account type:</Form.Label>
-              <Form.Control as = "select"
-                  name="acctype"
-                  value={data.acctype}
-                  onChange={handleChange}>
-              <option value="select">Select</option>
-              <option value="doctor">Doctor</option>
-               <option value="admin">Admin</option>
-               <option value="cashier">Cashier</option>
-               
+              <Form.Control
+                as="select"
+                name="acctype"
+                value={data.acctype}
+                onChange={handleChange}
+              >
+                <option value="select">Select</option>
+                <option value="doctor">Doctor</option>
+                <option value="admin">Admin</option>
+                <option value="cashier">Cashier</option>
               </Form.Control>
-              {errors.acctype && <Alert variant="danger">{errors.acctype}</Alert>}
-  
-
+              {errors.acctype && (
+                <Alert variant="danger">{errors.acctype}</Alert>
+              )}
             </Form.Group>
-
-
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant='info' onClick={handleClick}>Create</Button>
-          <Button variant='danger' onClick={handleClose}>Close</Button>
+          <Button onClick={handleClick}>
+            Create
+          </Button>
+          <Button onClick={handleClose}>
+            Close
+          </Button>
         </Modal.Footer>
       </Modal>
 
@@ -314,74 +300,39 @@ function EmployeeLoginList(props) {
         <b>Total: {count}</b>
       </h4>
 
-        {
+      {
         //-------------------------Side Menue Buttons-------------------
-        }
-         
-    
-        <div className='tablestyle'>
-            <div className='buttonframe'>
-            <table className='buttonstyle'>
-              <tr>
-                    <td>       
-                        <Link to="/employeeAdd" className="nav-link">
-                            <p>Add Employee</p>
-                        </Link>                 
-                    </td>
-                </tr>
-                <tr>
-                    <td>       
-                        <Link to="/employees" className="nav-link">
-                            <p>View all Employee</p>
-                        </Link>                 
-                    </td>
-                </tr>
+      }
 
-                <tr>
-                    <td>       
-                        <Link onClick={handleShow} className="nav-link">
-                            <p>Create Accounts</p>
-                        </Link>                 
-                    </td>
-                </tr>
-                <tr>
-                    <td>       
-                        <Link to="/accounts" className="nav-link">
-                            <p>View All Accounts</p>
-                        </Link>                 
-                        </td>
-                </tr>
-            </table>
-            </div>
-            {
+      <div className="tablestyle">
+
+        {
           //-------------------------Display data from database-------------------
         }
 
-
-
-        <Table responsive className="table table-striped" style={{ width: "54em" }}>
+        <Table
+          responsive
+          className="table table-striped"
+        >
           <tr>
-          <td>
+            <td>
               <b>Image</b>
             </td>
             <td>
               <b>Email</b>
             </td>
-            
+
             <td>
               <b>Account type</b>
             </td>
             <td>
               <b>Date</b>
             </td>
-   
           </tr>
           <tbody>{tabRow()}</tbody>
         </Table>
       </div>
     </div>
-
-   
   );
 }
 export default withRouter(EmployeeLoginList);
