@@ -1,6 +1,6 @@
 .tablestyle {
     display: grid;
-    
+    width: 100%; 
 }
 
 .buttonstyle{

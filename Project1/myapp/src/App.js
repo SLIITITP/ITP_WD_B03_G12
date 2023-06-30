@@ -65,13 +65,13 @@ class App extends Component {
       
       
         <div className='App'>
+           
           
-          <Navbar/>
-          <Navbar2/>
-          <Navbar3/>
-
-          <div className='container'>
-         
+          <Navbar3/> 
+          <div className='container' style={{marginLeft: "13em", marginRight:"0"}}>    
+          <Navbar/> 
+          <Navbar2/> 
+          <div className="content-container"> 
           <Routes >
             <Route path = "/" element={<Landing/>}/>
             <Route path = "/register" element={<Register/>}/>
@@ -129,9 +129,9 @@ class App extends Component {
            
           </Routes>
           <Footer/>
+          </div>  
           </div> 
-          
-        </div>
+       </div>
        
       );
   }
