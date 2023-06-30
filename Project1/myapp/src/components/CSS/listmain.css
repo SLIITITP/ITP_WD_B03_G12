@@ -47,12 +47,12 @@ button {
     
 }  
 
-.update-btn {    
+.submit {    
     border-color: rgb(25, 5, 43);    
     width: 100px; 
-}
+} 
 
-.delete-btn {
+.delete { 
     background-color: rgb(184, 165, 201);     
     border-color: rgb(184, 165, 201); 
     width: 100px;   

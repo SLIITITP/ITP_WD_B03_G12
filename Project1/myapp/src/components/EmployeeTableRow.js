@@ -242,24 +242,22 @@ const EmployeeTableRow = (props) => {
         <td>{employeeState.employee_jobrole}</td>
         <td>{employeeState.employee_basicSal}</td>
         <td>
-          <Button
+          <button
             type="submit"
             className="submit"
-            variant="success"
             onClick={() => updateEmployee(employeeState)}
           >
             Update
-          </Button>
+          </button> 
         </td>
         <td>
-          <Button
+          <button
             type="submit"
             className="delete"
-            variant="danger"
             onClick={() => onDelete(employeeState._id)}
           >
-          Delete
-          </Button>
+          Delete 
+          </button>
         </td>
       </tr>
     

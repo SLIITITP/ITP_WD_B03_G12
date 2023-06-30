@@ -9,8 +9,8 @@ import { withRouter } from "./withRouter";
 import "../components/CSS/listmain.css";
 
 function AnimalList(props) {
-    //read hook
-    const [animal, setAnimal] = useState([]);
+  //read hook
+  const [animal, setAnimal] = useState([]);
 
   //insert hook
   const [data, setData] = useState({
@@ -20,7 +20,6 @@ function AnimalList(props) {
     animal_breed: "",
     animal_gender: "",
     DOB: "",
-    
   });
 
   const handleChange = (e) => {
@@ -52,7 +51,7 @@ function AnimalList(props) {
 
   const tabRow = () => {
     return animal.map((object, i) => {
-      return <  AnimalTableRow obj={object} key={i} />;
+      return <AnimalTableRow obj={object} key={i} />;
     });
   };
 
@@ -88,15 +87,14 @@ function AnimalList(props) {
 
   return (
     <div>
-
-<Link to="/animalPrintPreview" className="nav-link">
-        <Button style={{ float: "right" }}>Print Preview</Button>
+      <Link to="/animalPrintPreview" className="nav-link">
+        <Button className="print-btn" style={{ float: "right" }}>
+          Print Preview
+        </Button>
       </Link>
       {
         //-------------------------Insert form using bootstrap Modal-------------------
       }
-
-     
 
       <h1 align="center">Animal List</h1>
       <h4 className="text-right">
@@ -108,51 +106,10 @@ function AnimalList(props) {
       }
 
       <div className="tablestyle">
-        <div className="buttonframe">
-          <table className="buttonstyle">
-            <tr>
-              <td>
-                <Link  className="nav-link">
-                  <p>Add User</p>
-                </Link>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <Link to="/regUser" className="nav-link">
-                  <p>View all Users</p>
-                </Link>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <Link to="/animals" className="nav-link">
-                  <p>View all Animal</p>
-                </Link>
-              </td>
-            </tr>
-            <tr>
-            
-            <td>
-              <Link to="/animals" className="nav-link">
-                <p>Add Animal Type </p>
-              </Link>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <Link to="/animaltype" className="nav-link">
-                <p>View all Animal Types</p>
-              </Link>
-            </td>
-          </tr>
-          </table>
-        </div>
-
         {
           //-------------------------Display data from database-------------------
         }
-        <table className="table table-striped" >
+        <table className="table table-striped">
           <tr>
             <td>
               <b>Animal Name</b>
@@ -166,13 +123,12 @@ function AnimalList(props) {
             <td>
               <b>Animal Gender</b>
             </td>
-            <td >
+            <td>
               <b>DateOfBirth</b>
             </td>
-            <td >
+            <td>
               <b>Owner</b>
             </td>
-
           </tr>
           <tbody>{tabRow()}</tbody>
         </table>
