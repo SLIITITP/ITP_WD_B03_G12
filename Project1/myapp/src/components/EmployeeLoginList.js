@@ -313,7 +313,6 @@ function EmployeeLoginList(props) {
         <Table
           responsive
           className="table table-striped"
-          style={{ width: "54em" }}
         >
           <tr>
             <td>

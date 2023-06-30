@@ -71,5 +71,16 @@ button {
     background-color: rgb(184, 165, 201); 
 }
  
-   
+.circular-image {
+    border-radius: 50%;
+    height: 9em; 
+    width: 9em;  
+    padding: 5px ;
+  }
+ 
+  
+  
+  
+  
+     
  
