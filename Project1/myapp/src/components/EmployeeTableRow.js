@@ -247,16 +247,16 @@ const EmployeeTableRow = (props) => {
             className="submit"
             onClick={() => updateEmployee(employeeState)}
           >
-            Update
+            <Link className="nav-link">Update</Link>
           </button> 
-        </td>
+        </td> 
         <td>
           <button
             type="submit"
             className="delete"
             onClick={() => onDelete(employeeState._id)}
           >
-          Delete 
+          <Link className="nav-link">Delete</Link> 
           </button>
         </td>
       </tr>
