@@ -8,6 +8,8 @@ import Modal from "react-bootstrap/Modal";
 import { withRouter } from "./withRouter";
 import e from "cors";
 import "../components/CSS/listmain.css";
+import { Alert } from "react-bootstrap";
+
 
 
 
@@ -16,6 +18,62 @@ function AdmissionForm(props) {
 
   //read hook
   const [admission, setAdmission] = useState([]);
+
+  //Form validation
+  const [errors, setErrors] = useState({});
+
+
+  //Validations
+  const validateForm = () => {
+    let isValid = true;
+    const newErrors = {};
+  
+    // Validate name field
+    if (data.first_name.trim() === "") {
+      newErrors.first_name = "First Name is required";
+      isValid = false;
+    }
+  
+    if (data.last_name.trim() === "") {
+      newErrors.last_name = "Last name is required";
+      isValid = false;
+    }
+
+    if (data.contact_no.trim() === "") {
+      newErrors.contact_no = "Contact is required";
+      isValid = false;
+    } else if (data.contact_no.trim().length !== 10) {
+      newErrors.contact_no = "Contact should be 10 digits";
+      isValid = false;
+    }
+    if (data.weight.trim() === "") {
+      newErrors.weight = "Weight is required";
+      isValid = false;
+    }
+    if (data.diagnosis.trim() === "") {
+      newErrors.diagnosis = "Diagnosis is required";
+      isValid = false;
+    }
+    if (data.shelter_type.trim() === "") {
+      newErrors.shelter_type = "Type is required";
+      isValid = false;
+    }
+
+    if (data.special_notes.trim() === "") {
+      newErrors.special_notes = "Special Note is required";
+      isValid = false;
+    }
+
+    if (data.shelter_no.trim() === "") {
+      newErrors.shelter_no = "shelter No is required";
+      isValid = false;
+    }
+  
+    setErrors(newErrors);
+    return isValid;
+  };
+
+
   //insert hook
   const [data, setData] = useState({
     first_name: "",
@@ -82,9 +140,10 @@ function AdmissionForm(props) {
 
   const handleClick = (e) => {
     e.preventDefault();
+
+    if  (validateForm()){
     axios
       .post(`http://localhost:5000/admission/add`, data)
-
       .then((res) => {
         alert(`Added Successfully`);
         handleClose();
@@ -93,7 +152,11 @@ function AdmissionForm(props) {
       .catch((err) => {
         console.log(err);
       });
+    }
+  
 
+      
+    if  (validateForm()){
        axios
       .post(`http://localhost:5000/inpatient/add`, data)
 
@@ -105,13 +168,21 @@ function AdmissionForm(props) {
       .catch((err) => {
         console.log(err);
       });
+    }
+    
+    
   };
+
+  
+
+
 
   return (
     <div>
-     
+     <button className="material-icons floating-btn" onClick={handleShow}>add</button>
+
      <Link to="/admissionPreview" className="nav-link">
-        <Button style={{ float: "right" }}>Print Preview</Button>
+        <Button className="print-btn" style={{ float: "right" }}>Print Preview</Button>
       </Link>
 
         {
@@ -139,6 +210,7 @@ function AdmissionForm(props) {
                 onChange={handleChange}
                 autoFocus
               />
+              {errors.first_name && <Alert variant="danger">{errors.first_name}</Alert>}
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
@@ -151,31 +223,47 @@ function AdmissionForm(props) {
                 onChange={handleChange}
                 autoFocus
               />
+              {errors.last_name && <Alert variant="danger">{errors.last_name}</Alert>}
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+        {
+          //Modified field
+        }
+           <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Contact No:</Form.Label>
               <Form.Control
-                type="text"
-                name="contact_no"
-                value={data.contact_no}
-                placeholder="Enter Contact No"
+                 type="text"
+                 name="contact_no"
+                 value={data.contact_no}
+                 placeholder="Enter Contact No"
                 onChange={handleChange}
-                autoFocus
-              />
-            </Form.Group>
+                 onKeyPress={(e) => {
+         if (e.target.value.length >= 10 || !/^\d$/.test(e.key)) {
+        e.preventDefault();
+      }
+    }}
+    autoFocus
+  />
+  {errors.contact_no && <Alert variant="danger">{errors.contact_no}</Alert>}
 
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Weight:</Form.Label>
-              <Form.Control
-                type="text"
-                name="weight"
-                value={data.weight}
-                placeholder="Enter Animal Weight"
-                onChange={handleChange}
-                autoFocus
-              />
-            </Form.Group>
+      {
+          //Modified field
+        }
+</Form.Group>
+
+<Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+  <Form.Label>Weight:</Form.Label>
+  <Form.Control
+    type="text"
+    name="weight"
+    value={data.weight}
+    placeholder="Enter Animal Weight (e.g., 10Kg)"
+    onChange={handleChange}
+    pattern="\d+(\.\d{1,2})?Kg"
+    autoFocus
+  />
+  {errors.weight && <Alert variant="danger">{errors.weight}</Alert>}
+</Form.Group>
 
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Diagnosis:</Form.Label>
@@ -186,6 +274,7 @@ function AdmissionForm(props) {
                 onChange={handleChange}
                 autoFocus
               />
+             {errors.diagnosis && <Alert variant="danger">{errors.diagnosis}</Alert>}
             </Form.Group>
 
             <Form.Group
@@ -199,6 +288,7 @@ function AdmissionForm(props) {
                 value={data.jobrole}
                 onChange={handleChange}
               >
+              {errors.shelter_type && <Alert variant="danger">{errors.shelter_type}</Alert>}
                 <option value="">Select</option>
                 <option value="small">Small</option>
                 <option value="medium">Medium</option>
@@ -215,6 +305,7 @@ function AdmissionForm(props) {
                 onChange={handleChange}
                 autoFocus
               />
+              {errors.special_notes && <Alert variant="danger">{errors.special_notes}</Alert>}
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
@@ -227,6 +318,7 @@ function AdmissionForm(props) {
                 onChange={handleChange}
                 autoFocus
               />
+              {errors.shelter_no && <Alert variant="danger">{errors.shelter_no}</Alert>}
             </Form.Group>
           </Form>
         </Modal.Body>
@@ -247,45 +339,7 @@ function AdmissionForm(props) {
       }
 
       <div className="tablestyle">
-        <div className="buttonframe">
-          <table className="buttonstyle">
-            <tr>
-              <td>
-                <Link onClick={handleShow} className="nav-link">
-                  <p>Add Admission</p>
-                </Link>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <Link to="" className="nav-link">
-                  <p>View all Admissions</p>
-                </Link>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <Link onClick="/" className="nav-link">
-                  <p>Add Shelter</p>
-                </Link>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <Link to="/shelters" className="nav-link">
-                  <p>View Shelters</p>
-                </Link>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <Link to="/inpatient" className="nav-link">
-                  <p>InPatients</p>
-                </Link>
-              </td>
-            </tr>
-          </table>
-        </div>
+         
 
         {
           //-------------------------Display data from database-------------------
@@ -295,10 +349,10 @@ function AdmissionForm(props) {
         <table className="table table-striped" style={{ width: "54em" }}>
           <tr>
             <td>
-              <b>First Name</b>
+              <b>Owner's First Name</b>
             </td>
             <td>
-              <b>Last Name</b>
+              <b>Owner's Last Name</b>
             </td>
 
             <td>
@@ -306,7 +360,7 @@ function AdmissionForm(props) {
             </td>
 
             <td>
-              <b>Weight</b>
+              <b>Weight(Kg's)</b>
             </td>
 
             <td>

@@ -51,6 +51,11 @@ const employeeSchema = new Schema ({
     date: {
         type: Date,
         default: Date.now
+    },
+
+    basicSal: {
+        type: String,
+        required: true
     }
 }, {
     collection: 'employee'

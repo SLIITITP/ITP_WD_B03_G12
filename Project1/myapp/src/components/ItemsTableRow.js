@@ -15,6 +15,7 @@ const ItemTableRow = (props) => {
     item_Supplier: props.obj.Supplier,
     item_description: props.obj.description,
     item_qty: props.obj.qty,
+    item_re_order: props.obj.re_order,
     item_manufacture_date: props.obj.manufacture_date,
     item_expire_date: props.obj.expire_date,
     image: props.obj.image,
@@ -164,6 +165,20 @@ const ItemTableRow = (props) => {
               className="mb-3" 
               controlId="exampleForm.ControlTextarea1"
             >
+              <Form.Label>Enter Re order</Form.Label>
+              <Form.Control
+                type="text"
+                name="item_re_order"
+                value={updated.item_re_order}
+                onChange={handleChange}
+                autoFocus
+              />
+            </Form.Group>
+
+            <Form.Group
+              className="mb-3" 
+              controlId="exampleForm.ControlTextarea1"
+            >
               <Form.Label>Enter manufacture_data</Form.Label>
               <Form.Control
                 type="date"
@@ -213,6 +228,7 @@ const ItemTableRow = (props) => {
         <td>{itemState.item_Supplier}</td>
         <td>{itemState.item_description}</td>
         <td>{itemState.item_qty}</td>
+        <td>{itemState.item_re_order}</td>
         <td>{itemState.item_manufacture_date}</td>
         <td>{itemState.item_expire_date}</td>
         <td>

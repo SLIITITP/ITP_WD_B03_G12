@@ -18,6 +18,7 @@ const EmployeeTableRow = (props) => {
     employee_gender: props.obj.gender,
     employee_birthday: props.obj.birthday,
     employee_jobrole: props.obj.jobrole,
+    employee_basicSal:props.obj.basicSal
 
   });
 
@@ -199,6 +200,20 @@ const EmployeeTableRow = (props) => {
   
 
             </Form.Group>
+
+            <Form.Group
+              className="mb-3" 
+              controlId="exampleForm.ControlTextarea1"
+            >
+              <Form.Label>Enter Basic Salary</Form.Label>
+              <Form.Control
+                type="text"
+                name="employee_basicSal"
+                value={updated.employee_basicSal}
+                onChange={handleChange}
+                autoFocus
+              />
+            </Form.Group>
               
 
 
@@ -225,6 +240,7 @@ const EmployeeTableRow = (props) => {
         <td>{employeeState.employee_gender}</td>
         <td>{employeeState.employee_birthday}</td>
         <td>{employeeState.employee_jobrole}</td>
+        <td>{employeeState.employee_basicSal}</td>
         <td>
           <Button
             type="submit"

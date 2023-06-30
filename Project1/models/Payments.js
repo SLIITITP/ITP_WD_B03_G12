@@ -12,6 +12,14 @@ let Payment = new Schema ({
         default: [],
     },
 
+    pay_owner: {
+        type: String,
+    },
+
+    pay_pet: {
+        type: String,
+    },
+
     pay_cashierName: {
         type: String,
     },

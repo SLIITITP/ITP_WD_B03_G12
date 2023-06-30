@@ -36,6 +36,11 @@ const ItemSchema = new Schema ({
         required: true
     },
 
+    re_order: {
+        type: String,
+        required: true
+    },
+
    manufacture_date: {
         type: Date,
       

@@ -1,15 +1,14 @@
 .tablestyle {
-    display: inline-flex;
-  
-    
+    display: grid;
     
 }
 
 .buttonstyle{
+    display: flex;
     height: fit-content;
     background-color: rgb(201, 183, 186);
-    float: inline-start;
     margin-right: 20px;
+    margin-bottom: 20px; 
 }
 
 .buttonstyle td {
@@ -22,4 +21,39 @@
     margin-top: 1em;
     margin-left: 1em;
     margin-right: 1em   
+} 
+
+.print-btn {
+    background-color: rgb(25, 5, 43);
+    height: 50px;
+    border-radius: 10px; 
+    border-color: rgb(25, 5, 43);
+}   
+
+.print-btn:hover {
+    background-color: rgb(184, 165, 201);  
+}
+
+button {
+    text-align: center; 
+    border-radius: 10px;  
+    border-width: 3px;    
+    
+}
+
+.nav-link {  
+    font-weight: 500;  
+    color: rgb(2, 2, 2); 
+    
+}  
+
+.update-btn {    
+    border-color: rgb(25, 5, 43);    
+    width: 100px; 
+}
+
+.delete-btn {
+    background-color: rgb(184, 165, 201);     
+    border-color: rgb(184, 165, 201); 
+    width: 100px;   
 }

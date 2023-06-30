@@ -176,6 +176,19 @@ const UsersTableRow = (props) => {
                   autoFocus
                 />
               </Form.Group>
+              <Form.Group
+                className="mb-3"
+                controlId="exampleForm.ControlTextarea1"
+              >
+                <Form.Label>Registered Date</Form.Label>
+                <Form.Control
+                  type="date" min="2023-05-15" max="2023-05-15"
+                  name="registered_data"
+                  value={updated.registered_date}
+                  onChange={handleChange}
+                  autoFocus
+                />
+              </Form.Group>
             </Form>
           </Modal.Body>
           <Modal.Footer>
@@ -201,7 +214,7 @@ const UsersTableRow = (props) => {
               <Form.Label>Animal Name:</Form.Label>
               <Form.Control
                 type="text"
-                name="animal_name"
+                name="animal_name" 
                 value={data.animal_name}
                 placeholder="Enter Animal Name"
                 onChange={handleChangeAnimal}
@@ -252,6 +265,17 @@ const UsersTableRow = (props) => {
                 name="DOB"
                 value={data.DOB}
                 placeholder="Enter DOB"
+                onChange={handleChangeAnimal}
+                autoFocus
+              />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Label>Registered Date:</Form.Label>
+              <Form.Control
+                type="date"
+                name="registered_date" min="2023-05-15" max="2023-05-15"
+                value={data.registered_date}
+                placeholder="Enter Registered_date"
                 onChange={handleChangeAnimal}
                 autoFocus
               />
