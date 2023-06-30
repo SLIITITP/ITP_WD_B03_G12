@@ -28,12 +28,6 @@ class Navbar3 extends Component {
           </li>
 
           <li className="nav-item2">
-            <Link to="/animaltype" className="nav-link">
-              <h6>Animal Types</h6>
-            </Link>
-          </li>
-
-          <li className="nav-item2">
             <Link to="/payments" className="nav-link">
               <h6>Invoice</h6>
             </Link>
