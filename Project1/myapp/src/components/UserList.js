@@ -221,11 +221,9 @@ function UsersList(props) {
         <table className="table table-striped" >
           <tr>
             <td>
-              <b>First Name</b>
+              <b>Full Name</b>
             </td>
-            <td>
-              <b>Last Name</b>
-            </td>
+
             <td>
               <b>Email</b>
             </td>

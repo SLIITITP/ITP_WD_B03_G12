@@ -313,8 +313,7 @@ const UsersTableRow = (props) => {
         <td key={userState._id} style={{ display: "none" }}>
           {"  "} 
         </td>
-        <td>{userState.first_name}</td>
-        <td>{userState.last_name}</td>
+        <td>{userState.first_name} {userState.last_name}</td>
         <td>{userState.email}</td>
         <td>{userState.date.substring(0, 10)}</td> 
         <td>
