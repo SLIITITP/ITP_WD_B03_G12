@@ -286,10 +286,10 @@ function EmployeeLoginList(props) {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="info" onClick={handleClick}>
+          <Button onClick={handleClick}>
             Create
           </Button>
-          <Button variant="danger" onClick={handleClose}>
+          <Button onClick={handleClose}>
             Close
           </Button>
         </Modal.Footer>

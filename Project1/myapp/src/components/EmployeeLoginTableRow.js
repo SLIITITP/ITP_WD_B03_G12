@@ -146,25 +146,23 @@ const EmployeeLoginTableRow = (props) => {
 
 
         <td>
-          <Button
+          <button
             type="submit"
             className="submit"
-            variant="success"
             onClick={() => updateEmployeelogin(employeeloginState)}
           >
-            Update
-          </Button>
+           <Link className="nav-link">Update</Link> 
+          </button>
         </td>
+
         <td>
-          <Button
+          <button
             type="submit"
-            
-            variant="danger"
-            className="delete"
+            className="delete" 
             onClick={() => onDelete(employeeloginState._id)}
           >
-            Delete
-          </Button>
+             <Link className="nav-link">Delete</Link>
+          </button>
         </td>
       </tr>
     
