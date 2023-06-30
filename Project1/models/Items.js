@@ -41,7 +41,7 @@ const ItemSchema = new Schema ({
         required: true
     },
 
-   manufacture_date: {
+    manufacture_date: {
         type: Date,
       
     },
