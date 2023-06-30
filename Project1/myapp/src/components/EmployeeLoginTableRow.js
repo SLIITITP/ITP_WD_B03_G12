@@ -137,7 +137,7 @@ const EmployeeLoginTableRow = (props) => {
         <td key={employeeloginState._id} style={{ display: "none" }}>
           {" "}
         </td>
-        <img src={`../uploads/${employeeloginState.employeelogin_image}`} className="app-logo" alt="img" />
+        <img src={`../uploads/${employeeloginState.employeelogin_image}`} className="circular-image" alt="img" />
  
         <td>{employeeloginState.employeelogin_email}</td>
       
