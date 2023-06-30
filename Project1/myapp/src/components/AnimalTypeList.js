@@ -16,7 +16,6 @@ function AnimalTypeList(props) {
   //insert hook
   const [data, setData] = useState({
     animal_type: "",
-   
   });
 
   const handleChange = (e) => {
@@ -84,6 +83,10 @@ function AnimalTypeList(props) {
 
   return (
     <div>
+      <button className="material-icons floating-btn" onClick={handleShow}>
+        add
+      </button>
+
       {
         //-------------------------Insert form using bootstrap Modal-------------------
       }
@@ -107,7 +110,6 @@ function AnimalTypeList(props) {
                 autoFocus
               />
             </Form.Group>
-            
           </Form>
         </Modal.Body>
         <Modal.Footer>
@@ -126,47 +128,6 @@ function AnimalTypeList(props) {
       }
 
       <div className="tablestyle">
-        <div className="buttonframe">
-          <table className="buttonstyle">
-            <tr>
-              <td>
-                <Link to="/invoiceAdd" className="nav-link">
-                  <p>Add User</p>
-                </Link>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <Link to="/invoiceViewAll" className="nav-link">
-                  <p>View all Users</p>
-                </Link>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <Link to="/animals" className="nav-link">
-                  <p>View all Animal</p>
-                </Link>
-              </td>
-            </tr>
-            <tr>
-            
-            <td>
-              <Link onClick={handleShow}  className="nav-link">
-                <p>Add Animal Type </p>
-              </Link>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <Link to="/animaltype" className="nav-link">
-                <p>View all Animal Types</p>
-              </Link>
-            </td>
-          </tr>
-          </table>
-        </div>
-
         {
           //-------------------------Display data from database-------------------
         }

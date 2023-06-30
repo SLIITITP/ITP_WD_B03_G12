@@ -138,9 +138,9 @@ const EmployeeLoginTableRow = (props) => {
           {" "}
         </td>
         <img src={`../uploads/${employeeloginState.employeelogin_image}`} className="app-logo" alt="img" />
-
+ 
         <td>{employeeloginState.employeelogin_email}</td>
-    
+      
         <td>{employeeloginState.employeelogin_acctype}</td>
         <td>{employeeloginState.employeelogin_date.substring(0, 10)}</td>
 
