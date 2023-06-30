@@ -92,18 +92,18 @@ const ShelterTableRow = (props) => {
               <Form.Group
               className="mb-3"
               controlId="exampleForm.ControlTextarea1"
-            >
+            > 
               <Form.Label>Shelter Type</Form.Label>
               <Form.Control
                 as="select"
-                name="shelter_type"
-                value={ShelterTableRow.jobrole}
+                name="shelter_type" 
+                value={updated.shelter_type}  
                 onChange={handleChange}
               >
                 <option value="">Select</option>
-                <option value="small">Small</option>
-                <option value="medium">Medium</option>
-                <option value="large">Large</option>
+                <option value="S">Small</option>
+                <option value="M">Medium</option>
+                <option value="L">Large</option>
               </Form.Control>
             </Form.Group>
 
