@@ -389,13 +389,12 @@ function EmployeeList(props) {
         }
 
         <Table
-          responsive
           className="table table-striped"
-          style={{ width: "54em" }}
+            
         >
-          <tr>
-            <td>
-              <b>Full Name</b>
+          <tr style={{ textAlign:"center" }}>
+            <td style={{ width:"220px" }}>
+              <b>Full Name</b>  
             </td>
 
             <td>
@@ -404,20 +403,20 @@ function EmployeeList(props) {
             <td>
               <b>Phone no</b>
             </td>
-            <td>
+            <td style={{ width:"200px" }}>  
               <b>Address</b>
             </td>
             <td>
-              <b>Gender</b>
+              <b>Sex</b>
+            </td> 
+            <td style={{ width:"150px" }}>
+              <b>Birthday</b> 
             </td>
             <td>
-              <b>Birthday</b>
-            </td>
-            <td>
-              <b>Job role</b>
-            </td>
-            <td>
-              <b>Basic Salary</b>
+              <b>Job role</b> 
+            </td>   
+            <td style={{ width:"100px"}}>  
+              <b>BasicSal (LKR)</b> 
             </td>
           </tr>
           <tbody>{tabRow()}</tbody>
