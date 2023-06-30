@@ -205,7 +205,7 @@ const AdmissionTableRow = (props) => {
       <td>
         <button
           type="submit"
-          className="submit update-btn"
+          className="submit"
           onClick={() => updateAdmission(admissionState)}
         >
           <Link className="nav-link">Update</Link>
@@ -215,7 +215,7 @@ const AdmissionTableRow = (props) => {
       <td>
         <button
           type="submit"
-          className="delete delete-btn"
+          className="delete"
           onClick={() => onDelete(admissionState._id)}
         >
           <Link className="nav-link">Delete</Link>
