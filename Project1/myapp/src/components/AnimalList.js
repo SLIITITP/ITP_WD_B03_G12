@@ -119,25 +119,28 @@ function AnimalList(props) {
           //-------------------------Display data from database-------------------
         }
         <table className="table table-striped">
-          <tr>
+          <tr style={{ textAlign:"center" }}>
             <td>
-              <b>Animal Name</b>
+              <b>Pet Name</b>
             </td>
             <td>
-              <b>Animal Type</b>
+              <b>Type</b>
             </td>
             <td>
-              <b>Animal Breed</b>
+              <b>Breed</b>
             </td>
             <td>
-              <b>Animal Gender</b>
+              <b>Sex</b> 
             </td>
-            <td>
-              <b>DateOfBirth</b>
+            <td style={{ width:"110px" }}>
+              <b>DOB</b> 
             </td>
             <td>
               <b>Owner</b>
             </td>
+            <td style={{ width:"110px" }}>
+              <b>Reg Date</b>
+            </td> 
           </tr>
           <tbody>{tabRow()}</tbody>
         </table>
