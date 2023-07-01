@@ -107,21 +107,21 @@ const AnimalTableRow = (props) => {
               />
             </Form.Group>
 
-           
             <Form.Group
-              className="mb-3" controlId="exampleForm.ControlTextarea1"
+              className="mb-3"
+              controlId="exampleForm.ControlTextarea1"
             >
               <Form.Label>Enter Gender:</Form.Label>
-              <Form.Control as = "select" 
-                  name="animal_gender"
-                  value={updated.animal_gender}
-                  onChange={handleChange}>
-              <option value="employee_gender">Select</option>
-              <option value="M">Male</option>
-               <option value="F">Female</option> 
+              <Form.Control
+                as="select"
+                name="animal_gender"
+                value={updated.animal_gender}
+                onChange={handleChange}
+              >
+                <option value="employee_gender">Select</option>
+                <option value="M">Male</option>
+                <option value="F">Female</option>
               </Form.Control>
-  
-
             </Form.Group>
 
             <Form.Group
@@ -175,11 +175,62 @@ const AnimalTableRow = (props) => {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <h4>{view.animal_name}</h4>
-          <h5>{view.animal_type}</h5>
-          <h5>{view.animal_gender}</h5>
-          <h5>{view.animal_breed}</h5>
-          <h5>{view.DOB}</h5>
+          <tbody style={{   
+                width: "20em", 
+                display: "block",
+                margin: "0 auto",
+                marginBottom: "40px",
+              }}>
+            <tr>
+              <td className="col-8 font-weight-bold">Pet Name:</td>
+              <td>
+                <h4>{view.animal_name}</h4>
+              </td>
+            </tr>
+
+            <tr>
+              <td className="col-8 font-weight-bold">Type:</td>
+              <td>
+              <h5>{view.animal_type}</h5>
+              </td>
+            </tr>
+
+             
+            <tr>
+              <td className="col-8 font-weight-bold">Gender:</td>
+              <td>
+              <h5>{view.animal_gender}</h5>
+              </td>
+            </tr>
+
+            <tr> 
+              <td className="col-8 font-weight-bold">Breed:</td>
+              <td>
+              <h5>{view.animal_breed}</h5> 
+              </td>
+            </tr>
+
+            <tr>
+              <td className="col-8 font-weight-bold">DOB:</td>
+              <td>
+              <h5>{view.DOB}</h5>
+              </td>
+            </tr>
+
+            <tr>
+              <td className="col-8 font-weight-bold">Registered Date:</td>
+              <td>
+              <h5>{view.date}</h5>
+              </td>
+            </tr>
+
+
+          </tbody>
+
+         
+       
+         
+         
 
           <Form>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
