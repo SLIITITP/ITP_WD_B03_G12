@@ -11,8 +11,8 @@ class Navbar3 extends Component {
     );
 
     const userLink = (
-      <ul className="nav-tabs">
-        <ul className="nav-tabs3">
+      <ul className="nav-tabs sidebar">
+        <ul className="nav-tabs3"> 
           
 
           <li className="nav-item2">
@@ -137,9 +137,9 @@ class Navbar3 extends Component {
     );
 
     return (
-      <nav className="navbar navbar-expand-lg navbar-light rounded">
+      <nav className="navbar navbar-expand-lg navbar-light rounded  ">
         <button
-          className="navbar-toggler"
+          className="navbar-toggler" 
           type="button"
           data-toggle="collapse"
           data-target="#navbar1"
@@ -148,13 +148,13 @@ class Navbar3 extends Component {
           aria-label="Toggle navigation"
         >
           <span className="navbar-toggler-icon"></span>
-        </button>
+        </button> 
 
-        <div className="sidebar">
-        <div className="navbar-collapse justify-content-md-center" id="navbar1">
+
+        <div className="navbar-collapse justify-content-md-center " id="navbar1">
          
-            {localStorage.usertoken ? userLink : loginRegLink}
-          </div>
+            {localStorage.usertoken ? userLink : loginRegLink} 
+
         </div>
       </nav>
     );
