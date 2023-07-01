@@ -252,15 +252,15 @@ function PrescriptionList(props) {
         {
           //-------------------------Display data from database-------------------
         }
-        <PrescriptionPrint ref={componentRef}>
+     
           <table className="table table-striped" >
-            <tr  class="table-header" style={{ textAlign: "center" }}>
+            <tr class="table-header" style={{ textAlign: "center" }}>
               <td>
                 <b>Doctor Name</b> 
-              </td>
+              </td> 
               <td>
                 <b>PetName</b>
-              </td>
+              </td> 
               <td>
                 <b>Illness</b>
               </td>
@@ -275,7 +275,7 @@ function PrescriptionList(props) {
             </tr>
             <tbody>{tabRow()}</tbody>
           </table>
-        </PrescriptionPrint>
+
       </div>
     </div>
   );

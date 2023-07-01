@@ -208,6 +208,8 @@ function ServicesList(props) {
             <td>
               <b>Service Price</b>
             </td>
+            <td></td> 
+            <td></td>
           </tr>
           <tbody>{tabRow()}</tbody>
         </table>

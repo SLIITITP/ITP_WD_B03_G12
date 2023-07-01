@@ -250,6 +250,8 @@ function ApplicationList(props) {
             <td>
               <b>Note</b>
             </td>
+            <td></td>
+              <td></td>
           </tr>
           <tbody>{tabRow()}</tbody>
         </table>

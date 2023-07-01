@@ -156,6 +156,8 @@ function CategoryList(props) {
             <td>
               <b>Description</b>
             </td>
+            <td></td>
+              <td></td>
           </tr>
           <tbody>{tabRow()}</tbody>
         </table>

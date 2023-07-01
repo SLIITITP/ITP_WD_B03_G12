@@ -373,6 +373,8 @@ function SupplierList(props) {
             <td>
               <b>Reg Date</b> 
             </td>
+            <td></td> 
+            <td></td>
           </tr>
           <tbody>{tabRow()}</tbody>
         </table>

@@ -87,7 +87,7 @@ function AnimalList(props) {
 
   return (
     <div>
-      <Link to="/animaltype"> 
+      <Link to="/animaltype">
         <button
           className="material-icons floating-btn"
           style={{ marginBottom: "100px" }}
@@ -130,17 +130,20 @@ function AnimalList(props) {
               <b>Breed</b>
             </td>
             <td>
-              <b>Sex</b> 
+              <b>Sex</b>
             </td>
-            <td style={{ width:"110px" }}>
-              <b>DOB</b> 
+            <td style={{ width: "110px" }}>
+              <b>DOB</b>
             </td>
             <td>
               <b>Owner</b>
             </td>
-            <td style={{ width:"110px" }}>
+            <td style={{ width: "110px" }}>
               <b>Reg Date</b>
-            </td> 
+            </td>
+            <td></td>
+            <td></td>
+            <td></td>
           </tr>
           <tbody>{tabRow()}</tbody>
         </table>

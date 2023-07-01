@@ -136,6 +136,8 @@ function AnimalTypeList(props) {
             <td>
               <b>Animal Type</b>
             </td>
+            <td></td>
+              <td></td>
           </tr>
           <tbody>{tabRow()}</tbody>
         </table>

@@ -404,11 +404,11 @@ function ItemList(props) {
         {
           //-------------------------Display data from database---------------------
         }
-        <ItemPrint ref={componentRef}>
+
           <table className="table table-striped" style={{ height: "55em" }}>
             <tr  class="table-header" style={{ textAlign: "center" }}>
               <td> 
-                <b>Item</b>
+                <b>Item</b> 
               </td>
               <td>
                 <b>Name</b>
@@ -431,10 +431,9 @@ function ItemList(props) {
               <td></td>
               <td></td>
               <td></td> 
-            </tr>
+            </tr> 
             <tbody>{tabRow()}</tbody>
           </table>
-        </ItemPrint>
       </div>
     </div>
   );

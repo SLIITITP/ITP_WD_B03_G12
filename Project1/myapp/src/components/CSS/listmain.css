@@ -76,15 +76,14 @@ button {
     height: 9em; 
     width: 9em;  
     padding: 5px ;
-  }
+  } 
  
 .table-header {
-    background-color: rgb(193, 71, 91);
+    background-color: rgb(40, 16, 65);
     color: white;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px; 
 }
-  
   
    
      

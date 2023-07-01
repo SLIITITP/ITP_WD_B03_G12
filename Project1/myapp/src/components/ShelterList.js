@@ -216,6 +216,8 @@ function ShelterList(props) {
             <td>
               <b>Special Details</b>
             </td>
+            <td></td> 
+            <td></td>
           </tr>
 
           <tbody>{tabRow()}</tbody>

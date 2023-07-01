@@ -418,6 +418,8 @@ function EmployeeList(props) {
             <td style={{ width:"100px"}}>  
               <b>BasicSal (LKR)</b> 
             </td>
+            <td></td>
+              <td></td>
           </tr>
           <tbody>{tabRow()}</tbody>
         </Table>

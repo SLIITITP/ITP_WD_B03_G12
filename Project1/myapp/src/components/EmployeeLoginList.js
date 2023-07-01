@@ -328,6 +328,8 @@ function EmployeeLoginList(props) {
             <td>
               <b>Date</b>
             </td>
+            <td></td>
+              <td></td>
           </tr>
           <tbody>{tabRow()}</tbody>
         </Table>
