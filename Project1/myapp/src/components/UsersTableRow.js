@@ -12,7 +12,9 @@ const UsersTableRow = (props) => {
     first_name: props.obj.first_name,
     last_name: props.obj.last_name,
     email: props.obj.email,
+    password: props.obj.password,
     date: props.obj.date,
+    pet_details: props.obj.pet_details || [], 
   });
 
   const [show, setShow] = useState(false);
@@ -27,7 +29,6 @@ const UsersTableRow = (props) => {
 
   //insert hook
   const [data, setData] = useState({
-    owner_ID: "",
     animal_name: "",
     animal_type: "",
     animal_breed: "",
@@ -38,17 +39,34 @@ const UsersTableRow = (props) => {
   //send new data to database
   const handleClick = (e) => {
     e.preventDefault();
+    const updatedData = {
+      ...userState,
+      pet_details: [
+        ...userState.pet_details,
+        { 
+          animal_name: data.animal_name,
+          animal_type: data.animal_type,
+          animal_breed: data.animal_breed,
+          animal_gender: data.animal_gender,
+          DOB: data.DOB
+        }
+      ]
+    };
+
+   
     axios
-      .post(`http://localhost:5000/animal/add`, data)
+    .put(`http://localhost:5000/users/update/${userState._id}`, updatedData)
       .then((res) => {
         alert(`Added Successfully`);
         handleClose();
-        window.location.reload();
-      })
+        // window.location.reload(); 
+      }) 
       .catch((err) => {
         console.log(err);
       });
   };
+  
+   
 
   const [updated, setUpdated] = useState({});
 
@@ -60,11 +78,6 @@ const UsersTableRow = (props) => {
 
   const handleChangeAnimal = (e) => {
     const { name, value } = e.target;
-
-    setData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
 
     setData((prev) => ({
       ...prev,
@@ -81,17 +94,30 @@ const UsersTableRow = (props) => {
   };
 
   const updateUser = (userState) => {
-    console.log(userState);
-    setUpdated(userState);
-
+    setUpdated({
+      ...userState,
+      pet_details: userState.pet_details || []
+    });
+  
     handleShow();
   };
+   
 
   const handleChange = (e) => {
     e.preventDefault();
     const { name, value } = e.target;
-    setUpdated((prevState) => ({ ...prevState, [name]: value }));
+    setUpdated((prevState) => {
+      if (name === 'password') {  
+        return {
+          ...prevState,
+          pet_details: userState.pet_details || [],
+          [name]: value,
+        };
+      }
+      return { ...prevState, [name]: value };
+    });
   };
+  
 
   const onUpdate = (_id) => {
     axios
@@ -162,7 +188,6 @@ const UsersTableRow = (props) => {
               <Form.Control
                 type="text"
                 name="password"
-                value={updated.password}
                 onChange={handleChange}
                 autoFocus
               />
@@ -174,9 +199,9 @@ const UsersTableRow = (props) => {
               <Form.Label>Registered Date</Form.Label>
               <Form.Control
                 type="date"
-                min="2023-05-15"
+                min="2023-05-15" 
                 max="2023-05-15"
-                name="registered_data"
+                name="registered_date"
                 value={updated.registered_date}
                 onChange={handleChange}
                 autoFocus
@@ -244,16 +269,23 @@ const UsersTableRow = (props) => {
                 autoFocus
               />
             </Form.Group>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Animal Gender:</Form.Label>
+          
+
+            <Form.Group
+              className="mb-3"
+              controlId="exampleForm.ControlTextarea1"
+            >
+              <Form.Label>Enter Gender:</Form.Label>
               <Form.Control
-                type="text"
+                as="select"
                 name="animal_gender"
                 value={data.animal_gender}
-                placeholder="Enter Animal Breed"
                 onChange={handleChangeAnimal}
-                autoFocus
-              />
+              >
+                <option value="Gender">Select</option>
+                <option value="M">Male</option>
+                <option value="F">Female</option>
+              </Form.Control>
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
