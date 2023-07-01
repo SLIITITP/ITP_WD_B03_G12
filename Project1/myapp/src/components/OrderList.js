@@ -176,24 +176,24 @@ function OrderList(props) {
         }
 
         <table className="table table-striped">
-          <tr class="table-info">
+          <tr class="table-header">
             <td>
-              <b>Selected Item</b>
+              <b>Items</b>
             </td>
             <td>
-              <b>SelectedItemQty</b>
+              <b>Item Qty</b>
             </td>
             <td>
-              <b>TotalPrice</b>
+              <b>Total (LKR)</b>
             </td>
             <td>
-              <b>PaymentMethod</b>
+              <b>Payment Method</b>
             </td>
             <td>
-              <b>OrderStates</b>
+              <b>Order State</b>
             </td>
             <td>
-              <b>OrderDate</b>
+              <b>Order Date</b>
             </td>
             <td> </td>
             <td> </td>

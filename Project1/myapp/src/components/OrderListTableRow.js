@@ -8,13 +8,13 @@ import { withRouter } from "./withRouter";
 
 const OrderListTableRow = (props) => {
   const [orderState] = useState({
-    _id: props.obj._id,
+    _id: props.obj._id, 
     selectedItem: props.obj.selectedItem,
     selectedItemQty: props.obj.selectedItemQty,
     totalPrice: props.obj.totalPrice,
     paymentMethod: props.obj.paymentMethod,
     orderStates: props.obj.orderStates,
-    orderDate: props.obj.orderDate,
+    orderDate: props.obj.orderDate.substring(0, 10),
     addressLine1: props.obj.addressLine1,
     addressLine2: props.obj.addressLine2,
     city: props.obj.city,
@@ -82,8 +82,8 @@ const OrderListTableRow = (props) => {
                 onChange={handleChange}
               >
                 <option value="select">Select</option>
-                <option value="Cash_On_dilivery">Cash On dilivery</option>
-                <option value="Card_payment">Card payment</option>
+                <option value="COD">Cash On dilivery</option>
+                <option value="Card">Card payment</option>
               </Form.Control>
             </Form.Group>
             <Form.Group
@@ -133,8 +133,8 @@ const OrderListTableRow = (props) => {
                 Active
                 <option value="select">Select</option>
                 <option value="Delivered">Delivered</option>
-                <option value="Out_for_Delivery">Out for Delivery</option>
-                <option value="Proccess">Proccess</option>
+                <option value="Shipped">Shipped</option>
+                <option value="Placed">Placed</option>
               </Form.Control>
             </Form.Group>
 
