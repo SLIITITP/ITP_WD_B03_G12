@@ -1,4 +1,4 @@
-import React, { useState, useEffect , useRef} from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
@@ -84,15 +84,22 @@ function OrderList(props) {
         console.log(err);
       });
   };
-  const componentRef = useRef(); 
+  const componentRef = useRef();
   return (
     <div>
-
-<Link to="/orderListPrintPreview" className="nav-link">
-        <Button style={{ float: "right" }}>Print Preview</Button>
+ <Link to="/store" className="nav-link">
+<button className="material-icons floating-btn" onClick={handleShow}>
+        add
+      </button> 
+      </Link>
+     
+                
+                
+                
+      <Link to="/orderListPrintPreview" className="nav-link">
+        <Button className="print-btn" style={{ float: "right" }}>Print Preview</Button>
       </Link>
 
-      
       {
         //-------------------------Insert form using bootstrap Modal-------------------
       }
@@ -162,32 +169,13 @@ function OrderList(props) {
       }
 
       <div className="tablestyle">
-        <div className="buttonframe">
-          <table className="buttonstyle">
-           
-            <tr>
-              <td>
-                <Link to="/store"className="nav-link">
-                  <p>Add a New Order</p>
-                </Link>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <Link to="/orderList" className="nav-link">
-                  <p>View Orders</p>
-                </Link>
-              </td>
-            </tr>
-          </table>
-        </div>
+       
 
         {
           //-------------------------Display data from database-------------------
         }
 
-        
-        <table className="table table-striped" style={{ width: "54em" }}>
+        <table className="table table-striped">
           <tr class="table-info">
             <td>
               <b>Selected Item</b>
@@ -207,12 +195,11 @@ function OrderList(props) {
             <td>
               <b>OrderDate</b>
             </td>
-           
-           
+            <td> </td>
+            <td> </td>
           </tr>
           <tbody>{tabRow()}</tbody>
         </table>
-      
       </div>
     </div>
   );
