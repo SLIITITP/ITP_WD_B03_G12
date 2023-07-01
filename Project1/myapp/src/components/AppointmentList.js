@@ -1,4 +1,4 @@
-import React, { useState, useEffect , useRef} from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import AppointmentTableRow from "./AppointmentTableRow";
 import { Link } from "react-router-dom";
@@ -9,22 +9,21 @@ import { withRouter } from "./withRouter";
 
 import "../components/CSS/listmain.css";
 
-
 function ApplicationList(props) {
   //read hook
-  
+
   const [application, setApplication] = useState([]);
 
   //insert hook
   const [data, setData] = useState({
-    name:"",
-    email:"",
-    phone:"",
-    petName:"",
-    Species:"",
-    Breed:"",
-    Reason:"",
-    note:"",     
+    name: "",
+    email: "",
+    phone: "",
+    petName: "",
+    Species: "",
+    Breed: "",
+    Reason: "",
+    note: "",
   });
 
   const handleChange = (e) => {
@@ -92,20 +91,21 @@ function ApplicationList(props) {
 
   return (
     <div>
+      <button className="material-icons floating-btn" onClick={handleShow}>
+        add
+      </button>
 
-<Link to="/appoinmentListPreview" className="nav-link">
-        <Button style={{ float: "right" }}>Print Preview</Button>
+      <Link to="/appoinmentListPreview" className="nav-link">
+        <Button className="print-btn" style={{ float: "right" }}>Print Preview</Button>
       </Link>
-      {
+      { 
         //-------------------------Insert form using bootstrap Modal-------------------
       }
-    
-
 
       <Modal {...props} size="lg" show={show} onHide={handleClose} centered>
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
-            Add  New Appiontment
+            Add New Appiontment
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -219,31 +219,11 @@ function ApplicationList(props) {
       }
 
       <div className="tablestyle">
-        <div className="buttonframe">
-          <table className="buttonstyle">
-            
-              
-            <tr>
-              <td>
-                <Link onClick={handleShow} className="nav-link">
-                  <p>Make an Appointment</p>
-                </Link>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <Link to="/appointments" className="nav-link">
-                  <p>View Appointments</p>
-                </Link>
-              </td>
-            </tr>
-          </table>
-        </div>
 
         {
           //-------------------------Display data from database-------------------
         }
-       
+
         <table className="table table-striped" style={{ width: "54em" }}>
           <tr>
             <td>
@@ -273,7 +253,6 @@ function ApplicationList(props) {
           </tr>
           <tbody>{tabRow()}</tbody>
         </table>
-       
       </div>
     </div>
   );
