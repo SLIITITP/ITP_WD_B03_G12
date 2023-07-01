@@ -20,6 +20,7 @@
     "express-fileupload": "^1.4.0",
     "jsonwebtoken": "^9.0.0",
     "jwt-decode": "^3.1.2",
+    "mdb-react-ui-kit": "^6.1.0",
     "mongodb": "^5.2.0",
     "mongoose": "^7.0.3",
     "nodemon": "^2.0.22",
