@@ -1,8 +1,8 @@
 # ITP_WD_B03_G12
-Please go under edit and edit this file as needed for your project
 
 # Project Name - Animal Clinic Management System
 # Batch - ITP_WD_B03_G12
+
 ### Group Leader - Weerasinghe W.M.S.R.M (IT21373848)
 ### Member 2 - Ellewela A.V.H (IT21361272)
 ### Member 3 - Ranasinghe R.M.P.A (IT21384738)
@@ -37,6 +37,4 @@ organized
 
 #### Technologies used  - MERN Stack
 
-
-Note - The student's github account should be given in brackets e.g. (asiriRepos), this ideally should be your student id 
 
