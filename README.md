@@ -3,14 +3,14 @@ Please go under edit and edit this file as needed for your project
 
 # Project Name - Animal Clinic Management System
 # Batch - ITP_WD_B03_G12
-### Group Leader - Sauni Weerasinghe (IT21373848)
-### Member 2 - Adithya Virajith (IT21361272)
-### Member 3 - Pasindu Ranasinghe(IT21384738)
-### Member 4 - Kavindu Naveen (IT21226878)
-### Member 5 - Anupa Herath (IT21295560)
-### Member 6 - Linal Silva (IT21374838)
-### Member 7 - Diwyanjalee Dissanayake (IT21165948)
-### Member 8 - Chameen Shamika (IT21203794)
+### Group Leader - Weerasinghe W.M.S.R.M (IT21373848)
+### Member 2 - Ellewela A.V.H (IT21361272)
+### Member 3 - Ranasinghe R.M.P.A (IT21384738)
+### Member 4 - Premathilakage K.N.P (IT21226878)
+### Member 5 - Herath H.M.A.H.B (IT21295560)
+### Member 6 - Silva K.H.L.D (IT21374838)
+### Member 7 - Dissanayake D.T.D (IT21165948)
+### Member 8 - Abeyweera M.P.C.S (IT21203794)
 
 #### Brief Description of Project - 
 An animal clinic management system is a system that is used to manage the daily work of a pet 
