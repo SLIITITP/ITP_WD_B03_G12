@@ -1,3 +1,7 @@
+const { Double } = require("mongodb");
+
+
+
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
@@ -24,41 +28,8 @@ const UserSchema = new Schema ({
     date: {
         type: Date,
         default: Date.now
-    },
-
-    pet_details: [{
-        animal_name: {
-            type: String,
-        } ,
-        
-        animal_type: {
-            type: String
-        },
-    
-        animal_breed: {
-            type: String
-        },
-    
-        animal_gender: {
-            type: String,
-        
-        },
-    
-        DOB: {
-            type: Date, 
-            
-        },
-    
-        reg_date: {
-            type: Date,
-            default: Date.now
-        },
-        
-        vaccine: {
-            type: Array,
-            default: []
-        }
-    }]}
+    }
+}
 
 );
 
