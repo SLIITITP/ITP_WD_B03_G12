@@ -12,12 +12,10 @@ class Navbar3 extends Component {
 
     const userLink = (
       <ul className="nav-tabs sidebar">
-        <ul className="nav-tabs3"> 
-          
-
+        <ul className="nav-tabs3">
           <li className="nav-item2">
             <Link to="/regUser" className="nav-link">
-              <h6>Registered Users</h6> 
+              <h6>Registered Users</h6>
             </Link>
           </li>
 
@@ -33,7 +31,6 @@ class Navbar3 extends Component {
             </Link>
           </li>
 
-
           <li className="nav-item2">
             <Link to="/employees" className="nav-link">
               <h6>Employees</h6>
@@ -43,24 +40,30 @@ class Navbar3 extends Component {
           <li className="nav-item2">
             <Link to="/accounts" className="nav-link">
               <h6>Accounts</h6>
-            </Link> 
-          </li> 
+            </Link>
+          </li>
 
           <li className="nav-item2">
             <Link to="/admissions" className="nav-link">
               <h6>Admissions</h6>
             </Link>
-          </li> 
+          </li>
 
           <li className="nav-item2">
             <Link to="/shelters" className="nav-link">
               <h6>Shelters</h6>
-            </Link> 
-          </li> 
+            </Link>
+          </li>
 
           <li className="nav-item2">
             <Link to="/prescriptions" className="nav-link">
-              <h6>Medical Records</h6>
+              <h6>Prescriptions</h6>
+            </Link>
+          </li>
+
+          <li className="nav-item2">
+            <Link to="/vaccines" className="nav-link">
+              <h6>Vaccines</h6>
             </Link>
           </li>
 
@@ -80,7 +83,7 @@ class Navbar3 extends Component {
 
           <li className="nav-item2">
             <Link to="/supplier " className="nav-link">
-              <h6>Suppliers</h6> 
+              <h6>Suppliers</h6>
             </Link>
           </li>
 
@@ -107,31 +110,6 @@ class Navbar3 extends Component {
               <h6>Insights</h6>
             </Link>
           </li>
-
-
-
-
-
-
-
-
-          <li className="nav-item2">
-            <Link to="/insights" className="nav-link">
-              <h6>Insights</h6>
-            </Link>
-          </li>
-
-          <li className="nav-item2">
-            <Link to="/insights" className="nav-link">
-              <h6>Insights</h6>
-            </Link>
-          </li>
-
-
-
-
-
-
         </ul>
       </ul>
     );
@@ -139,7 +117,7 @@ class Navbar3 extends Component {
     return (
       <nav className="navbar navbar-expand-lg navbar-light rounded  ">
         <button
-          className="navbar-toggler" 
+          className="navbar-toggler"
           type="button"
           data-toggle="collapse"
           data-target="#navbar1"
@@ -148,13 +126,13 @@ class Navbar3 extends Component {
           aria-label="Toggle navigation"
         >
           <span className="navbar-toggler-icon"></span>
-        </button> 
+        </button>
 
-
-        <div className="navbar-collapse justify-content-md-center " id="navbar1">
-         
-            {localStorage.usertoken ? userLink : loginRegLink} 
-
+        <div
+          className="navbar-collapse justify-content-md-center "
+          id="navbar1"
+        >
+          {localStorage.usertoken ? userLink : loginRegLink}
         </div>
       </nav>
     );
