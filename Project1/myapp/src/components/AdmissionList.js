@@ -168,6 +168,14 @@ function AdmissionForm(props) {
         add
       </button>
 
+      <Link to="/inpatient">
+        <button
+          className="material-icons floating-btn"
+          style={{ marginBottom: "100px" }}
+        >
+          list
+        </button>
+      </Link>
       <Link to="/admissionPreview" className="nav-link">
         <Button className="print-btn" style={{ float: "right" }}>
           Print Preview
@@ -298,7 +306,7 @@ function AdmissionForm(props) {
                 as="select"
                 name="shelter_type"
                 value={data.shelter_type}
-                onChange={handleChange} 
+                onChange={handleChange}
               >
                 {errors.shelter_type && (
                   <Alert variant="danger">{errors.shelter_type}</Alert>
@@ -348,40 +356,40 @@ function AdmissionForm(props) {
 
         <table className="table table-striped">
           <thead>
-          <tr style={{ textAlign: "center" }}>
-            <td>
-              <b>Owner Name</b>
-            </td>
+            <tr style={{ textAlign: "center" }}>
+              <td>
+                <b>Owner Name</b>
+              </td>
 
-            <td>
-              <b>Contact No</b>
-            </td>
+              <td>
+                <b>Contact No</b>
+              </td>
 
-            <td>
-              <b>Weight (Kg)</b>
-            </td>
+              <td>
+                <b>Weight (Kg)</b>
+              </td>
 
-            <td>
-              <b>Diagnosis</b>
-            </td>
+              <td>
+                <b>Diagnosis</b>
+              </td>
 
-            <td style={{ textAlign: "center" }}>
-              <b>Shelter Type</b>
-            </td>
+              <td style={{ textAlign: "center" }}>
+                <b>Shelter Type</b>
+              </td>
 
-            <td>
-              <b>Special Notes</b>
-            </td>
+              <td>
+                <b>Special Notes</b>
+              </td>
 
-            <td>
-              <b>Shelter No</b>
-            </td>
-            <td>
-              <b>Status</b>
-            </td>
-            <td></td>
-            <td></td>
-          </tr>
+              <td>
+                <b>Shelter No</b>
+              </td>
+              <td>
+                <b>Status</b>
+              </td>
+              <td></td>
+              <td></td>
+            </tr>
           </thead>
           <tbody>{tabRow()}</tbody>
         </table>

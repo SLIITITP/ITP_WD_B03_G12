@@ -261,7 +261,7 @@ function InPatient(props) {
         }
 
       
-        <table className="table table-striped" style={{ width: "54em" }}>
+        <table className="table table-striped">
           <tr>
             <td>
               <b>First Name</b>
