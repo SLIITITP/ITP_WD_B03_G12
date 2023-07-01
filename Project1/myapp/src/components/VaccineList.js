@@ -83,15 +83,17 @@ function VaccineList(props) {
 
   return (
     <div>
-    {
+      {
         //-------------------------Insert form using bootstrap Modal-------------------
       }
+      <button className="material-icons floating-btn" onClick={handleShow}>
+        add
+      </button>
 
-<Link to="/vaccinePrintPreview" className="nav-link">
-        <Button style={{ float: "right" }}>Print Preview</Button>
+      <Link to="/vaccinePrintPreview" className="nav-link">
+        <Button className="print-btn" style={{ float: "right" }}>Print Preview</Button>
       </Link>
 
-   
       <Modal {...props} size="lg" show={show} onHide={handleClose} centered>
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
@@ -143,43 +145,12 @@ function VaccineList(props) {
       }
 
       <div className="tablestyle">
-        <div className="buttonframe">
-        <table className="buttonstyle">
-            <tr>
-              <td>
-                <Link className="nav-link">
-                  <p>Add prescription</p>
-                </Link>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <Link to="/prescriptions" className="nav-link">
-                  <p>View all Prescriptions</p>
-                </Link>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <Link onClick={handleShow} className="nav-link">
-                  <p>Add Vaccine</p>
-                </Link>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <Link to="/vaccines" className="nav-link">
-                  <p>View all Vaccinces</p>
-                </Link>
-              </td>
-            </tr>
-          </table>
-        </div>
+       
 
         {
           //-------------------------Display data from database-------------------
         }
-        <table className="table table-striped" style={{ width: "54em" }}>
+        <table className="table table-striped" >
           <tr>
             <td>
               <b>Vaccination Name</b>
@@ -187,6 +158,9 @@ function VaccineList(props) {
             <td>
               <b>Vaccine Description</b>
             </td>
+            <td></td>
+            <td></td> 
+  
           </tr>
           <tbody>{tabRow()}</tbody>
         </table>
