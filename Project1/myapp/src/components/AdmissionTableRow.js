@@ -197,11 +197,11 @@ const AdmissionTableRow = (props) => {
         {admissionState.first_name} {admissionState.last_name}
       </td>
       <td>{admissionState.contact_no}</td>
-      <td>{admissionState.weight}</td>
+      <td style={{ textAlign: "center" }}>{admissionState.weight}</td>
       <td>{admissionState.diagnosis}</td>
-      <td>{admissionState.shelter_type}</td>
+      <td style={{ textAlign: "center" }}>{admissionState.shelter_type}</td>
       <td>{admissionState.special_notes}</td>
-      <td>{admissionState.shelter_no}</td>
+      <td style={{ textAlign: "center" }}>{admissionState.shelter_no}</td>
       <td>{admissionState.status}</td>
       <td>
         <button

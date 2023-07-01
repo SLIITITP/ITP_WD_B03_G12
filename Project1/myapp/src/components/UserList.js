@@ -219,13 +219,13 @@ function UsersList(props) {
         }
      
         <table className="table table-striped" >
-          <tr>
+          <tr style={{ textAlign: "center" }}>
             <td>
               <b>Full Name</b>
             </td>
 
             <td>
-              <b>Email</b>
+              <b>Email</b> 
             </td>
             <td>
               <b>Registered Date</b>

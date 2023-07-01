@@ -297,8 +297,8 @@ function AdmissionForm(props) {
               <Form.Control
                 as="select"
                 name="shelter_type"
-                value={data.jobrole}
-                onChange={handleChange}
+                value={data.shelter_type}
+                onChange={handleChange} 
               >
                 {errors.shelter_type && (
                   <Alert variant="danger">{errors.shelter_type}</Alert>
@@ -346,7 +346,8 @@ function AdmissionForm(props) {
           //-------------------------Display data from database-------------------
         }
 
-        <table className="table table-striped" style={{ width: "54em" }}>
+        <table className="table table-striped">
+          <thead>
           <tr style={{ textAlign: "center" }}>
             <td>
               <b>Owner Name</b>
@@ -378,7 +379,10 @@ function AdmissionForm(props) {
             <td>
               <b>Status</b>
             </td>
+            <td></td>
+            <td></td>
           </tr>
+          </thead>
           <tbody>{tabRow()}</tbody>
         </table>
       </div>

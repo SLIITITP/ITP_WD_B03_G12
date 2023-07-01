@@ -20,45 +20,42 @@ const UsersTableRow = (props) => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const [showModal, setShowModal] = useState(false)
+  const [showModal, setShowModal] = useState(false);
 
   const handleShowModal = () => setShowModal(true);
-  const handleCloseModal = () => setShowModal(false)
-  
+  const handleCloseModal = () => setShowModal(false);
+
   //insert hook
   const [data, setData] = useState({
-    owner_ID: "", 
+    owner_ID: "",
     animal_name: "",
     animal_type: "",
     animal_breed: "",
-    animal_gender: "", 
+    animal_gender: "",
     DOB: "",
-    
   });
 
-    //send new data to database
-    const handleClick = (e) => {
-      e.preventDefault();
-      axios
-        .post(`http://localhost:5000/animal/add`, data)
-        .then((res) => {
-          alert(`Added Successfully`);
-          handleClose();
-          window.location.reload();
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    };
+  //send new data to database
+  const handleClick = (e) => {
+    e.preventDefault();
+    axios
+      .post(`http://localhost:5000/animal/add`, data)
+      .then((res) => {
+        alert(`Added Successfully`);
+        handleClose();
+        window.location.reload();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   const [updated, setUpdated] = useState({});
 
   const addAnimal = (id) => {
     console.log(userState);
     console.log(id);
-    handleShowModal()
-   
-
+    handleShowModal();
   };
 
   const handleChangeAnimal = (e) => {
@@ -75,8 +72,6 @@ const UsersTableRow = (props) => {
       owner_ID: userState.email, // set owner_ID to the user ID
     }));
   };
-
-  
 
   const onDelete = (id) => {
     axios.get(`http://localhost:5000/users/delete/${id}`).then((res) => {
@@ -110,98 +105,102 @@ const UsersTableRow = (props) => {
   };
 
   return (
-    
-      <tr>
-        {
-          //-------------------------Update form using bootstrap Modal-------------------
-        }
+    <tr>
+      {
+        //-------------------------Update form using bootstrap Modal-------------------
+      }
 
-        <Modal {...props} size="lg" show={show} onHide={handleClose} centered>
-          <Modal.Header closeButton>
-            <Modal.Title id="contained-modal-title-vcenter">
-              Update User
-            </Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <Form>
-              <Form.Group
-                className="mb-3"
-                controlId="exampleForm.ControlInput1"
-              >
-                <Form.Label>First Name:</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="first_name"
-                  value={updated.first_name}
-                  onChange={handleChange}
-                  autoFocus
-                />
-              </Form.Group>
-              <Form.Group
-                className="mb-3"
-                controlId="exampleForm.ControlTextarea1"
-              >
-                <Form.Label>Last Name</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="last_name"
-                  value={updated.last_name}
-                  onChange={handleChange}
-                  autoFocus
-                />
-              </Form.Group>
-              <Form.Group
-                className="mb-3"
-                controlId="exampleForm.ControlTextarea1"
-              >
-                <Form.Label>Email</Form.Label>
-                <Form.Control
-                  type="email"
-                  name="email"
-                  value={updated.email}
-                  onChange={handleChange}
-                  autoFocus
-                />
-              </Form.Group>
-              <Form.Group
-                className="mb-3"
-                controlId="exampleForm.ControlTextarea1"
-              >
-                <Form.Label>Password</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="password"
-                  value={updated.password}
-                  onChange={handleChange}
-                  autoFocus
-                />
-              </Form.Group>
-              <Form.Group
-                className="mb-3"
-                controlId="exampleForm.ControlTextarea1"
-              >
-                <Form.Label>Registered Date</Form.Label>
-                <Form.Control
-                  type="date" min="2023-05-15" max="2023-05-15"
-                  name="registered_data"
-                  value={updated.registered_date}
-                  onChange={handleChange}
-                  autoFocus
-                />
-              </Form.Group>
-            </Form>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button onClick={() => onUpdate(userState._id)}>Update</Button>
-            <Button onClick={handleClose}>Close</Button>
-          </Modal.Footer>
-        </Modal>
+      <Modal {...props} size="lg" show={show} onHide={handleClose} centered>
+        <Modal.Header closeButton>
+          <Modal.Title id="contained-modal-title-vcenter">
+            Update User
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Label>First Name:</Form.Label>
+              <Form.Control
+                type="text"
+                name="first_name"
+                value={updated.first_name}
+                onChange={handleChange}
+                autoFocus
+              />
+            </Form.Group>
+            <Form.Group
+              className="mb-3"
+              controlId="exampleForm.ControlTextarea1"
+            >
+              <Form.Label>Last Name</Form.Label>
+              <Form.Control
+                type="text"
+                name="last_name"
+                value={updated.last_name}
+                onChange={handleChange}
+                autoFocus
+              />
+            </Form.Group>
+            <Form.Group
+              className="mb-3"
+              controlId="exampleForm.ControlTextarea1"
+            >
+              <Form.Label>Email</Form.Label>
+              <Form.Control
+                type="email"
+                name="email"
+                value={updated.email}
+                onChange={handleChange}
+                autoFocus
+              />
+            </Form.Group>
+            <Form.Group
+              className="mb-3"
+              controlId="exampleForm.ControlTextarea1"
+            >
+              <Form.Label>Password</Form.Label>
+              <Form.Control
+                type="text"
+                name="password"
+                value={updated.password}
+                onChange={handleChange}
+                autoFocus
+              />
+            </Form.Group>
+            <Form.Group
+              className="mb-3"
+              controlId="exampleForm.ControlTextarea1"
+            >
+              <Form.Label>Registered Date</Form.Label>
+              <Form.Control
+                type="date"
+                min="2023-05-15"
+                max="2023-05-15"
+                name="registered_data"
+                value={updated.registered_date}
+                onChange={handleChange}
+                autoFocus
+              />
+            </Form.Group>
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button onClick={() => onUpdate(userState._id)}>Update</Button>
+          <Button onClick={handleClose}>Close</Button>
+        </Modal.Footer>
+      </Modal>
 
-        {
-          //-------------------------Add animal form using bootstrap Modal-------------------
-        }
+      {
+        //-------------------------Add animal form using bootstrap Modal-------------------
+      }
 
-<Modal {...props} size="lg" show={showModal} onHide={handleCloseModal} centered>
+      <Modal
+        {...props}
+        size="lg"
+        show={showModal}
+        onHide={handleCloseModal}
+        centered
+      >
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
             Add New Animal
@@ -209,12 +208,11 @@ const UsersTableRow = (props) => {
         </Modal.Header>
         <Modal.Body>
           <Form>
-         
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Animal Name:</Form.Label>
               <Form.Control
                 type="text"
-                name="animal_name" 
+                name="animal_name"
                 value={data.animal_name}
                 placeholder="Enter Animal Name"
                 onChange={handleChangeAnimal}
@@ -264,6 +262,7 @@ const UsersTableRow = (props) => {
                 type="date"
                 name="DOB"
                 value={data.DOB}
+                max="2023-07-15" 
                 placeholder="Enter DOB"
                 onChange={handleChangeAnimal}
                 autoFocus
@@ -273,7 +272,8 @@ const UsersTableRow = (props) => {
               <Form.Label>Registered Date:</Form.Label>
               <Form.Control
                 type="date"
-                name="registered_date" min="2023-05-15" max="2023-05-15"
+                name="registered_date"
+                max="2023-07-15"
                 value={data.registered_date}
                 placeholder="Enter Registered_date"
                 onChange={handleChangeAnimal}
@@ -281,8 +281,11 @@ const UsersTableRow = (props) => {
               />
             </Form.Group>
 
-     
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1" style={{ display: "none" }}>
+            <Form.Group
+              className="mb-3"
+              controlId="exampleForm.ControlInput1"
+              style={{ display: "none" }}
+            >
               <Form.Label>User Id:</Form.Label>
               <Form.Control
                 type="text"
@@ -292,12 +295,7 @@ const UsersTableRow = (props) => {
                 onChange={handleChangeAnimal}
                 autoFocus
               />
-            </Form.Group> 
-
-
-
-            
-            
+            </Form.Group>
           </Form>
         </Modal.Body>
         <Modal.Footer>
@@ -306,45 +304,46 @@ const UsersTableRow = (props) => {
         </Modal.Footer>
       </Modal>
 
-        {
-          //-------------------------Display All data -------------------
-        }
+      {
+        //-------------------------Display All data -------------------
+      }
 
-        <td key={userState._id} style={{ display: "none" }}>
-          {"  "} 
-        </td>
-        <td>{userState.first_name} {userState.last_name}</td>
-        <td>{userState.email}</td>
-        <td>{userState.date.substring(0, 10)}</td> 
-        <td>
-          <button
-            type="submit"
-            className="addanimal"
-            onClick={() => addAnimal(userState._id)}
-          >
-            <Link className="nav-link">Add Animal</Link>
-          </button>
-        </td>
-        <td>
-          <button
-            type="submit"
-            className="submit"
-            onClick={() => updateUser(userState)}
-          >
-            <Link className="nav-link">Update</Link>
-          </button>
-        </td>
-        <td>
-          <button
-            type="submit"
-            className="delete"
-            onClick={() => onDelete(userState._id)}
-          >
-            <Link className="nav-link">Delete</Link>
-          </button>
-        </td>
-      </tr>
-    
+      <td key={userState._id} style={{ display: "none" }}>
+        {"  "}
+      </td>
+      <td>
+        {userState.first_name} {userState.last_name}
+      </td>
+      <td>{userState.email}</td>
+      <td style={{ textAlign: "center" }}>{userState.date.substring(0, 10)}</td>
+      <td>
+        <button 
+          type="submit"
+          className="addanimal"
+          onClick={() => addAnimal(userState._id)}
+        >
+          <Link className="nav-link">Add Animal</Link>
+        </button>
+      </td>
+      <td>
+        <button
+          type="submit"
+          className="submit"
+          onClick={() => updateUser(userState)}
+        >
+          <Link className="nav-link">Update</Link>
+        </button>
+      </td>
+      <td>
+        <button
+          type="submit"
+          className="delete"
+          onClick={() => onDelete(userState._id)}
+        >
+          <Link className="nav-link">Delete</Link>
+        </button>
+      </td>
+    </tr>
   );
 };
 
