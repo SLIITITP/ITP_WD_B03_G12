@@ -176,8 +176,8 @@ function OrderList(props) {
         }
 
         <table className="table table-striped">
-          <tr class="table-header">
-            <td>
+          <tr class="table-header" style={{ textAlign: "center" }}>
+            <td> 
               <b>Items</b>
             </td>
             <td>
@@ -192,9 +192,9 @@ function OrderList(props) {
             <td>
               <b>Order State</b>
             </td>
-            <td>
+            <td style={{ width:"110px" }}>
               <b>Order Date</b>
-            </td>
+            </td> 
             <td> </td>
             <td> </td>
           </tr>

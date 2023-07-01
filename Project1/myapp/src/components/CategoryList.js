@@ -149,7 +149,7 @@ function CategoryList(props) {
           //-------------------------Display data from database-------------------
         }
         <table className="table table-striped"> 
-          <tr>
+          <tr  class="table-header" style={{ textAlign: "center" }}>
             <td>
               <b>Category</b>
             </td>

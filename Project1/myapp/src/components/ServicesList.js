@@ -201,7 +201,7 @@ function ServicesList(props) {
         }
 
         <table className="table table-striped" >
-          <tr>
+          <tr  class="table-header" style={{ textAlign: "center" }}>
             <td>
               <b>Service Name</b>
             </td>

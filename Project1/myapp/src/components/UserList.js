@@ -219,7 +219,7 @@ function UsersList(props) {
         }
      
         <table className="table table-striped" >
-          <tr style={{ textAlign: "center" }}>
+          <tr  class="table-header" style={{ textAlign: "center" }}>
             <td>
               <b>Full Name</b>
             </td>

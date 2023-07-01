@@ -406,7 +406,7 @@ function ItemList(props) {
         }
         <ItemPrint ref={componentRef}>
           <table className="table table-striped" style={{ height: "55em" }}>
-            <tr style={{ textAlign: "center" }}>
+            <tr  class="table-header" style={{ textAlign: "center" }}>
               <td> 
                 <b>Item</b>
               </td>

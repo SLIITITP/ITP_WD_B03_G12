@@ -119,7 +119,7 @@ function AnimalList(props) {
           //-------------------------Display data from database-------------------
         }
         <table className="table table-striped">
-          <tr style={{ textAlign:"center" }}>
+          <tr class="table-header" style={{ textAlign: "center" }}>
             <td>
               <b>Pet Name</b>
             </td>

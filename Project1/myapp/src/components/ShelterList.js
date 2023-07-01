@@ -205,7 +205,7 @@ function ShelterList(props) {
         }
 
         <table className="table table-striped">
-          <tr style={{ textAlign: "center" }}>
+          <tr  class="table-header" style={{ textAlign: "center" }}>
             <td>
               <b>Shelter ID</b> 
             </td>

@@ -354,11 +354,11 @@ function SupplierList(props) {
         }
 
         <table className="table table-striped"> 
-          <tr style={{ textAlign: "center" }}>
+          <tr  class="table-header" style={{ textAlign: "center" }}>
             <td>
               <b>Company</b>
             </td>
-            <td>
+            <td> 
               <b>Name</b>
             </td>
             <td>

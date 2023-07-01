@@ -131,8 +131,8 @@ function AnimalTypeList(props) {
         {
           //-------------------------Display data from database-------------------
         }
-        <table className="table table-striped" style={{ width: "54em" }}>
-          <tr>
+        <table className="table table-striped">
+          <tr  class="table-header" style={{ textAlign: "center" }}>
             <td>
               <b>Animal Type</b>
             </td>

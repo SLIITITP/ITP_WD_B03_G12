@@ -176,7 +176,7 @@ function MedicalRecordsList(props) {
           //-------------------------Display data from database-------------------
         }
         <table className="table table-striped" style={{ width: "54em" }}>
-          <tr>
+          <tr  class="table-header" style={{ textAlign: "center" }}>
             <td>
               <b>Issued Doctor</b>
             </td>

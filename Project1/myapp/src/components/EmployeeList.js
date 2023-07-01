@@ -392,7 +392,7 @@ function EmployeeList(props) {
           className="table table-striped"
             
         >
-          <tr style={{ textAlign:"center" }}>
+          <tr  class="table-header" style={{ textAlign: "center" }}>
             <td style={{ width:"220px" }}>
               <b>Full Name</b>  
             </td>

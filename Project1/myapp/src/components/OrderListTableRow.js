@@ -267,8 +267,8 @@ const OrderListTableRow = (props) => {
       <td>{orderState.selectedItem}</td>
       <td>{orderState.selectedItemQty}</td>
       <td>{orderState.totalPrice}</td>
-      <td>{orderState.paymentMethod}</td>
-      <td>{orderState.orderStates}</td>
+      <td  style={{ textAlign: "center" }}>{orderState.paymentMethod}</td>
+      <td  style={{ textAlign: "center" }}>{orderState.orderStates}</td>
       <td>{orderState.orderDate}</td>
 
       <td>

@@ -254,9 +254,9 @@ function PrescriptionList(props) {
         }
         <PrescriptionPrint ref={componentRef}>
           <table className="table table-striped" >
-            <tr>
+            <tr  class="table-header" style={{ textAlign: "center" }}>
               <td>
-                <b>Doctor Name</b>
+                <b>Doctor Name</b> 
               </td>
               <td>
                 <b>PetName</b>
