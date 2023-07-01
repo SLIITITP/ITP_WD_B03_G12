@@ -19,13 +19,11 @@ process.env.SECRET_KEY = 'secret';
 users.post('/register', async (req, res) => {
   try {
     const today = new Date();
-    const petDetails = req.body.pet_details || []; 
     const userData = {
       first_name: req.body.first_name,
       last_name: req.body.last_name,
       email: req.body.email,
       password: req.body.password,
-      pet_details: petDetails,
       created: today
     };
 
@@ -134,8 +132,7 @@ users.route('/update/:id').put(async (req, res) => {
     users.first_name = req.body.first_name;
     users.last_name = req.body.last_name;
     users.email = req.body.email;
-    users.password = req.body.password;
-    users.pet_details = req.body.pet_details; 
+    users.passsword = req.body.password;
 
     await users.save();
     res.json(users);

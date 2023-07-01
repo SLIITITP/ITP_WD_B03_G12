@@ -35,7 +35,6 @@ p {
 }
 
 .nav-tabs2 {  
-    
     background-color:black;   
     border-radius: 2em;
     display: flex;
@@ -46,7 +45,6 @@ p {
 }
 
 .nav-link {
-    
     border-radius: 20px; 
     border-color: transparent; 
 }
@@ -54,12 +52,10 @@ p {
    
 
 .nav-item2 {
-    background-color: rgb(25, 5, 43);
     list-style: none; 
     width: 10em;
-    text-align: center;  
+    text-align: center; 
     margin-bottom: 2px;   
-    border-color: transparent; 
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;  
     transition: background 0.35s;
@@ -93,13 +89,13 @@ p {
        
 }
 
-.sidebar {   
+.sidebar {
     position: fixed;
     left: 0;
     top: 0;
     width: 12em;
     height: 100%;
-    
+    background-color: rgb(25, 5, 43);
     padding: 20px; 
     padding-top: 10px;
     margin-right: 5px; 
