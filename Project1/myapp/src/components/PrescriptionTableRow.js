@@ -14,6 +14,7 @@ const PrescriptionsTableRow = (props) => {
     PetName: props.obj.PetName,
     Illness: props.obj.Illness,
     Medicine: props.obj.Medicine,
+    Date: props.obj.Date.substring(0, 10),
   });
 
   const [show, setShow] = useState(false);
@@ -158,6 +159,7 @@ const PrescriptionsTableRow = (props) => {
         <td>{prescriptionState.PetName}</td>
         <td>{prescriptionState.Illness}</td>
         <td>{prescriptionState.Medicine}</td>
+        <td>{prescriptionState.Date}</td>
         <td>
           <button
             type="submit"
