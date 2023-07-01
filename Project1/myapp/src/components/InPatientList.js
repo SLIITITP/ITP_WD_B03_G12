@@ -9,12 +9,11 @@ import { withRouter } from "./withRouter";
 import "../components/CSS/listmain.css";
 
 function InPatient(props) {
-
   //read hook
 
   const [inpatient, setInPatient] = useState([]);
   //insert hook
-  
+
   const [data, setData] = useState({
     first_name: "",
     last_name: "",
@@ -24,7 +23,7 @@ function InPatient(props) {
     shelter_type: "",
     special_notes: "",
     shelter_no: "",
-    status:"Admitted",
+    status: "Admitted",
   });
 
   const handleChange = (e) => {
@@ -80,27 +79,24 @@ function InPatient(props) {
 
   const handleClick = (e) => {
     e.preventDefault();
-   
   };
 
   return (
     <div>
-     
-     <Link to="/admissionPreview" className="nav-link">
-        <Button className="print-btn" style={{ float: "right" }}>Print Preview</Button>
+      <Link to="/admissionPreview" className="nav-link">
+        <Button className="print-btn" style={{ float: "right" }}>
+          Print Preview
+        </Button>
       </Link>
 
-        {
-              //-------------------------Insert form using bootstrap Modal-------------------
-
-        }
-
-     
+      {
+        //-------------------------Insert form using bootstrap Modal-------------------
+      }
 
       <Modal {...props} size="lg" show={show} onHide={handleClose} centered>
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
-          Admission Form
+            Admission Form
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -155,7 +151,9 @@ function InPatient(props) {
 
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Diagnosis:</Form.Label>
-              <Form.Control as = "textarea" rows={3} 
+              <Form.Control
+                as="textarea"
+                rows={3}
                 name="diagnosis"
                 value={data.diagnosis}
                 placeholder="Enter Diagnosis"
@@ -184,8 +182,10 @@ function InPatient(props) {
 
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Special Notes:</Form.Label>
-              <Form.Control as = "textarea" rows={3} 
-               name="special_notes"
+              <Form.Control
+                as="textarea"
+                rows={3}
+                name="special_notes"
                 value={data.special_notes}
                 placeholder="Enter Special Notes"
                 onChange={handleChange}
@@ -212,7 +212,6 @@ function InPatient(props) {
         </Modal.Footer>
       </Modal>
 
-
       <h1 align="center">inpatient List</h1>
       <h4 className="text-right">
         <b>Total: {count}</b>
@@ -223,15 +222,12 @@ function InPatient(props) {
       }
 
       <div className="tablestyle">
-         
-
         {
           //-------------------------Display data from database-------------------
         }
 
-      
         <table className="table table-striped">
-          <tr>
+          <tr class="table-header" style={{ textAlign: "center" }}>
             <td>
               <b>First Name</b>
             </td>
@@ -262,18 +258,12 @@ function InPatient(props) {
             <td>
               <b>Shelter No</b>
             </td>
-           
-
+            <td></td>
 
           </tr>
           <tbody>{tabRow()}</tbody>
         </table>
-      
       </div>
-
-
-
-
     </div>
   );
 }

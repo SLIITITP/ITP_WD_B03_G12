@@ -356,7 +356,7 @@ function AdmissionForm(props) {
 
         <table className="table table-striped">
           <thead>
-            <tr style={{ textAlign: "center" }}>
+            <tr class="table-header" style={{ textAlign: "center" }}>
               <td>
                 <b>Owner Name</b>
               </td>

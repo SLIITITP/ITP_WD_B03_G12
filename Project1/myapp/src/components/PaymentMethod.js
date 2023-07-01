@@ -84,8 +84,8 @@ export default function(props){
                   value={data.paymentMethod}
                   onChange={handleChange}>
               <option value="select">Select</option>
-              <option value="Cash_On_dilivery">Cash On dilivery</option>
-               <option value="Card_payment">Card payment</option>
+              <option value="COD">Cash On dilivery</option>
+               <option value="Card">Card payment</option>
               </Form.Control>
   
 

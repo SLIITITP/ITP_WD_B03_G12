@@ -1,38 +1,34 @@
-import React, { useState, useEffect, useRef  } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import PaymentTableRow from "./PaymentTableRow";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
-import { withRouter } from "./withRouter"; 
-import ReactToPrint from 'react-to-print'; 
+import { withRouter } from "./withRouter";
+import ReactToPrint from "react-to-print";
 import "../components/CSS/listmain.css";
 import jwt_decode from "jwt-decode";
 
-
-
 function PaymentList(props) {
- 
   //taking user
-    const token = localStorage.getItem("usertoken");
-    const [userData, setUserData] = useState({});
-  
-    useEffect(() => {
-      try {
-        const decoded = jwt_decode(token);
-        setUserData({
-          first_name: decoded.first_name,
-          last_name: decoded.last_name,
-          email: decoded.email,
-        });
-        console.log("decoded:", decoded);
-      } catch (error) {
-        setUserData({ error: "Error decoding token: " + error.message });
-      }
-    }, [token]);
+  const token = localStorage.getItem("usertoken");
+  const [userData, setUserData] = useState({});
 
-  
+  useEffect(() => {
+    try {
+      const decoded = jwt_decode(token);
+      setUserData({
+        first_name: decoded.first_name,
+        last_name: decoded.last_name,
+        email: decoded.email,
+      });
+      console.log("decoded:", decoded);
+    } catch (error) {
+      setUserData({ error: "Error decoding token: " + error.message });
+    }
+  }, [token]);
+
   //read hook
   const [payment, setPayment] = useState([]);
 
@@ -40,7 +36,6 @@ function PaymentList(props) {
   const [data, setData] = useState({
     pay_total: "",
     pay_cashierName: "",
-  
   });
 
   const handleChange = (e) => {
@@ -105,25 +100,29 @@ function PaymentList(props) {
         handleClose();
         window.location.reload();
       })
-      .catch((err) => { 
+      .catch((err) => {
         console.log(err);
       });
   };
 
-  const componentRef = useRef(); 
- 
+  const componentRef = useRef();
+
   return (
     <div>
- <Link to="/payservice" className="material-icons floating-btn">
-      add
-    </Link>
-       
+      <Link to="/payservice" className="material-icons floating-btn">
+        add
+      </Link>
+
       <ReactToPrint
-      documentTitle='Our Services' 
-      trigger={() => <Button className="print-btn"  style={{float:'right'}}>Print</Button>}
-      content={() => componentRef.current} ></ReactToPrint>
-     
-    
+        documentTitle="Our Services"
+        trigger={() => (
+          <Button className="print-btn" style={{ float: "right" }}>
+            Print
+          </Button>
+        )}
+        content={() => componentRef.current}
+      ></ReactToPrint>
+
       {
         //-------------------------Insert form using bootstrap Modal-------------------
       }
@@ -152,8 +151,8 @@ function PaymentList(props) {
             >
               <Form.Label>Cashier</Form.Label>
               <Form.Control
-              plaintext
-              readOnly
+                plaintext
+                readOnly
                 type="text"
                 name="pay_cashierName"
                 value={data.pay_cashierName}
@@ -180,14 +179,12 @@ function PaymentList(props) {
       }
 
       <div className="tablestyle">
-        
-
         {
           //-------------------------Display data from database-------------------
         }
-       
+
         <table className="table table-striped">
-          <tr>
+          <tr class="table-header" style={{ textAlign: "center" }}>
             <td>
               <b>Payment Date</b>
             </td>
@@ -203,15 +200,13 @@ function PaymentList(props) {
             <td>
               <b>Pet</b>
             </td>
+            <td></td> 
           </tr>
           <tbody>{tabRow()}</tbody>
         </table>
-    
       </div>
-      
-
     </div>
   );
-};
+}
 
 export default withRouter(PaymentList);

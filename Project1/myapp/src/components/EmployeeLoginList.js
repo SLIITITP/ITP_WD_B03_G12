@@ -314,7 +314,7 @@ function EmployeeLoginList(props) {
           responsive
           className="table table-striped"
         >
-          <tr style={{ textAlign: "center" }}>
+          <tr  class="table-header" style={{ textAlign: "center" }}>
             <td>
               <b>Image</b> 
             </td>
@@ -328,6 +328,8 @@ function EmployeeLoginList(props) {
             <td>
               <b>Date</b>
             </td>
+            <td></td>
+              <td></td>
           </tr>
           <tbody>{tabRow()}</tbody>
         </Table>

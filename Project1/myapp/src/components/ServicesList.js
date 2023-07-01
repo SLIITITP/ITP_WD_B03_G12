@@ -201,13 +201,15 @@ function ServicesList(props) {
         }
 
         <table className="table table-striped" >
-          <tr>
+          <tr  class="table-header" style={{ textAlign: "center" }}>
             <td>
               <b>Service Name</b>
             </td>
             <td>
               <b>Service Price</b>
             </td>
+            <td></td> 
+            <td></td>
           </tr>
           <tbody>{tabRow()}</tbody>
         </table>

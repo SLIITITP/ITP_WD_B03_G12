@@ -109,7 +109,7 @@ const ServicesTableRow = (props) => {
           {" "}
         </td>
         <td>{serviceState.service_name}</td>
-        <td>{serviceState.service_price}</td>
+        <td style={{ textAlign: "center" }}>{serviceState.service_price}</td>
         <td>
           <button
             type="submit"

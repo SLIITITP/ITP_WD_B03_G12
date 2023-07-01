@@ -151,10 +151,10 @@ function VaccineList(props) {
           //-------------------------Display data from database-------------------
         }
         <table className="table table-striped" >
-          <tr>
+          <tr  class="table-header" style={{ textAlign: "center" }}>
             <td>
               <b>Vaccination Name</b>
-            </td>
+            </td> 
             <td>
               <b>Vaccine Description</b>
             </td>
