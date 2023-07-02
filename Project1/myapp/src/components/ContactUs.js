@@ -55,6 +55,18 @@ const ContactUs = () => {
           Cras placerat accumsan nulla Nullam rutrum Nam vestibulum accumsan
           nisl.
         </p>
+        <p>
+          Turpis cursus in hac habitasse platea dictumst. Sed cras ornare arcu
+          dui. Venenatis tellus in metus vulputate eu. Enim praesent elementum
+          facilisis leo vel fringilla est ullamcorper. Auctor urna nunc id
+          cursus metus aliquam eleifend mi in. Cras sed felis eget velit. Nisl
+          condimentum id venenatis a condimentum vitae. Eu volutpat odio
+          facilisis mauris sit amet massa. Venenatis a condimentum vitae sapien
+          pellentesque habitant. Netus et malesuada fames ac turpis egestas
+          integer eget. At erat pellentesque adipiscing commodo. Lacinia quis
+          vel eros donec ac odio. Est pellentesque elit ullamcorper dignissim
+          cras tincidunt lobortis feugiat vivamus.
+        </p>
       </Col>
       <Col>
         <p>
@@ -76,18 +88,7 @@ const ContactUs = () => {
           culpa qui officia deserunt mollit anim id est laborum.
         </p>
 
-        <p>
-          Turpis cursus in hac habitasse platea dictumst. Sed cras ornare arcu
-          dui. Venenatis tellus in metus vulputate eu. Enim praesent elementum
-          facilisis leo vel fringilla est ullamcorper. Auctor urna nunc id
-          cursus metus aliquam eleifend mi in. Cras sed felis eget velit. Nisl
-          condimentum id venenatis a condimentum vitae. Eu volutpat odio
-          facilisis mauris sit amet massa. Venenatis a condimentum vitae sapien
-          pellentesque habitant. Netus et malesuada fames ac turpis egestas
-          integer eget. At erat pellentesque adipiscing commodo. Lacinia quis
-          vel eros donec ac odio. Est pellentesque elit ullamcorper dignissim
-          cras tincidunt lobortis feugiat vivamus.
-        </p>
+       
       </Col>
       </Row>
     </div>
