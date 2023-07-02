@@ -55,6 +55,9 @@ import InPatientList from './components/InPatientList';
 import VaccinePrintPreview from './components/VaccinePrintPreview'
 import Footer from './components/Footer';
 
+import "./App.css";
+ 
+
 class App extends Component {
 
 
