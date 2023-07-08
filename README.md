@@ -36,5 +36,6 @@ effectively which leads to good revenue. This system also ensures doctor-client 
 organized
 
 #### Technologies used  - MERN Stack
+MongoDB, ExpressJS, React, NodeJS
 
 
