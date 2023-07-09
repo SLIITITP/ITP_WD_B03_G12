@@ -33,7 +33,7 @@ store the previous information for easy access.
 This application allows the clinic to manage and analyze its staff, animals, and space and store 
 more efficiently. The system helps owners to clearly understand the clinic and make decisions more 
 effectively which leads to good revenue. This system also ensures doctor-client relationship is more 
-organized
+organized.
 
 #### Technologies used  - MERN Stack
 MongoDB, ExpressJS, React, NodeJS
